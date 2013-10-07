@@ -14,11 +14,12 @@
 						
 							<h2><?php echo $prodotto['nome_prodotto']?></h2>
 							<h3><?php echo $prodotto['nome_produttore']?></h3>
-							<p><?php echo $prodotto['desc']?></p>
+							
 							<div class="info">
 		                        <span><?php echo $prodotto['prezzo']?></span>
 		                        <p>Prezzo<br>Euro</p>
 		                    </div>
+		                    <p class="desc"><?php echo $prodotto['desc']?></p>
 						</div>
 					</li>
 			<?php	}

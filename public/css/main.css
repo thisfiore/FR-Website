@@ -84,19 +84,23 @@ div.center {
 	position: relative;
 	color: #fff;
 }
-.prodotti ul li .info p { padding-top: 35px; }
+.prodotti ul li .info p { padding-top: 45px; }
 .prodotti ul li .info span {
-	background: #666666;
-	color: #fff;
+	background: #666;
+	color: #FFF;
 	position: absolute;
 	top: 0;
 	border-radius: 100px;
-	height: 22px;
-	width: 30px;
+	height: 21px;
+	width: 38px;
 	text-align: center;
 	left: 50%;
-	margin-left: -15px;
-	padding: 4px 0;
+	margin-left: -19px;
+	padding: 9px 0;
+}
+.prodotti ul li .desc {
+	display: none;
+	margin: 0;
 }
 
 /*LISTA DELLA SPESA*/
@@ -135,4 +139,4 @@ div.center {
 .lista .partial {
 	display: inherit;
 	margin-right: -20px;
-} .lista .partial:before { content: "............................................................."; }
+} .lista .partial:before { content: "..............."; }
