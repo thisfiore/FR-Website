@@ -121,3 +121,7 @@ div.center {
 	line-height: 8px;
 	cursor: pointer;
 }
+.lista .partial {
+	display: inherit;
+	margin-right: -20px;
+} .lista .partial:before { content: "............................................................."; }

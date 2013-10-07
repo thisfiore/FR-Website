@@ -68,6 +68,7 @@
 	<!-- SIDE LISTA -->
 	<div class="lista">
 		<ul>
+
 			<li>
 				<div class="alert alert-success">
 				  <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -75,15 +76,16 @@
 				  <div>
 					  <div class="quantity pull-left">
 						<span>-</span>
-						<strong>2</strong>
+						<span>2</span>
 						<span>+</span>
 					  </div>
-					  <span class="partial pull-right">
+					  <span class="partial text-right">
 						1,24 €
 					  </span>
 				  </div>
 				</div>
 			</li>
+
 		</ul>
 		<div class="subtotal">16,56 €</div>
 		<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i></button>
