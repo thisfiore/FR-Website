@@ -11,6 +11,7 @@ $ds = $self[strlen($self)-1];
 $array_self = explode("/",$self);
 $array_self = array_filter($array_self);
 
+require_once '../web/view/home.php';
 
 // echo $ds;
 // echo "<pre>";
@@ -19,33 +20,33 @@ $array_self = array_filter($array_self);
 // die;
 
 // impostazione URL corretto
-if ($ds != "/") {
+// if ($ds != "/") {
 	
-	if ($array_self[1] != 'home' || $array_self[1] != 'login') {
-		header("location:".PROTOCOL.HOSTNAME."/");
-	}
-	else {
+// 	if ($array_self[1] != 'home' || $array_self[1] != 'login') {
+// 		header("location:".PROTOCOL.HOSTNAME."/");
+// 	}
+// 	else {
 		
-		if (isset($_COOKIE['userId']) && !empty($_COOKIE['userId'])) {
-			require_once '../web/view/home.php';
-		}
-		else {
-			require_once '../web/view/login.php';
-		}
+// 		if (isset($_COOKIE['userId']) && !empty($_COOKIE['userId'])) {
+// 			require_once '../web/view/home.php';
+// 		}
+// 		else {
+// 			require_once '../web/view/login.php';
+// 		}
 		
-	}
+// 	}
 	
-} 
-else {
+// } 
+// else {
 	
-	if (isset($_COOKIE['userId']) && !empty($_COOKIE['userId'])) {
-		require_once '../web/view/home.php';
-	}
-	else {
-		require_once '../web/view/login.php';
-	}
+// 	if (isset($_COOKIE['userId']) && !empty($_COOKIE['userId'])) {
+// 		require_once '../web/view/home.php';
+// 	}
+// 	else {
+// 		require_once '../web/view/login.php';
+// 	}
 	
-}
+// }
 
 
 
