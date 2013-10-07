@@ -9,11 +9,11 @@
 </head>
 <body>
 	
-	<img src="" />
+	<img class="center" src="../../public/img/logo.png" />
 	<div class="spacer"></div>
 	<div class="container">
-		<div class="row">
-			<div class="span4 offset4 well">
+		<div class="row no-margin">
+			<div class="span4 center well">
 	          	<!-- <div class="alert alert-error">
 	                <a class="close" data-dismiss="alert" href="#">×</a>Incorrect Username or Password!
 	            </div> -->
@@ -23,7 +23,7 @@
 	            <!-- <label class="checkbox">
 	            	<input type="checkbox" name="remember" value="1"> Remember Me
 	            </label> -->
-				<button type="submit" name="submit" class="btn btn-danger btn-large pull-right">Entra</button>
+				<button type="submit" name="submit" class="btn btn-danger btn-large btn-block">Entra</button>
 				</form>    
 			</div>
 		</div>

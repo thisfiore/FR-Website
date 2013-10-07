@@ -1,8 +1,26 @@
 /***** GENERAL ******/
+html{ height: 100%; }
+body { 
+	background: url("../img/bg.jpg") no-repeat; 
+	background-size: cover;
+	height: 100%;
+}
 
 form { margin: 0; }
 
-.spacer { margin: 20px 0; }
+.spacer { margin: 40px 0; }
+.no-margin { margin: 0; }
+
+img.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.center {
+	margin: 0 auto;
+	float: none;
+}
+.well { background-color: rgba(245, 245, 245, 0.7); }
 
 .input-form {
 	padding: 10px !important;
