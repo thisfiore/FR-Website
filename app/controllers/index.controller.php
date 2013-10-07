@@ -64,8 +64,19 @@ class IndexController extends Controller {
 		
 		$prodotti = $prodottiModels->selectAllProducts();
 		
+		$lista_spesa = $prodottiModels->selectListaSpesa($this->idLoggedUser);
+		
+		if (isset($lista_spesa) && !empty($lista_spesa)) {
+			foreach ($lista_spesa as $key => $prodotto) {
+				$lista_spesa[$key] = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
+				
+			}
+		}
+		
+		
 		$this->view->load(null, 'home', null, null);
-		$this->view->render(array ( 	'prodotti' => $prodotti) );
+		$this->view->render(array ( 	'prodotti' => $prodotti,
+										'lista_spesa' => $lista_spesa ) );
 	}
 	
 }

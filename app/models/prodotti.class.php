@@ -22,5 +22,18 @@ class Prodotti extends DB {
 		return $prodotti;
 	}
 	
+	public function selectListaSpesa ($idUtente) {
+		
+// 		Filtro per data ordine admin
+
+		$select = $this->select()
+						->from ('lista_spesa', '*')
+						->join ('ordine_utente', 'ordine_utente.id_ordine = lista_spesa.id_ordine', '')
+						->where ('ordine_utente.id_utente = ', $idUtente);
+	
+		$prodotti = $this->fetchAll($select);
+		return $prodotti;
+	}
+	
 	
 }

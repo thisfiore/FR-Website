@@ -32,23 +32,8 @@
 	<!-- SIDE LISTA -->
 	<div class="lista">
 		<ul>
-
-			<li>
-				<div class="alert alert-success">
-				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-				  <span>Mele Rosse Golden</span>
-				  <div>
-					  <div class="quantity pull-left">
-						<span>-</span>
-						<span>2</span>
-						<span>+</span>
-					  </div>
-					  <span class="partial text-right">
-						1,24 €
-					  </span>
-				  </div>
-				</div>
-			</li>
+			<?php require '_partial/cella_lista.php';?>
+			
 
 		</ul>
 		<div class="subtotal">16,56 €</div>
