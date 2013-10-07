@@ -1,0 +1,10 @@
+/***** GENERAL ******/
+
+form { margin: 0; }
+
+.spacer { margin: 20px 0; }
+
+.input-form {
+	padding: 10px !important;
+	width: 93%;
+}
