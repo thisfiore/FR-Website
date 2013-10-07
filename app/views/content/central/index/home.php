@@ -5,7 +5,37 @@
 
 			<li>
 				<div data-attr-id="1">
-					<img src="../../public/img/apples.jpg" />
+					<div class="image" style="background:url('../../public/img/apples.jpg');">
+						<span>+</span>
+					</div>
+					<h2>Mele Rosse Golden</h2>
+					<h3>Fattoria Artuso</h3>
+					<p>Descrizione Descrizione</p>
+					<div class="info">
+                        <span>0.1</span>
+                        <p>Prezzo<br>Euro</p>
+                    </div>
+				</div>
+			</li>
+			<li>
+				<div data-attr-id="1">
+					<div class="image" style="background:url('../../public/img/apples.jpg');">
+						<span>+</span>
+					</div>
+					<h2>Mele Rosse Golden</h2>
+					<h3>Fattoria Artuso</h3>
+					<p>Descrizione Descrizione</p>
+					<div class="info">
+                        <span>0.1</span>
+                        <p>Prezzo<br>Euro</p>
+                    </div>
+				</div>
+			</li>
+			<li>
+				<div data-attr-id="1">
+					<div class="image" style="background:url('../../public/img/apples.jpg');">
+						<span>+</span>
+					</div>
 					<h2>Mele Rosse Golden</h2>
 					<h3>Fattoria Artuso</h3>
 					<p>Descrizione Descrizione</p>
@@ -16,51 +46,6 @@
 				</div>
 			</li>
 
-			<li>
-				<div data-attr-id="1">
-					<img src="../../public/img/apples.jpg" />
-					<h2>Mele Rosse Golden</h2>
-					<h3>Fattoria Artuso</h3>
-					<p>Descrizione Descrizione</p>
-					<div class="info">
-                        <span>1</span>
-                        <p>Prezzo<br>Euro</p>
-                    </div>
-				</div>
-			</li><li>
-				<div data-attr-id="1">
-					<img src="../../public/img/apples.jpg" />
-					<h2>Mele Rosse Golden</h2>
-					<h3>Fattoria Artuso</h3>
-					<p>Descrizione Descrizione</p>
-					<div class="info">
-                        <span>1</span>
-                        <p>Prezzo<br>Euro</p>
-                    </div>
-				</div>
-			</li><li>
-				<div data-attr-id="1">
-					<img src="../../public/img/apples.jpg" />
-					<h2>Mele Rosse Golden</h2>
-					<h3>Fattoria Artuso</h3>
-					<p>Descrizione Descrizione</p>
-					<div class="info">
-                        <span>1</span>
-                        <p>Prezzo<br>Euro</p>
-                    </div>
-				</div>
-			</li><li>
-				<div data-attr-id="1">
-					<img src="../../public/img/apples.jpg" />
-					<h2>Mele Rosse Golden</h2>
-					<h3>Fattoria Artuso</h3>
-					<p>Descrizione Descrizione</p>
-					<div class="info">
-                        <span>1</span>
-                        <p>Prezzo<br>Euro</p>
-                    </div>
-				</div>
-			</li>
 
 		</ul>
 	</div>

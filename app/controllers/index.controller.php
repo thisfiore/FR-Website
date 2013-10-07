@@ -58,6 +58,12 @@ class IndexController extends Controller {
 	
 	
 	public function getHome() {
+		$loginScript = array(
+					"home" => array(
+							"type" => "text/javascript",
+							"src" => "home.js")
+					);
+		$this->view->addScripts($loginScript);
 		$this->view->load(null, 'home', null, null);
 		$this->view->render();
 	}
