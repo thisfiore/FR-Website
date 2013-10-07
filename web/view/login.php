@@ -4,8 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Food Republic - Login</title>
 
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../../public/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../public/css/main.css">
 </head>
 <body>
 	
@@ -30,9 +30,3 @@
 
 </body>
 </html>
-
-
-<?php
-
-echo "login";
-?>
