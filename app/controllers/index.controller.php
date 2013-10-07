@@ -64,12 +64,12 @@ class IndexController extends Controller {
 		
 		$prodotti = $prodottiModels->selectAllProducts();
 		
-		$lista_spesa = $prodottiModels->selectListaSpesa($this->idLoggedUser);
+		
+		$lista_spesa = $prodottiModels->selectListaSpesa($_COOKIE['id_utente']);
 		
 		if (isset($lista_spesa) && !empty($lista_spesa)) {
 			foreach ($lista_spesa as $key => $prodotto) {
 				$lista_spesa[$key] = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
-				
 			}
 		}
 		

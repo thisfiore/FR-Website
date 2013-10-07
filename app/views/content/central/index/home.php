@@ -33,10 +33,15 @@
 	<!-- SIDE LISTA -->
 	<div class="lista">
 		<ul>
-			<?php require '_partial/cella_lista.php';?>
-			
-
+			<?php 
+			if (isset($lista_spesa) && !empty($lista_spesa)) {
+				foreach ($lista_spesa as $cella_lista) {
+					require '_partial/cella_lista.php';
+				}
+			}
+			?>
 		</ul>
+		
 		<div class="subtotal">16,56 €</div>
 		<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i></button>
 	</div>

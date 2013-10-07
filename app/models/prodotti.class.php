@@ -28,10 +28,19 @@ class Prodotti extends DB {
 
 		$select = $this->select()
 						->from ('lista_spesa', '*')
-						->join ('ordine_utente', 'ordine_utente.id_ordine = lista_spesa.id_ordine', '')
+						->join ('ordine_utente', 'ordine_utente.id_ordine = lista_spesa.id_ordine',  array('stato', 'id_ordine_admin') )
 						->where ('ordine_utente.id_utente = ', $idUtente);
 	
 		$prodotti = $this->fetchAll($select);
+		return $prodotti;
+	}
+	
+	public function selectProdottoMinimal ($idProdotto) {
+		$select = $this->select()
+						->from ('prodotti', 'nome_prodotto, prezzo')
+						->where ('id_prodotto = ', $idProdotto);
+	
+		$prodotti = $this->fetchRow($select);
 		return $prodotti;
 	}
 	
