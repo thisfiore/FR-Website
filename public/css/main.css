@@ -3,7 +3,6 @@ html{ height: 100%; }
 body { 
 	background: url("../img/bg.jpg") no-repeat; 
 	background-size: cover;
-	background-attachment: fixed;
 	height: 100%;
 }
 
@@ -18,106 +17,12 @@ img.center {
   margin-right: auto;
 }
 div.center {
-	margin-left: auto !important;
-	margin-right: auto;
-	float: none !important;
+	margin: 0 auto;
+	float: none;
 }
-.well { 
-	background-color: rgba(245, 245, 245, 0.7); 
-	border: 1px solid rgba(227, 227, 227, 0.7);
-}
+.well { background-color: rgba(245, 245, 245, 0.7); }
 
 .input-form {
 	padding: 10px !important;
 	width: 93%;
-}
-
-
-/*LISTA PRODOTTI*/
-.prodotti { 
-	width: 70%; 
-	float: left; 
-}
-.prodotti ul { 
-	list-style-type: none; 
-	margin: 20px;
-}
-.prodotti ul li {
-	background: #89cee5;
-	width: 200px;
-	border-radius: 5px;
-	float: left;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	padding: 10px;
-	text-align: center;
-	color: #fff;
-}
-.prodotti ul li img {
-	border-radius: 1000px;
-	width: 100px;
-	height: 100px;
-}
-.prodotti ul li h2 {
-	font-size: 18px;
-	color: #FFF;
-	line-height: 20px;
-}
-.prodotti ul li h3 {
-	font-size: 18px;
-	color: #FFF;
-	line-height: 20px;
-	font-weight: normal;
-}
-.prodotti ul li .info {
-	position: relative;
-	color: #fff;
-}
-.prodotti ul li .info p { padding-top: 35px; }
-.prodotti ul li .info span {
-	background: #666666;
-	color: #fff;
-	position: absolute;
-	top: 0;
-	border-radius: 100px;
-	height: 22px;
-	width: 30px;
-	text-align: center;
-	left: 50%;
-	margin-left: -15px;
-	padding: 4px 0;
-}
-
-/*LISTA DELLA SPESA*/
-.lista { 
-	width: 30%; 
-	background: #555;
-	float: right;
-	height: 100%;
-	position: fixed;
-	right: 0;
-	color: #fff;
-	padding: 15px;
-}
-.lista ul { list-style-type: none; margin: 0; }
-.lista .subtotal {
-	text-align: right;
-	border-top: 2px dotted #fff;
-	border-bottom: 2px dotted #fff;
-	padding: 10px;
-	margin-bottom: 20px;
-	font-size: 30px;
-	line-height: 36px;
-}
-
-.lista .quantity span:first-child, .lista .quantity span:last-child {
-	border: #666 1px solid;
-	color: #666;
-	border-radius: 100px;
-	height: 10px;
-	width: 10px;
-	text-align: center;
-	display: inline-block;
-	line-height: 8px;
-	cursor: pointer;
 }
