@@ -58,7 +58,8 @@ class IndexController extends Controller {
 	
 	
 	public function getHome() {
-		echo "home";
+		$this->view->load(null, 'home', null, null);
+		$this->view->render();
 	}
 	
 }
