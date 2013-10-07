@@ -58,8 +58,14 @@ class IndexController extends Controller {
 	
 	
 	public function getHome() {
+		
+		$this->loadModules('prodotti');
+		$prodottiModels = new Prodotti();
+		
+		$prodotti = $prodottiModels->selectAllProducts();
+		
 		$this->view->load(null, 'home', null, null);
-		$this->view->render();
+		$this->view->render(array ( 	'prodotti' => $prodotti) );
 	}
 	
 }
