@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Food Republic</title>
-	<link rel="stylesheet" href="../../public/css/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../public/css/main.css">
-</head>
-<body>
-	
+
 	<!-- LISTA DI PRODOTTI AQUISTABILI -->
 	<div class="prodotti">
 		<ul>
@@ -97,6 +88,3 @@
 		<div class="subtotal">16,56 €</div>
 		<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i></button>
 	</div>
-
-</body>
-</html>
