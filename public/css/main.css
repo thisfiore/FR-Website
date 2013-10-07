@@ -52,11 +52,22 @@ div.center {
 	padding: 10px;
 	text-align: center;
 	color: #fff;
+	cursor: pointer;
 }
-.prodotti ul li img {
+.prodotti ul li .image {
 	border-radius: 1000px;
 	width: 100px;
 	height: 100px;
+	text-align: center;
+	background-size: cover !important;
+	margin: auto;
+	line-height: 100px;
+} 
+.prodotti ul li .image span { 
+	display: none;
+	font-size: 50px;
+	line-height: 85px;
+	font-weight: bold; 
 }
 .prodotti ul li h2 {
 	font-size: 18px;
