@@ -21,6 +21,9 @@ class Config  {
 								"bootstrap.min" => array(
 										"type" => "text/javascript",
 										"src" => "bootstrap.min.js"),
+								"home" => array(
+										"type" => "text/javascript",
+										"src" => "home.js"),
 						),
 						'styles' => array(
 								"bootstrap" => array(
