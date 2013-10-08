@@ -45,15 +45,24 @@ class IndexController extends Controller {
 			$this->loadModules('prodotti');
 			$prodottiModels = new Prodotti();
 		
+			$prezzo_finale = 0;
+			
 			foreach ($listaSpesa as $key => $prodotto) {
 				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
 				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
 				$listaSpesa[$key]['prezzo'] = $item['prezzo'];
+				
+				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo']);
 			}
 		}
+
+// 		$this->boxPrint($listaSpesa);
+// 		$this->boxPrint($prezzo_finale);
+// 		die;
 		
 		$this->view->load(null, 'pay', null, null);
-		$this->view->render( array('listaSpesa' => $listaSpesa) );
+		$this->view->render( array('listaSpesa' => $listaSpesa,
+									'prezzoFinale' => $prezzo_finale) );
 	}
 	
 	
