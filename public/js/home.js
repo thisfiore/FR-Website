@@ -45,8 +45,7 @@ $(document).ready(function(e) {
 		var label = $(this).attr("class");
 		var quantita = $(this).parent('div').data('quantita');
 		var that = $(this);
-		
-		console.log(quantita);
+		var totale = $('div.subtotal').data('totale');
 		
 		if (label == 'piu')  { 
 			quantita = quantita + 1;
@@ -79,8 +78,8 @@ $(document).ready(function(e) {
 					console.log ('errore cambio quantita');
 				}
 				else {
-					that.parent('div').attr('data-quantita', response.data);
-					that.siblings('.quantita').html(response.data);
+					that.parent('div').data('quantita', quantita);
+					that.siblings('.quantita').html(quantita);
 					
 					if (label == 'piu') {
 						totale = totale + response.data;

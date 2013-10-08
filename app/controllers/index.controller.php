@@ -94,10 +94,10 @@ class IndexController extends Controller {
 		}
 	}
 	
-	public function getPay () { 
-		$this->view->load(null, 'pay', null, null);
-		$this->view->render();
-	}
+// 	public function getPay () { 
+// 		$this->view->load(null, 'pay', null, null);
+// 		$this->view->render();
+// 	}
 
 	public function getHome() {
 		
