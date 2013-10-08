@@ -35,7 +35,7 @@ class IndexController extends Controller {
 		
 		$ordineUtente = $ordineModels->selectOrdineUtente($idOrdineAdmin, $_COOKIE['id_utente']);
 		
-		if (isset($ordineUtente) && !empty($ordineUtente)) {
+		if (!isset($ordineUtente) || empty($ordineUtente)) {
 			header('Location: /');
 		}
 		
