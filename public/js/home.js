@@ -42,10 +42,52 @@ $(document).ready(function(e) {
 		});
 	});
 	
+	
+	
 	$('.lista').on('click', 'div.quantity span', function(event) {
 		var label = $(this).attr("class");
-		console.log(label);
+		var quantita = $(this).parent().data('quantita');
+		var that = this;
 		
+		if (label == 'piu')  {
+			quantita = quantita + 1;
+		}
+		else if (label == 'meno') {
+			quantita = quantita - 1;
+		}
+		else {
+			return false;
+		}
+		console.log(label);
+		console.log(quantita);
+		
+		var id_prodotto = $(this).parents('li').data('id_prodotto');
+		var id_ordine = $(this).parents('li').data('id_ordine');
+		
+		$.ajax({
+			url : '/ordine/cambioQuantita/',
+			type : 'POST',
+			dataType : 'json',
+			data : {
+				id_prodotto : id_prodotto,
+				id_ordine : id_ordine,
+				quantita : quantita
+			},
+			success : function(response) {
+				
+				if (response.status == 'ERR') {
+					console.log ('errore delete prodotto dalla lista spesa');
+				}
+				else {
+					$(that).parent().attr('data-quantita', quantita);
+					$(that).siblings( ".quantita" ).html(quantita);
+					
+					// prodotto eliminato correttamente
+				}
+			}
+		});
+		
+		console.log(label);
 	});
 	
 	

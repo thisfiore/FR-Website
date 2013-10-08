@@ -47,6 +47,18 @@ class Ordine extends DB {
 	}
 	
 	
+	public function updateElementoListaSpesa ($idProdotto, $idOrdine, $quantita) {
+			$update = $this->update(
+					array ('quantita' => $quantita),
+					'lista_spesa',
+					array( 	'id_ordine = ' => $idOrdine,
+							'id_prodotto = ' => $idProdotto )
+			);
+			return $update;
+		
+	}
+	
+	
 	public function deleteCellaListaSpesa ($idProdotto, $idOrdine) {
 		$delete = $this->delete('lista_spesa',
 				array ( 'id_ordine = ' => $idOrdine,

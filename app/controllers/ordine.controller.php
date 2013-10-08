@@ -15,7 +15,6 @@ class OrdineController extends Controller {
 		$ordineModels = new Ordine();
 		
 		$delete = $ordineModels->deleteCellaListaSpesa($idProdotto, $idOrdine);
-// 		$delete = 1;
 		
 		if (isset($delete) && !empty($delete)) {
 				$prodotto = $ordineModels->selectListaSpesaPrezzo($idOrdine);
@@ -32,6 +31,27 @@ class OrdineController extends Controller {
 		}
 		else {
 			$response = array ( 'status' => 'ERROR' );
+		}
+		
+		$this->view->renderJson($response);
+	}
+	
+	
+	public function postCambioQuantita () {
+		$idProdotto = $_POST['id_prodotto'];
+		$idOrdine = $_POST['id_ordine'];
+		$quantita = $_POST['quantita'];
+		
+		$this->loadModules('ordine');
+		$ordineModels = new Ordine();
+		
+		$update = $ordineModels->updateElementoListaSpesa($idProdotto, $idOrdine, $quantita);
+		
+		if ($update == 1) {
+			$response = array ( 'status' => 'OK' );
+		}
+		else {
+			$response = array ( 'status' => 'ERR' );
 		}
 		
 		$this->view->renderJson($response);
