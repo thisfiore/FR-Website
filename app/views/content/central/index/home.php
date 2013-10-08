@@ -1,4 +1,3 @@
-
 	<!-- LISTA DI PRODOTTI AQUISTABILI -->
 	<div class="prodotti">
 		<ul>
@@ -36,15 +35,18 @@
 			<?php 
 			if (isset($lista_spesa) && !empty($lista_spesa)) {
 				foreach ($lista_spesa as $cella_lista) { ?>
-					<li>
+					<li class="item<?php echo $cella_lista['id_prodotto']?>" 
+						data-id_ordine="<?php echo $cella_lista['id_ordine']?>" 
+						data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>">
+						
 						<div class="alert alert-success">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
 						<span><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
 							<div>
-								<div class="quantity pull-left">
-									<span>-</span>
-									<span><?php echo $cella_lista['quantita']?></span>
-									<span>+</span>
+								<div class="quantity pull-left" data-quantita="<?php echo $cella_lista['quantita']?>">
+									<span class="meno">-</span>
+									<span ><?php echo $cella_lista['quantita']?></span>
+									<span class="piu">+</span>
 								</div>
 								<span class="partial text-right">
 									<?php echo $cella_lista['prodotto']['prezzo']?> €
@@ -57,6 +59,6 @@
 			?>
 		</ul>
 		
-		<div class="subtotal"><?php echo $prezzo_finale?> €</div>
+		<div class="subtotal" data-totale="<?php echo $prezzo_finale?>"><?php echo $prezzo_finale?> €</div>
 		<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i></button>
 	</div>

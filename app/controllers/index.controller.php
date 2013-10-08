@@ -9,6 +9,8 @@ class IndexController extends Controller {
 	public function getIndex() {
 		
 		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
+			$this->idLoggedUser = $_COOKIE['id_utente'];
+			
 			$this->getHome($this->idLoggedUser);
 			die;
 		}
@@ -63,27 +65,52 @@ class IndexController extends Controller {
 		$prodottiModels = new Prodotti();
 		
 		$prodotti = $prodottiModels->selectAllProducts();
-		
-		$lista_spesa = $prodottiModels->selectListaSpesa($_COOKIE['id_utente']);
 		$prezzo_finale = 0;
+		$ordine_admin = $this->_getOrdineAdmin();
 		
+		if (!isset($ordine_admin) || empty($ordine_admin)) {
+			echo "<h1>Sito in fase di perfezionamento</h1>";
+			die;
+		}
 
+		$lista_spesa = array();
 		
-		if (isset($lista_spesa) && !empty($lista_spesa)) {
-			foreach ($lista_spesa as $key => $prodotto) {
-				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
-				$lista_spesa[$key]['prodotto'] = $item;
-				
-				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo']);
+		if ($ordine_admin['stato'] == 1) {
+			$lista_spesa = $this->_getListaSpesa();
+			
+			if (isset($lista_spesa) && !empty($lista_spesa)) {
+				foreach ($lista_spesa as $key => $prodotto) {
+					$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
+					$lista_spesa[$key]['prodotto'] = $item;
+			
+					$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo']);
+				}
 			}
 		}
-		
-
 		
 		$this->view->load(null, 'home', null, null);
 		$this->view->render(array ( 	'prodotti' => $prodotti,
 										'lista_spesa' => $lista_spesa,
-										'prezzo_finale' => $prezzo_finale) );
+										'prezzo_finale' => $prezzo_finale,
+										'ordine_admin' => $ordine_admin) );
+	}
+	
+	
+	public function _getOrdineAdmin () {
+		$this->loadModules('ordine');
+		$ordineModels = new Ordine();
+		
+		$ordine_admin = $ordineModels->selectLastOrdineAdmin();
+		return $ordine_admin;
+	}
+	
+	
+	public function _getListaSpesa () {
+		$this->loadModules('ordine');
+		$ordineModels = new Ordine();
+	
+		$lista_spesa = $ordineModels->selectListaSpesa($this->idLoggedUser);
+		return $lista_spesa;
 	}
 	
 }
