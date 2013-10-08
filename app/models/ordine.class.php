@@ -34,7 +34,7 @@ class Ordine extends DB {
 		return $prodotti;
 	}
 	
-
+	
 	public function selectListaSpesaPrezzo ($idOrdine) {
 		$select = $this->select()
 						->from ('lista_spesa', '*')
@@ -43,6 +43,16 @@ class Ordine extends DB {
 		
 		$prodotti = $this->fetchRow($select);
 		return $prodotti;
+	}
+	
+	
+	public function selectOrdineUtente ($idOrdineAdmin) {
+		$select = $this->select()
+						->from ('ordine_utente', '*')
+						->where('id_ordine_admin = ', $idOrdineAdmin);
+	
+		$ordine = $this->fetchRow($select);
+		return $ordine;
 	}
 	
 	

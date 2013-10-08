@@ -56,11 +56,9 @@
 			<img class="center" src="/img/shopbag.png" />
 			<h4 class="text-center">La Tua Lista della Spesa</h4>
 			<br>
-			<ul>
-				<?php 
+			<ul><?php 
 				if (isset($lista_spesa) && !empty($lista_spesa)) {
 					foreach ($lista_spesa as $cella_lista) { ?>
-
 						<li class="item<?php echo $cella_lista['id_prodotto']?> row-fluid"
 							data-id_ordine="<?php echo $cella_lista['id_ordine']?>" 
 							data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>"
@@ -78,13 +76,11 @@
 									<span class="partial span3 text-right">
 										<?php echo $cella_lista['prodotto']['prezzo']?> €
 									</span>
-								
 							</div>
 						</li>
 				<?php }
 				}
-				?>
-			</ul>
+			?></ul>
 			
 
 			<div class="subtotal" data-totale="<?php echo $prezzo_finale?>">
