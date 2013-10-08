@@ -30,7 +30,7 @@ class Ordine extends DB {
 						->where ('ordine_utente.id_utente = ', $idUtente)
 						->where ('ordine_utente.id_ordine_admin = ', $idOrdineAdmin);
 	
-		$prodotti = $this->fetchAll($select);
+		$prodotti = $this->fetchRow($select);
 		return $prodotti;
 	}
 	

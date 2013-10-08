@@ -96,7 +96,7 @@ $(document).ready(function(e) {
 	});
 	
 	
-	$('div.prodotti').on('click', ' ul li', function(event) {
+	$('div.prodotti').on('click', 'ul li', function(event) {
 		var id_prodotto = $(this).children().data('id_prodotto');
 		var check = $("div.lista").find(".item"+id_prodotto).data('check');
 		
@@ -124,11 +124,12 @@ $(document).ready(function(e) {
 				$('div.subtotal span.pull-right').html(totale+' €');
 			}
 		});
-		
-		
 	});
 	
 	
+//	$('.lista').on('click', 'button.ordina', function(event) {
+//		window.location.replace("http://stackoverflow.com");
+//	});
 	
 	
 });

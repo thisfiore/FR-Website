@@ -87,7 +87,8 @@
 				<span class="text-left">Totale</span>
 				<span class="pull-right"><?php echo $prezzo_finale?> €</span>
 			</div>
-			<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i> Ordina</button>
-
+			<a href="/index/pay/">
+				<button class="btn btn-success btn-large pull-right ordina"><i class="icon-white icon-ok"></i> Ordina</button>
+			</a>
 		</div>
 	</div>
