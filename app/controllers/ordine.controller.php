@@ -48,7 +48,8 @@ class OrdineController extends Controller {
 		$update = $ordineModels->updateElementoListaSpesa($idProdotto, $idOrdine, $quantita);
 		
 		if ($update == 1) {
-			$response = array ( 'status' => 'OK' );
+			$response = array ( 'status' => 'OK',
+								'data' => $quantita );
 		}
 		else {
 			$response = array ( 'status' => 'ERR' );

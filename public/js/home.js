@@ -46,10 +46,13 @@ $(document).ready(function(e) {
 	
 	$('.lista').on('click', 'div.quantity span', function(event) {
 		var label = $(this).attr("class");
-		var quantita = $(this).parent().data('quantita');
+		var quantita = $(this).parent('div').data('quantita');
 		var that = this;
 		
-		if (label == 'piu')  {
+		console.log($(this).parent('div'));
+		console.log(quantita);
+		
+		if (label == 'piu')  { 
 			quantita = quantita + 1;
 		}
 		else if (label == 'meno') {
@@ -76,18 +79,16 @@ $(document).ready(function(e) {
 			success : function(response) {
 				
 				if (response.status == 'ERR') {
-					console.log ('errore delete prodotto dalla lista spesa');
+					console.log ('errore cambio quantita');
 				}
 				else {
-					$(that).parent().attr('data-quantita', quantita);
-					$(that).siblings( ".quantita" ).html(quantita);
+					$(that).parent('div').attr('data-quantita', response.data);
+					$(that).siblings('.quantita').html(response.data);
 					
-					// prodotto eliminato correttamente
+					console.log(response.data);
 				}
 			}
 		});
-		
-		console.log(label);
 	});
 	
 	
