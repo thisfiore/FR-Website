@@ -1,12 +1,26 @@
 	
-
-
 <div class="confirm">
 	<img class="center" src="/img/shopbag.png" />
+	<?php 
+	if ($ordineUtente['stato'] == 1) {
+	?>
+	<h1>Complimenti! <br />Hai effettuato il tuo ordine con successo!</h1>
+<p class="text-center">
+	<strong>Riceverai a breve la tua ricevuta per e-mail.</strong></p><p class="text-center">
+
+Ti ricordiamo il punto di raccolta del tuo gruppo<br /> Via Piave, 104 Fabbrico (RE) alle ore 14.30 del 11 Ottobre 2013.
+
+Il tuo ordine:
+	</p>
+	<?php 
+	}
+	else {?>
 	<h1>Riepilogo del tuo ordine</h1>
+	<?php }?>
 	<div class="lista">
 	
-	<?php if (isset($listaSpesa) && !empty($listaSpesa) ) { ?>
+	<?php
+	if (isset($listaSpesa) && !empty($listaSpesa) ) { ?>
 		<ul>
 			<li class="item row-fluid">
 				<div class="span16" style="margin-bottom:10px;">
@@ -33,12 +47,15 @@
 			<span class="pull-right"><?php echo $prezzoFinale?> €</span>
 		</div>
 		
+		<?php 
+		if ($ordineUtente['stato'] == 0) {
+		?>
 		<a href="/"> <button class="btn btn-error  center">Indietro</button> </a>
 
 		<button class="btn btn-success pull-right center paga" data-id_ordine_admin="<?php echo $idOrdineAdmin?>"><i class="icon-white icon-ok"></i> Paga alla consegna</button>
 		<button class="btn btn-primary pull-right disabled center" style="margin-right:5px;">Paypal</button>
-		
 	<?php 
+		}
 	} 
 	else { ?>
 		<a href="/">
