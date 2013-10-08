@@ -1,16 +1,20 @@
-<li>
-	<div class="alert alert-success">
+<li class="item<?php echo $cella_lista['id_prodotto']?> row-fluid"
+	data-id_ordine="<?php echo $cella_lista['id_ordine']?>" 
+	data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>"
+	data-check=1>
+
+	<div class="alert alert-success span16">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<span><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
-		<div>
-			<div class="quantity pull-left">
-				<span>-</span>
-				<span><?php echo $cella_lista['quantita']?></span>
-				<span>+</span>
-			</div>
-			<span class="partial text-right">
-				<?php echo $cella_lista['prodotto']['prezzo']?> €
-			</span>
+		<span class="span8"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
+								
+		<div class="quantity span3" data-quantita="<?php echo $cella_lista['quantita']?>">
+			<span class="meno">-</span>
+			<span class="quantita"><?php echo $cella_lista['quantita']?></span>
+			<span class="piu">+</span>
 		</div>
+		<span class="partial span3 text-right">
+			<?php echo $cella_lista['prodotto']['prezzo']?> €
+		</span>
+								
 	</div>
 </li>

@@ -17,6 +17,8 @@ $(document).ready(function(e) {
 		var id_prodotto = $(this).parent().parent().data('id_prodotto');
 		var id_ordine = $(this).parent().parent().data('id_ordine');
 		
+		$('li.item'+id_prodotto).remove();
+		
 		$.ajax({
 			url : '/ordine/deleteCellaLista/',
 			type : 'POST',
@@ -112,17 +114,14 @@ $(document).ready(function(e) {
 			data : {
 				id_prodotto : id_prodotto,
 			},
-			success : function(response) {
+			success : function(responseHtml) {
 				
-				if (response.status == 'ERR') {
-					console.log ('errore inserimento elemento');
-				}
-				else {
-					totale = totale + prezzo;
-					
-					$('div.subtotal').data('totale', totale);
-					$('div.subtotal span.pull-right').html(totale+' €');
-				}
+				totale = totale + prezzo;
+				
+				$('div.lista ul').prepend(responseHtml);
+				
+				$('div.subtotal').data('totale', totale);
+				$('div.subtotal span.pull-right').html(totale+' €');
 			}
 		});
 		

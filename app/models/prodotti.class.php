@@ -33,4 +33,10 @@ class Prodotti extends DB {
 	}
 	
 	
+	public function insertProdottoLista ($prodotto) {
+		$insert = $this->insert($prodotto, 'lista_spesa');
+		return $insert;
+	}
+	
+	
 }

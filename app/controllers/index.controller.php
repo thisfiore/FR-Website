@@ -28,6 +28,13 @@ class IndexController extends Controller {
 		
 	}
 	
+	
+	public function getPay () {
+		$this->view->load(null, 'pay', null, null);
+		$this->view->render();
+	}
+	
+	
 	public function postLogin () {
 		
 		$username = isset($_POST['username']) ? $_POST['username'] : null;
@@ -120,7 +127,12 @@ class IndexController extends Controller {
 		$ordineModel = new Ordine();
 		
 		$ordineAdmin = $this->_getOrdineAdmin();
-		$ordine = $ordineModel->selectListaSpesa($_COOKIE['id_utente'], $ordineAdmin['id_ordine_admin']);
+		
+// 		$ordine = $ordineModel->selectListaSpesa($_COOKIE['id_utente'], $ordineAdmin['id_ordine_admin']);
+		$ordine = $ordineModel->selectOrdineUtente($ordineAdmin['id_ordine_admin']);
+		
+// 		$this->boxPrint($ordine);
+// 		die;
 		
 		if (!isset($ordine) || empty($ordine)) {
 			$ordineUtente['id_utente'] = $_COOKIE['id_utente'];
@@ -131,10 +143,48 @@ class IndexController extends Controller {
 			
 			$insert = $ordineModel->insertOrdineUtente($ordineUtente);
 			
-			$this->boxPrint($insert);
-			die;
+			if (!isset($insert) || empty($insert)) {
+				$response = array( 'status' => 'ERR',
+									'message' => 'error insert ordine' );
+				$this->view->renderJson($response);
+			}
+			else {
+				$idOrdine = $insert;
+			}
+		}
+		else {
+			$idOrdine = $ordine['id_ordine'];
 		}
 		
+		
+		
+		$this->loadModules('prodotti');
+		$prodottiModel = new Prodotti();
+		
+		$prodotto['id_ordine'] = $idOrdine;
+		$prodotto['id_prodotto'] = $idProdotto;
+		$prodotto['quantita'] = 1;
+		
+		$insert = $prodottiModel->insertProdottoLista($prodotto);
+		
+		if (!isset($insert) || empty($insert)) {
+			$response = array( 'status' => 'ERR',
+								'message' => 'error insert prodotto in lista spesa' );
+			$this->view->renderJson($response);
+		}
+		else {
+			$array = $prodottiModel->selectProdottoMinimal($idProdotto);
+			
+			$cella_lista['id_prodotto'] = $idProdotto;
+			$cella_lista['id_ordine'] = $idOrdine;
+			$cella_lista['quantita'] = 1;
+			$cella_lista['prodotto']['prezzo'] = $array['prezzo'];
+			$cella_lista['prodotto']['nome_prodotto'] = $array['nome_prodotto'];
+			
+			$this->view->setHead(null);
+			$this->view->load(null, '_partial/cella_lista', null, null);
+			$this->view->render(  array ( 'cella_lista' => $cella_lista ) );
+		}
 	}
 	
 }
