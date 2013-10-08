@@ -66,8 +66,8 @@
 
 							<div class="alert alert-success span16">
 									<button type="button" class="close" data-dismiss="alert">&times;</button>
-									<span class="span8"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
-								
+									<span class="span6"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
+									<div class="unita span2">kg</div>
 									<div class="quantity span3" data-quantita="<?php echo $cella_lista['quantita']?>">
 										<span class="meno">-</span>
 										<span class="quantita"><?php echo $cella_lista['quantita']?></span>

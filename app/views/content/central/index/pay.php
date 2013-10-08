@@ -1,59 +1,51 @@
+	
 
-	<!-- SIDE LISTA -->
-	<div class="side-bar">
-		<div class="gruppo text-center">
-			<h4>Gruppo Power</h4>
-			<!-- <div class="people">
-				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
-				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
-				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
-				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
-				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
-				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
-			</div> -->
-			<div><i class="icon-white icon-map-marker"></i> Trentino Alto Adige</div>
-			<br>
-		</div>
 
-		<div class="lista">
-			<img class="center" src="/img/shopbag.png" />
-			<h4 class="text-center">La Tua Lista della Spesa</h4>
-			<br>
+<div class="confirm">
+	<img class="center" src="/img/shopbag.png" />
+	<h1>Riepilogo del tuo ordine</h1>
+	<div class="lista">
 			<ul>
-				<?php 
-				if (isset($lista_spesa) && !empty($lista_spesa)) {
-					foreach ($lista_spesa as $cella_lista) { ?>
-
 						<li class="item<?php echo $cella_lista['id_prodotto']?> row-fluid"
 							data-id_ordine="<?php echo $cella_lista['id_ordine']?>" 
-							data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>">
+							data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>"
+							data-check=1>
 
-							<div class="alert alert-success span16">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
-							<span class="span8"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
+							<div class="span16" style="margin-bottom:10px;">
+									<span  style ="margin-left:5px" class="span8">Nome prodotto</span>
 								
-									<div class="quantity span3" data-quantita="<?php echo $cella_lista['quantita']?>">
-										<span class="meno">-</span>
-										<span class="quantita"><?php echo $cella_lista['quantita']?></span>
-										<span class="piu">+</span>
-									</div>
-									<span class="partial span3 text-right">
-										<?php echo $cella_lista['prodotto']['prezzo']?> €
+									
+										<span class="quantita span3">2</span>
+									<span class="partial span4 text-right">
+										5 €
 									</span>
-								
 							</div>
 						</li>
-				<?php }
-				}
-				?>
-			</ul>
-			
+						<!-- REPEAT THIS -->
+						<li class="item<?php echo $cella_lista['id_prodotto']?> row-fluid"
+							data-id_ordine="<?php echo $cella_lista['id_ordine']?>" 
+							data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>"
+							data-check=1>
 
-			<div class="subtotal" data-totale="<?php echo $prezzo_finale?>">
+							<div class="alert alert-success span16">
+									<span style ="margin-left:5px"  class="span8">Nome prodotto</span>
+								
+									
+										<span class="quantita span3">2 kg</span>
+									<span class="partial span4 text-right">
+										5 €
+									</span>
+							</div>
+						</li>
+						<!-- / REPEAT THIS -->
+				
+		</ul>
+		<div class="subtotal" data-totale="<?php echo $prezzo_finale?>">
 				<span class="text-left">Totale</span>
-				<span class="pull-right"><?php echo $prezzo_finale?> €</span>
+				<span class="pull-right">100 €</span>
 			</div>
-			<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i> Ordina</button>
+<button class="btn btn-error  center">Indietro</button>
+<button class="btn btn-success pull-right center"><i class="icon-white icon-ok"></i> Paga alla consegna</button>
+<button class="btn btn-primary pull-right disabled center" style="margin-right:5px;">Paypal</button>
 
-		</div>
-	</div>
+</div>
