@@ -64,19 +64,26 @@ class IndexController extends Controller {
 		
 		$prodotti = $prodottiModels->selectAllProducts();
 		
-		
 		$lista_spesa = $prodottiModels->selectListaSpesa($_COOKIE['id_utente']);
+		$prezzo_finale = 0;
+		
+
 		
 		if (isset($lista_spesa) && !empty($lista_spesa)) {
 			foreach ($lista_spesa as $key => $prodotto) {
-				$lista_spesa[$key] = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
+				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
+				$lista_spesa[$key]['prodotto'] = $item;
+				
+				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo']);
 			}
 		}
 		
+
 		
 		$this->view->load(null, 'home', null, null);
 		$this->view->render(array ( 	'prodotti' => $prodotti,
-										'lista_spesa' => $lista_spesa ) );
+										'lista_spesa' => $lista_spesa,
+										'prezzo_finale' => $prezzo_finale) );
 	}
 	
 }
