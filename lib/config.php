@@ -46,7 +46,7 @@ class Config  {
 										'user' => 'socialgifting',
 										'pass' => 'alllpcanoliaanaoianaaauieebauuno',
 										'db' => 'foodrepublic',
-// 										'port' => '3306'
+										'port' => '3306'
 								
 								),
 						)
