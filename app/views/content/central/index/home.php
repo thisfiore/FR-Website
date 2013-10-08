@@ -5,7 +5,11 @@
 			<?php 
 			if (isset($prodotti) && !empty($prodotti)) {
 				foreach ($prodotti as $prodotto) { ?>
-					<li>
+					<li 
+						data-placement="bottom"
+						data-trigger="hover"
+						data-content="<?php echo $prodotto['desc']?>">
+						
 						<div data-attr-id="<?php echo $prodotto['id_prodotto']?>">
 							<div class="image" style="background:url('../../public/img/apples.jpg');">
 								<span>+</span>
