@@ -47,9 +47,8 @@ $(document).ready(function(e) {
 	$('.lista').on('click', 'div.quantity span', function(event) {
 		var label = $(this).attr("class");
 		var quantita = $(this).parent('div').data('quantita');
-		var that = this;
+		var that = $(this);
 		
-		console.log($(this).parent('div'));
 		console.log(quantita);
 		
 		if (label == 'piu')  { 
@@ -82,8 +81,8 @@ $(document).ready(function(e) {
 					console.log ('errore cambio quantita');
 				}
 				else {
-					$(that).parent('div').attr('data-quantita', response.data);
-					$(that).siblings('.quantita').html(response.data);
+					that.parent('div').attr('data-quantita', response.data);
+					that.siblings('.quantita').html(response.data);
 					
 					console.log(response.data);
 				}
