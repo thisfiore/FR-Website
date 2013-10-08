@@ -57,10 +57,11 @@ class Ordine extends DB {
 	}
 	
 	
-	public function selectOrdineUtente ($idOrdineAdmin) {
+	public function selectOrdineUtente ($idOrdineAdmin, $idUtente) {
 		$select = $this->select()
 						->from ('ordine_utente', '*')
-						->where('id_ordine_admin = ', $idOrdineAdmin);
+						->where('id_ordine_admin = ', $idOrdineAdmin)
+						->where('id_utente = ', $idUtente);
 	
 		$ordine = $this->fetchRow($select);
 		return $ordine;

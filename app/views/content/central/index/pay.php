@@ -9,7 +9,7 @@
 	<?php if (isset($listaSpesa) && !empty($listaSpesa) ) { ?>
 		<ul>
 			<li class="item row-fluid">
-				<div class="alert alert-success span16">
+				<div class="span16" style="margin-bottom:10px;">
 					<span style ="margin-left:5px"  class="span8">Nome prodotto</span>
  					<span class="quantita span3">unit&agrave</span>
 					<span class="partial span4 text-right"> €</span>
@@ -18,7 +18,7 @@
 			<?php 
 			foreach ($listaSpesa as $prodotto) { ?>
 				<li class="item row-fluid">
-					<div class="span16" style="margin-bottom:10px;">
+					<div class="alert alert-success span16">
 						<span  style ="margin-left:5px" class="span8"><?php echo $prodotto['nome_prodotto']?></span>
 						<span class="quantita span3"><?php echo $prodotto['quantita'].' '.$prodotto['unita']?></span>
 						<span class="partial span4 text-right"><?php echo ($prodotto['quantita'] * $prodotto['prezzo_iva'])?>€</span>
