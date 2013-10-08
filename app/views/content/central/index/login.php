@@ -1,5 +1,5 @@
 
-	<img class="center" src="../../public/img/logo.png" />
+	<img class="center" src="/img/logo.png" />
 	<div class="spacer"></div>
 
 
