@@ -80,13 +80,15 @@ $(document).ready(function(e) {
 				else {
 					that.parent('div').data('quantita', quantita);
 					that.siblings('.quantita').html(quantita);
-					
+										
 					if (label == 'piu') {
-						totale = totale + response.data;
+						totale = totale + parseFloat(response.data);
 					}
 					else {
-						totale = totale - response.data;
+						totale = totale - parseFloat(response.data);
 					}
+
+					totale = totale.toFixed(2);
 					
 					$('div.subtotal').data('totale', totale);
 					$('div.subtotal span.pull-right').html(totale+' €');
