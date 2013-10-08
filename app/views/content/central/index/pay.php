@@ -1,38 +1,3 @@
-	<!-- LISTA DI PRODOTTI AQUISTABILI -->
-	<div class="prodotti">
-		<h1>Dai produttori vicini a te:</h1>
-		<ul>
-			
-			<?php 
-			if (isset($prodotti) && !empty($prodotti)) {
-				foreach ($prodotti as $prodotto) { ?>
-					<li 
-						data-placement="bottom"
-						data-trigger="hover"
-						data-content="<?php echo $prodotto['desc']?>">
-
-						<div data-attr-id="<?php echo $prodotto['id_prodotto']?>">
-							<div class="image" style="background:url('/img/apples.jpg');">
-								<span>+</span>
-							</div>
-						
-							<h2><?php echo $prodotto['nome_prodotto']?></h2>
-							<h3><img src="/img/producer-icon.png" width="18" /> <?php echo $prodotto['nome_produttore']?></h3>
-							
-							<div class="info">
-		                        <span><?php echo $prodotto['prezzo']?></span>
-		                        <p>Prezzo<br>Euro</p>
-		                    </div>
-		                    <p class="desc"><?php echo $prodotto['desc']?></p>
-						</div>
-					</li>
-			<?php	}
-			}
-			?>
-			
-
-		</ul>
-	</div>
 
 	<!-- SIDE LISTA -->
 	<div class="side-bar">
