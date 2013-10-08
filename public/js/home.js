@@ -32,7 +32,7 @@ $(document).ready(function(e) {
 				}
 				else {
 					
-					$('div.subtotal').attr('data-totale', response.data);
+					$('div.subtotal').data('totale', response.data);
 					$('div.subtotal span.pull-right').html(response.data+' €');
 					
 					console.log(totale);
@@ -81,7 +81,7 @@ $(document).ready(function(e) {
 					console.log ('errore cambio quantita');
 				}
 				else {
-					that.parent('div').attr('data-quantita', response.data);
+					that.parent('div').data('quantita', response.data);
 					that.siblings('.quantita').html(response.data);
 					
 					console.log(response.data);
