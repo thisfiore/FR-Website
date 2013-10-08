@@ -23,4 +23,15 @@ class Index extends DB {
 		return $login;
 	}
 	
+	public function selectUtente ($idUtente) {
+		$select = $this->select()
+						->from ('utenti', array('nome', 'cognome') )
+						->join ('gruppi', 'gruppi.id_gruppo = utenti.id_gruppo')
+						->where('id_utente = ', $idUtente);
+	
+		$utente = $this->fetchRow($select);
+		return $utente;
+	}
+	
+	
 }

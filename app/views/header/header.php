@@ -4,8 +4,8 @@
 		<span class="fr">Food Republic</span>
 	</div>
 	<div class="span8 user text-right">
-		<strong>Alberto Lugli</strong><br />
-		<div>Gruppo Power <i class="icon-white icon-map-marker"></i> Trentino Alto Adige</div>
+		<strong><?php echo $utente['nome'].' '.$utente['cognome'] ?></strong><br />
+		<div><?php echo $utente['nome_gruppo'] ?> <i class="icon-white icon-map-marker"></i><?php echo $utente['indirizzo'] ?></div>
 <!-- 		<img class="user-img" style="background:url('/img/users/albi.jpg');" />
  -->	</div>
 </div>

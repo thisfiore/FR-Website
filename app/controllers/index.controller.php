@@ -40,20 +40,19 @@ class IndexController extends Controller {
 		}
 		
 		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
+		$prezzo_finale = 0;
 		
 		if (isset($listaSpesa) && !empty($listaSpesa)) {
 			$this->loadModules('prodotti');
 			$prodottiModels = new Prodotti();
 		
-			$prezzo_finale = 0;
-			
 			foreach ($listaSpesa as $key => $prodotto) {
 				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
 				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
-				$listaSpesa[$key]['prezzo'] = $item['prezzo'];
+				$listaSpesa[$key]['prezzo_iva'] = $item['prezzo_iva'];
 				$listaSpesa[$key]['unita'] = $item['unita'];
 				
-				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo']);
+				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
 			}
 		}
 
@@ -63,7 +62,8 @@ class IndexController extends Controller {
 		
 		$this->view->load(null, 'pay', null, null);
 		$this->view->render( array(	'listaSpesa' => $listaSpesa,
-									'prezzoFinale' => $prezzo_finale) );
+									'prezzoFinale' => $prezzo_finale,
+									'idOrdineAdmin' => $idOrdineAdmin) );
 	}
 	
 	public function postLogin () {
@@ -106,6 +106,9 @@ class IndexController extends Controller {
 		$prodottiModels = new Prodotti();
 		
 		$prodotti = $prodottiModels->selectAllProducts();
+		
+// 		$this->boxPrint($prodotti);
+// 		die;
 		$prezzo_finale = 0;
 		$ordine_admin = $this->_getOrdineAdmin();
 		
@@ -116,6 +119,16 @@ class IndexController extends Controller {
 
 		$lista_spesa = array();
 		
+		
+		
+		
+		
+		// ToDo CONTROLLO SE STATO ORDINE = 1
+		
+		
+		
+		
+		
 		if ($ordine_admin['stato'] == 1) {
 			$lista_spesa = $this->_getListaSpesa($ordine_admin['id_ordine_admin']);
 			
@@ -125,20 +138,26 @@ class IndexController extends Controller {
 					$lista_spesa[$key]['prodotto'] = $item;
 					$lista_spesa[$key]['unita'] = $item['unita'];
 					
-					$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo']);
+					$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
 				}
 			}
 		}
 		
-// 		$this->boxPrint($lista_spesa);
-// 		die;
+		$this->loadModules('index');
+		$indexModels = new Index();
+		
+		$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
 		
 		$this->view->load('header', 'home', null, null);
 		$this->view->render(array ( 	'prodotti' => $prodotti,
 										'lista_spesa' => $lista_spesa,
 										'prezzo_finale' => $prezzo_finale,
-										'ordine_admin' => $ordine_admin) );
+										'ordine_admin' => $ordine_admin,
+										'utente' => $utente) );
 	}
+	
+	
+	
 	
 	
 	public function _getOrdineAdmin () {
@@ -193,7 +212,6 @@ class IndexController extends Controller {
 			$idOrdine = $ordine['id_ordine'];
 		}
 		
-		
 		$this->loadModules('prodotti');
 		$prodottiModel = new Prodotti();
 		
@@ -214,13 +232,29 @@ class IndexController extends Controller {
 			$cella_lista['id_ordine'] = $idOrdine;
 			$cella_lista['unita'] = $array['unita'];
 			$cella_lista['quantita'] = 1;
-			$cella_lista['prodotto']['prezzo'] = $array['prezzo'];
+			$cella_lista['prodotto']['prezzo'] = $array['prezzo_iva'];
 			$cella_lista['prodotto']['nome_prodotto'] = $array['nome_prodotto'];
 			
 			$this->view->setHead(null);
 			$this->view->load(null, '_partial/cella_lista', null, null);
 			$this->view->render(  array ( 'cella_lista' => $cella_lista ) );
 		}
+	}
+	
+	
+	public function getPagamento ($idOrdineAdmin) {
+		
+		$this->loadModules('ordine');
+		$ordineModel = new Ordine();
+		
+		$ordine['stato'] = 1;
+		$ordine['id_utente'] = $_COOKIE['id_utente'];
+		$ordine['id_ordine_admin'] = $idOrdineAdmin;
+		
+		$update = $ordineModel->updateOrdineUtente($ordine);
+		
+		
+		
 	}
 	
 }

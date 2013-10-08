@@ -129,19 +129,21 @@ $(document).ready(function(e) {
 	});
 	
 	
-//	$('.lista').on('click', 'button.ordina', function(event) {
-//		var id_ordine_admin = $(this).data('ordine_admin');
-//		$.ajax({
-//			url : '/index/pay/',
-//			type : 'GET',
-//			dataType : 'html',
-//			data : {
-//				id_ordine_admin : id_ordine_admin,
-//			},
-//			success : function(responseHtml) {
-//			}
-//		});
-//	});
+	$('.lista').on('click', 'button.paga', function(event) {
+		var id_ordine_admin = $(this).data('id_ordine_admin');
+		
+		$.ajax({
+			url : '/index/pagamento/',
+			type : 'GET',
+			dataType : 'json',
+			data : {
+				id_ordine_admin : id_ordine_admin,
+			},
+			success : function(response) {
+			}
+		});
+		
+	});
 	
 	
 });
