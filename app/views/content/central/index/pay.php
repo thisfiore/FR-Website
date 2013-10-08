@@ -1,5 +1,4 @@
-
-	<!-- SIDE LISTA -->
+<!-- SIDE LISTA -->
 	<div class="side-bar">
 		<div class="gruppo text-center">
 			<h4>Gruppo Power</h4>

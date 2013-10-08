@@ -25,18 +25,39 @@ class IndexController extends Controller {
 			$this->view->load(null, 'login', null, null);
 			$this->view->render();
 		}
-		
 	}
 	
 	
-	public function getPay () {
+	public function getPay ($idOrdineAdmin) {
+		
+		$this->loadModules('ordine');
+		$ordineModels = new Ordine();
+		
+		$ordineUtente = $ordineModels->selectOrdineUtente($idOrdineAdmin);
+		
+		if ($_COOKIE['id_utente'] != $ordineUtente['id_utente']) {
+			header('Location: /');
+		}
+		
+		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
+		
+		if (isset($listaSpesa) && !empty($listaSpesa)) {
+			$this->loadModules('prodotti');
+			$prodottiModels = new Prodotti();
+		
+			foreach ($listaSpesa as $key => $prodotto) {
+				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
+				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
+				$listaSpesa[$key]['prezzo'] = $item['prezzo'];
+			}
+		}
+		
 		$this->view->load(null, 'pay', null, null);
-		$this->view->render();
+		$this->view->render( array('listaSpesa' => $listaSpesa) );
 	}
 	
 	
 	public function postLogin () {
-		
 		$username = isset($_POST['username']) ? $_POST['username'] : null;
 		$password = isset($_POST['password']) ? $_POST['password'] : null;
 // 		$password = md5($password);
@@ -116,7 +137,7 @@ class IndexController extends Controller {
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
 	
-		$lista_spesa = $ordineModels->selectListaSpesa($this->idLoggedUser, $idOrdineAdmin);
+		$lista_spesa = $ordineModels->selectListaSpesa($_COOKIE['id_utente'], $idOrdineAdmin);
 		return $lista_spesa;
 	}
 	
