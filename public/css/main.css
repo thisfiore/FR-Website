@@ -11,6 +11,7 @@ form { margin: 0; }
 
 .spacer { margin: 40px 0; }
 .no-margin { margin: 0; }
+.no-padding { padding: 0; }
 
 img.center {
   display: block;
@@ -27,6 +28,20 @@ div.center {
 	border: 1px solid rgba(227, 227, 227, 0.7);
 	min-width: 290px;
 }
+
+.alert { 
+	padding: 0;
+	padding: 10px 0;
+	position: relative; 
+}
+.alert .close {
+	position: absolute;
+	top: 7px;
+	right: 10px;
+	line-height: 20px;
+}
+.row-fluid [class*="span"] { min-height: inherit; }
+
 
 .input-form {
 	padding: 10px !important;
@@ -117,7 +132,6 @@ div.center {
 }
 .lista ul { list-style-type: none; margin: 0; }
 .lista .subtotal {
-	text-align: right;
 	border-top: 2px dotted #fff;
 	border-bottom: 2px dotted #fff;
 	padding: 10px;
@@ -126,6 +140,9 @@ div.center {
 	line-height: 36px;
 }
 
+.lista .quantity {
+	-webkit-user-select:none;
+}
 .lista .quantity span:first-child, .lista .quantity span:last-child {
 	border: #666 1px solid;
 	color: #666;
@@ -139,5 +156,5 @@ div.center {
 }
 .lista .partial {
 	display: inherit;
-	margin-right: -20px;
-} .lista .partial:before { content: "..............."; }
+	margin-right: -10px;
+}

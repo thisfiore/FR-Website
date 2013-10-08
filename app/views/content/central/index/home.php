@@ -31,25 +31,29 @@
 	</div>
 
 	<!-- SIDE LISTA -->
+	<div class="gruppo">
+		
+	</div>
 	<div class="lista">
+		<img class="pagination-centered" src="" />
 		<ul>
 			<?php 
 			if (isset($lista_spesa) && !empty($lista_spesa)) {
 				foreach ($lista_spesa as $cella_lista) { ?>
-					<li>
-						<div class="alert alert-success">
+					<li class="row-fluid">
+						<div class="alert alert-success span16">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						<span><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
-							<div>
-								<div class="quantity pull-left">
+						<span class="span8"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
+							
+								<div class="quantity span3">
 									<span>-</span>
 									<span><?php echo $cella_lista['quantita']?></span>
 									<span>+</span>
 								</div>
-								<span class="partial text-right">
+								<span class="partial span3 text-right">
 									<?php echo $cella_lista['prodotto']['prezzo']?> €
 								</span>
-							</div>
+							
 						</div>
 					</li>
 			<?php }
@@ -57,6 +61,9 @@
 			?>
 		</ul>
 		
-		<div class="subtotal"><?php echo $prezzo_finale?> €</div>
-		<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i></button>
+		<div class="subtotal">
+			<span class="text-left">Totale</span>
+			<span class="pull-right"><?php echo $prezzo_finale?> €</span>
+		</div>
+		<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i> Acquista</button>
 	</div>
