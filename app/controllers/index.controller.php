@@ -76,7 +76,7 @@ class IndexController extends Controller {
 		$lista_spesa = array();
 		
 		if ($ordine_admin['stato'] == 1) {
-			$lista_spesa = $this->_getListaSpesa();
+			$lista_spesa = $this->_getListaSpesa($ordine_admin['id_ordine_admin']);
 			
 			if (isset($lista_spesa) && !empty($lista_spesa)) {
 				foreach ($lista_spesa as $key => $prodotto) {
@@ -105,12 +105,36 @@ class IndexController extends Controller {
 	}
 	
 	
-	public function _getListaSpesa () {
+	public function _getListaSpesa ($idOrdineAdmin) {
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
 	
-		$lista_spesa = $ordineModels->selectListaSpesa($this->idLoggedUser);
+		$lista_spesa = $ordineModels->selectListaSpesa($this->idLoggedUser, $idOrdineAdmin);
 		return $lista_spesa;
+	}
+	
+	public function postAddProdottoLista () {
+		$idProdotto = $_POST['id_prodotto'];
+		
+		$this->loadModules('ordine');
+		$ordineModel = new Ordine();
+		
+		$ordineAdmin = $this->_getOrdineAdmin();
+		$ordine = $ordineModel->selectListaSpesa($_COOKIE['id_utente'], $ordineAdmin['id_ordine_admin']);
+		
+		if (!isset($ordine) || empty($ordine)) {
+			$ordineUtente['id_utente'] = $_COOKIE['id_utente'];
+			$ordineUtente['stato'] = 0;
+			$ordineUtente['pagamento'] = 0;
+			$ordineUtente['id_ordine_admin'] = $ordineAdmin['id_ordine_admin'];
+			$ordineUtente['data'] = date('Y-m-d');
+			
+			$insert = $ordineModel->insertOrdineUtente($ordineUtente);
+			
+			$this->boxPrint($insert);
+			die;
+		}
+		
 	}
 	
 }

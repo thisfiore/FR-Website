@@ -23,18 +23,17 @@ class Ordine extends DB {
 		return $prodotti;
 	}
 	
-	public function selectListaSpesa ($idUtente) {
-	
-		// 		Filtro per data ordine admin
-	
+	public function selectListaSpesa ($idUtente, $idOrdineAdmin) {
 		$select = $this->select()
 						->from ('lista_spesa', '*')
 						->join ('ordine_utente', 'ordine_utente.id_ordine = lista_spesa.id_ordine',  array('stato', 'id_ordine_admin', 'id_ordine') )
-						->where ('ordine_utente.id_utente = ', $idUtente);
+						->where ('ordine_utente.id_utente = ', $idUtente)
+						->where ('ordine_utente.id_ordine_admin = ', $idOrdineAdmin);
 	
 		$prodotti = $this->fetchAll($select);
 		return $prodotti;
 	}
+	
 
 	public function selectListaSpesaPrezzo ($idOrdine) {
 		$select = $this->select()
@@ -44,6 +43,12 @@ class Ordine extends DB {
 		
 		$prodotti = $this->fetchRow($select);
 		return $prodotti;
+	}
+	
+	
+	public function insertOrdineUtente ($ordineUtente) {
+			$insert = $this->insert($ordineUtente, 'ordine_utente');
+			return $insert;
 	}
 	
 	
