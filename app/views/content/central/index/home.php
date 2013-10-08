@@ -10,8 +10,10 @@
 						data-placement="bottom"
 						data-trigger="hover"
 						data-content="<?php echo $prodotto['desc']?>">
-
-						<div data-attr-id="<?php echo $prodotto['id_prodotto']?>">
+						
+						<div 
+							data-id_prodotto="<?php echo $prodotto['id_prodotto']?>"
+							data-prezzo="<?php echo $prodotto['prezzo']?>">
 							<div class="image" style="background:url('/img/apples.jpg');">
 								<span>+</span>
 							</div>
@@ -61,7 +63,8 @@
 
 						<li class="item<?php echo $cella_lista['id_prodotto']?> row-fluid"
 							data-id_ordine="<?php echo $cella_lista['id_ordine']?>" 
-							data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>">
+							data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>"
+							data-check=1>
 
 							<div class="alert alert-success span16">
 									<button type="button" class="close" data-dismiss="alert">&times;</button>

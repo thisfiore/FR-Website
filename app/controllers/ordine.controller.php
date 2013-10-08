@@ -43,13 +43,18 @@ class OrdineController extends Controller {
 		$quantita = $_POST['quantita'];
 		
 		$this->loadModules('ordine');
-		$ordineModels = new Ordine();
+		$ordineModel = new Ordine();
 		
-		$update = $ordineModels->updateElementoListaSpesa($idProdotto, $idOrdine, $quantita);
+		$update = $ordineModel->updateElementoListaSpesa($idProdotto, $idOrdine, $quantita);
 		
 		if ($update == 1) {
+			$this->loadModules('prodotti');
+			$prodottiModels = new Prodotti();
+			
+			$prodotto = $prodottiModels->selectProdottoMinimal($idProdotto);
+			
 			$response = array ( 'status' => 'OK',
-								'data' => $quantita );
+								'data' => $prodotto['prezzo'] );
 		}
 		else {
 			$response = array ( 'status' => 'ERR' );
@@ -57,5 +62,9 @@ class OrdineController extends Controller {
 		
 		$this->view->renderJson($response);
 	}
+	
+	
+	
+	
 	
 }
