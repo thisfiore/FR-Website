@@ -45,7 +45,7 @@
 							<div>
 								<div class="quantity pull-left" data-quantita="<?php echo $cella_lista['quantita']?>">
 									<span class="meno">-</span>
-									<span ><?php echo $cella_lista['quantita']?></span>
+									<span class="quantita"><?php echo $cella_lista['quantita']?></span>
 									<span class="piu">+</span>
 								</div>
 								<span class="partial text-right">
