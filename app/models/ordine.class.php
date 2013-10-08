@@ -41,7 +41,7 @@ class Ordine extends DB {
 						->join ('prodotti', 'prodotti.id_prodotto = lista_spesa.id_prodotto', array('nome_prodotto, prezzo'))
 						->where('lista_spesa.id_ordine = ', $idOrdine);
 		
-		$prodotti = $this->fetchRow($select);
+		$prodotti = $this->fetchAll($select);
 		return $prodotti;
 	}
 	

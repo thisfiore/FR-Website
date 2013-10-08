@@ -128,7 +128,6 @@ class IndexController extends Controller {
 		
 		$ordineAdmin = $this->_getOrdineAdmin();
 		
-// 		$ordine = $ordineModel->selectListaSpesa($_COOKIE['id_utente'], $ordineAdmin['id_ordine_admin']);
 		$ordine = $ordineModel->selectOrdineUtente($ordineAdmin['id_ordine_admin']);
 		
 // 		$this->boxPrint($ordine);
