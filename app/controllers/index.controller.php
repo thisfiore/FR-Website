@@ -51,6 +51,7 @@ class IndexController extends Controller {
 				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
 				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
 				$listaSpesa[$key]['prezzo'] = $item['prezzo'];
+				$listaSpesa[$key]['unita'] = $item['unita'];
 				
 				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo']);
 			}
@@ -61,7 +62,7 @@ class IndexController extends Controller {
 // 		die;
 		
 		$this->view->load(null, 'pay', null, null);
-		$this->view->render( array('listaSpesa' => $listaSpesa,
+		$this->view->render( array(	'listaSpesa' => $listaSpesa,
 									'prezzoFinale' => $prezzo_finale) );
 	}
 	
@@ -122,11 +123,15 @@ class IndexController extends Controller {
 				foreach ($lista_spesa as $key => $prodotto) {
 					$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
 					$lista_spesa[$key]['prodotto'] = $item;
-			
+					$lista_spesa[$key]['unita'] = $item['unita'];
+					
 					$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo']);
 				}
 			}
 		}
+		
+// 		$this->boxPrint($lista_spesa);
+// 		die;
 		
 		$this->view->load('header', 'home', null, null);
 		$this->view->render(array ( 	'prodotti' => $prodotti,
@@ -189,7 +194,6 @@ class IndexController extends Controller {
 		}
 		
 		
-		
 		$this->loadModules('prodotti');
 		$prodottiModel = new Prodotti();
 		
@@ -206,9 +210,9 @@ class IndexController extends Controller {
 		}
 		else {
 			$array = $prodottiModel->selectProdottoMinimal($idProdotto);
-			
 			$cella_lista['id_prodotto'] = $idProdotto;
 			$cella_lista['id_ordine'] = $idOrdine;
+			$cella_lista['unita'] = $array['unita'];
 			$cella_lista['quantita'] = 1;
 			$cella_lista['prodotto']['prezzo'] = $array['prezzo'];
 			$cella_lista['prodotto']['nome_prodotto'] = $array['nome_prodotto'];

@@ -130,10 +130,10 @@ class Environment
 		return array(
 				'components' => array(
 								'db' => array(
-										'host' => 'hostingmysql203.register.it',
-										'user' => 'FF12145_beta',
-										'pass' => '_PROandpass11',
-										'db' => 'vilize_com_beta'
+										'host' => '82.196.3.200',
+										'user' => 'socialgifting',
+										'pass' => 'alllpcanoliaanaoianaaauieebauuno',
+										'db' => 'foodrepublic',
 										)
 						)
 				);
@@ -150,7 +150,7 @@ class Environment
 			case 'foodrepublic.dev' :
 				defined("APPLICATION_ENV") || define("APPLICATION_ENV", 'DEVELOPMENT');
 				break;
-			case 'pm.70division.com' :
+			case 'foodrepublic.70division.com' :
 				defined("APPLICATION_ENV") || define("APPLICATION_ENV", 'PRODUCTION');
 				break;
 			default :

@@ -42,28 +42,15 @@ class Config  {
 		private static $production = array( 
 						'components' => array(
 								'db' => array(
-										'host' => 'hostingmysql259.register.it',
-										'user' => 'FF12145_70d',
-										'pass' => '70division_dev',
-										'db' => '70division_com_sql',
-										'port' => '3306'
+										'host' => '82.196.3.200',
+										'user' => 'socialgifting',
+										'pass' => 'alllpcanoliaanaoianaaauieebauuno',
+										'db' => 'foodrepublic',
+// 										'port' => '3306'
 								
 								),
 						)
 				);
-		
-// 		private static $development = array(
-// 						'components' => array(
-// 								'db' => array(
-// 										'host' => '192.168.1.20',
-// 										'user' => '70division',
-// 										'pass' => '70division_dev',
-// 										'db' => 'PM',
-// 										'port' => '3306'
-// 								)
-								
-// 						)
-// 		);
 
 		private static $development = array(
 				'components' => array(

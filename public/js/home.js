@@ -82,12 +82,12 @@ $(document).ready(function(e) {
 					that.siblings('.quantita').html(quantita);
 										
 					if (label == 'piu') {
-						totale = totale + parseFloat(response.data);
+						totale = parseFloat(totale) + parseFloat(response.data);
 					}
 					else {
-						totale = totale - parseFloat(response.data);
+						totale = totale - response.data;
 					}
-
+					
 					totale = totale.toFixed(2);
 					
 					$('div.subtotal').data('totale', totale);
