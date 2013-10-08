@@ -65,7 +65,6 @@ class IndexController extends Controller {
 									'prezzoFinale' => $prezzo_finale) );
 	}
 	
-	
 	public function postLogin () {
 		$username = isset($_POST['username']) ? $_POST['username'] : null;
 		$password = isset($_POST['password']) ? $_POST['password'] : null;
@@ -95,7 +94,11 @@ class IndexController extends Controller {
 		}
 	}
 	
-	
+	public function getPay () { 
+		$this->view->load(null, 'pay', null, null);
+		$this->view->render();
+	}
+
 	public function getHome() {
 		
 		$this->loadModules('prodotti');

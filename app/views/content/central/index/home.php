@@ -38,23 +38,23 @@
 
 	<!-- SIDE LISTA -->
 	<div class="side-bar">
-		<div class="gruppo text-center">
+		<!-- <div class="gruppo text-center">
 			<h4>Gruppo Power</h4>
-			<!-- <div class="people">
+			<div class="people">
 				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
 				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
 				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
 				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
 				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
 				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
-			</div> -->
+			</div>
 			<div><i class="icon-white icon-map-marker"></i> Trentino Alto Adige</div>
 			<br>
-		</div>
+		</div> -->
 
 		<div class="lista">
 			<img class="center" src="/img/shopbag.png" />
-			<h4 class="text-center">La Tua Lista della Spesa</h4>
+			<h4 class="text-center">La tua lista della spesa</h4>
 			<br>
 			<ul><?php 
 				if (isset($lista_spesa) && !empty($lista_spesa)) {
@@ -66,8 +66,8 @@
 
 							<div class="alert alert-success span16">
 									<button type="button" class="close" data-dismiss="alert">&times;</button>
-									<span class="span8"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
-								
+									<span class="span6"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
+									<div class="unita span2">kg</div>
 									<div class="quantity span3" data-quantita="<?php echo $cella_lista['quantita']?>">
 										<span class="meno">-</span>
 										<span class="quantita"><?php echo $cella_lista['quantita']?></span>
