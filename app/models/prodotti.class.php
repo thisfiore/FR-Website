@@ -19,16 +19,24 @@ class Prodotti extends DB {
 						->join ('produttori', 'prodotti.id_produttore = produttori.id_produttore', array('nome_produttore', 'citta'));
 	
 		$prodotti = $this->fetchAll($select);
+		
+		foreach ($prodotti as $key => $prodotto) {
+			$prodotti[$key]['prezzo_iva'] = round($prodotto['prezzo'] * (1+$prodotto['iva']/100) * (1.15) , 2) ;
+		}
+		
 		return $prodotti;
 	}
 	
 	
 	public function selectProdottoMinimal ($idProdotto) {
 		$select = $this->select()
-						->from ('prodotti', ' nome_prodotto, prezzo, unita')
+						->from ('prodotti', ' nome_prodotto, prezzo, unita, iva')
 						->where ('id_prodotto = ', $idProdotto);
 	
 		$prodotti = $this->fetchRow($select);
+		
+		$prodotti['prezzo_iva'] = round($prodotti['prezzo'] * (1+$prodotti['iva']/100) * (1.15), 2);
+		
 		return $prodotti;
 	}
 	

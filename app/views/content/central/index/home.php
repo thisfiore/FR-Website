@@ -13,8 +13,8 @@
 						
 						<div 
 							data-id_prodotto="<?php echo $prodotto['id_prodotto']?>"
-							data-prezzo="<?php echo $prodotto['prezzo']?>">
-							<div class="image" style="background:url('/img/apples.jpg');">
+							data-prezzo="<?php echo $prodotto['prezzo_iva']?>">
+							<div class="image" style="background:url('/img/products/<?php echo $prodotto['image']?>');">
 								<span>+</span>
 							</div>
 						
@@ -22,8 +22,8 @@
 							<h3><img src="/img/producer-icon.png" width="18" /> <?php echo $prodotto['nome_produttore']?></h3>
 							
 							<div class="info">
-		                        <span><?php echo $prodotto['prezzo']?></span>
-		                        <p>Prezzo<br>Euro</p>
+		                        <span><?php echo $prodotto['prezzo_iva']?></span>
+		                        <p>Prezzo &euro;/<?php echo $prodotto['unita']?></p>
 		                    </div>
 		                    <p class="desc"><?php echo $prodotto['desc']?></p>
 						</div>
@@ -67,7 +67,6 @@
 							<div class="alert alert-success span16">
 									<button type="button" class="close" data-dismiss="alert">&times;</button>
 									<span class="span6"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
-									<div class="unita span2"><?php echo $cella_lista['unita']?></div>
 									<div class="quantity span3" data-quantita="<?php echo $cella_lista['quantita']?>">
 			
 										<span class="meno">-</span>
@@ -75,7 +74,7 @@
 										<span class="piu">+</span>
 									</div>
 									<span class="partial span3 text-right">
-										<?php echo $cella_lista['prodotto']['prezzo']?> €
+										<?php echo $cella_lista['prodotto']['prezzo']?> &euro;
 									</span>
 							</div>
 						</li>
@@ -86,8 +85,9 @@
 
 			<div class="subtotal" data-totale="<?php echo $prezzo_finale?>">
 				<span class="text-left">Totale</span>
-				<span class="pull-right"><?php echo $prezzo_finale?> €</span>
+				<span class="pull-right"><?php echo $prezzo_finale?> &euro;</span>
 			</div>
+			
 			<a href="/index/pay/<?php echo $ordine_admin['id_ordine_admin']?>">
 				<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i> Ordina</button>
 			</a>
