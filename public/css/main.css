@@ -150,6 +150,7 @@ div.center {
 	z-index: 20;
 	color:#FFF;
 } .header div:first-child { padding-left: 20px; }
+.header a:link, .header a:visited { color:white; text-decoration: underline;}
 .user { padding-right: 20px; }
 .user-img {
 	height: 50px;
