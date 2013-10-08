@@ -119,15 +119,29 @@ div.center {
 	margin: 0;
 }
 
-/*LISTA DELLA SPESA*/
-.lista { 
+.side-bar { 
 	width: 30%; 
-	background: #555;
+	background: #636363;
 	float: right;
 	height: 100%;
 	position: fixed;
 	right: 0;
 	color: #fff;
+}
+
+.side-bar h4, .side-bar h2, .side-bar h3, .side-bar h5 { 
+	font-weight: normal;
+}
+
+/*GRUPPI*/
+.gruppo{
+	border-bottom: 1px dotted #ccc;
+	padding: 15px;
+}
+
+
+/*LISTA DELLA SPESA*/
+.lista{
 	padding: 15px;
 }
 .lista ul { list-style-type: none; margin: 0; }
