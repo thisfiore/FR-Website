@@ -5,6 +5,8 @@ body {
 	background-size: cover;
 	background-attachment: fixed;
 	height: 100%;
+	color: #333;
+
 }
 
 form { margin: 0; }
@@ -53,13 +55,14 @@ div.center {
 .prodotti { 
 	width: 70%; 
 	float: left; 
+	margin-top: 80px;
 }
 .prodotti ul { 
 	list-style-type: none; 
 	margin: 20px;
 }
 .prodotti ul li {
-	background: #89cee5;
+	background: rgba(54,206,133,0.9);
 	width: 200px;
 	border-radius: 5px;
 	float: left;
@@ -91,11 +94,13 @@ div.center {
 	line-height: 20px;
 }
 .prodotti ul li h3 {
-	font-size: 18px;
+	font-size: 14px;
 	color: #FFF;
 	line-height: 20px;
 	font-weight: normal;
 }
+
+.prodotti ul li h3 img { margin-right: 5px; }
 .prodotti ul li .info {
 	position: relative;
 	color: #fff;
@@ -118,36 +123,62 @@ div.center {
 	display: none;
 	margin: 0;
 }
-
+.prodotti h1 { margin-left: 20px; font-weight: normal; font-size: 24px; color: #333;}
 .side-bar { 
 	width: 30%; 
-	background: #636363;
-	float: right;
+	min-width: 280px;
 	height: 100%;
 	position: fixed;
 	right: 0;
 	color: #fff;
+	overflow: scroll;
+	z-index: 10;
+	background:rgba(239,105,87,0.9);
 }
 
 .side-bar h4, .side-bar h2, .side-bar h3, .side-bar h5 { 
 	font-weight: normal;
+	margin-bottom: 20px;
 }
 
+/* HEADER SECTION */
+.header {
+	padding: 10px 0;
+
+	background: rgba(243, 0, 0, 0.9);
+	position: fixed;
+	z-index: 20;
+	color:#FFF;
+} .header div:first-child { padding-left: 20px; }
+.user { padding-right: 20px; }
+.user-img {
+	height: 50px;
+	width: 50px;
+	border-radius: 1000px;
+	background-size: cover !important;
+	background-repeat: no-repeat;
+	background-position: center center;
+	margin-left: 10px;
+	border: 5px solid #fff;
+} .side-bar .user-img { border: 5px solid #4e4e4e; margin-bottom: 10px; } 
+.fr { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:24px;  margin-left:5px;}
 /*GRUPPI*/
 .gruppo{
 	border-bottom: 1px dotted #ccc;
-	padding: 15px;
+	padding: 15px 0;
+	margin-top: 80px;
 }
 
 
 /*LISTA DELLA SPESA*/
 .lista{
 	padding: 15px;
+	margin-bottom: 50px;
 }
 .lista ul { list-style-type: none; margin: 0; }
 .lista .subtotal {
-	border-top: 2px dotted #fff;
-	border-bottom: 2px dotted #fff;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
 	padding: 10px;
 	margin-bottom: 20px;
 	font-size: 30px;
