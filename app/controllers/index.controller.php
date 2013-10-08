@@ -33,9 +33,9 @@ class IndexController extends Controller {
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
 		
-		$ordineUtente = $ordineModels->selectOrdineUtente($idOrdineAdmin);
+		$ordineUtente = $ordineModels->selectOrdineUtente($idOrdineAdmin, $_COOKIE['id_utente']);
 		
-		if ($_COOKIE['id_utente'] != $ordineUtente['id_utente']) {
+		if (isset($ordineUtente) && !empty($ordineUtente)) {
 			header('Location: /');
 		}
 		
