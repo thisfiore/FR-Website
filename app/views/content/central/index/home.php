@@ -38,8 +38,14 @@
 		<div class="gruppo text-center">
 			<h4>Gruppo Power</h4>
 			<div class="people">
-				faccette persone
+				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
+				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
+				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
+				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
+				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
+				<img class="user-img" style="background:url('/img/users/albi.jpg');" />
 			</div>
+			<br>
 			<div><i class="icon-white icon-map-marker"></i> Trentino Alto Adige</div>
 			<br>
 		</div>

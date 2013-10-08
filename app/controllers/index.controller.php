@@ -88,7 +88,7 @@ class IndexController extends Controller {
 			}
 		}
 		
-		$this->view->load(null, 'home', null, null);
+		$this->view->load('header', 'home', null, null);
 		$this->view->render(array ( 	'prodotti' => $prodotti,
 										'lista_spesa' => $lista_spesa,
 										'prezzo_finale' => $prezzo_finale,
