@@ -33,7 +33,7 @@ $(document).ready(function(e) {
 				else {
 					
 					$('div.subtotal').attr('data-totale', response.data);
-					$('div.subtotal').html(response.data+' €');
+					$('div.subtotal span.pull-right').html(response.data+' €');
 					
 					console.log(totale);
 					// prodotto eliminato correttamente
