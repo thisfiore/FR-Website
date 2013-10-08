@@ -13,7 +13,7 @@
 			<span class="piu">+</span>
 		</div>
 		<span class="partial span3 text-right">
-			<?php echo $cella_lista['prodotto']['prezzo']?> €
+			<?php echo $cella_lista['prodotto']['prezzo_iva']?> €
 		</span>
 								
 	</div>

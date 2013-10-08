@@ -232,7 +232,7 @@ class IndexController extends Controller {
 			$cella_lista['id_ordine'] = $idOrdine;
 			$cella_lista['unita'] = $array['unita'];
 			$cella_lista['quantita'] = 1;
-			$cella_lista['prodotto']['prezzo'] = $array['prezzo_iva'];
+			$cella_lista['prodotto']['prezzo_iva'] = $array['prezzo_iva'];
 			$cella_lista['prodotto']['nome_prodotto'] = $array['nome_prodotto'];
 			
 			$this->view->setHead(null);

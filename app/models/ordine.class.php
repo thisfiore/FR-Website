@@ -38,10 +38,21 @@ class Ordine extends DB {
 	public function selectListaSpesaPrezzo ($idOrdine) {
 		$select = $this->select()
 						->from ('lista_spesa', '*')
-						->join ('prodotti', 'prodotti.id_prodotto = lista_spesa.id_prodotto', array('nome_prodotto, prezzo'))
+						->join ('prodotti', 'prodotti.id_prodotto = lista_spesa.id_prodotto', array('nome_prodotto, prezzo, iva'))
 						->where('lista_spesa.id_ordine = ', $idOrdine);
 		
 		$prodotti = $this->fetchAll($select);
+		
+// 		print_r($prodotti);
+// 		die;
+		
+		if (isset($prodotti) && !empty($prodotti)) {
+			foreach ($prodotti as $key => $prodotto) {
+				$prodotti[$key]['prezzo_iva'] = round($prodotto['prezzo'] * (1+$prodotto['iva']/100) * (1.15) , 2) ;
+			}
+		}
+		
+		
 		return $prodotti;
 	}
 	

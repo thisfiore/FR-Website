@@ -22,7 +22,7 @@ class OrdineController extends Controller {
 				
 				if ($prodotto) {
 					foreach ($prodotto as $item) {
-						$prezzo = $prezzo + ($item['prezzo'] * $item['quantita']);
+						$prezzo = $prezzo + ($item['prezzo_iva'] * $item['quantita']);
 					}
 				}
 				
