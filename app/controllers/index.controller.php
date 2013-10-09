@@ -335,11 +335,15 @@ class IndexController extends Controller {
 		$mime_boundary = "==MULTIPART_BOUNDARY_$semi_rand";
 		$mime_boundary_header = chr(34) . $mime_boundary . chr(34);
 		
-		$to = $utente['nome']." ".$utente['cognome']." ricca.prog@gmail.com"; //<".$utente['username'].">
+		$to = "".$utente['username'].", artuso.lucia@hotmail.it, ricca.prog@gmail.com"; //<".$utente['username']."> || $utente['nome']." ".$utente['cognome'].
 		$from = "FoodRepublic <info@food-republic.it>";
 		$subject = "La tua Ricevuta #".$idRicevuta;
 		
-		$body = "$notice_text\n\n$plain_text\n## TOTALE $prezzo_finale euro\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa lÕ80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
+// 		$this->boxPrint($to);
+// 		$this->boxPrint($utente);
+// 		die;
+		
+		$body = "$notice_text\n\n$plain_text\n## TOTALE $prezzo_finale euro\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l'80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
 ".$utente['indirizzo'].", il giorno ".$listaSpesa[0]['data']." alle ore ".$utente['ora_consegna'];
 				
 		if (@mail($to, $subject, $body,
