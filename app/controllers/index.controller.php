@@ -279,47 +279,45 @@ class IndexController extends Controller {
 	
 	
 	public function sendMail () {
-		// costruiamo alcune intestazioni generali
-		$header = "From: Inviante <ricca.prog@gmail.com>\n";
-		$header .= "CC: \n";
-		$header .= "X-Mailer: Il nostro Php\n";
+		$notice_text = "This is a multi-part message in MIME format.";
+		$plain_text = "This is a plain text email.\r\nIt is very cool.";
+		$html_text = "<html><body>This is an <b style='color:purple'>HTML</b> text email.\r\nIt is very cool.</body></html>";
 		
-		// generiamo la stringa che funge da separatore
-		$boundary = "==String_Boundary_x" .md5(time()). "x";
+		$semi_rand = md5(time());
+		$mime_boundary = "==MULTIPART_BOUNDARY_$semi_rand";
+		$mime_boundary_header = chr(34) . $mime_boundary . chr(34);
 		
-		// costruiamo le intestazioni che specificano
-		// un messaggio costituito da più parti alternative
-		$header .= "MIME-Version: 1.0\n";
-		$header .= "Content-Type: multipart/alternative;\n";
-		$header .= " boundary=\"$boundary\";\n\n";
+		$to = "Me <ricca.prog@gmail.com>";
+		$from = "Me.com <me@me.com>";
+		$subject = "My Email";
 		
-		// questa parte del messaggio viene visualizzata
-		// solo se il programma non sa interpretare
-		// i MIME poiché è posta prima della stringa boundary
-		$messaggio = "Se visualizzi questo testo il tuo programma non supporta i MIME\n\n";
+		$body = "$notice_text
 		
-		// inizia la prima parte del messaggio in testo puro
-		$messaggio .= "–$boundary\n";
-		$messaggio .= "Content-Type: text/plain; charset=\"iso-8859-1\"\n";
-		$messaggio .= "Content-Transfer-Encoding: 7bit\n\n";
-		$messaggio .= "Messaggio in formato testo.\n\n";
+		--$mime_boundary
+		Content-Type: text/plain; charset=us-ascii
+		Content-Transfer-Encoding: 7bit
 		
-		// inizia la seconda parte del messaggio in formato html
-		$messaggio .= "–$boundary\n";
-		$messaggio .= "Content-Type: text/html; charset=\"iso-8859-1\"\n";
-		$messaggio .= "Content-Transfer-Encoding: 7bit\n\n";
-		$messaggio .= "<html><body><p>Questo messaggio è in formato <i>html</i> ma ha una parte testo.</p><p>Visita il sito <a href=\"http://www.html.it\">www.html.it</a></p></body></html>\n";
+		$plain_text
 		
-		// chiusura del messaggio con la stringa boundary
-		$messaggio .= "–".$boundary."–\n";
+		--$mime_boundary
+		Content-Type: text/html; charset=us-ascii
+		Content-Transfer-Encoding: 7bit
 		
-		$subject = "secondo messaggio html";
+		$html_text
 		
-		if( @mail("ricca.prog@gmail.com", $subject, $messaggio, $header) ) {
-			echo "e-mail inviata con successo!";
+		--$mime_boundary--";
+		
+		if (@mail($to, $subject, $body,
+		    "From: " . $from . "\n" .
+		    "MIME-Version: 1.0\n" .
+		    "Content-Type: multipart/alternative;\n" .
+		    "     boundary=" . $mime_boundary_header)) {
+		    
+		    echo "Email sent successfully.";
 		}
 		else {
-			echo "errore nell’invio dell’e-mail!";
+		    echo "Email NOT sent successfully!";
 		}
+		
 	}
 }
