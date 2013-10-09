@@ -281,6 +281,10 @@ class IndexController extends Controller {
 	public function sendMail ($idOrdineAdmin) {
 		$this->loadModules('ordine');
 		$ordineModel = new Ordine();
+		$this->loadModules('index');
+		$indexModel = new Index();
+		
+		$user = $indexModel->selectUtente($_COOKIE['id_utente']);
 		
 		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
 		
@@ -314,11 +318,8 @@ class IndexController extends Controller {
 		
 		$body = "$notice_text
 		
-		$plain_text
-		
-		## TOTALE $prezzo_finale
-		
-		Grazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l’80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\n";
+		$plain_text\n## TOTALE $prezzo_finale\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l’80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
+".$user['indirizzo'].", il giorno ".$listaSpesa[0]['data']." alle ore ".$user['ora_consegna'];
 		
 		if (@mail($to, $subject, $body,
 		    "From: " . $from . "\n" .
