@@ -260,7 +260,7 @@ class IndexController extends Controller {
 		
 		if (isset($update) && !empty($update)) {
 			
-			$this->sendMail();
+			$this->sendMail($idOrdineAdmin, $ordine['id_utente']);
 			
 			$response = array('status' => 'OK' );
 			$this->view->renderJson($response);
@@ -278,10 +278,31 @@ class IndexController extends Controller {
 	}
 	
 	
-	public function sendMail () {
-		$notice_text = "This is a multi-part message in MIME format.";
+	public function sendMail ($idOrdineAdmin) {
+		$this->loadModules('ordine');
+		$ordineModel = new Ordine();
+		
+		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
+		
+		if (isset($listaSpesa) && !empty($listaSpesa)) {
+			$this->loadModules('prodotti');
+			$prodottiModels = new Prodotti();
+		
+			foreach ($listaSpesa as $key => $prodotto) {
+				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
+				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
+				$listaSpesa[$key]['prezzo_iva'] = $item['prezzo_iva'];
+				$listaSpesa[$key]['unita'] = $item['unita'];
+				
+				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.($item['unita']*$item['prezzo_iva']).' &euro; \n';
+				
+				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
+			}
+		}
+		
+		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.\nSegue la tua ricevuta e riepilogo della tua spesa.\n\nIl team Food Republic\n\nFood Republic S.r.l.\nVia Fratta, 2\n31020 San Zenone degli Ezzelini, TV\nPart. IVA 04496450265\n\n";
 		$plain_text = "This is a plain text email.\r\nIt is very cool.";
-		$html_text = "<html><body>This is an <b style='color:purple'>HTML</b> text email.\r\nIt is very cool.</body></html>";
+// 		$html_text = "<html><body>This is an <b style='color:purple'>HTML</b> text email.\r\nIt is very cool.</body></html>";
 		
 		$semi_rand = md5(time());
 		$mime_boundary = "==MULTIPART_BOUNDARY_$semi_rand";
@@ -293,19 +314,11 @@ class IndexController extends Controller {
 		
 		$body = "$notice_text
 		
-		--$mime_boundary
-		Content-Type: text/plain; charset=us-ascii
-		Content-Transfer-Encoding: 7bit
-		
 		$plain_text
 		
-		--$mime_boundary
-		Content-Type: text/html; charset=us-ascii
-		Content-Transfer-Encoding: 7bit
+		## TOTALE $prezzo_finale
 		
-		$html_text
-		
-		--$mime_boundary--";
+		Grazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l’80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\n";
 		
 		if (@mail($to, $subject, $body,
 		    "From: " . $from . "\n" .
@@ -313,7 +326,7 @@ class IndexController extends Controller {
 		    "Content-Type: multipart/alternative;\n" .
 		    "     boundary=" . $mime_boundary_header)) {
 		    
-		    echo "Email sent successfully.";
+		    return true;
 		}
 		else {
 		    echo "Email NOT sent successfully!";
