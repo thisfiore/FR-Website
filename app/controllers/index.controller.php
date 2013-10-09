@@ -281,7 +281,7 @@ class IndexController extends Controller {
 	public function sendMail () {
 		// costruiamo alcune intestazioni generali
 		$header = "From: Inviante <ricca.prog@gmail.com>\n";
-		$header .= "CC: Lucia Artuso <artuso.lucia@hotmail.it>\n";
+		$header .= "CC: \n";
 		$header .= "X-Mailer: Il nostro Php\n";
 		
 		// generiamo la stringa che funge da separatore
@@ -317,11 +317,9 @@ class IndexController extends Controller {
 		
 		if( @mail("ricca.prog@gmail.com", $subject, $messaggio, $header) ) {
 			echo "e-mail inviata con successo!";
-			die;
 		}
 		else {
-			echo "errore nell’invio dell’e-mail!"; 
-			die;
+			echo "errore nell’invio dell’e-mail!";
 		}
 	}
 }
