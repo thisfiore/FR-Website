@@ -1,4 +1,6 @@
 <?php
+
+require_once ROOT.DS."../mandrill".DS."src".DS."Mandrill.php";
 class IndexController extends Controller {
 	
 	public function __construct() {
@@ -29,9 +31,16 @@ class IndexController extends Controller {
 	
 	
 	public function getPay ($idOrdineAdmin) {
-		
+		// check user is logged in
+		if (!isset($_COOKIE['id_utente'])) {
+			return header("Location: /index");
+		} 
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
+		
+		$this->loadModules('index');
+		$indexModel = new Index();
+		$utente = $indexModel->selectUtente($_COOKIE['id_utente']);
 		
 		$ordineUtente = $ordineModels->selectOrdineUtente($idOrdineAdmin, $_COOKIE['id_utente']);
 		
@@ -60,8 +69,10 @@ class IndexController extends Controller {
 // 		$this->boxPrint($prezzo_finale);
 // 		die;
 		
-		$this->view->load(null, 'pay', null, null);
-		$this->view->render( array(	'listaSpesa' => $listaSpesa,
+		$this->view->load('header', 'pay', null, null);
+		$this->view->render( array(
+									'utente' => $utente,
+									'listaSpesa' => $listaSpesa,
 									'prezzoFinale' => $prezzo_finale,
 									'idOrdineAdmin' => $idOrdineAdmin,
 									'ordineUtente' => $ordineUtente ) );
@@ -189,9 +200,7 @@ class IndexController extends Controller {
 		$ordineAdmin = $this->_getOrdineAdmin();
 		
 		$ordine = $ordineModel->selectOrdineUtente($ordineAdmin['id_ordine_admin'], $_COOKIE['id_utente']);
-		
-// 		$this->boxPrint($ordine);
-// 		die;
+	
 		
 		if (!isset($ordine) || empty($ordine)) {
 			$ordineUtente['id_utente'] = $_COOKIE['id_utente'];
@@ -246,7 +255,10 @@ class IndexController extends Controller {
 	
 	
 	public function getPagamento () {
-		
+		// check user is logged in
+		if (!isset($_COOKIE['id_utente'])) {
+			return header("Location: /index");
+		}
 		$idOrdineAdmin = $_GET['id_ordine_admin'];
 		
 		$this->loadModules('ordine');
@@ -260,8 +272,13 @@ class IndexController extends Controller {
 		
 		if (isset($update) && !empty($update)) {
 			
-			$this->sendMail($idOrdineAdmin, $ordine['id_utente']);
+			$ordineUtente = $ordineModel->selectOrdineUtente($idOrdineAdmin, $_COOKIE['id_utente']);
+			$ordineUtenteMaster['id_ordine'] = $ordineUtente['id_ordine'];
 			
+			$insert = $ordineModel->insertRicevuta($ordineUtenteMaster);
+			
+			$idOrdine['id_ordine'] = $this->sendMail($idOrdineAdmin, $insert);
+
 			$response = array('status' => 'OK' );
 			$this->view->renderJson($response);
 		}
@@ -278,15 +295,16 @@ class IndexController extends Controller {
 	}
 	
 	
-	public function sendMail ($idOrdineAdmin) {
+	public function sendMail ($idOrdineAdmin, $idRicevuta) {
 		$this->loadModules('ordine');
 		$ordineModel = new Ordine();
 		$this->loadModules('index');
 		$indexModel = new Index();
 		
-		$user = $indexModel->selectUtente($_COOKIE['id_utente']);
-		
+		$utente = $indexModel->selectUtente($_COOKIE['id_utente']);
 		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
+		$plain_text = '';
+		$prezzo_finale = 0;
 		
 		if (isset($listaSpesa) && !empty($listaSpesa)) {
 			$this->loadModules('prodotti');
@@ -298,13 +316,18 @@ class IndexController extends Controller {
 				$listaSpesa[$key]['prezzo_iva'] = $item['prezzo_iva'];
 				$listaSpesa[$key]['unita'] = $item['unita'];
 				
-				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.($item['unita']*$item['prezzo_iva']).' &euro; \n';
+				$idOrdine = $listaSpesa[$key]['id_ordine'];
+				
+				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.$prodotto['quantita'].' | '.($prodotto['quantita']*$item['prezzo_iva'])." euro \n";
 				
 				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
 			}
 		}
 		
-		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.\nSegue la tua ricevuta e riepilogo della tua spesa.\n\nIl team Food Republic\n\nFood Republic S.r.l.\nVia Fratta, 2\n31020 San Zenone degli Ezzelini, TV\nPart. IVA 04496450265\n\n";
+// 		$this->boxPrint($plain_text);
+// 		die;
+		
+		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.\nSegue la tua ricevuta e riepilogo della tua spesa.\n\nIl team Food Republic\n\nFood Republic S.r.l.\nVia Fratta, 2\n31020 San Zenone degli Ezzelini, TV\nPart. IVA 04496450265\n\nRicevuta 2013/".$idRicevuta." - ".$utente['nome']." ".$utente['cognome'];
 
 // 		$html_text = "<html><body>This is an <b style='color:purple'>HTML</b> text email.\r\nIt is very cool.</body></html>";
 		
@@ -312,26 +335,29 @@ class IndexController extends Controller {
 		$mime_boundary = "==MULTIPART_BOUNDARY_$semi_rand";
 		$mime_boundary_header = chr(34) . $mime_boundary . chr(34);
 		
-		$to = "Me <ricca.prog@gmail.com>";
-		$from = "Me.com <me@me.com>";
-		$subject = "My Email";
+		$to = "".$utente['username'].", artuso.lucia@hotmail.it, ricca.prog@gmail.com"; //<".$utente['username']."> || $utente['nome']." ".$utente['cognome'].
+		$from = "FoodRepublic <info@food-republic.it>";
+		$subject = "La tua Ricevuta #".$idRicevuta;
 		
-		$body = "$notice_text
+// 		$this->boxPrint($to);
+// 		$this->boxPrint($utente);
+// 		die;
 		
-		$plain_text\n## TOTALE $prezzo_finale\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l’80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
-".$user['indirizzo'].", il giorno ".$listaSpesa[0]['data']." alle ore ".$user['ora_consegna'];
-		
+		$body = "$notice_text\n\n$plain_text\n## TOTALE $prezzo_finale euro\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l'80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
+".$utente['indirizzo'].", il giorno ".$listaSpesa[0]['data']." alle ore ".$utente['ora_consegna'];
+				
 		if (@mail($to, $subject, $body,
 		    "From: " . $from . "\n" .
 		    "MIME-Version: 1.0\n" .
 		    "Content-Type: multipart/alternative;\n" .
 		    "     boundary=" . $mime_boundary_header)) {
 		    
-		    return true;
+		   $checkMail = $idOrdine;
 		}
 		else {
-		    echo "Email NOT sent successfully!";
+		    $checkMail = $idOrdine;
 		}
 		
+		   return $checkMail;
 	}
 }
