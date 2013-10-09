@@ -318,7 +318,7 @@ class IndexController extends Controller {
 				
 				$idOrdine = $listaSpesa[$key]['id_ordine'];
 				
-				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.$prodotto['quantita'].' | '.($prodotto['quantita']*$item['prezzo_iva'])." € \n";
+				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.$prodotto['quantita'].' | '.($prodotto['quantita']*$item['prezzo_iva'])." euro \n";
 				
 				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
 			}
@@ -339,7 +339,7 @@ class IndexController extends Controller {
 		$from = "FoodRepublic <info@food-republic.it>";
 		$subject = "La tua Ricevuta #".$idRicevuta;
 		
-		$body = "$notice_text\n\n$plain_text\n## TOTALE $prezzo_finale\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l’80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
+		$body = "$notice_text\n\n$plain_text\n## TOTALE $prezzo_finale euro\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l’80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
 ".$utente['indirizzo'].", il giorno ".$listaSpesa[0]['data']." alle ore ".$utente['ora_consegna'];
 				
 		if (@mail($to, $subject, $body,
