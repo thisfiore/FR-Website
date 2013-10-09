@@ -245,7 +245,9 @@ class IndexController extends Controller {
 	}
 	
 	
-	public function getPagamento ($idOrdineAdmin) {
+	public function getPagamento () {
+		
+		$idOrdineAdmin = $_GET['id_ordine_admin'];
 		
 		$this->loadModules('ordine');
 		$ordineModel = new Ordine();
@@ -256,8 +258,14 @@ class IndexController extends Controller {
 		
 		$update = $ordineModel->updateOrdineUtente($ordine);
 		
-		
-		
+		if (isset($update) && !empty($update)) {
+			$response = array('status' => 'OK' );
+			$this->view->renderJson($response);
+		}
+		else {
+			$response = array( 'status' => 'ERR' );
+			$this->view->renderJson($response);
+		}
 	}
 	
 	public function getLogout () {

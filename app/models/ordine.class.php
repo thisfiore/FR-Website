@@ -82,7 +82,17 @@ class Ordine extends DB {
 							'id_prodotto = ' => $idProdotto )
 			);
 			return $update;
-		
+	}
+	
+	
+	public function updateOrdineUtente ($ordine) {
+		$update = $this->update(
+				$ordine,
+				'ordine_utente',
+				array( 	'id_ordine_admin = ' => $ordine['id_ordine_admin'],
+						'id_utente = ' => $ordine['id_utente'] )
+		);
+		return $update;
 	}
 	
 	

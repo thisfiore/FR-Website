@@ -132,6 +132,8 @@ $(document).ready(function(e) {
 	$('.lista').on('click', 'button.paga', function(event) {
 		var id_ordine_admin = $(this).data('id_ordine_admin');
 		
+		console.log(id_ordine_admin);
+		
 		$.ajax({
 			url : '/index/pagamento/',
 			type : 'GET',
@@ -140,6 +142,7 @@ $(document).ready(function(e) {
 				id_ordine_admin : id_ordine_admin,
 			},
 			success : function(response) {
+				location.reload();
 			}
 		});
 		
