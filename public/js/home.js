@@ -108,6 +108,7 @@ $(document).ready(function(e) {
 
 		var totale = $('div.subtotal').data('totale');
 		var prezzo = $(this).children().data('prezzo');
+		var iva = $(this).children().data('iva');
 		
 		$.ajax({
 			url : '/index/addProdottoLista/',
@@ -118,7 +119,8 @@ $(document).ready(function(e) {
 			},
 			success : function(responseHtml) {
 				
-				totale = totale + prezzo;
+				totale = parseFloat(totale) + parseFloat(prezzo);
+				totale = totale.toFixed(2);
 				
 				$('div.lista ul').prepend(responseHtml);
 				

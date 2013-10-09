@@ -54,7 +54,7 @@ class OrdineController extends Controller {
 			$prodotto = $prodottiModels->selectProdottoMinimal($idProdotto);
 			
 			$response = array ( 'status' => 'OK',
-								'data' => $prodotto['prezzo'] );
+								'data' => $prodotto['prezzo_iva'] );
 		}
 		else {
 			$response = array ( 'status' => 'ERR' );

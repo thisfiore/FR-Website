@@ -13,7 +13,9 @@
 						
 						<div 
 							data-id_prodotto="<?php echo $prodotto['id_prodotto']?>"
-							data-prezzo="<?php echo $prodotto['prezzo_iva']?>">
+							data-prezzo="<?php echo $prodotto['prezzo_iva']?>" 
+							data-iva="<?php echo $prodotto['iva']?>">
+							
 							<div class="image" style="background:url('/img/products/<?php echo $prodotto['image']?>');">
 								<span>+</span>
 							</div>

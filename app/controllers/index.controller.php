@@ -203,7 +203,7 @@ class IndexController extends Controller {
 			$insert = $ordineModel->insertOrdineUtente($ordineUtente);
 			
 			if (!isset($insert) || empty($insert)) {
-				$response = array( 'status' => 'ERR',
+				$response = array( 	'status' => 'ERR',
 									'message' => 'error insert ordine' );
 				$this->view->renderJson($response);
 			}
@@ -259,6 +259,9 @@ class IndexController extends Controller {
 		$update = $ordineModel->updateOrdineUtente($ordine);
 		
 		if (isset($update) && !empty($update)) {
+			
+			$this->sendMail();
+			
 			$response = array('status' => 'OK' );
 			$this->view->renderJson($response);
 		}
@@ -272,5 +275,53 @@ class IndexController extends Controller {
 		setcookie('id_utente', '', time()-3600, "/" );
 		$response = array('status' => 'OK' );
 		$this->view->renderJson($response);
+	}
+	
+	
+	public function sendMail () {
+		// costruiamo alcune intestazioni generali
+		$header = "From: Inviante <ricca.prog@gmail.com>\n";
+		$header .= "CC: Lucia Artuso <artuso.lucia@hotmail.it>\n";
+		$header .= "X-Mailer: Il nostro Php\n";
+		
+		// generiamo la stringa che funge da separatore
+		$boundary = "==String_Boundary_x" .md5(time()). "x";
+		
+		// costruiamo le intestazioni che specificano
+		// un messaggio costituito da più parti alternative
+		$header .= "MIME-Version: 1.0\n";
+		$header .= "Content-Type: multipart/alternative;\n";
+		$header .= " boundary=\"$boundary\";\n\n";
+		
+		// questa parte del messaggio viene visualizzata
+		// solo se il programma non sa interpretare
+		// i MIME poiché è posta prima della stringa boundary
+		$messaggio = "Se visualizzi questo testo il tuo programma non supporta i MIME\n\n";
+		
+		// inizia la prima parte del messaggio in testo puro
+		$messaggio .= "–$boundary\n";
+		$messaggio .= "Content-Type: text/plain; charset=\"iso-8859-1\"\n";
+		$messaggio .= "Content-Transfer-Encoding: 7bit\n\n";
+		$messaggio .= "Messaggio in formato testo.\n\n";
+		
+		// inizia la seconda parte del messaggio in formato html
+		$messaggio .= "–$boundary\n";
+		$messaggio .= "Content-Type: text/html; charset=\"iso-8859-1\"\n";
+		$messaggio .= "Content-Transfer-Encoding: 7bit\n\n";
+		$messaggio .= "<html><body><p>Questo messaggio è in formato <i>html</i> ma ha una parte testo.</p><p>Visita il sito <a href=\"http://www.html.it\">www.html.it</a></p></body></html>\n";
+		
+		// chiusura del messaggio con la stringa boundary
+		$messaggio .= "–".$boundary."–\n";
+		
+		$subject = "secondo messaggio html";
+		
+		if( @mail("ricca.prog@gmail.com", $subject, $messaggio, $header) ) {
+			echo "e-mail inviata con successo!";
+			die;
+		}
+		else {
+			echo "errore nell’invio dell’e-mail!"; 
+			die;
+		}
 	}
 }
