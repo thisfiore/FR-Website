@@ -272,10 +272,13 @@ class IndexController extends Controller {
 		
 		if (isset($update) && !empty($update)) {
 			
-			$idOrdine['id_ordine'] = $this->sendMail($idOrdineAdmin, $ordine['id_utente']);
-
-			$insert = $ordineModel->insertRicevuta($idOrdine);
+			$ordineUtente = $ordineModel->selectOrdineUtente($idOrdineAdmin, $_COOKIE['id_utente']);
+			$ordineUtenteMaster['id_ordine'] = $ordineUtente['id_ordine'];
 			
+			$insert = $ordineModel->insertRicevuta($ordineUtenteMaster);
+			
+			$idOrdine['id_ordine'] = $this->sendMail($idOrdineAdmin, $insert);
+
 			$response = array('status' => 'OK' );
 			$this->view->renderJson($response);
 		}
@@ -292,7 +295,7 @@ class IndexController extends Controller {
 	}
 	
 	
-	public function sendMail ($idOrdineAdmin) {
+	public function sendMail ($idOrdineAdmin, $idRicevuta) {
 		$this->loadModules('ordine');
 		$ordineModel = new Ordine();
 		$this->loadModules('index');
@@ -315,13 +318,13 @@ class IndexController extends Controller {
 				
 				$idOrdine = $listaSpesa[$key]['id_ordine'];
 				
-				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.($item['unita']*$item['prezzo_iva']).' &euro; \n';
+				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.($item['unita']*$item['prezzo_iva'])." &euro; \n";
 				
 				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
 			}
 		}
 		
-		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.\nSegue la tua ricevuta e riepilogo della tua spesa.\n\nIl team Food Republic\n\nFood Republic S.r.l.\nVia Fratta, 2\n31020 San Zenone degli Ezzelini, TV\nPart. IVA 04496450265\n\n";
+		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.\nSegue la tua ricevuta e riepilogo della tua spesa.\n\nIl team Food Republic\n\nFood Republic S.r.l.\nVia Fratta, 2\n31020 San Zenone degli Ezzelini, TV\nPart. IVA 04496450265\n\nRicevuta 2013/".$idRicevuta." - ".$utente['nome']." ".$utente['cognome'];
 
 // 		$html_text = "<html><body>This is an <b style='color:purple'>HTML</b> text email.\r\nIt is very cool.</body></html>";
 		
@@ -331,7 +334,7 @@ class IndexController extends Controller {
 		
 		$to = $utente['nome']." ".$utente['cognome']." ricca.prog@gmail.com"; //<".$utente['username'].">
 		$from = "FoodRepublic <info@food-republic.it>";
-		$subject = "La tua Ricevuta #".$idOrdine;
+		$subject = "La tua Ricevuta #".$idRicevuta;
 		
 		$body = "$notice_text\n\n	
 		$plain_text\n## TOTALE $prezzo_finale\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l’80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n

@@ -161,6 +161,8 @@ $(document).ready(function(e) {
 	
 	// TODO POST logout
 	$('div.header').on('click', 'a.logout', function(event) {
+		var that = $(this);
+		
 		$.ajax({
 			url : '/index/logout/',
 			type : 'GET',
