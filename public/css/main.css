@@ -150,6 +150,7 @@ div.center {
 	position: fixed;
 	z-index: 20;
 	color:#FFF;
+	top:0;
 } .header div:first-child { padding-left: 20px; }
 .header a:link, .header a:visited { color:white; text-decoration: underline; font-size:12px;}
 .user { padding-right: 20px; }
@@ -215,6 +216,7 @@ div.center {
 	margin: auto;
 	margin-top:30px;
 	padding: 30px;
+	padding-top:90px;
 	position: relative;
 	background: rgba(255,255,255,0.6);
 	border-radius: 10px;

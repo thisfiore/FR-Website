@@ -132,9 +132,12 @@ $(document).ready(function(e) {
 	
 	
 	$('.lista').on('click', 'button.paga', function(event) {
-		var id_ordine_admin = $(this).data('id_ordine_admin');
+		if ($(this).hasClass('unclick')) {
+			return false;
+		}
 		
-		console.log(id_ordine_admin);
+		var that = $(this);
+		var id_ordine_admin = $(this).data('id_ordine_admin');
 		
 		$.ajax({
 			url : '/index/pagamento/',
@@ -143,19 +146,27 @@ $(document).ready(function(e) {
 			data : {
 				id_ordine_admin : id_ordine_admin,
 			},
+			beforeSend: function() {
+				that.addClass('unclick');
+			},
 			success : function(response) {
-				location.reload();
+				console.log(response.status);
+				if (response.status == 'OK') {
+					location.reload();
+				}
 			}
 		});
 		
 	});
 	
+	// TODO POST logout
 	$('div.header').on('click', 'a.logout', function(event) {
 		$.ajax({
 			url : '/index/logout/',
 			type : 'GET',
 			dataType : 'json',
 			success : function(response) {
+				that.removeClass('unclick');
 				location.reload();
 			}
 		});

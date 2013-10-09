@@ -26,7 +26,7 @@ class Ordine extends DB {
 	public function selectListaSpesa ($idUtente, $idOrdineAdmin) {
 		$select = $this->select()
 						->from ('lista_spesa', '*')
-						->join ('ordine_utente', 'ordine_utente.id_ordine = lista_spesa.id_ordine',  array('stato', 'id_ordine_admin', 'id_ordine') )
+						->join ('ordine_utente', 'ordine_utente.id_ordine = lista_spesa.id_ordine',  array('stato', 'id_ordine_admin', 'id_ordine', 'data') )
 						->where ('ordine_utente.id_utente = ', $idUtente)
 						->where ('ordine_utente.id_ordine_admin = ', $idOrdineAdmin);
 	
@@ -71,6 +71,11 @@ class Ordine extends DB {
 	public function insertOrdineUtente ($ordineUtente) {
 			$insert = $this->insert($ordineUtente, 'ordine_utente');
 			return $insert;
+	}
+	
+	public function insertRicevuta ($ricevuta) {
+		$insert = $this->insert($ricevuta, 'ricevuta');
+		return $insert;
 	}
 	
 	
