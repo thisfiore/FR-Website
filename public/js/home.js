@@ -145,5 +145,14 @@ $(document).ready(function(e) {
 		
 	});
 	
-	
+	$('div.header').on('click', 'a.logout', function(event) {
+		$.ajax({
+			url : '/index/logout/',
+			type : 'GET',
+			dataType : 'json',
+			success : function(response) {
+				location.reload();
+			}
+		});
+	});
 });

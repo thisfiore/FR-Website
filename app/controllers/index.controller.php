@@ -120,7 +120,6 @@ class IndexController extends Controller {
 
 		$lista_spesa = array();
 		
-		
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
 		
@@ -261,4 +260,9 @@ class IndexController extends Controller {
 		
 	}
 	
+	public function getLogout () {
+		setcookie('id_utente', '', time()-3600, "/" );
+		$response = array('status' => 'OK' );
+		$this->view->renderJson($response);
+	}
 }
