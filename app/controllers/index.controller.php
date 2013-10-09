@@ -301,7 +301,7 @@ class IndexController extends Controller {
 		}
 		
 		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.\nSegue la tua ricevuta e riepilogo della tua spesa.\n\nIl team Food Republic\n\nFood Republic S.r.l.\nVia Fratta, 2\n31020 San Zenone degli Ezzelini, TV\nPart. IVA 04496450265\n\n";
-		$plain_text = "This is a plain text email.\r\nIt is very cool.";
+
 // 		$html_text = "<html><body>This is an <b style='color:purple'>HTML</b> text email.\r\nIt is very cool.</body></html>";
 		
 		$semi_rand = md5(time());
