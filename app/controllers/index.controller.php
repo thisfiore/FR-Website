@@ -116,7 +116,10 @@ class IndexController extends Controller {
 		
 		$this->loadModules('prodotti');
 		$prodottiModels = new Prodotti();
+		$this->loadModules('index');
+		$indexModels = new Index();
 		
+		$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
 		$prodotti = $prodottiModels->selectAllProducts();
 		
 // 		$this->boxPrint($prodotti);
@@ -129,12 +132,29 @@ class IndexController extends Controller {
 			die;
 		}
 
+// 		$this->boxPrint($ordine_admin['stato']);
+// 		die;
+		
 		$lista_spesa = array();
 		
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
 		
+		
 		$ordineUtente = $ordineModels->selectOrdineUtente($ordine_admin['id_ordine_admin'], $_COOKIE['id_utente']);
+		
+		if ($ordine_admin['stato'] == 0) {
+			if (isset($ordineUtente) && !empty($ordineUtente) && $ordineUtente['stato'] == 1) {
+				$this->getPay($ordine_admin['id_ordine_admin']);
+				die;
+			}
+			else {
+				$this->view->load('header', 'no_order_admin', null, null);
+				$this->view->render( array ('utente' => $utente));
+				die;
+			}
+		}
+		
 		
 		if (isset($ordineUtente) && !empty($ordineUtente) && $ordineUtente['stato'] == 1) {
 			$this->getPay($ordine_admin['id_ordine_admin']);
@@ -155,11 +175,6 @@ class IndexController extends Controller {
 					}
 				}
 			}
-			
-			$this->loadModules('index');
-			$indexModels = new Index();
-			
-			$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
 			
 			$this->view->load('header', 'home', null, null);
 			$this->view->render(array ( 	'prodotti' => $prodotti,
