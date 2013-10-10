@@ -324,17 +324,13 @@ class IndexController extends Controller {
 			}
 		}
 		
-// 		$this->boxPrint($plain_text);
-// 		die;
-		
 		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.\nSegue la tua ricevuta e riepilogo della tua spesa.\n\nIl team Food Republic\n\nFood Republic S.r.l.\nVia Fratta, 2\n31020 San Zenone degli Ezzelini, TV\nPart. IVA 04496450265\n\nRicevuta 2013/".$idRicevuta." - ".$utente['nome']." ".$utente['cognome'];
-
-// 		$html_text = "<html><body>This is an <b style='color:purple'>HTML</b> text email.\r\nIt is very cool.</body></html>";
 		
 		$semi_rand = md5(time());
 		$mime_boundary = "==MULTIPART_BOUNDARY_$semi_rand";
 		$mime_boundary_header = chr(34) . $mime_boundary . chr(34);
 		
+// DESTINATARIO MAIL
 		$to = "".$utente['username'].", artuso.lucia@hotmail.it, ricca.prog@gmail.com"; //<".$utente['username']."> || $utente['nome']." ".$utente['cognome'].
 		$from = "FoodRepublic <info@food-republic.it>";
 		$subject = "La tua Ricevuta #".$idRicevuta;

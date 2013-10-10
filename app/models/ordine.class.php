@@ -43,9 +43,6 @@ class Ordine extends DB {
 		
 		$prodotti = $this->fetchAll($select);
 		
-// 		print_r($prodotti);
-// 		die;
-		
 		if (isset($prodotti) && !empty($prodotti)) {
 			foreach ($prodotti as $key => $prodotto) {
 				$prodotti[$key]['prezzo_iva'] = round($prodotto['prezzo'] * (1+$prodotto['iva']/100) * (1.15) , 2) ;
@@ -65,6 +62,38 @@ class Ordine extends DB {
 	
 		$ordine = $this->fetchRow($select);
 		return $ordine;
+	}
+	
+	
+	public function selectGruppoPerProduttori ($idGruppo) {
+		$select = $this->select()
+						->from ('gruppi', 'nome_gruppo')
+						->where('id_gruppo = ', $idGruppo);
+	
+		$gruppo = $this->fetchRow($select);
+		return $gruppo;
+	}
+	
+	
+	public function selectOrdiniUtentiProduttori ($idOrdineAdmin) {
+		$select = $this->select()
+						->from ('ordine_utente', '*')
+						->join ('lista_spesa', 'lista_spesa.id_ordine = ordine_utente.id_ordine', array('id_prodotto', 'quantita'))
+						->join ('utenti', 'utenti.id_utente = ordine_utente.id_utente', array('id_gruppo'))
+						->where('ordine_utente.id_ordine_admin = ', $idOrdineAdmin)
+						->where('ordine_utente.stato = 1');
+	
+		$ordine = $this->fetchAll($select);
+		return $ordine;
+	}
+	
+	
+	public function selectProduttori () {
+		$select = $this->select()
+						->from ('produttori', '*');
+	
+		$produttori = $this->fetchAll($select);
+		return $produttori;
 	}
 	
 	

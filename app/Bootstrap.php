@@ -135,7 +135,7 @@ class Bootstrap {
 	
 	
 	public function findController($self) {
-		$controller = array ( "index", "ordine" );
+		$controller = array ( "index", "ordine", "admin" );
 		
 		if (in_array ($self, $controller)) {
 			return $self;
@@ -172,14 +172,14 @@ class Bootstrap {
 				$path = ERROR_404_PATH;
 			}
 			else {
-				$path = ROOT.DS."/controllers/index.controller.php";
+				$path = ROOT.DS."controllers/index.controller.php";
 			}
 		} 
 		else if ($controller == '404') {
 			$path = ERROR_404_PATH;
 		}
 		else {
-			$path = ROOT.DS."/controllers/".$controller.".controller.php";
+			$path = ROOT.DS."controllers/".$controller.".controller.php";
 		}
 		
 		return $path;

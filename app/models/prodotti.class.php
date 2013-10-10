@@ -43,6 +43,20 @@ class Prodotti extends DB {
 	}
 	
 	
+	public function selectProdottoAdminProduttori ($idProdotto) {
+		$select = $this->select()
+						->from ('prodotti', array('id_prodotto', 'id_produttore', 'nome_prodotto', 'unita', 'prezzo', 'iva'))
+						->where ('id_prodotto = ', $idProdotto);
+	
+		$prodotto = $this->fetchRow($select);
+	
+// 		Prezzo senza markup
+		$prodotto['prezzo_iva'] = round($prodotto['prezzo'] * (1+$prodotto['iva']/100), 2);
+	
+		return $prodotto;
+	}
+	
+	
 	public function insertProdottoLista ($prodotto) {
 		$insert = $this->insert($prodotto, 'lista_spesa');
 		return $insert;
