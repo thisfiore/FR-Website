@@ -143,9 +143,9 @@ class AdminController extends Controller {
 				$totale = 0;
 				foreach ($prodotti as $prodotto) {
 					$adminGruppi[$utente['id_gruppo']]['utenti'][$utente['id_utente']]['prodotto'][$prodotto['id_prodotto']] = $prodotto;
-					$adminGruppi[$utente['id_gruppo']]['utenti'][$utente['id_utente']]['prodotto'][$prodotto['id_prodotto']]['totale'] = $prodotto['quantita']*$prodotto['prezzo_iva'];
+					$adminGruppi[$utente['id_gruppo']]['utenti'][$utente['id_utente']]['prodotto'][$prodotto['id_prodotto']]['totale'] = ($prodotto['quantita']*$prodotto['prezzo_iva']);
 					
-					$totale += $prodotto['prezzo_iva'];
+					$totale += ($prodotto['quantita']*$prodotto['prezzo_iva']);
 				}
 				
 				$adminGruppi[$utente['id_gruppo']]['utenti'][$utente['id_utente']]['totale_utente'] = $totale;
