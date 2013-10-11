@@ -1,3 +1,5 @@
+<!-- chiudo il div CONTENT -->
+</div>
 
 <footer>
 <div class="container">

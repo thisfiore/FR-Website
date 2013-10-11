@@ -25,12 +25,31 @@ class Index extends DB {
 	
 	public function selectUtente ($idUtente) {
 		$select = $this->select()
-						->from ('utenti', '*' )
+						->from ('utenti', '*')
 						->join ('gruppi', 'gruppi.id_gruppo = utenti.id_gruppo')
 						->where('id_utente = ', $idUtente);
 	
 		$utente = $this->fetchRow($select);
 		return $utente;
+	}
+	
+	
+	public function selectUtenteSingolo ($idUtente) {
+		$select = $this->select()
+						->from ('utenti', array('id_utente', 'id_gruppo', 'nome', 'cognome', 'citta', 'via', 'civico') )
+						->where('id_utente = ', $idUtente);
+	
+		$utente = $this->fetchRow($select);
+		return $utente;
+	}
+	
+	
+	public function selectGruppi () {
+		$select = $this->select()
+						->from ('gruppi', '*' );
+	
+		$gruppo = $this->fetchAll($select);
+		return $gruppo;
 	}
 	
 	

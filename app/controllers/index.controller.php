@@ -30,54 +30,6 @@ class IndexController extends Controller {
 	}
 	
 	
-	public function getPay ($idOrdineAdmin) {
-		// check user is logged in
-		if (!isset($_COOKIE['id_utente'])) {
-			return header("Location: /index");
-		} 
-		$this->loadModules('ordine');
-		$ordineModels = new Ordine();
-		
-		$this->loadModules('index');
-		$indexModel = new Index();
-		$utente = $indexModel->selectUtente($_COOKIE['id_utente']);
-		
-		$ordineUtente = $ordineModels->selectOrdineUtente($idOrdineAdmin, $_COOKIE['id_utente']);
-		
-		if (!isset($ordineUtente) || empty($ordineUtente)) {
-			header('Location: /');
-		}
-		
-		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
-		$prezzo_finale = 0;
-		
-		if (isset($listaSpesa) && !empty($listaSpesa)) {
-			$this->loadModules('prodotti');
-			$prodottiModels = new Prodotti();
-		
-			foreach ($listaSpesa as $key => $prodotto) {
-				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
-				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
-				$listaSpesa[$key]['prezzo_iva'] = $item['prezzo_iva'];
-				$listaSpesa[$key]['unita'] = $item['unita'];
-				
-				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
-			}
-		}
-
-// 		$this->boxPrint($listaSpesa);
-// 		$this->boxPrint($prezzo_finale);
-// 		die;
-		
-		$this->view->load('header', 'pay', null, null);
-		$this->view->render( array(
-									'utente' => $utente,
-									'listaSpesa' => $listaSpesa,
-									'prezzoFinale' => $prezzo_finale,
-									'idOrdineAdmin' => $idOrdineAdmin,
-									'ordineUtente' => $ordineUtente ) );
-	}
-	
 	public function postLogin () {
 		$username = isset($_POST['username']) ? $_POST['username'] : null;
 		$password = isset($_POST['password']) ? $_POST['password'] : null;
@@ -122,8 +74,6 @@ class IndexController extends Controller {
 		$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
 		$prodotti = $prodottiModels->selectAllProducts();
 		
-// 		$this->boxPrint($prodotti);
-// 		die;
 		$prezzo_finale = 0;
 		$ordine_admin = $this->_getOrdineAdmin();
 		
@@ -131,15 +81,11 @@ class IndexController extends Controller {
 			echo "<h1>Sito in fase di perfezionamento</h1>";
 			die;
 		}
-
-// 		$this->boxPrint($ordine_admin['stato']);
-// 		die;
 		
 		$lista_spesa = array();
 		
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
-		
 		
 		$ordineUtente = $ordineModels->selectOrdineUtente($ordine_admin['id_ordine_admin'], $_COOKIE['id_utente']);
 		
@@ -155,13 +101,11 @@ class IndexController extends Controller {
 			}
 		}
 		
-		
 		if (isset($ordineUtente) && !empty($ordineUtente) && $ordineUtente['stato'] == 1) {
 			$this->getPay($ordine_admin['id_ordine_admin']);
 			die;
 		}
 		else {
-
 			if ($ordine_admin['stato'] == 1) {
 				$lista_spesa = $this->_getListaSpesa($ordine_admin['id_ordine_admin']);
 				
@@ -302,6 +246,50 @@ class IndexController extends Controller {
 			$this->view->renderJson($response);
 		}
 	}
+	
+	public function getPay ($idOrdineAdmin) {
+		// check user is logged in
+		if (!isset($_COOKIE['id_utente'])) {
+			return header("Location: /index");
+		}
+		$this->loadModules('ordine');
+		$ordineModels = new Ordine();
+	
+		$this->loadModules('index');
+		$indexModel = new Index();
+		$utente = $indexModel->selectUtente($_COOKIE['id_utente']);
+	
+		$ordineUtente = $ordineModels->selectOrdineUtente($idOrdineAdmin, $_COOKIE['id_utente']);
+	
+		if (!isset($ordineUtente) || empty($ordineUtente)) {
+			header('Location: /');
+		}
+	
+		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
+		$prezzo_finale = 0;
+	
+		if (isset($listaSpesa) && !empty($listaSpesa)) {
+			$this->loadModules('prodotti');
+			$prodottiModels = new Prodotti();
+	
+			foreach ($listaSpesa as $key => $prodotto) {
+				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
+				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
+				$listaSpesa[$key]['prezzo_iva'] = $item['prezzo_iva'];
+				$listaSpesa[$key]['unita'] = $item['unita'];
+	
+				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
+			}
+		}
+	
+		$this->view->load('header', 'pay', null, null);
+		$this->view->render( array(	'utente' => $utente,
+									'listaSpesa' => $listaSpesa,
+									'prezzoFinale' => $prezzo_finale,
+									'idOrdineAdmin' => $idOrdineAdmin,
+									'ordineUtente' => $ordineUtente ) );
+	}
+	
 	
 	public function getLogout () {
 		setcookie('id_utente', '', time()-3600, "/" );

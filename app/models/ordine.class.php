@@ -38,7 +38,7 @@ class Ordine extends DB {
 	public function selectListaSpesaPrezzo ($idOrdine) {
 		$select = $this->select()
 						->from ('lista_spesa', '*')
-						->join ('prodotti', 'prodotti.id_prodotto = lista_spesa.id_prodotto', array('nome_prodotto, prezzo, iva'))
+						->join ('prodotti', 'prodotti.id_prodotto = lista_spesa.id_prodotto', array('nome_prodotto, prezzo, iva, unita'))
 						->where('lista_spesa.id_ordine = ', $idOrdine);
 		
 		$prodotti = $this->fetchAll($select);
@@ -96,6 +96,14 @@ class Ordine extends DB {
 		return $produttori;
 	}
 	
+	public function selectAllOrdineAdmin () {
+		$select = $this->select()
+						->from ('ordine_admin', '*')
+						->order('data', 'DESC');
+	
+		$ordine_admin = $this->fetchAll($select);
+		return $ordine_admin;
+	}
 	
 	public function insertOrdineUtente ($ordineUtente) {
 			$insert = $this->insert($ordineUtente, 'ordine_utente');
