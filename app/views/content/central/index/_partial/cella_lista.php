@@ -6,15 +6,14 @@
 	<div class="alert alert-success span16">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<span class="span6"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
-		<div class="unita span2"><?php echo $cella_lista['unita']?></div>
+		<div class="unita span2" data-unita="<?php echo $cella_lista['unita']?>"><?php echo $cella_lista['unita']?></div>
 		<div class="quantity span3" data-quantita="<?php echo $cella_lista['quantita']?>">
 			<span class="meno">-</span>
 			<span class="quantita"><?php echo $cella_lista['quantita']?></span>
 			<span class="piu">+</span>
 		</div>
-		<span class="partial span3 text-right">
-			<?php echo $cella_lista['prodotto']['prezzo_iva']?> €
+		<span class="partial span3 text-right" data-partial="<?php echo $cella_lista['prodotto']['totale_prodotto']?>">
+			<?php echo number_format($cella_lista['prodotto']['totale_prodotto'], 2, '.', '');?> &euro;
 		</span>
-								
 	</div>
 </li>

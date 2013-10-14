@@ -46,18 +46,36 @@ $(document).ready(function(e) {
 		var quantita = $(this).parent('div').data('quantita');
 		var that = $(this);
 		var totale = $('div.subtotal').data('totale');
+		var unita = $(this).parent().siblings('.unita').data('unita');
+		var totalePartial = $(this).parent().siblings('.partial').data('partial');
 		
-		if (label == 'piu')  { 
-			quantita = quantita + 1;
-		}
-		else if (label == 'meno') {
-			if (quantita == 1) {
+		if (unita == 'kg') {
+			if (label == 'piu')  { 
+				quantita = parseFloat(quantita) + parseFloat(0.5);
+			}
+			else if (label == 'meno') {
+				if (quantita == 0.5) {
+					return false;
+				}
+				quantita = parseFloat(quantita) - parseFloat(0.5);
+			}
+			else {
 				return false;
 			}
-			quantita = quantita - 1;
 		}
 		else {
-			return false;
+			if (label == 'piu')  { 
+				quantita = quantita + 1;
+			}
+			else if (label == 'meno') {
+				if (quantita == 1) {
+					return false;
+				}
+				quantita = quantita - 1;
+			}
+			else {
+				return false;
+			}
 		}
 		
 		var id_prodotto = $(this).parents('li').data('id_prodotto');
@@ -80,16 +98,34 @@ $(document).ready(function(e) {
 				else {
 					that.parent('div').data('quantita', quantita);
 					that.siblings('.quantita').html(quantita);
-										
-					if (label == 'piu') {
-						totale = parseFloat(totale) + parseFloat(response.data);
+									
+					if (unita == 'kg') {
+						if (label == 'piu') {
+							totale = parseFloat(totale) + parseFloat(response.data/2);
+							totalePartial = parseFloat(totalePartial) + parseFloat(response.data/2);
+						}
+						else {
+							totale = totale - (response.data/2);
+							totalePartial = totalePartial - (response.data/2);
+						}
 					}
 					else {
-						totale = totale - response.data;
+						if (label == 'piu') {
+							totale = parseFloat(totale) + parseFloat(response.data);
+							totalePartial = parseFloat(totalePartial) + parseFloat(response.data);
+						}
+						else {
+							totale = totale - response.data;
+							totalePartial = totalePartial - response.data;
+						}
 					}
 					
-					totale = totale.toFixed(2);
 					
+					totalePartial = totalePartial.toFixed(2);
+					that.parent().siblings('.partial').data('partial', totalePartial);
+					that.parent().siblings('span.partial').html(totalePartial+' €');
+					
+					totale = totale.toFixed(2);
 					$('div.subtotal').data('totale', totale);
 					$('div.subtotal span.pull-right').html(totale+' €');
 				}

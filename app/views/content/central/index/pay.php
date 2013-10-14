@@ -35,7 +35,7 @@ Il tuo ordine:
 					<div class="alert alert-success span16">
 						<span  style ="margin-left:5px" class="span8"><?php echo $prodotto['nome_prodotto']?></span>
 						<span class="quantita span3"><?php echo $prodotto['quantita'].' '.$prodotto['unita']?></span>
-						<span class="partial span4 text-right"><?php echo ($prodotto['quantita'] * $prodotto['prezzo_iva'])?>€</span>
+						<span class="partial span4 text-right"><?php echo $prodotto['totale_prodotto']?>€</span>
 					</div>
 				</li>		
 			<?php 

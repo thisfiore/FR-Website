@@ -113,6 +113,7 @@ class IndexController extends Controller {
 					foreach ($lista_spesa as $key => $prodotto) {
 						$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
 						$lista_spesa[$key]['prodotto'] = $item;
+						$lista_spesa[$key]['prodotto']['totale_prodotto'] = number_format(($item['prezzo_iva'] * $prodotto['quantita']), 2, '.', '');
 						$lista_spesa[$key]['unita'] = $item['unita'];
 						
 						$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
@@ -202,9 +203,17 @@ class IndexController extends Controller {
 			$cella_lista['id_prodotto'] = $idProdotto;
 			$cella_lista['id_ordine'] = $idOrdine;
 			$cella_lista['unita'] = $array['unita'];
-			$cella_lista['quantita'] = 1;
 			$cella_lista['prodotto']['prezzo_iva'] = $array['prezzo_iva'];
 			$cella_lista['prodotto']['nome_prodotto'] = $array['nome_prodotto'];
+			
+			if ( $array['unita'] == "kg") {
+				$cella_lista['quantita'] = 0.5;
+				$cella_lista['prodotto']['totale_prodotto'] = ($array['prezzo_iva']/2);
+			}
+			else {
+				$cella_lista['quantita'] = 1;
+				$cella_lista['prodotto']['totale_prodotto'] = $array['prezzo_iva'];
+			}
 			
 			$this->view->setHead(null);
 			$this->view->load(null, '_partial/cella_lista', null, null);
@@ -277,11 +286,14 @@ class IndexController extends Controller {
 				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
 				$listaSpesa[$key]['prezzo_iva'] = $item['prezzo_iva'];
 				$listaSpesa[$key]['unita'] = $item['unita'];
+				$listaSpesa[$key]['totale_prodotto'] = number_format(($prodotto['quantita'] * $item['prezzo_iva']), 2, '.', '');
 	
 				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
 			}
 		}
 	
+		$prezzo_finale = number_format($prezzo_finale, 2, '.', '');
+		
 		$this->view->load('header', 'pay', null, null);
 		$this->view->render( array(	'utente' => $utente,
 									'listaSpesa' => $listaSpesa,

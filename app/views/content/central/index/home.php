@@ -11,6 +11,9 @@
 						data-trigger="hover"
 						data-content="<?php echo $prodotto['desc']?>">
 						
+						<?php if ($prodotto['bio'] == 1) { ?>
+						<div class="ribbon-wrapper-green"><div class="ribbon-green">BIO</div></div>
+						<?php } ?>
 						<div 
 							data-id_prodotto="<?php echo $prodotto['id_prodotto']?>"
 							data-prezzo="<?php echo $prodotto['prezzo_iva']?>" 
@@ -65,19 +68,18 @@
 							data-id_ordine="<?php echo $cella_lista['id_ordine']?>" 
 							data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>"
 							data-check=1>
-
+							
 							<div class="alert alert-success span16">
 									<button type="button" class="close" data-dismiss="alert">&times;</button>
 									<span class="span6"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
-									<div class="unita span2"><?php echo $cella_lista['unita']?></div>
+									<div class="unita span2" data-unita="<?php echo $cella_lista['unita']?>"><?php echo $cella_lista['unita']?></div>
 									<div class="quantity span3" data-quantita="<?php echo $cella_lista['quantita']?>">
-			
 										<span class="meno">-</span>
 										<span class="quantita"><?php echo $cella_lista['quantita']?></span>
 										<span class="piu">+</span>
 									</div>
-									<span class="partial span3 text-right">
-										<?php echo $cella_lista['prodotto']['prezzo_iva']?> &euro;
+									<span class="partial span3 text-right" data-partial="<?php echo $cella_lista['prodotto']['totale_prodotto']?>">
+										<?php echo number_format($cella_lista['prodotto']['totale_prodotto'], 2, '.', '');?> &euro;
 									</span>
 							</div>
 						</li>
@@ -88,7 +90,7 @@
 
 			<div class="subtotal" data-totale="<?php echo $prezzo_finale?>">
 				<span class="text-left">Totale</span>
-				<span class="pull-right"><?php echo $prezzo_finale?> &euro;</span>
+				<span class="pull-right"><?php echo number_format($prezzo_finale, 2, '.', '');?> &euro;</span>
 			</div>
 			
 			<a href="/index/pay/<?php echo $ordine_admin['id_ordine_admin']?>">
