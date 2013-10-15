@@ -22,9 +22,11 @@ class OrdineController extends Controller {
 				
 				if ($prodotto) {
 					foreach ($prodotto as $item) {
-						$prezzo = number_format($prezzo + ($item['prezzo_iva'] * $item['quantita']), 2, '.', '');
+						$prezzo = $prezzo + ($item['prezzo_iva'] * $item['quantita']);
 					}
 				}
+				
+				$prezzo = number_format($prezzo, 2, '.', '');
 				
 				$response = array ( 'status' => 'OK',
 									'data' => $prezzo  );

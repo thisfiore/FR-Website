@@ -15,6 +15,6 @@
 	            </label> -->
 				<button type="submit" id="submit" name="submit" class="btn btn-danger btn-large btn-block">Entra</button>
 				</form>    
-				<div class="text-center"><a href="#">Scarica il tutorial in pdf</a></div>
+				<div class="text-center"><a href="/info/intro">Scarica il tutorial in pdf</a></div>
 			</div>
 			
