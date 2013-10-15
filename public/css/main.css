@@ -275,6 +275,7 @@ div.center {
 
 .lista .quantity {
 	-webkit-user-select:none;
+	min-width: 55px;
 }
 .lista .quantity span:first-child, .lista .quantity span:last-child {
 	border: #666 1px solid;
@@ -290,6 +291,11 @@ div.center {
 .lista .partial {
 	display: inherit;
 	margin-right: -10px;
+}
+.lista .quantita { 
+	min-width: 20px;
+	display: inline-block;
+	text-align: center;
 }
 
 .confirm {

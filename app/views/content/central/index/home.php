@@ -58,9 +58,10 @@
 	    	<h3 id="prodLabel"><?php echo $produttore['nome_produttore']?></h3>
 	  	</div>
 	  	<div class="modal-body">
-	  		<p><?php echo $produttore['via'].' '.$produttore['civico'].', '.$produttore['citta'].', '.$produttore['cap'].' '.$produttore['provincia'] ?></p>
-	  		<p><?php echo $produttore['username_produttore']?></p>
-	  		<p>P.IVA <?php echo $produttore['piva']?></p>
+	  		<span><?php echo $produttore['via'].' '.$produttore['civico'].', '.$produttore['citta'].', '.$produttore['cap'].' '.$produttore['provincia'] ?></span><br>
+	  		<span><a href="mailto:<?php echo $produttore['username_produttore']?>"><?php echo $produttore['username_produttore']?></a></span><br>
+	  		<span>P.IVA <?php echo $produttore['piva']?></span><br><br>
+	    	<h5>Informazioni:</h5>
 	    	<p><?php echo $produttore['descrizione_produttore']?></p>
 	  	</div>
 <!-- 	  <div class="modal-footer"> -->
