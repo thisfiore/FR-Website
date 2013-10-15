@@ -25,6 +25,9 @@ div.center {
 	margin-right: auto;
 	float: none !important;
 }
+.btn:focus {
+	outline: none;
+}
 .well { 
 	background-color: rgba(245, 245, 245, 0.7); 
 	border: 1px solid rgba(227, 227, 227, 0.7);
