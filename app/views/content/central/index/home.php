@@ -12,14 +12,14 @@
 						data-trigger="hover"
 						data-content="<?php echo $prodotto['desc']?>">
 						 
-						<?php if ($prodotto['proprio'] == 1) { ?>
-<!-- 						BADGE IN CASO IL PRODOTTO SIA DI PROPRIA PRODUZIONE  -->
-<!-- 						<div class="ribbon-wrapper-green"><div class="ribbon-green">BIO</div></div> -->
-						<?php } ?>
-						
-						<?php if ($prodotto['bio'] == 1) { ?>
+						<?php if ($prodotto['proprio'] == 1 && $prodotto['bio'] == 1) { ?>
+ 						<div class="ribbon-wrapper-green alt"><div class="ribbon-green alt">BIO<br>Prod. Propria</div></div>
+						<?php } elseif ($prodotto['proprio']) { ?>
+						<div class="ribbon-wrapper-green"><div class="ribbon-green">Prod. Propria</div></div>
+						<?php } elseif ($prodotto['bio']) { ?>
 						<div class="ribbon-wrapper-green"><div class="ribbon-green">BIO</div></div>
 						<?php } ?>
+
 						<div 
 							data-id_prodotto="<?php echo $prodotto['id_prodotto']?>"
 							data-prezzo="<?php echo $prodotto['prezzo_iva']?>" 
