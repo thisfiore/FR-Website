@@ -184,6 +184,12 @@ $(document).ready(function(e) {
 		$(id_produttore).modal('toggle');
 	});
 	
+//	$('div.terms').on('click', 'ul li a', function(event) {
+//		var id_produttore = $(this).data('id_produttore');
+//		$(id_produttore).modal('toggle');
+//	});
+	
+	
 	$('.lista').on('click', 'button.paga', function(event) {
 		if ($(this).hasClass('unclick')) {
 			return false;

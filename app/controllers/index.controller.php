@@ -73,6 +73,7 @@ class IndexController extends Controller {
 		
 		$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
 		$prodotti = $prodottiModels->selectAllProducts();
+		$produttori = $prodottiModels->selectAllProduttori();
 		
 		$prezzo_finale = 0;
 		$ordine_admin = $this->_getOrdineAdmin();
@@ -123,6 +124,7 @@ class IndexController extends Controller {
 			
 			$this->view->load('header', 'home', null, null);
 			$this->view->render(array ( 	'prodotti' => $prodotti,
+											'produttori' => $produttori,
 											'lista_spesa' => $lista_spesa,
 											'prezzo_finale' => $prezzo_finale,
 											'ordine_admin' => $ordine_admin,

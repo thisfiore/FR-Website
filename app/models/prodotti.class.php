@@ -30,6 +30,17 @@ class Prodotti extends DB {
 		return $prodotti;
 	}
 	
+	public function selectAllProduttori () {
+		$select = $this->select()
+						->from ('produttori', '*');
+	
+		$produttori = $this->fetchAll($select);
+	
+		return $produttori;
+	}
+	
+	
+	
 	
 	public function selectProdottoMinimal ($idProdotto) {
 		$select = $this->select()
