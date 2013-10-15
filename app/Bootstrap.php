@@ -135,7 +135,7 @@ class Bootstrap {
 	
 	
 	public function findController($self) {
-		$controller = array ( "index", "ordine", "admin" );
+		$controller = array ( "index", "ordine", "admin", "info" );
 		
 		if (in_array ($self, $controller)) {
 			return $self;

@@ -104,7 +104,7 @@
 				<li>
 					<a href="#">Termini e Condizioni</a>
 				</li><li>
-					<a href="#">Tutorial</a>
+					<a href="/info/intro">Tutorial</a>
 				</li>
 			</ul>
 		</div>
