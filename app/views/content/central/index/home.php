@@ -1,4 +1,5 @@
-	<!-- LISTA DI PRODOTTI AQUISTABILI -->
+
+<!-- LISTA DI PRODOTTI AQUISTABILI -->
 	<div class="prodotti">
 		<h1>Dai produttori vicini a te:</h1>
 		<ul>
@@ -10,6 +11,11 @@
 						data-placement="bottom"
 						data-trigger="hover"
 						data-content="<?php echo $prodotto['desc']?>">
+						 
+						<?php if ($prodotto['proprio'] == 1) { ?>
+<!-- 						BADGE IN CASO IL PRODOTTO SIA DI PROPRIA PRODUZIONE  -->
+<!-- 						<div class="ribbon-wrapper-green"><div class="ribbon-green">BIO</div></div> -->
+						<?php } ?>
 						
 						<?php if ($prodotto['bio'] == 1) { ?>
 						<div class="ribbon-wrapper-green"><div class="ribbon-green">BIO</div></div>

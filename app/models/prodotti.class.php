@@ -17,7 +17,7 @@ class Prodotti extends DB {
 		$select = $this->select()
 						->from ('prodotti', '*')
 						->join ('produttori', 'prodotti.id_produttore = produttori.id_produttore', array('nome_produttore', 'citta'))
-						->order('tipologia', 'ASC');
+						->order('tipologia', 'DESC');
 						
 		$prodotti = $this->fetchAll($select);
 		
@@ -30,6 +30,7 @@ class Prodotti extends DB {
 		return $prodotti;
 	}
 	
+	
 	public function selectAllProduttori () {
 		$select = $this->select()
 						->from ('produttori', '*');
@@ -38,8 +39,6 @@ class Prodotti extends DB {
 	
 		return $produttori;
 	}
-	
-	
 	
 	
 	public function selectProdottoMinimal ($idProdotto) {
