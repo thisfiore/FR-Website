@@ -8,7 +8,8 @@ class InfoController extends Controller {
 	}
 	
 	public function getIntro() {
-
+		
+// 		$this->view->setHead(null);
 		$pdfScript = array(
 				"pdf" => array(
 						"type" => "text/javascript",
