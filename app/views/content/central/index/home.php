@@ -55,7 +55,7 @@
 	<div id="produttore<?php echo $produttore['id_produttore']?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    	<h3 id="prodLabel"><?php echo $produttore['nome_produttore']?></h3>
+	    	<h4 id="prodLabel"><?php echo $produttore['nome_produttore']?></h4>
 	  	</div>
 	  	<div class="modal-body">
 	  		<span><?php echo $produttore['via'].' '.$produttore['civico'].', '.$produttore['citta'].', '.$produttore['cap'].' '.$produttore['provincia'] ?></span><br>
@@ -129,7 +129,7 @@
 	<div id="termini" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true" data-id_ordine_admin="<?php echo $ordine_admin['id_ordine_admin']?>">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    <h3 id="prodLabel">Termini e condizioni del servizio</h3>
+		    <h4 id="prodLabel">Termini e condizioni del servizio</h4>
 		  </div>
 		  <div class="modal-body">
 			<p>
