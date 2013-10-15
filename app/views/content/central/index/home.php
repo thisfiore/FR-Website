@@ -47,13 +47,16 @@
 	foreach ($produttori as $produttore) {?>
 	<!-- Producers Modal -->
 	<div id="produttore<?php echo $produttore['id_produttore']?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    <h3 id="prodLabel"><?php echo $produttore['nome_produttore']?></h3>
-	  </div>
-	  <div class="modal-body">
-	    <p><?php echo $produttore['descrizione_produttore']?></p>
-	  </div>
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="prodLabel"><?php echo $produttore['nome_produttore']?></h3>
+	  	</div>
+	  	<div class="modal-body">
+	  		<p><?php echo $produttore['via'].' '.$produttore['civico'].', '.$produttore['citta'].', '.$produttore['cap'].' '.$produttore['provincia'] ?></p>
+	  		<p><?php echo $produttore['username_produttore']?></p>
+	  		<p>P.IVA <?php echo $produttore['piva']?></p>
+	    	<p><?php echo $produttore['descrizione_produttore']?></p>
+	  	</div>
 <!-- 	  <div class="modal-footer"> -->
 <!-- 	    <button class="btn" data-dismiss="modal" aria-hidden="true">Chiudi</button> -->
 <!-- 	  </div> -->
