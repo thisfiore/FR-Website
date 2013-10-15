@@ -6,7 +6,7 @@
     <meta name="description" content="description of your site">
     <meta name="author" content="author of the site">
     
-	    <title>FOOD REPUBLIC</title>
+	    <title>Food Republic</title>
 	    <link rel="shortcut icon" href="img/favicon.ico" />
 	
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
