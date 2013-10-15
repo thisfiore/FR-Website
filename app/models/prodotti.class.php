@@ -17,6 +17,7 @@ class Prodotti extends DB {
 		$select = $this->select()
 						->from ('prodotti', '*')
 						->join ('produttori', 'prodotti.id_produttore = produttori.id_produttore', array('nome_produttore', 'citta'))
+						->where ('prodotti.stato = 1')
 						->order('tipologia', 'DESC');
 						
 		$prodotti = $this->fetchAll($select);
