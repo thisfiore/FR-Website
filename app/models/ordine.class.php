@@ -116,12 +116,12 @@ class Ordine extends DB {
 	}
 	
 	
-	public function updateElementoListaSpesa ($idProdotto, $idOrdine, $quantita) {
+	public function updateElementoListaSpesa ($prodotto) {
 			$update = $this->update(
-					array ('quantita' => $quantita),
+					$prodotto,
 					'lista_spesa',
-					array( 	'id_ordine = ' => $idOrdine,
-							'id_prodotto = ' => $idProdotto )
+					array( 	'id_ordine = ' => $prodotto['id_ordine'],
+							'id_prodotto = ' => $prodotto['id_prodotto'] )
 			);
 			return $update;
 	}

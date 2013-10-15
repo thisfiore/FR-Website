@@ -96,6 +96,7 @@ $(document).ready(function(e) {
 					console.log ('errore cambio quantita');
 				}
 				else {
+					
 					that.parent('div').data('quantita', quantita);
 					that.siblings('.quantita').html(quantita);
 									

@@ -62,6 +62,6 @@ class Prodotti extends DB {
 		$insert = $this->insert($prodotto, 'lista_spesa');
 		return $insert;
 	}
-	
+
 	
 }

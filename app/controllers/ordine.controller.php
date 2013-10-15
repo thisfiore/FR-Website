@@ -38,20 +38,20 @@ class OrdineController extends Controller {
 	
 	
 	public function postCambioQuantita () {
-		$idProdotto = $_POST['id_prodotto'];
-		$idOrdine = $_POST['id_ordine'];
-		$quantita = $_POST['quantita'];
+		$prodotto['id_prodotto'] = $_POST['id_prodotto'];
+		$prodotto['id_ordine'] = $_POST['id_ordine'];
+		$prodotto['quantita'] = $_POST['quantita'];
 		
 		$this->loadModules('ordine');
 		$ordineModel = new Ordine();
 		
-		$update = $ordineModel->updateElementoListaSpesa($idProdotto, $idOrdine, $quantita);
+		$update = $ordineModel->updateElementoListaSpesa($prodotto);
 		
 		if ($update == 1) {
 			$this->loadModules('prodotti');
 			$prodottiModels = new Prodotti();
 			
-			$prodotto = $prodottiModels->selectProdottoMinimal($idProdotto);
+			$prodotto = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
 			
 			$response = array ( 'status' => 'OK',
 								'data' => $prodotto['prezzo_iva'] );

@@ -189,7 +189,6 @@ class IndexController extends Controller {
 		
 		$prodotto['id_ordine'] = $idOrdine;
 		$prodotto['id_prodotto'] = $idProdotto;
-		$prodotto['quantita'] = 1;
 		
 		$insert = $prodottiModel->insertProdottoLista($prodotto);
 		
@@ -209,10 +208,14 @@ class IndexController extends Controller {
 			if ( $array['unita'] == "kg") {
 				$cella_lista['quantita'] = 0.5;
 				$cella_lista['prodotto']['totale_prodotto'] = ($array['prezzo_iva']/2);
+				$prodotto['quantita'] = 0.5;
+				$update = $ordineModel->updateElementoListaSpesa($prodotto);
 			}
 			else {
 				$cella_lista['quantita'] = 1;
 				$cella_lista['prodotto']['totale_prodotto'] = $array['prezzo_iva'];
+				$prodotto['quantita'] = 1;
+				$update = $ordineModel->updateElementoListaSpesa($prodotto);
 			}
 			
 			$this->view->setHead(null);
