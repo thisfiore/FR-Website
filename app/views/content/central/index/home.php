@@ -96,5 +96,16 @@
 			<a href="/index/pay/<?php echo $ordine_admin['id_ordine_admin']?>">
 				<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i> Ordina</button>
 			</a>
+
+		</div>
+
+		<div class="terms">
+			<ul>
+				<li>
+					<a href="#">Termini e Condizioni</a>
+				</li><li>
+					<a href="#">Tutorial</a>
+				</li>
+			</ul>
 		</div>
 	</div>

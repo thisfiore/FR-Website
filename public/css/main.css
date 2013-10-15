@@ -206,7 +206,7 @@ div.center {
 	position: fixed;
 	z-index: 20;
 	color:#FFF;
-	top:0;
+	top: 0;
 } .header div:first-child { padding-left: 20px; }
 .header a:link, .header a:visited { color:white; text-decoration: underline; font-size:12px;}
 .user { padding-right: 20px; }
@@ -229,6 +229,23 @@ div.center {
 	padding: 15px 0;
 	margin-top: 80px;
 }
+
+.terms {
+	padding: 10px 20px;
+	background: rgba(255, 255, 255, 0.5);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	font-size: 13px;
+	color: #777;
+}
+.terms ul { margin: 0; }
+.terms ul li { display: inline-block; padding: 0 20px; border-right: 1px solid #777; line-height: 13px; }
+.terms ul li:first-child { padding-left: 0; }
+.terms ul li:last-child { border-right: none; padding-right: 0; }
+.terms a { color: inherit; text-decoration: none; }
+.terms a:hover { opacity: .9; }
 
 
 /*LISTA DELLA SPESA*/
