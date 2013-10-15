@@ -20,5 +20,21 @@ class InfoController extends Controller {
 		$this->view->render();
 	}
 	
+	
+	public function getTermini() {
+		
+		if (!isset($_COOKIE['id_utente']) || empty($_COOKIE['id_utente'])) {
+			return header("Location: /index");
+		}
+		
+		$this->loadModules('index');
+		$indexModels = new Index();
+		
+		$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
+		
+		$this->view->load('header', 'termini', null, null);
+		$this->view->render( array( 'utente' => $utente) );
+	}
+	
 }	
 ?>

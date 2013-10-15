@@ -134,7 +134,7 @@
 		  </div>
 		  <div class="modal-body">
 			<p>
-			    Dichiaro di avere interamente letto, compreso e accettato ogni <a href="#">condizione d'uso del servizio</a>. La conferma mediante selezione dell'opzione "Accetto" costituisce accettazione di una proposta contrattuale vincolante.
+			    Dichiaro di avere interamente letto, compreso e accettato ogni <a href="/info/termini" target="_blank">condizione d'uso del servizio</a>. La conferma mediante selezione dell'opzione "Accetto" costituisce accettazione di una proposta contrattuale vincolante.
 			</p>
 		    	
 		    <form action="">
