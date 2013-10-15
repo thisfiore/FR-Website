@@ -111,25 +111,71 @@
 		<div class="terms">
 			<ul>
 				<li>
-					<a href="#">Termini e Condizioni</a>
+					<a href="#termini" role="button" data-toggle="modal">Termini e Condizioni</a>
 				</li><li>
 					<a href="/info/intro">Tutorial</a>
 				</li>
 			</ul>
 		</div>
 		
-		<div id="termini" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true">
-		  <div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    <h3 id="prodLabel">Termini e condizioni</h3>
-		  </div>
-		  <div class="modal-body">
-		    <p>prova</p>
-		  </div>
-	<!-- 	  <div class="modal-footer"> -->
-	<!-- 	    <button class="btn" data-dismiss="modal" aria-hidden="true">Chiudi</button> -->
-	<!-- 	  </div> -->
-		</div>
 	</div>
 	
+	<div id="termini" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="prodLabel">Termini e condizioni del servizio</h3>
+		  </div>
+		  <div class="modal-body">
+			<p>
+			    Dichiaro di avere interamente letto, compreso e accettato ogni <a href="#">condizione d'uso del servizio</a>. La conferma mediante selezione dell'opzione "Accetto" costituisce accettazione di una proposta contrattuale vincolante.
+			</p>
+		    	
+		    <form action="">
+		    	<fieldset>
+		              <ul>
+		                <li>
+		                  <label>
+		                    <input type="radio" checked="" name="optionsRadios" value="option1">
+		                    <span>Accetto</span>
+		                  </label>
+		                </li>
+		                <li>
+		                  <label>
+		                    <input type="radio" name="optionsRadios" value="option2">
+		                    <span>Non Accetto</span>
+		                  </label>
+		                </li>
+		              </ul>
+		    	</fieldset>
+		    </form>
+
+			<p>
+			    Dichiaro di accettare espressamente e specificamente, ai sensi degli artt. 1341 e 1342 del codice civile e della normativa applicabile al consumatore, le seguenti condizioni d'uso: art. 6 (Accettazione degli ordini), art. 8 (Annullamento e modifica dell’ordine), art. 9 (Consegna), art. 10 (Prodotti disponibili e limitazioni all’acquisto), art. 11 (Mancata consegna), art. 13 (Diritto di recesso), art. 14 (Responsabilità), art. 16 (Foro Compente)
+			</p>
+			
+			<form action="">
+			    <fieldset>
+		              <ul>
+		                <li>
+		                  <label>
+		                    <input type="radio" checked="" name="optionsRadios" value="option1">
+		                    <span>Accetto</span>
+		                  </label>
+		                </li>
+		                <li>
+		                  <label>
+		                    <input type="radio" name="optionsRadios" value="option2">
+		                    <span>Non Accetto</span>
+		                  </label>
+		                </li>
+		              </ul>
+		    	</fieldset>
+			</form>
+			
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Chiudi</button>
+		    <button class="btn btn-large btn-success" type="submit">Procedi</button>
+		  </div>
+	</div>
 	

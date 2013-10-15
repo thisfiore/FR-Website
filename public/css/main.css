@@ -310,3 +310,6 @@ div.center {
 	text-align: center;
 	margin-top: 10px;
 }
+
+#termini form ul { list-style: none; }
+#termini form input[type="radio"] { margin-top: -3px; }
