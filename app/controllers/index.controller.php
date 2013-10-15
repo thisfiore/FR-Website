@@ -376,4 +376,53 @@ class IndexController extends Controller {
 		
 		   return $checkMail;
 	}
+	
+	
+	public function postAcceptTerm ($idOrdineAdmin = null) {
+		$idOrdineAdmin = $_POST['id_ordine_admin'];
+		
+		$this->loadModules('index');
+		$indexModel = new Index();
+		
+		$utente['id_utente'] = $_COOKIE['id_utente'];
+		$utente['term'] = 1;
+		
+		$update = $indexModel->updateUtente($utente);
+
+		if (isset($update) && !empty($update)) {
+			
+			if (isset($idOrdineAdmin) && !empty($idOrdineAdmin) && $idOrdineAdmin > 0) {
+				$response = array('status' => 'OK',
+									'redirect' => '/index/pay/'.$idOrdineAdmin );
+				$this->view->renderJson($response);
+			}
+			else {
+				$response = array('status' => 'OK',
+						'redirect' => '/' );
+				$this->view->renderJson($response);
+			}
+		}
+		else {
+			$response = array('status' => 'ERR' );
+			$this->view->renderJson($response);
+		}
+	}
+	
+	public function postCheckOrdine() {
+		$this->loadModules('index');
+		$indexModel = new Index();
+		
+		$utente = $indexModel->selectUtente($_COOKIE['id_utente']);
+		
+		if ($utente['term'] == 1) {
+			$response = array('status' => 'OK' );
+			$this->view->renderJson($response);
+		}
+		else {
+			$response = array('status' => 'ERR' );
+			$this->view->renderJson($response);
+		}
+		
+	}
+	
 }

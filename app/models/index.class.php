@@ -53,4 +53,15 @@ class Index extends DB {
 	}
 	
 	
+	public function updateUtente ($utente) {
+		$update = $this->update(
+				$utente,
+				'utenti',
+				array( 	'id_utente = ' => $utente['id_utente'] )
+		);
+		return $update;
+		
+	}
+	
+	
 }

@@ -184,11 +184,6 @@ $(document).ready(function(e) {
 		$(id_produttore).modal('toggle');
 	});
 	
-//	$('div.terms').on('click', 'ul li a', function(event) {
-//		var id_produttore = $(this).data('id_produttore');
-//		$(id_produttore).modal('toggle');
-//	});
-	
 	
 	$('.lista').on('click', 'button.paga', function(event) {
 		if ($(this).hasClass('unclick')) {
@@ -232,4 +227,90 @@ $(document).ready(function(e) {
 			}
 		});
 	});
+	
+	
+	$('#termini').on('click', 'input', function(event) {
+		var classe = $(this).attr('class');
+		if (classe == "radioCondizioni") {
+			$('#termini input.radioCondizioni').removeClass('checked');
+			$(this).addClass('checked');
+		}
+		else {
+			$('#termini input.radioTermini').removeClass('checked');
+			$(this).addClass('checked');
+		}
+		
+		if ($(this).hasClass('radioCondizioni') || $(this).hasClass('radioTermini')) {
+			
+			var term = Number($('#termini input.radioCondizioni.checked').data('value'));
+			var cond = Number($('#termini input.radioTermini.checked').data('value'));
+			var tot = (term+cond);
+			
+			if ( tot == 2) {
+				$('#termini button.btn-success').removeClass('disabled');
+			}
+			else {
+				if ($('#termini button.btn-success').hasClass('disabled')) {
+				}
+				else {
+					$('#termini button.btn-success').addClass('disabled');
+				}
+			}
+		}
+	});
+	
+	
+	$('#termini').on('click', 'button.btn-success', function(event) {
+		if ($(this).hasClass('disabled') || $(this).data('term') == 1) {
+			return false;
+		}
+		
+		if ($('#termini').hasClass('fromhome')) {
+			var id_ordine_admin = $('#termini').data('id_ordine_admin');
+		}
+		else {
+			var id_ordine_admin = 0;
+		}
+		
+		$.ajax({
+			url : '/index/acceptTerm/',
+			type : 'POST',
+			data : {
+				id_ordine_admin : id_ordine_admin,
+			},
+			dataType : 'json',
+			success : function(response) {
+				if (response.status = "OK") {
+					window.location.href = response.redirect;
+				}
+				else {
+					console.log('errore update term');
+				}
+			}
+		});
+	});
+	
+	
+	$('div.lista').on('click', 'button.btn-success', function(event) {
+		var id_ordine_admin = $(this).data('id_ordine_admin');
+		
+		$.ajax({
+			url : '/index/checkOrdine/',
+			type : 'POST',
+			dataType : 'json',
+			success : function(response) {
+				
+				if (response.status == "OK") {
+					window.location.href = '/index/pay/'+id_ordine_admin;
+				}
+				else {
+					$('#termini').addClass('fromhome');
+					$('#termini').modal('show');
+				}
+			}
+		});
+		
+		
+	});
+	
 });
