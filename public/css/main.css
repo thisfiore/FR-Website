@@ -147,6 +147,8 @@ div.center {
 	background:rgba(255,255,255,0.7);
 }
 
+.prodotti ul li a { text-decoration: none; color: #fff; } .prodotti ul li a:hover { opacity: .8; }
+
 .side-bar h4, .side-bar h2, .side-bar h3, .side-bar h5 { 
 	font-weight: normal;
 	margin-bottom: 20px;
@@ -237,16 +239,17 @@ div.center {
 }
 
 .terms {
-	padding: 10px 20px;
+	padding: 10px 0;
 	background: rgba(255, 255, 255, 0.5);
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	right: 0;
-	left: 0;
 	font-size: 13px;
 	color: #777;
+	width: 30%;
+	min-width: 280px;
 }
-.terms ul { margin: 0; }
+.terms ul { margin: 0; margin-left: 20px; }
 .terms ul li { display: inline-block; padding: 0 20px; border-right: 1px solid #777; line-height: 13px; }
 .terms ul li:first-child { padding-left: 0; }
 .terms ul li:last-child { border-right: none; padding-right: 0; }

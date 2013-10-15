@@ -139,6 +139,8 @@ $(document).ready(function(e) {
 		var id_prodotto = $(this).children().data('id_prodotto');
 		var check = $("div.lista").find(".item"+id_prodotto).data('check');
 		
+		if ( $(event.target).is('a') ) { return false; }
+
 		if (check == 1) {
 			return false;
 		}
@@ -167,6 +169,11 @@ $(document).ready(function(e) {
 		});
 	});
 	
+	//Open the page of the producer with the modal
+	$('div.prodotti').on('click', 'ul li div h3 a', function(event) {
+		var id_produttore = $(this).data('id_produttore');
+		$(id_produttore).modal('toggle');
+	});
 	
 	$('.lista').on('click', 'button.paga', function(event) {
 		if ($(this).hasClass('unclick')) {
