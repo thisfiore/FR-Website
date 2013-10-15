@@ -136,7 +136,7 @@ $(document).ready(function(e) {
 	
 	
 	$('div.prodotti').on('click', 'ul li', function(event) {
-		var id_prodotto = $(this).children().data('id_prodotto');
+		var id_prodotto = $(this).children('div.prodotto').data('id_prodotto');
 		var check = $("div.lista").find(".item"+id_prodotto).data('check');
 		
 		if (check == 1) {
@@ -144,8 +144,10 @@ $(document).ready(function(e) {
 		}
 
 		var totale = $('div.subtotal').data('totale');
-		var prezzo = $(this).children().data('prezzo');
-		var iva = $(this).children().data('iva');
+		var prezzo = $(this).children('div.prodotto').data('prezzo');
+		var iva = $(this).children('div.prodotto').data('iva');
+		var unita = $(this).children('div.prodotto').data('unita');
+		
 		
 		$.ajax({
 			url : '/index/addProdottoLista/',
@@ -156,8 +158,15 @@ $(document).ready(function(e) {
 			},
 			success : function(responseHtml) {
 				
-				totale = parseFloat(totale) + parseFloat(prezzo);
-				totale = totale.toFixed(2);
+				if (unita == 'kg') {
+					totale = parseFloat(totale) + parseFloat(prezzo*0.5);
+					totale = totale.toFixed(2);
+				}
+				else {
+					totale = parseFloat(totale) + parseFloat(prezzo);
+					totale = totale.toFixed(2);
+				}
+				
 				
 				$('div.lista ul').prepend(responseHtml);
 				
