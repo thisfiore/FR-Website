@@ -109,9 +109,8 @@
 				<span class="pull-right"><?php echo number_format($prezzo_finale, 2, '.', '');?> &euro;</span>
 			</div>
 			
-			<a href="/index/pay/<?php echo $ordine_admin['id_ordine_admin']?>">
-				<button class="btn btn-success btn-large pull-right"><i class="icon-white icon-ok"></i> Ordina</button>
-			</a>
+			<button data-id_ordine_admin="<?php echo $ordine_admin['id_ordine_admin']?>" class="btn btn-success btn-large pull-right ordina"><i class="icon-white icon-ok"></i> Ordina</button>
+			
 
 		</div>
 
@@ -127,7 +126,7 @@
 		
 	</div>
 	
-	<div id="termini" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true">
+	<div id="termini" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true" data-id_ordine_admin="<?php echo $ordine_admin['id_ordine_admin']?>">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		    <h3 id="prodLabel">Termini e condizioni del servizio</h3>
@@ -142,13 +141,13 @@
 		              <ul>
 		                <li>
 		                  <label>
-		                    <input type="radio" checked="" name="optionsRadios" value="option1">
+		                    <input type="radio" class="radioTermini" name="optionsRadios" data-value="1">
 		                    <span>Accetto</span>
 		                  </label>
 		                </li>
 		                <li>
 		                  <label>
-		                    <input type="radio" name="optionsRadios" value="option2">
+		                    <input type="radio" class="radioTermini checked" checked="" name="optionsRadios" data-value="0">
 		                    <span>Non Accetto</span>
 		                  </label>
 		                </li>
@@ -165,13 +164,13 @@
 		              <ul>
 		                <li>
 		                  <label>
-		                    <input type="radio" checked="" name="optionsRadios" value="option1">
+		                    <input type="radio" class="radioCondizioni" name="optionsRadios" data-value="1">
 		                    <span>Accetto</span>
 		                  </label>
 		                </li>
 		                <li>
 		                  <label>
-		                    <input type="radio" name="optionsRadios" value="option2">
+		                    <input type="radio" class="radioCondizioni checked" checked="" name="optionsRadios" data-value="0">
 		                    <span>Non Accetto</span>
 		                  </label>
 		                </li>
@@ -182,7 +181,7 @@
 		  </div>
 		  <div class="modal-footer">
 		    <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Chiudi</button>
-		    <button class="btn btn-large btn-success" type="submit">Procedi</button>
+		    <button class="btn btn-large btn-success disabled" type="submit" data-term="<?php echo $utente['term']?>">Procedi</button>
 		  </div>
 	</div>
 	
