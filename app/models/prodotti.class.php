@@ -24,7 +24,9 @@ class Prodotti extends DB {
 		
 		if (isset($prodotti) && !empty($prodotti)) {
 			foreach ($prodotti as $key => $prodotto) {
-				$prodotti[$key]['prezzo_iva'] = round($prodotto['prezzo'] * (1+$prodotto['iva']/100) * (1.15) , 2) ;
+				$ivaMarkup = (1+$prodotto['iva']/100) * (1.15);
+				$prodotti[$key]['prezzo_iva'] = round($prodotto['prezzo'] * $ivaMarkup , 2);
+// 				round($prodotto['prezzo'] * (1+$prodotto['iva']/100) * (1.15) , 2)
 			}
 		}
 		

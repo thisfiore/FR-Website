@@ -101,6 +101,7 @@ $(document).ready(function(e) {
 					that.siblings('.quantita').html(quantita);
 									
 					if (unita == 'kg') {
+						
 						if (label == 'piu') {
 							totale = parseFloat(totale) + parseFloat(response.data/2);
 							totalePartial = parseFloat(totalePartial) + parseFloat(response.data/2);
