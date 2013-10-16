@@ -299,12 +299,17 @@ class IndexController extends Controller {
 	
 		$prezzo_finale = number_format($prezzo_finale, 2, '.', '');
 		
+		$ordineAdmin = $ordineModels->selectLastOrdineAdmin();
+		$array = explode("-", $ordineAdmin['data_consegna']);
+		$ordineAdmin['data_consegna'] = $array[2].'/'.$array[1].'/'.$array[0];
+		
 		$this->view->load('header', 'pay', null, null);
 		$this->view->render( array(	'utente' => $utente,
 									'listaSpesa' => $listaSpesa,
 									'prezzoFinale' => $prezzo_finale,
 									'idOrdineAdmin' => $idOrdineAdmin,
-									'ordineUtente' => $ordineUtente ) );
+									'ordineUtente' => $ordineUtente,
+									'ordineAdmin' => $ordineAdmin ) );
 	}
 	
 	
@@ -320,6 +325,10 @@ class IndexController extends Controller {
 		$ordineModel = new Ordine();
 		$this->loadModules('index');
 		$indexModel = new Index();
+		
+		$ordineAdmin = $ordineModels->selectLastOrdineAdmin();
+		$array = explode("-", $ordineAdmin['data_consegna']);
+		$ordineAdmin['data_consegna'] = $array[2].'/'.$array[1].'/'.$array[0];
 		
 		$utente = $indexModel->selectUtente($_COOKIE['id_utente']);
 		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
@@ -360,7 +369,7 @@ class IndexController extends Controller {
 // 		die;
 		
 		$body = "$notice_text\n\n$plain_text\n## TOTALE $prezzo_finale euro\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l'80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
-".$utente['indirizzo'].", il giorno ".$listaSpesa[0]['data']." alle ore ".$utente['ora_consegna'];
+".$utente['indirizzo'].", il giorno ".$ordineAdmin['data_consegna']." alle ore ".$utente['ora_consegna'];
 				
 		if (@mail($to, $subject, $body,
 		    "From: " . $from . "\n" .

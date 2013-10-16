@@ -1,4 +1,6 @@
-	
+<?php 
+
+?>	
 <div class="confirm">
 	<img class="center" src="/img/shopbag.png" />
 	<?php 
@@ -8,7 +10,7 @@
 <p class="text-center">
 	<strong>Riceverai a breve la tua ricevuta per e-mail.</strong></p><p class="text-center">
 
-Ti ricordiamo il punto di raccolta del tuo gruppo<br /> <?php echo $utente['indirizzo']; ?> alle ore <?php echo $utente['ora_consegna']; ?> del 11 Ottobre 2013.
+Ti ricordiamo il punto di raccolta del tuo gruppo<br /> <?php echo $utente['indirizzo']; ?> alle ore <?php echo $utente['ora_consegna']; ?> del <?php echo $ordineAdmin['data_consegna']; ?>.
 
 Il tuo ordine:
 	</p>
