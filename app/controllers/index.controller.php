@@ -326,7 +326,7 @@ class IndexController extends Controller {
 		$this->loadModules('index');
 		$indexModel = new Index();
 		
-		$ordineAdmin = $ordineModels->selectLastOrdineAdmin();
+		$ordineAdmin = $ordineModel->selectLastOrdineAdmin();
 		$array = explode("-", $ordineAdmin['data_consegna']);
 		$ordineAdmin['data_consegna'] = $array[2].'/'.$array[1].'/'.$array[0];
 		
