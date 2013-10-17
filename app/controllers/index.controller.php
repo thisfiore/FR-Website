@@ -365,7 +365,7 @@ class IndexController extends Controller {
 		$subject = "La tua Ricevuta #".$idRicevuta;
 		
 // 		$this->boxPrint($to);
-// 		$this->boxPrint($utente);
+// 		$this->boxPrint($utente); gianluca@70division.com
 // 		die;
 		
 		$body = "$notice_text\n\n$plain_text\n## TOTALE $prezzo_finale euro\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l'80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n

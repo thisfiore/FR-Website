@@ -18,6 +18,7 @@ $(document).ready(function(e) {
 		var id_ordine = $(this).parent().parent().data('id_ordine');
 		
 		$('li.item'+id_prodotto).remove();
+		$('div.prodotto'+id_prodotto).parents('li').removeClass('end');
 		
 		$.ajax({
 			url : '/ordine/deleteCellaLista/',
@@ -48,6 +49,14 @@ $(document).ready(function(e) {
 		var totale = $('div.subtotal').data('totale');
 		var unita = $(this).parent().siblings('.unita').data('unita');
 		var totalePartial = $(this).parent().siblings('.partial').data('partial');
+		var id_prodotto = $(this).parents('li').data('id_prodotto');
+		var id_ordine = $(this).parents('li').data('id_ordine');
+		
+		var arr = [30, 31, 32, 33, 34, 35, 36, 36, 37, 38];
+		
+		if (jQuery.inArray( id_prodotto, arr) > -1){
+			return false;
+		}
 		
 		if (unita == 'kg') {
 			if (label == 'piu')  { 
@@ -78,8 +87,6 @@ $(document).ready(function(e) {
 			}
 		}
 		
-		var id_prodotto = $(this).parents('li').data('id_prodotto');
-		var id_ordine = $(this).parents('li').data('id_ordine');
 		
 		$.ajax({
 			url : '/ordine/cambioQuantita/',
@@ -135,22 +142,26 @@ $(document).ready(function(e) {
 		});
 	});
 	
-	
+//	add prodotto lista
 	$('div.prodotti').on('click', 'ul li', function(event) {
 		var id_prodotto = $(this).children('div.prodotto').data('id_prodotto');
 		var check = $("div.lista").find(".item"+id_prodotto).data('check');
 		
 		if ( $(event.target).is('a') ) { return false; }
 
-		if (check == 1) {
+		if (check == 1 || $(this).hasClass('end')) {
 			return false;
 		}
 
+		var arr = [30, 31, 32, 33, 34, 35, 36, 36, 37, 38];
+		if (jQuery.inArray( id_prodotto, arr) > -1){
+			$('div.prodotto'+id_prodotto).parent('li').addClass('end');
+		}
+		
 		var totale = $('div.subtotal').data('totale');
 		var prezzo = $(this).children('div.prodotto').data('prezzo');
 		var iva = $(this).children('div.prodotto').data('iva');
 		var unita = $(this).children('div.prodotto').data('unita');
-		
 		
 		$.ajax({
 			url : '/index/addProdottoLista/',
