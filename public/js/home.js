@@ -309,15 +309,29 @@ $(document).ready(function(e) {
 		$.ajax({
 			url : '/index/checkOrdine/',
 			type : 'POST',
+			data : {
+				id_ordine_admin : id_ordine_admin,
+			},
 			dataType : 'json',
 			success : function(response) {
 				
 				if (response.status == "OK") {
 					window.location.href = '/index/pay/'+id_ordine_admin;
 				}
-				else {
+				else if (response.status == "ERR"){
 					$('#termini').addClass('fromhome');
 					$('#termini').modal('show');
+				}
+				else if (response.status == "NOLISTA") {
+					$('div.errormsg span').text(response.message);
+					$('div.errormsg').removeClass('hide');
+					
+					$('li.item'+response.id).children('div').removeClass('alert-success');
+					$('li.item'+response.id).children('div').addClass('alert-error');
+					
+					setTimeout(function() {
+						$('div.errormsg').addClass('hide');
+				    }, 3000);
 				}
 			}
 		});
