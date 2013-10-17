@@ -343,3 +343,12 @@ div.center {
 	opacity: .6;
 	cursor: default;
 }
+.prodotti ul li.end:after {
+	/*content: "Esaurito";
+	text-align: */
+}
+
+.errormsg {
+	padding: 8px 35px 8px 14px; 
+	margin-top: 85px;
+}

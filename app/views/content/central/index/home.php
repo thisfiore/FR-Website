@@ -111,6 +111,11 @@
 			
 			<button data-id_ordine_admin="<?php echo $ordine_admin['id_ordine_admin']?>" class="btn btn-success btn-large pull-right ordina"><i class="icon-white icon-ok"></i> Ordina</button>
 			
+			<div class="alert alert-error errormsg hide">
+			  <button type="button" class="close" data-dismiss="alert">&times;</button>
+			  <strong>Ops!</strong><br>
+			  <span></span>
+			</div>
 
 		</div>
 
