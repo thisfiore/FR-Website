@@ -332,7 +332,7 @@ $(document).ready(function(e) {
 					
 					setTimeout(function() {
 						$('div.errormsg').addClass('hide');
-				    }, 6000);
+				    }, 15000);
 				}
 			}
 		});

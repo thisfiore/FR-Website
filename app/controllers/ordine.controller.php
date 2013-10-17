@@ -23,18 +23,23 @@ class OrdineController extends Controller {
 				$this->loadModules('prodotti');
 				$prodottoModel = new Prodotti();
 			
-				$sopressa['id_prodotto'] = $idProdotto;
-				$sopressa['stato'] = 1;
-			
-				$update = $prodottoModel->updateProdotto($sopressa);
-					
-				if (isset($update) && !empty($update)) {
+				$elemento = $prodottoModel->selectProdottoMinimal($prodotto['id_prodotto']);
+				if ($elemento['user_update'] == $_COOKIE['id_utente']) {
+					$sopressa['id_prodotto'] = $idProdotto;
+					$sopressa['stato'] = 1;
+					$sopressa['user_update'] = 0;
+						
+					$update = $prodottoModel->updateProdotto($sopressa);
+						
+					if (isset($update) && !empty($update)) {
+					}
+					else {
+						$response = array( 'status' => 'ERR',
+								'message' => 'error update soppressa' );
+						$this->view->renderJson($response);
+					}
 				}
-				else {
-					$response = array( 'status' => 'ERR',
-							'message' => 'error update soppressa' );
-					$this->view->renderJson($response);
-				}
+				
 			}
 			
 			$prodotto = $ordineModels->selectListaSpesaPrezzo($idOrdine);
