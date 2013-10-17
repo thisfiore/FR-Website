@@ -465,7 +465,7 @@ class IndexController extends Controller {
 		
 		if ($flag == 1) {
 			$response = array('status' => 'NOLISTA',
-								'message' => 'Il prodotto '.$nome_prodotto.' è già stata acquistata da un altro utente della community pochi secondi fa! La prossima volta sarai più fortunato. <br> Eliminalo il tuo ordine prima di procedere.',
+								'message' => "Il prodotto ".$nome_prodotto." è già stata acquistata da un altro utente della community pochi secondi fa! La prossima volta sarai più fortunato. Eliminalo il tuo ordine prima di procedere.",
 								'id' => $id_prodotto );
 			$this->view->renderJson($response);
 		}
