@@ -17,13 +17,12 @@ class OrdineController extends Controller {
 		$delete = $ordineModels->deleteCellaListaSpesa($idProdotto, $idOrdine);
 		
 		if (isset($delete) && !empty($delete)) {
-			
 			$array = array(30, 31, 32, 33, 34, 35, 36, 36, 37, 38);
 			if (in_array($idProdotto, $array)) {
 				$this->loadModules('prodotti');
 				$prodottoModel = new Prodotti();
 			
-				$elemento = $prodottoModel->selectProdottoMinimal($prodotto['id_prodotto']);
+				$elemento = $prodottoModel->selectProdottoMinimal($idProdotto);
 				if ($elemento['user_update'] == $_COOKIE['id_utente']) {
 					$sopressa['id_prodotto'] = $idProdotto;
 					$sopressa['stato'] = 1;
@@ -39,7 +38,6 @@ class OrdineController extends Controller {
 						$this->view->renderJson($response);
 					}
 				}
-				
 			}
 			
 			$prodotto = $ordineModels->selectListaSpesaPrezzo($idOrdine);
