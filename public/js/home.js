@@ -53,7 +53,6 @@ $(document).ready(function(e) {
 		var id_ordine = $(this).parents('li').data('id_ordine');
 		
 		var arr = [30, 31, 32, 33, 34, 35, 36, 36, 37, 38];
-		
 		if (jQuery.inArray( id_prodotto, arr) > -1){
 			return false;
 		}
