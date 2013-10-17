@@ -33,7 +33,6 @@ class Index extends DB {
 		return $utente;
 	}
 	
-	
 	public function selectUtenteSingolo ($idUtente) {
 		$select = $this->select()
 						->from ('utenti', array('id_utente', 'id_gruppo', 'nome', 'cognome', 'citta', 'via', 'civico') )

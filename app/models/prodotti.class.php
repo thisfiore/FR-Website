@@ -75,6 +75,17 @@ class Prodotti extends DB {
 		$insert = $this->insert($prodotto, 'lista_spesa');
 		return $insert;
 	}
+	
+	
+	public function updateProdotto ($prodotto) {
+		$update = $this->update(
+				$prodotto,
+				'prodotti',
+				array( 	'id_prodotto = ' => $prodotto['id_prodotto'] )
+		);
+		return $update;
+	}
+	
 
 	
 }

@@ -1,6 +1,6 @@
 <?php
 
-require_once ROOT.DS."../mandrill".DS."src".DS."Mandrill.php";
+// require_once ROOT.DS."../mandrill".DS."src".DS."Mandrill.php";
 class IndexController extends Controller {
 	
 	public function __construct() {
@@ -163,7 +163,6 @@ class IndexController extends Controller {
 		
 		$ordine = $ordineModel->selectOrdineUtente($ordineAdmin['id_ordine_admin'], $_COOKIE['id_utente']);
 	
-		
 		if (!isset($ordine) || empty($ordine)) {
 			$ordineUtente['id_utente'] = $_COOKIE['id_utente'];
 			$ordineUtente['stato'] = 0;
@@ -200,6 +199,25 @@ class IndexController extends Controller {
 			$this->view->renderJson($response);
 		}
 		else {
+			$array = array(30, 31, 32, 33, 34, 35, 36, 36, 37, 38);
+			if (in_array($idProdotto, $array)) {
+				$this->loadModules('prodotti');
+				$prodottoModel = new Prodotti();
+
+				$sopressa['id_prodotto'] = $idProdotto;
+				$sopressa['stato'] = 0;
+				
+				$update = $prodottoModel->updateProdotto($sopressa);
+					
+				if (isset($update) && !empty($update)) {
+				}
+				else {
+					$response = array( 'status' => 'ERR',
+							'message' => 'error update soppressa' );
+					$this->view->renderJson($response);
+				}
+			}
+			
 			$array = $prodottiModel->selectProdottoMinimal($idProdotto);
 			$cella_lista['id_prodotto'] = $idProdotto;
 			$cella_lista['id_ordine'] = $idOrdine;
@@ -365,7 +383,7 @@ class IndexController extends Controller {
 		$subject = "La tua Ricevuta #".$idRicevuta;
 		
 // 		$this->boxPrint($to);
-// 		$this->boxPrint($utente);
+// 		$this->boxPrint($utente); gianluca@70division.com
 // 		die;
 		
 		$body = "$notice_text\n\n$plain_text\n## TOTALE $prezzo_finale euro\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l'80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
