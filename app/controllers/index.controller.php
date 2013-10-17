@@ -440,20 +440,27 @@ class IndexController extends Controller {
 		$lista_spesa = $this->_getListaSpesa($id_ordine_admin);
 		$flag = 0;
 		
+ 	    $this->loadModules('prodotti');
+		$prodottiModel = new Prodotti();
+		
 		if (isset($lista_spesa) && !empty($lista_spesa)) {
 			foreach ($lista_spesa as $key => $prodotto) {
-				if ($prodotto['stato'] == 0) {
-					$nome_prodotto = $prodotto['nome_prodotto'];
+					
+				$elemento = $prodottiModel->selectProdottoMinimal($prodotto['id_prodotto']);
+				
+				if ($elemento['stato'] == 0) {
+					$nome_prodotto = $elemento['nome_prodotto'];
 					$id_prodotto = $prodotto['id_prodotto'];
 					$flag = 1;
+					break;
 				}
 			}
 		}
 		
 		if ($flag == 1) {
 			$response = array('status' => 'NOLISTA',
-								'message' => 'Il prodotto '.$nome_prodotto.' è già stata acquistata da un altro utente della community pochi secondi fa! La prossima volta sarai più fortunato.<br> Eliminalo il tuo ordine prima di procedere.',
-								'data_id' => $id_prodotto );
+								'message' => 'Il prodotto '.$nome_prodotto.' è già stata acquistata da un altro utente della community pochi secondi fa! La prossima volta sarai più fortunato. <br> Eliminalo il tuo ordine prima di procedere.',
+								'id' => $id_prodotto );
 			$this->view->renderJson($response);
 		}
 		

@@ -323,15 +323,16 @@ $(document).ready(function(e) {
 					$('#termini').modal('show');
 				}
 				else if (response.status == "NOLISTA") {
+					
 					$('div.errormsg span').text(response.message);
 					$('div.errormsg').removeClass('hide');
 					
-					$('li.item'+response.id).children('div').removeClass('alert-success');
-					$('li.item'+response.id).children('div').addClass('alert-error');
+					$('li.item'+response.id).children().removeClass('alert-success');
+					$('li.item'+response.id).children().addClass('alert-error');
 					
 					setTimeout(function() {
 						$('div.errormsg').addClass('hide');
-				    }, 3000);
+				    }, 6000);
 				}
 			}
 		});
