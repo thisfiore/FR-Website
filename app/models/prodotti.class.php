@@ -46,7 +46,7 @@ class Prodotti extends DB {
 	
 	public function selectProdottoMinimal ($idProdotto) {
 		$select = $this->select()
-						->from ('prodotti', ' nome_prodotto, prezzo, unita, iva, stato')
+						->from ('prodotti', ' nome_prodotto, prezzo, unita, iva, stato, user_update')
 						->where ('id_prodotto = ', $idProdotto);
 	
 		$prodotti = $this->fetchRow($select);

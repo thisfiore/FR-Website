@@ -204,17 +204,21 @@ class IndexController extends Controller {
 				$this->loadModules('prodotti');
 				$prodottoModel = new Prodotti();
 
-				$sopressa['id_prodotto'] = $idProdotto;
-				$sopressa['stato'] = 0;
-				
-				$update = $prodottoModel->updateProdotto($sopressa);
+				$elemento = $prodottiModel->selectProdottoMinimal($idProdotto);
+				if ($elemento['stato'] == 1) {
+					$sopressa['id_prodotto'] = $idProdotto;
+					$sopressa['stato'] = 0;
+					$sopressa['user_update'] = $_COOKIE['id_utente'];
 					
-				if (isset($update) && !empty($update)) {
-				}
-				else {
-// 					$response = array( 'status' => 'ERR',
-// 										'message' => 'error update soppressa' );
-// 					$this->view->renderJson($response);
+					$update = $prodottoModel->updateProdotto($sopressa);
+						
+					if (isset($update) && !empty($update)) {
+					}
+					else {
+						// 					$response = array( 'status' => 'ERR',
+						// 										'message' => 'error update soppressa' );
+						// 					$this->view->renderJson($response);
+					}
 				}
 			}
 			
@@ -449,10 +453,12 @@ class IndexController extends Controller {
 				$elemento = $prodottiModel->selectProdottoMinimal($prodotto['id_prodotto']);
 				
 				if ($elemento['stato'] == 0) {
-					$nome_prodotto = $elemento['nome_prodotto'];
-					$id_prodotto = $prodotto['id_prodotto'];
-					$flag = 1;
-					break;
+					if ($elemento['user_update'] != $_COOKIE['id_utente']) {
+						$nome_prodotto = $elemento['nome_prodotto'];
+						$id_prodotto = $prodotto['id_prodotto'];
+						$flag = 1;
+						break;
+					}
 				}
 			}
 		}
