@@ -6,6 +6,7 @@ $(document).ready(function(e) {
 
 	$('.prodotti ul li')
 	.on('mouseenter', function() {
+		if ($this.hasClass('end')) { return false; }
 		$(this).find('.image span').fadeIn(time);	
 	})
 	.on('mouseleave', function() {

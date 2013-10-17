@@ -150,7 +150,7 @@ div.center {
 	background:rgba(255,255,255,0.7);
 }
 
-.prodotti ul li a { text-decoration: none; color: #fff; } .prodotti ul li a:hover { opacity: .8; }
+.prodotti ul li a { text-decoration: none; color: #fff; cursor: pointer; } .prodotti ul li a:hover { opacity: .8; }
 
 .side-bar h4, .side-bar h2, .side-bar h3, .side-bar h5 { 
 	font-weight: normal;
@@ -337,3 +337,9 @@ div.center {
 
 #termini form ul { list-style: none; }
 #termini form input[type="radio"] { margin-top: -3px; }
+
+/***** THIS IS FOR THE DEACTIVATED PRODUCTS *****/
+.prodotti ul li.end { 
+	opacity: .6;
+	cursor: default;
+}
