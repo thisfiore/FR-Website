@@ -56,12 +56,14 @@ Il tuo ordine:
 		
 		<?php 
 		if ($server == "foodrepublic.dev") { ?>
+		<button class="btn btn-success pull-right center paga" data-id_ordine_admin="<?php echo $idOrdineAdmin?>">Paga alla consegna</button>
 		<form method="post" name="paypal_form" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
 			<input type="hidden" name="business" value="ricca.prog-facilitator@gmail.com" />
 		<?php  
 		}
 		else {
 		?>	
+
 		<form class="pull-right" method="post" name="paypal_form" action="https://www.paypal.com/cgi-bin/webscr">
 			<input type="hidden" name="business" value="info@food-republic.it" />
 		<?php } ?>	
@@ -102,13 +104,13 @@ Il tuo ordine:
 			<button name="submit" data-button="buynow" data-name="My product" class="btn btn-primary pull-right center" style="margin-right:5px;">Paypal</button>
 		</form>	
 		
-		<button class="btn btn-success pull-right center paga" data-id_ordine_admin="<?php echo $idOrdineAdmin?>">Paga alla consegna</button>
+		
 	<?php 
 		}
 	} 
 	else { ?>
 		<a href="/">
-			<button class="btn btn-error  center">Indietro</button>
+			<button class="btn btn-error center">Indietro</button>
 		</a>
 	<?php } ?>
 
