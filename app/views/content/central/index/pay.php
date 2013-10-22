@@ -97,10 +97,11 @@ Il tuo ordine:
 <!-- 		questo campo conterrˆ le info che torneranno al sito e viene usato per passare l'id utente o altre info     -->
 			<input type="hidden" name="custom" value="<?php echo $idOrdineAdmin?>" />
 			
-			<button class="btn btn-success pull-right center paga" data-id_ordine_admin="<?php echo $idOrdineAdmin?>">Paga alla consegna</button>
 			<!-- pulsante pagamento -->
 			<button name="submit" data-button="buynow" data-name="My product" class="btn btn-primary pull-right center" style="margin-right:5px;">Paypal</button>
 		</form>	
+		
+		<button class="btn btn-success pull-right center paga" data-id_ordine_admin="<?php echo $idOrdineAdmin?>">Paga alla consegna</button>
 	<?php 
 		}
 	} 
