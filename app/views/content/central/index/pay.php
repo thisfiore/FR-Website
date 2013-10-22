@@ -96,7 +96,8 @@ Il tuo ordine:
 			<?php } ?>
 			
 			 
-<!-- 		questo campo conterrˆ le info che torneranno al sito e viene usato per passare l'id utente o altre info     -->
+<!-- 		gianluca@70division.com
+			Questo campo conterrˆ le info che torneranno al sito e viene usato per passare l'id utente o altre info     -->
 			<input type="hidden" name="custom" value="<?php echo $idOrdineAdmin?>" />
 			
 			<!-- pulsante pagamento -->
