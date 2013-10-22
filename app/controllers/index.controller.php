@@ -10,15 +10,21 @@ class IndexController extends Controller {
 	
 	public function postIndex() {
 		
-		$this->loadModules('ordine');
-		$ordineModel = new Ordine();
-		$ordine['id_ordine_admin'] = $_POST['custom'];
-		$ordine['stato'] = 1;
-		$ordine['id_utente'] = $_COOKIE['id_utente'];
+		if (isset($_POST['custom']) && !empty($_POST['custom'])) {
+			$ordine['id_ordine_admin'] = $_POST['custom'];
+			$ordine['stato'] = 1;
+			$ordine['id_utente'] = $_COOKIE['id_utente'];
+			
+			$this->loadModules('ordine');
+			$ordineModel = new Ordine();
+			$update = $ordineModel->updateOrdineUtente($ordine);
+			
+			header("location: /");
+		}
+		else {
+			
+		}
 		
-		$update = $ordineModel->updateOrdineUtente($ordine);
-		
-		header("location: /");
 	}
 	
 	public function getIndex() {
