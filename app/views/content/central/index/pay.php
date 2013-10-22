@@ -63,7 +63,7 @@ Il tuo ordine:
 		}
 		else {
 		?>	
-
+		<button class="btn btn-success pull-right center paga" data-id_ordine_admin="<?php echo $idOrdineAdmin?>">Paga alla consegna</button>
 		<form class="pull-right" method="post" name="paypal_form" action="https://www.paypal.com/cgi-bin/webscr">
 			<input type="hidden" name="business" value="info@food-republic.it" />
 		<?php } ?>	
