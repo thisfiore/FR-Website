@@ -53,9 +53,55 @@ Il tuo ordine:
 		if ($ordineUtente['stato'] == 0) {
 		?>
 		<a href="/"> <button class="btn btn-error  center">Indietro</button> </a>
-
-		<button class="btn btn-success pull-right center paga" data-id_ordine_admin="<?php echo $idOrdineAdmin?>"><i class="icon-white icon-ok"></i> Paga alla consegna</button>
-		<button class="btn btn-primary pull-right disabled center" style="margin-right:5px;">Paypal</button>
+		
+		<?php 
+		if ($server == "foodrepublic.dev") { ?>
+		<form method="post" name="paypal_form" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
+			<input type="hidden" name="business" value="ricca.prog-facilitator@gmail.com" />
+		<?php  
+		}
+		else {
+		?>	
+		<form method="post" name="paypal_form" action="https://www.paypal.com/cgi-bin/webscr">
+			<input type="hidden" name="business" value="info@food-republic.it" />
+		<?php } ?>	
+			
+			     
+			<!-- informazioni sulla transazione -->
+			<input type="hidden" name="cmd" value="_xclick" />
+			<input type="hidden" name="return" value="<?php echo "http://".$_SERVER['HTTP_HOST']; ?>/" />
+			<input type="hidden" name="rm" value="2" />
+			<input type="hidden" name="currency_code" value="EUR" />
+			<input type="hidden" name="lc" value="IT" />
+			<input type="hidden" name="cbt" value="Continua" />
+			     
+			<!-- informazioni sul pagamento -->
+			<input type="hidden" name="shipping" value="0.00" />
+			<input type="hidden" name="cs" value="1" />
+			  
+			<?php 
+			if ($server == "foodrepublic.dev") { ?> 
+			<!-- informazioni sul prodotto -->
+			<input type="hidden" name="item_name" value="Test sandbox" />
+			<input type="hidden" name="amount" value="0.01" />  
+			<?php  
+			}
+			else {
+			?>
+			<!-- informazioni sul prodotto -->
+			<input type="hidden" name="item_name" value="Carrello Spesa FoodRepublic" />
+			<input type="hidden" name="amount" value="<?php echo $prezzoFinale?>" />
+			<?php } ?>
+			
+			 
+<!-- 		questo campo conterrˆ le info che torneranno al sito e viene usato per passare l'id utente o altre info     -->
+			<input type="hidden" name="custom" value="<?php echo $idOrdineAdmin?>" />
+			
+			<!-- pulsante pagamento -->
+			<button name="submit" data-button="buynow" data-name="My product" class="btn btn-primary pull-right disabled center" style="margin-right:5px;">Paypal</button>
+		</form>
+		
+		<button class="btn btn-success pull-right center paga" data-id_ordine_admin="<?php echo $idOrdineAdmin?>"><i class="icon-white icon-ok"></i> Paga alla consegna</button>	
 	<?php 
 		}
 	} 

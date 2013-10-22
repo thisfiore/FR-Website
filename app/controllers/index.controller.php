@@ -8,6 +8,19 @@ class IndexController extends Controller {
 		$this->loadFile($this->method, $this->self);
 	}
 	
+	public function postIndex() {
+		
+		$this->loadModules('ordine');
+		$ordineModel = new Ordine();
+		$ordine['id_ordine_admin'] = $_POST['custom'];
+		$ordine['stato'] = 1;
+		$ordine['id_utente'] = $_COOKIE['id_utente'];
+		
+		$update = $ordineModel->updateOrdineUtente($ordine);
+		
+		header("location: /");
+	}
+	
 	public function getIndex() {
 		
 		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
@@ -319,6 +332,11 @@ class IndexController extends Controller {
 			}
 		}
 	
+		$server = $_SERVER['HTTP_HOST'];
+		
+// 		$this->boxPrint($server);
+// 		die;
+		
 		$prezzo_finale = number_format($prezzo_finale, 2, '.', '');
 		
 		$ordineAdmin = $ordineModels->selectLastOrdineAdmin();
@@ -331,7 +349,8 @@ class IndexController extends Controller {
 									'prezzoFinale' => $prezzo_finale,
 									'idOrdineAdmin' => $idOrdineAdmin,
 									'ordineUtente' => $ordineUtente,
-									'ordineAdmin' => $ordineAdmin ) );
+									'ordineAdmin' => $ordineAdmin,
+									'server' => $server ) );
 	}
 	
 	
