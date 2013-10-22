@@ -95,6 +95,7 @@ div.center {
 	background-size: cover !important;
 	margin: auto;
 	line-height: 100px;
+	background-position: 50% 50% !important;
 } 
 .prodotti ul li .image span { 
 	display: none;
