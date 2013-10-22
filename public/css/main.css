@@ -9,7 +9,7 @@ body {
 
 }
 
-form { margin: 0; }
+form { display: inline; }
 
 .spacer { margin: 40px 0; }
 .no-margin { margin: 0; }
