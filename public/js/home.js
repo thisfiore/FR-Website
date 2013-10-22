@@ -53,7 +53,7 @@ $(document).ready(function(e) {
 		var id_prodotto = $(this).parents('li').data('id_prodotto');
 		var id_ordine = $(this).parents('li').data('id_ordine');
 		
-		var arr = [30, 31, 32, 33, 34, 35, 36, 36, 37, 38];
+		var arr = [33, 34, 35, 36, 36, 37, 38, 39, 40, 41, 42, 43, 44];
 		if (jQuery.inArray( id_prodotto, arr) > -1){
 			return false;
 		}
@@ -153,7 +153,7 @@ $(document).ready(function(e) {
 			return false;
 		}
 
-		var arr = [30, 31, 32, 33, 34, 35, 36, 36, 37, 38];
+		var arr = [33, 34, 35, 36, 36, 37, 38, 39, 40, 41, 42, 43, 44];
 		if (jQuery.inArray( id_prodotto, arr) > -1){
 			$('div.prodotto'+id_prodotto).parent('li').addClass('end');
 		}

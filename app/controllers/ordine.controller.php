@@ -17,7 +17,7 @@ class OrdineController extends Controller {
 		$delete = $ordineModels->deleteCellaListaSpesa($idProdotto, $idOrdine);
 		
 		if (isset($delete) && !empty($delete)) {
-			$array = array(30, 31, 32, 33, 34, 35, 36, 36, 37, 38);
+			$array = array(33, 34, 35, 36, 36, 37, 38, 39, 40, 41, 42, 43, 44);
 			if (in_array($idProdotto, $array)) {
 				$this->loadModules('prodotti');
 				$prodottoModel = new Prodotti();
