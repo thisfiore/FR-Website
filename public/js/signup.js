@@ -2,6 +2,10 @@ $(document).ready(function(e) {
 	
 //	Elimino il bordo rosso dai campi che sto modificando che mi avevano dato un errore
 	$('.tck').keyup(function() {
+
+		$(this).parent('.control-group').removeClass('error');
+		$(this).next('span').hide(50);
+		
 		if ($(this).attr('type') == 'password' ) {
 			$("#pswd1").css("border", "");
 			$("#pswd2").css("border", "");
@@ -26,7 +30,8 @@ $(document).ready(function(e) {
 //				Controllo se i campi obbligatori sono inseriti
 				$('.tck').each(function(index) {
 					if($(this).val() == '') { 
-						$(this).css({'border':'red 2px solid'});
+						$(this).parent('.control-group').addClass('error');
+						$(this).next('span').show(200).text('Ti sei dimenticato qualcosa qui sopra');
 						check = false;	
 					}
 				});
@@ -35,8 +40,8 @@ $(document).ready(function(e) {
 				var email = $("#email").val();
 				var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 				if (!filter.test(email)) {
-					$("#email").css({'border':'red 2px solid'});
-					alert('Please provide a valid email address');
+					$("#email").parent('.control-group').addClass('error');
+					$("#email").next('span').show(200).text('Inserisci un indirizzo email valido');
 					check = false;
 				}
 				
@@ -44,15 +49,19 @@ $(document).ready(function(e) {
 				var pswd1 = $("#pswd1").val();
 				var pswd2 = $("#pswd2").val();
 				if (pswd1 != pswd2) {
-					$("#pswd1").css({'border':'red 2px solid'});
-					$("#pswd2").css({'border':'red 2px solid'});
-					alert('le password devono essere uguali');
+					$("#pswd1").parent('.control-group').addClass('error');
+					$("#pswd2").parent('.control-group').addClass('error');
+					$("#pswd2").next('span').show(200).text('Le password devono essere uguali');
 					check = false;
 				}
 				if (pswd1.length < 6) {
-					$("#pswd1").css({'border':'red 2px solid'});
-					$("#pswd2").css({'border':'red 2px solid'});
-					alert('la password deve essere lunga almeno 6 caratteri');
+					$("#pswd1").parent('.control-group').addClass('error');
+					$("#pswd1").next('span').show(200).text('La password deve essere lunga almeno 6 caratteri');
+					check = false;
+				}
+				if (pswd2.length < 6) {
+					$("#pswd2").parent('.control-group').addClass('error');
+					$("#pswd2").next('span').show(200).text('La password deve essere lunga almeno 6 caratteri');
 					check = false;
 				}
 				
@@ -72,14 +81,14 @@ $(document).ready(function(e) {
 						console.log(response);
 						
 						if (response.status == 'USER') {
-							alert(response.message);
-							$("#email").css({'border':'red 2px solid'});
+							$("#email").parent('.control-group').addClass('error');
+							$("#email").next('span').show(200).text(response.message);
 							check = false;
 //							validateResult(check);
 						}
 						else if (response.status == 'ERR') {
-							alert(response.message);
-							$("#mail_inviter").css({'border':'red 2px solid'});
+							$("#mail_inviter").parent('.control-group').addClass('error');
+							$("#mail_inviter").next('span').show(200).text(response.message);
 							check = false;
 //							validateResult(check);
 						}

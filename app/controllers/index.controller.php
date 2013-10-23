@@ -123,19 +123,19 @@ class IndexController extends Controller {
 		$utente = $indexModels->selectUtenteMail($username);
 		if (isset($utente) && !empty($utente)) {
 			$response = array(	'status' => 'USER',
-								'message' => 'email gi&agrave inserita' );
+								'message' => 'Email gia\' utilizzata' );
 			$this->view->renderJson($response);
 		}
 		
 		$utenteAdmin = $indexModels->selectUtenteMail($email_inviter);
 		if (isset($utenteAdmin) && !empty($utenteAdmin)) {
 			$response = array(	'status' => 'OK',
-								'message' => 'email corretta' );
+								'message' => 'Email corretta' );
 			$this->view->renderJson($response);
 		}
 		else {
 			$response = array(	'status' => 'ERR',
-								'message' => 'email di invito non trovata' );
+								'message' => 'Email di invito non trovata' );
 			$this->view->renderJson($response);
 		}
 		

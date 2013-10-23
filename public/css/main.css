@@ -33,12 +33,16 @@ div.center {
 	border: 1px solid rgba(227, 227, 227, 0.7);
 	min-width: 290px;
 	padding-bottom: 10px;
+	margin-bottom: 20px;
 }
 .well div.text-center { margin-top: 10px; }
-.well a {
+/*.well a {
 	text-decoration: none;
 	color: #666;	
-} .well a:hover { color: #333; }
+} .well a:hover { color: #333; }*/
+.well input {
+	margin-bottom: 6px;
+}
 
 .alert { 
 	padding: 0;
