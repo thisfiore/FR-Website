@@ -129,7 +129,6 @@ $(document).ready(function(e) {
 						}
 					}
 					
-					
 					totalePartial = totalePartial.toFixed(2);
 					that.parent().siblings('.partial').data('partial', totalePartial);
 					that.parent().siblings('span.partial').html(totalePartial+' €');
@@ -142,7 +141,7 @@ $(document).ready(function(e) {
 		});
 	});
 	
-//	add prodotto lista
+//	Add Prodotto Lista
 	$('div.prodotti').on('click', 'ul li', function(event) {
 		var id_prodotto = $(this).children('div.prodotto').data('id_prodotto');
 		var check = $("div.lista").find(".item"+id_prodotto).data('check');
@@ -189,7 +188,7 @@ $(document).ready(function(e) {
 			}
 		});
 	});
-	
+			
 	//Open the page of the producer with the modal
 	$('div.prodotti').on('click', 'ul li div h3 a', function(event) {
 		var id_produttore = $(this).data('id_produttore');
@@ -197,6 +196,7 @@ $(document).ready(function(e) {
 	});
 	
 	
+	//Chiude l'ordine con il pagamento alla consegna
 	$('.lista').on('click', 'button.paga', function(event) {
 		if ($(this).hasClass('unclick')) {
 			return false;
@@ -216,7 +216,6 @@ $(document).ready(function(e) {
 				that.addClass('unclick');
 			},
 			success : function(response) {
-				console.log(response.status);
 				if (response.status == 'OK') {
 					location.reload();
 				}
@@ -240,7 +239,7 @@ $(document).ready(function(e) {
 		});
 	});
 	
-	
+	//Abilita il bottone conferma termini solo se entrambi i radio sono checkati
 	$('#termini').on('click', 'input', function(event) {
 		var classe = $(this).attr('class');
 		if (classe == "radioCondizioni") {
@@ -271,7 +270,7 @@ $(document).ready(function(e) {
 		}
 	});
 	
-	
+	//Invio conferma termini e servizi
 	$('#termini').on('click', 'button.btn-success', function(event) {
 		if ($(this).hasClass('disabled') || $(this).data('term') == 1) {
 			return false;
@@ -302,7 +301,7 @@ $(document).ready(function(e) {
 		});
 	});
 	
-	
+	//Chiude la lista della spesa e passa alla schermata di pagamento
 	$('div.lista').on('click', 'button.btn-success', function(event) {
 		var id_ordine_admin = $(this).data('id_ordine_admin');
 		
@@ -336,8 +335,6 @@ $(document).ready(function(e) {
 				}
 			}
 		});
-		
-		
 	});
 	
 });

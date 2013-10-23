@@ -23,6 +23,14 @@ class Index extends DB {
 		return $login;
 	}
 	
+	public function selectUtenteMail ($mailUtente) {
+		$select = $this->select()
+						->from ('utenti', ' id_utente, id_gruppo')
+						->where('username = ', $mailUtente);
+		$utente = $this->fetchRow($select);
+		return $utente;
+	}
+	
 	public function selectUtente ($idUtente) {
 		$select = $this->select()
 						->from ('utenti', '*')
@@ -51,6 +59,10 @@ class Index extends DB {
 		return $gruppo;
 	}
 	
+	public function insertUtente ($utente) {
+		$insert = $this->insert($utente, 'utenti');
+		return $insert;
+	}
 	
 	public function updateUtente ($utente) {
 		$update = $this->update(
@@ -59,7 +71,6 @@ class Index extends DB {
 				array( 	'id_utente = ' => $utente['id_utente'] )
 		);
 		return $update;
-		
 	}
 	
 	

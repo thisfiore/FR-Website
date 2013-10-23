@@ -48,27 +48,27 @@ class IndexController extends Controller {
 		}
 	}
 	
-	
+
 	public function postLogin () {
 		$username = isset($_POST['username']) ? $_POST['username'] : null;
 		$password = isset($_POST['password']) ? $_POST['password'] : null;
-// 		$password = md5($password);
-		
+		// 		$password = md5($password);
+	
 		if ($username == null || $password == null) {
-			$response = array( 'status' => 'ERR' ); 
+			$response = array( 'status' => 'ERR' );
 			$this->view->renderJson($response);
 		}
-		
+	
 		$this->loadModules('index');
 		$indexModels = new Index();
 		$log = $indexModels->login($username, $password);
-		
-// 		CREAZIONE COOKIE O QUALSIASI ALTRA COSA
+	
+		// 		CREAZIONE COOKIE O QUALSIASI ALTRA COSA
 		if (isset($log) && !empty($log)) {
-		
+	
 			setcookie( 'id_utente', $log['id_utente'], time() + 5184000, "/" );
 			$this->idLoggedUser = $log['id_utente'];
-			
+				
 			$response = array('status' => 'OK' );
 			$this->view->renderJson($response);
 		}
@@ -78,11 +78,83 @@ class IndexController extends Controller {
 		}
 	}
 	
-// 	public function getPay () { 
-// 		$this->view->load(null, 'pay', null, null);
-// 		$this->view->render();
-// 	}
+	
+	public function postSignup () {
+		$utente = $_POST;
+		$utente['nome'] = ucfirst($utente['nome']);
+		$utente['cognome'] = ucfirst($utente['cognome']);
+		$utente['cf'] = strtoupper($utente['cf']);
+		
+		$this->loadModules('index');
+		$indexModels = new Index();
+		$utenteAdmin = $indexModels->selectUtenteMail($utente['mail_inviter']);
+		
+		unset($utente['mail_inviter']);
+		$utente['id_gruppo'] = $utenteAdmin['id_gruppo'];
+		
+		$id_utente = $indexModels->insertUtente($utente);
+		
+		setcookie( 'id_utente', $id_utente, time() + 5184000, "/" );
+		$this->idLoggedUser = $id_utente;
+		
+		// 		CREAZIONE COOKIE O QUALSIASI ALTRA COSA
+		if (isset($id_utente) && !empty($id_utente)) {
+	
+			setcookie( 'id_utente', $id_utente, time() + 5184000, "/" );
+			$this->idLoggedUser = $id_utente;
+				
+			$response = array('status' => 'OK' );
+			$this->view->renderJson($response);
+		}
+		else {
+			$response = array( 'status' => 'ERR' );
+			$this->view->renderJson($response);
+		}
+	}
+	
+	public function getEmailInvito () {
+		$email_inviter = $_GET['mail_inviter'];
+		$username = $_GET['email'];
+		
+		$this->loadModules('index');
+		$indexModels = new Index();
+		
+// 		Cerco se la mail  giˆ stata inserita
+		$utente = $indexModels->selectUtenteMail($username);
+		if (isset($utente) && !empty($utente)) {
+			$response = array(	'status' => 'USER',
+								'message' => 'email gi&agrave inserita' );
+			$this->view->renderJson($response);
+		}
+		
+		$utenteAdmin = $indexModels->selectUtenteMail($email_inviter);
+		if (isset($utenteAdmin) && !empty($utenteAdmin)) {
+			$response = array(	'status' => 'OK',
+								'message' => 'email corretta' );
+			$this->view->renderJson($response);
+		}
+		else {
+			$response = array(	'status' => 'ERR',
+								'message' => 'email di invito non trovata' );
+			$this->view->renderJson($response);
+		}
+		
+	}
+	
+	
+	public function getSignup () { 
+		$signupScript = array(
+				"login" => array(
+						"type" => "text/javascript",
+						"src" => "signup.js")
+		);
+		$this->view->addScripts($signupScript);
+		
+		$this->view->load(null, 'signup', null, null);
+		$this->view->render();
+	}
 
+	
 	public function getHome() {
 		
 		$this->loadModules('prodotti');
@@ -93,6 +165,9 @@ class IndexController extends Controller {
 		$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
 		$prodotti = $prodottiModels->selectAllProducts();
 		$produttori = $prodottiModels->selectAllProduttori();
+		
+// 		$this->boxPrint($utente);
+// 		die;
 		
 		$prezzo_finale = 0;
 		$ordine_admin = $this->_getOrdineAdmin();
