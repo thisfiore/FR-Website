@@ -49,12 +49,12 @@ $(document).ready(function(e) {
 					alert('le password devono essere uguali');
 					check = false;
 				}
-//				if (pswd1.length < 6) {
-//					$("#pswd1").css({'border':'red 2px solid'});
-//					$("#pswd2").css({'border':'red 2px solid'});
-//					alert('la password deve essere lunga almeno 6 caratteri');
-//					check = false;
-//				}
+				if (pswd1.length < 6) {
+					$("#pswd1").css({'border':'red 2px solid'});
+					$("#pswd2").css({'border':'red 2px solid'});
+					alert('la password deve essere lunga almeno 6 caratteri');
+					check = false;
+				}
 				
 
 				var mail_inviter = $("#mail_inviter").val();
