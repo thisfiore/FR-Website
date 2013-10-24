@@ -14,12 +14,38 @@ class IndexController extends Controller {
 			$ordine['id_ordine_admin'] = $_POST['custom'];
 			$ordine['stato'] = 1;
 			$ordine['id_utente'] = $_COOKIE['id_utente'];
+			$ordine['pagamento'] = 'paypal';
 			
 			$this->loadModules('ordine');
 			$ordineModel = new Ordine();
 			$update = $ordineModel->updateOrdineUtente($ordine);
 			
-			header("location: /");
+			if (isset($update) && !empty($update)) {
+				$ordineUtente = $ordineModel->selectOrdineUtente($ordine['id_ordine_admin'], $_COOKIE['id_utente']);
+				
+// 				$this->boxPrint($ordineUtente);
+// 				die;
+				
+				$idOrdineUtente['id_ordine'] = $ordineUtente['id_ordine'];
+				$insert = $ordineModel->insertRicevuta($idOrdineUtente);
+				
+				if (isset($insert) && !empty($insert)) {
+					$idOrdine['id_ordine'] = $this->sendMail($ordine['id_ordine_admin'], $insert);
+						
+					header("location: /");
+				}
+				else {
+					$response = array( 	'status' => 'ERR', 
+										'message' => 'errore insert notifica');
+					$this->view->renderJson($response);
+				}
+			}
+			else {
+				$response = array( 'status' => 'ERR', 
+									'message' => 'errore update ordine utente');
+				$this->view->renderJson($response);
+			}
+			
 		}
 		else {
 			
@@ -356,6 +382,7 @@ class IndexController extends Controller {
 		$ordine['stato'] = 1;
 		$ordine['id_utente'] = $_COOKIE['id_utente'];
 		$ordine['id_ordine_admin'] = $idOrdineAdmin;
+		$ordine['pagamento'] = 'consegna';
 		
 		$update = $ordineModel->updateOrdineUtente($ordine);
 		

@@ -12,9 +12,17 @@ if (isset($adminGruppi) && !empty($adminGruppi)) {
 <br><br>
 
 <?php 
-	foreach ($gruppo['utenti'] as $utente) {
+		if (isset($gruppo['utenti']) && !empty($gruppo['utenti'])) {
+			foreach ($gruppo['utenti'] as $utente) {
+			
+// echo "<pre>";
+// print_r($utente);
+// echo"</pre>";
+// die;
 ?> 
-	<div style="background-color:#666; color:#FFF; padding:10px 0; width:600px;"><?php echo $utente['nome'].' '.$utente['cognome']; ?></div>
+	<div style="position: absolute; background-color:#666; color:#FFF; padding:10px 0; width:600px;"><?php echo $utente['nome'].' '.$utente['cognome'];?> 
+		<span style="float:right; padding:0px 10px;">Pagamento: <?php echo $utente['pagamento']?></span>
+	</div>
 	<div class="table-responsive" style="width:600px;">		
 		<table class="table table-bordered row-fluid"> <!--  table-bordered-->
 			<tr bgcolor="#FF7373" style="color:#FFF;">
@@ -25,16 +33,16 @@ if (isset($adminGruppi) && !empty($adminGruppi)) {
 			</tr>
 	
 	<?php 
-			foreach ($utente['prodotto'] as $prodotto) {
+				foreach ($utente['prodotto'] as $prodotto) {
 					
-				echo "<tr style='background:rgba(255,255,255,0.6);'>";
-					echo "<td >".$prodotto['nome_prodotto']."</td>";
-					echo "<td>".$prodotto['quantita']."</td>";
-					echo "<td>".$prodotto['prezzo_iva']." &euro;/".$prodotto['unita']."</td>";
-					echo "<td>".$prodotto['totale']." euro</td>";
-				echo "</tr>";
+					echo "<tr style='background:rgba(255,255,255,0.6);'>";
+						echo "<td >".$prodotto['nome_prodotto']."</td>";
+						echo "<td>".$prodotto['quantita']."</td>";
+						echo "<td>".$prodotto['prezzo_iva']." &euro;/".$prodotto['unita']."</td>";
+						echo "<td>".$prodotto['totale']." euro</td>";
+					echo "</tr>";
 		
-			} ?>	
+				} ?>	
 			<tr >
 				<td></td>
 				<td></td>
@@ -47,7 +55,9 @@ if (isset($adminGruppi) && !empty($adminGruppi)) {
 <br>
 <br>
 <?php 
+			}
 		}
+	
 	} 
 }
 else { 

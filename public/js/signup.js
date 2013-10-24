@@ -78,8 +78,6 @@ $(document).ready(function(e) {
 					},
 					success : function(response) {
 						
-						console.log(response);
-						
 						if (response.status == 'USER') {
 							$("#email").parent('.control-group').addClass('error');
 							$("#email").next('span').show(200).text(response.message);
@@ -95,8 +93,6 @@ $(document).ready(function(e) {
 						
 					}
 				});
-				
-				console.log(check);
 				
 //				Se ci sono stati errori blocco tutto
 				if (check == false) {

@@ -138,6 +138,7 @@ class AdminController extends Controller {
 				$utente = $indexModels->selectUtenteSingolo($ordine['id_utente']);
 				
 				$adminGruppi[$utente['id_gruppo']]['utenti'][$utente['id_utente']] = $utente;
+				$adminGruppi[$utente['id_gruppo']]['utenti'][$utente['id_utente']]['pagamento'] = $ordine['pagamento'];
 				$prodotti = $ordineModels->selectListaSpesaPrezzo($ordine['id_ordine']);
 				
 				$totale = 0;

@@ -22,7 +22,8 @@ if (isset($adminProduttori) && !empty($adminProduttori)) {
 <br><br>
 
 <?php 
-		foreach ($produttore['gruppi'] as $gruppo) {
+		if (isset($produttore['gruppi']) && !empty($produttore['gruppi'])) {
+			foreach ($produttore['gruppi'] as $gruppo) {
 ?> 
 	<div style="background-color:#666; color:#FFF; padding:10px 0; width:600px;"><?php echo $gruppo['nome_gruppo']; ?></div>
 	<div class="table-responsive" style="width:600px;">		
@@ -34,16 +35,16 @@ if (isset($adminProduttori) && !empty($adminProduttori)) {
 				<td>Totale</td>
 			</tr>
 	
-	<?php 	 	foreach ($gruppo['prodotto'] as $prodotto) {
-					
-				echo "<tr style='background:rgba(255,255,255,0.6);'>";
-					echo "<td >".$prodotto['nome_prodotto']."</td>";
-					echo "<td>".$prodotto['quantita']."</td>";
-					echo "<td>".$prodotto['prezzo_iva']." &euro;/".$prodotto['unita']."</td>";
-					echo "<td>".$prodotto['totale']." euro</td>";
-				echo "</tr>";
-		
-				} ?>	
+<?php 	 	foreach ($gruppo['prodotto'] as $prodotto) {
+						
+						echo "<tr style='background:rgba(255,255,255,0.6);'>";
+							echo "<td >".$prodotto['nome_prodotto']."</td>";
+							echo "<td>".$prodotto['quantita']."</td>";
+							echo "<td>".$prodotto['prezzo_iva']." &euro;/".$prodotto['unita']."</td>";
+							echo "<td>".$prodotto['totale']." euro</td>";
+						echo "</tr>";
+			
+					} ?>	
 			<tr >
 				<td></td>
 				<td></td>
@@ -55,7 +56,7 @@ if (isset($adminProduttori) && !empty($adminProduttori)) {
 	</div>
 <br>
 <br>
-<?php 
+<?php 		}	
 		}
 	} 
 }
