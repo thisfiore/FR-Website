@@ -1,6 +1,6 @@
 $(document).ready(function(e) {
 	
-	
+//	Cambio il tipo di admin: produttori o gruppi
 	$('.header').on('click', 'button.selector', function(event) {
 		var that = $(this);
 		var id_ordine_admin = that.data('id_ordine_admin');
@@ -41,6 +41,8 @@ $(document).ready(function(e) {
 		}
 	});
 	
+	
+//	Cambio l'ordine da visualizzare l'admin
 	$('.selectpicker').change(function(event){
 		
 		$( "select option:selected" ).each(function() {
@@ -49,7 +51,6 @@ $(document).ready(function(e) {
 		});
 //		var id_ordine_admin = $(this).children().val();
 		
-		console.log(id_ordine_admin);
 		
 		if ($('button.btn-primary').data('switch') == 'adminGruppi') {
 			$.ajax({
@@ -77,6 +78,25 @@ $(document).ready(function(e) {
 				}
 			});
 		}
+	});
+	
+//	Bottone apri e chiudi l'ordine
+	$('.header').on('click', 'button.order-admin', function(event){
+		var stato = $(this).data('value');
+		
+		$.ajax({
+			url : '/admin/openOrderAdmin/',
+			type : 'GET',
+			dataType : 'json',
+			data : {
+				stato : stato
+			},
+			success : function(response) {
+				if (response.status == 'OK') {
+					window.location.reload();
+				}
+			}
+		});
 	});
 	
 	

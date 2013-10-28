@@ -105,6 +105,11 @@ class Ordine extends DB {
 		return $ordine_admin;
 	}
 	
+	public function insertOrdineAdmin ($ordineAdmin) {
+		$insert = $this->insert($ordineAdmin, 'ordine_admin');
+		return $insert;
+	}
+	
 	public function insertOrdineUtente ($ordineUtente) {
 			$insert = $this->insert($ordineUtente, 'ordine_utente');
 			return $insert;
@@ -113,6 +118,16 @@ class Ordine extends DB {
 	public function insertRicevuta ($ricevuta) {
 		$insert = $this->insert($ricevuta, 'ricevuta');
 		return $insert;
+	}
+	
+	
+	public function updateOrdineAdmin ($ordineAdmin) {
+		$update = $this->update(
+				$ordineAdmin,
+				'ordine_admin',
+				array( 	'id_ordine_admin = ' => $ordineAdmin['id_ordine_admin'] )
+		);
+		return $update;
 	}
 	
 	

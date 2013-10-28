@@ -18,7 +18,7 @@ if (isset($adminGruppi) && !empty($adminGruppi)) {
 // echo "<pre>";
 // print_r($utente);
 // echo"</pre>";
-// die;
+// die; gianluca@70division.com
 ?> 
 	<div style="position: absolute; background-color:#666; color:#FFF; padding:10px 0; width:600px;"><?php echo $utente['nome'].' '.$utente['cognome'];?> 
 		<span style="float:right; padding:0px 10px;">Pagamento: <?php echo $utente['pagamento']?></span>

@@ -18,6 +18,15 @@ class AdminController extends Controller {
 		
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
+		$admin = $ordineModels->selectLastOrdineAdmin();
+		$allIdOrdineAdmin = $ordineModels->selectAllOrdineAdmin();
+		foreach ($allIdOrdineAdmin as $key => $tuttiOrdiniAdmin) {
+			$allIdOrdineAdmin[$key]['data'] = $this->formatData($tuttiOrdiniAdmin['data']);
+		}
+		
+		$this->loadModules('index');
+		$indexModels = new Index();
+		$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
 		
 		$idOrdineAdmin = (isset($_GET['id_ordine_admin'])) ? $_GET['id_ordine_admin'] : null;
 		
@@ -27,6 +36,7 @@ class AdminController extends Controller {
 		}
 		
 		$elencoOrdini = $ordineModels->selectOrdiniUtentiProduttori($idOrdineAdmin);
+		
 		
 		if (isset($elencoOrdini) && !empty($elencoOrdini)) {
 			$produttori = $ordineModels->selectProduttori();
@@ -68,15 +78,8 @@ class AdminController extends Controller {
 				
 			}
 			
-			$this->loadModules('index');
-			$indexModels = new Index();
-			$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
-			
-			$allIdOrdineAdmin = $ordineModels->selectAllOrdineAdmin();
-			foreach ($allIdOrdineAdmin as $key => $tuttiOrdiniAdmin) {
-				$allIdOrdineAdmin[$key]['data'] = $this->formatData($tuttiOrdiniAdmin['data']);
-			}
-			
+// 			$this->boxPrint($admin);
+// 			die;
 			
 			if ($this->isAjax()) {
 				$this->view->setHead(null);
@@ -98,11 +101,37 @@ class AdminController extends Controller {
 				$this->view->render( array( 'adminProduttori' => $adminProduttori,
 											'utente' => $utente,
 											'idOrdineAdmin' => $idOrdineAdmin,
-											'allIdOrdineAdmin' => $allIdOrdineAdmin) );
+											'allIdOrdineAdmin' => $allIdOrdineAdmin,
+											'admin' => $admin ) );
 			}
 
 		}
+		else {
+			if ($this->isAjax()) {
+				$this->view->setHead(null);
+				$this->view->load(null, 'noOrdini', null, null);
+				$this->view->render(array(	'utente' => $utente,
+											'admin' => $admin,
+											'idOrdineAdmin' => $idOrdineAdmin,
+											'allIdOrdineAdmin' => $allIdOrdineAdmin ) );
+			}
+			else {
+				$adminScript = array(
+						"projectScript" => array(
+								"type" => "text/javascript",
+								"src" => "admin.js"),
+				);
+					
+				$this->view->addScripts($adminScript);
+				$this->view->load('header_admin', 'noOrdini', null, null);
+				$this->view->render(array(	'utente' => $utente,
+											'admin' => $admin,
+											'idOrdineAdmin' => $idOrdineAdmin,
+											'allIdOrdineAdmin' => $allIdOrdineAdmin ) );
+			}
+		}
 	}
+	
 	
 	public function formatData ($data){
 		$array = explode("-", $data);
@@ -161,5 +190,59 @@ class AdminController extends Controller {
 		$this->view->load(null, 'adminGruppi', null, null);
 		$this->view->render( array( 'adminGruppi' => $adminGruppi) );
 	}
+	
+	
+	public function getOpenOrderAdmin() {
+		$this->loadModules('ordine');
+		$ordineModels = new Ordine();
+		
+		$stato = $_GET['stato'];
+	
+		if ($stato == 1) {
+			$ordineAdmin = array();
+			$ordineAdmin['markup'] = 15;
+			$ordineAdmin['stato'] = $stato;
+			$ordineAdmin['data'] = date('Y-m-d');
+			
+			$array = explode("-", $ordineAdmin['data']);
+			$ordineAdmin['data_consegna'] = $array[0].'-'.$array[1].'-'.($array[2]+2);
+			
+// 			$this->boxPrint($ordineAdmin);
+// 			die;
+		
+			$insert = $ordineModels->insertOrdineAdmin($ordineAdmin);
+			
+			if (isset($insert) && !empty($insert)) {
+				$response = array( 'status' => 'OK',);
+				$this->view->renderJson($response);
+			}
+			else {
+				$response = array( 	'status' => 'ERR',
+									'message' => 'errore insert ordine admin');
+				$this->view->renderJson($response);
+			}
+		}
+		else if ($stato == 0) {
+			$ordineAdmin = $ordineModels->selectLastOrdineAdmin();
+			$ordineAdmin['stato'] = $stato;
+			
+			$update = $ordineModels->updateOrdineAdmin($ordineAdmin);
+			
+			if (isset($update) && !empty($update)) {
+				$response = array( 'status' => 'OK',);
+				$this->view->renderJson($response);
+			}
+			else {
+				$response = array( 	'status' => 'ERR',
+									'message' => 'errore update ordine admin');
+				$this->view->renderJson($response);
+			}
+		}
+		
+		
+		
+	}
+	
+	
 	
 }
