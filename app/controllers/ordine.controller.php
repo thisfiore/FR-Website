@@ -14,8 +14,12 @@ class OrdineController extends Controller {
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
 		
-		$delete = $ordineModels->deleteCellaListaSpesa($idProdotto, $idOrdine);
+		if ($idProdotto == 28 || $idProdotto == 19) {
+			$delete = $ordineModels->deleteCassetta($idProdotto, $idOrdine);
+		}
 		
+		$delete = $ordineModels->deleteCellaListaSpesa($idProdotto, $idOrdine);
+
 		if (isset($delete) && !empty($delete)) {
 			$array = array(33, 34, 35, 36, 36, 37, 38, 39, 40, 41, 42, 43, 44);
 			if (in_array($idProdotto, $array)) {

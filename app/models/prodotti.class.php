@@ -44,9 +44,21 @@ class Prodotti extends DB {
 	}
 	
 	
+	public function selectProdotto ($idProdotto) {
+		$select = $this->select()
+						->from ('prodotti', '*')
+						->where ('id_prodotto = ', $idProdotto);
+	
+		$prodotti = $this->fetchRow($select);
+	
+		$prodotti['prezzo_iva'] = round($prodotti['prezzo'] * (1+$prodotti['iva']/100) * (1.15), 2);
+	
+		return $prodotti;
+	}
+	
 	public function selectProdottoMinimal ($idProdotto) {
 		$select = $this->select()
-						->from ('prodotti', ' nome_prodotto, prezzo, unita, iva, stato, user_update')
+						->from ('prodotti', ' nome_prodotto, prezzo, unita, iva, stato, user_update, tipologia')
 						->where ('id_prodotto = ', $idProdotto);
 	
 		$prodotti = $this->fetchRow($select);
@@ -71,8 +83,41 @@ class Prodotti extends DB {
 	}
 	
 	
+	public function selectCassetta ($idCassetta, $idOrdineUtente) {
+		$select = $this->select()
+						->from ('cassetta', '*')
+						->where ('id_cassetta = ', $idCassetta)
+						->where ('id_ordine_utente = ', $idOrdineUtente);
+		
+		$prodotti = $this->fetchAll($select);
+		return $prodotti;
+	}
+	
+	
+	public function selectCassettaDefaultFrutta () {
+		$select = $this->select()
+						->from ('default_cassetta_frutta', array('id_prodotto'));
+		
+		$prodotti = $this->fetchAll($select);
+		return $prodotti;
+	}
+	
+	public function selectCassettaDefaultVerdura () {
+		$select = $this->select()
+						->from ('default_cassetta_verdura', array('id_prodotto'));
+	
+		$prodotti = $this->fetchAll($select);
+		return $prodotti;
+	}
+	
+	
 	public function insertProdottoLista ($prodotto) {
 		$insert = $this->insert($prodotto, 'lista_spesa');
+		return $insert;
+	}
+	
+	public function insertElementoCassetta ($prodotto) {
+		$insert = $this->insert($prodotto, 'cassetta');
 		return $insert;
 	}
 	

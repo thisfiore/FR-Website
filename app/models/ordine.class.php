@@ -161,4 +161,14 @@ class Ordine extends DB {
 		return $delete;
 	}
 	
+	
+	public function deleteCassetta ($idProdotto, $idOrdine) {
+		$delete = $this->delete('cassetta',
+								array ( 'id_ordine_utente = ' => $idOrdine,
+										'id_cassetta = ' =>  $idProdotto)
+		);
+		return $delete;
+	}
+	
+	
 }					

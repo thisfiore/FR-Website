@@ -337,4 +337,25 @@ $(document).ready(function(e) {
 		});
 	});
 	
+	
+	//Apertura modal cassetta
+	$('div.lista').on('click', 'li.cassetta', function(event) {
+		var id_ordine_utente = $(this).data('id_ordine');
+		var id_prodotto = $(this).data('id_prodotto');
+		
+		$.ajax({
+			url : '/index/modalCassetta/',
+			type : 'GET',
+			data : {
+				id_ordine_utente : id_ordine_utente,
+				id_prodotto : id_prodotto
+			},
+			dataType : 'html',
+			success : function(responseHtml) {
+				$('#modal-cassetta .modal-body').append(responseHtml);
+				$('#modal-cassetta').modal('show');
+			}
+		});
+	});
+	
 });

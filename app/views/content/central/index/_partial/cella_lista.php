@@ -1,4 +1,4 @@
-<li class="item<?php echo $cella_lista['id_prodotto']?> row-fluid"
+<li class="item<?php echo $cella_lista['id_prodotto']?> row-fluid <?php echo $cella_lista['tipologia']?>"
 	data-id_ordine="<?php echo $cella_lista['id_ordine']?>" 
 	data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>"
 	data-check=1>
@@ -7,11 +7,14 @@
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<span class="span5"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
 		<div class="unita span2" data-unita="<?php echo $cella_lista['unita']?>"><?php echo $cella_lista['unita']?></div>
+		<?php 
+			if ($cella_lista['id_prodotto'] != 28 && $cella_lista['id_prodotto'] != 19) { ?>
 		<div class="quantity span3" data-quantita="<?php echo $cella_lista['quantita']?>">
 			<span class="meno">-</span>
 			<span class="quantita"><?php echo $cella_lista['quantita']?></span>
 			<span class="piu">+</span>
 		</div>
+		<?php } ?>
 		<span class="partial span3 text-right" data-partial="<?php echo $cella_lista['prodotto']['totale_prodotto']?>">
 			<?php echo number_format($cella_lista['prodotto']['totale_prodotto'], 2, '.', '');?> &euro;
 		</span>

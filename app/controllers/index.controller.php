@@ -236,6 +236,7 @@ class IndexController extends Controller {
 						$lista_spesa[$key]['prodotto'] = $item;
 						$lista_spesa[$key]['prodotto']['totale_prodotto'] = number_format(($item['prezzo_iva'] * $prodotto['quantita']), 2, '.', '');
 						$lista_spesa[$key]['unita'] = $item['unita'];
+						$lista_spesa[$key]['tipologia'] = $item['tipologia'];
 						
 						$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
 					}
@@ -311,18 +312,30 @@ class IndexController extends Controller {
 		$prodotto['id_ordine'] = $idOrdine;
 		$prodotto['id_prodotto'] = $idProdotto;
 		
+		if ($idProdotto == 28 || $idProdotto == 19) {
+			$cassettaDefault = ($idProdotto == 28) ? $prodottiModel->selectCassettaDefaultFrutta() : $prodottiModel->selectCassettaDefaultVerdura();
+		
+			$cassa['id_cassetta'] = $idProdotto;
+			$cassa['id_ordine_utente'] = $idOrdine;
+			$cassa['pref'] = 0;
+			$cassa['stato'] = 1;
+			
+			foreach ($cassettaDefault as $eleCassetta) {
+				$cassa['id_prodotto'] = $eleCassetta['id_prodotto'];
+				$insert = $prodottiModel->insertElementoCassetta($cassa);
+			}
+		}
+		
 		$insert = $prodottiModel->insertProdottoLista($prodotto);
 		
 		if (!isset($insert) || empty($insert)) {
-			$response = array( 'status' => 'ERR',
+			$response = array( 	'status' => 'ERR',
 								'message' => 'error insert prodotto in lista spesa' );
 			$this->view->renderJson($response);
 		}
 		else {
 			$array = array(33, 34, 35, 36, 36, 37, 38, 39, 40, 41, 42, 43, 44);
 			if (in_array($idProdotto, $array)) {
-				$this->loadModules('prodotti');
-				$prodottoModel = new Prodotti();
 
 				$elemento = $prodottiModel->selectProdottoMinimal($idProdotto);
 				if ($elemento['stato'] == 1) {
@@ -330,7 +343,7 @@ class IndexController extends Controller {
 					$sopressa['stato'] = 0;
 					$sopressa['user_update'] = $_COOKIE['id_utente'];
 					
-					$update = $prodottoModel->updateProdotto($sopressa);
+					$update = $prodottiModel->updateProdotto($sopressa);
 						
 					if (isset($update) && !empty($update)) {
 					}
@@ -348,6 +361,7 @@ class IndexController extends Controller {
 			$cella_lista['unita'] = $array['unita'];
 			$cella_lista['prodotto']['prezzo_iva'] = $array['prezzo_iva'];
 			$cella_lista['prodotto']['nome_prodotto'] = $array['nome_prodotto'];
+			$cella_lista['tipologia'] = $array['tipologia'];
 			
 			if ( $array['unita'] == "kg") {
 				$cella_lista['quantita'] = 0.5;
@@ -591,7 +605,7 @@ class IndexController extends Controller {
 		}
 		
 		if ($flag == 1) {
-			$response = array('status' => 'NOLISTA',
+			$response = array(	'status' => 'NOLISTA',
 								'message' => "Il prodotto ".$nome_prodotto."  giˆ stata acquistata da un altro utente della community pochi secondi fa! La prossima volta sarai pi fortunato. Eliminalo il tuo ordine prima di procedere.",
 								'id' => $id_prodotto );
 			$this->view->renderJson($response);
@@ -610,7 +624,34 @@ class IndexController extends Controller {
 			$response = array('status' => 'ERR' );
 			$this->view->renderJson($response);
 		}
+	}
+	
+	
+	public function getModalCassetta () {
+		$idProdotto = $_GET['id_prodotto'];
+		$idOrdineUtente = $_GET['id_ordine_utente'];
 		
+		$this->loadModules('prodotti');
+		$prodottiModel = new Prodotti();
+		
+		$cassetta = $prodottiModel->selectCassetta($idProdotto, $idOrdineUtente);
+		
+		if (isset($cassetta) && !empty($cassetta)) {
+			$cas['id_cassetta'] = $cassetta[0]['id_cassetta'];
+			$cas['id_ordine_utente'] = $cassetta[0]['id_ordine_utente'];
+			
+			foreach ($cassetta as $key => $prodotto) {
+				$cas['prodotti'][$key] = $prodottiModel->selectProdotto($prodotto['id_prodotto']);
+				$cas['prodotti'][$key]['pref'] = $prodotto['pref'];
+				$cas['prodotti'][$key]['stato_in'] = $prodotto['stato'];
+			}
+			
+			$this->view->setHead(null);
+			$this->view->load(null, '_partial/modal-cassetta', null, null);
+			$this->view->render(  array ( 'cassetta' => $cas ) );
+		}
+		
+
 	}
 	
 }
