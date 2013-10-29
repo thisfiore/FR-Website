@@ -357,5 +357,18 @@ $(document).ready(function(e) {
 			}
 		});
 	});
+
+	//Articolo nella cassetta viene rimosso
+	$('#modal-cassetta').on('click', 'button.remove-article', function(event) {
+		$(this).parent('li').toggleClass('disabled');
+		$(this).toggleClass('active');
+		alert('elemento eliminato');
+	});
+
+	//Esprimi preferenza
+	$('#modal-cassetta').on('click', 'button.preference-article', function(event) {
+		$(this).toggleClass('active');
+		alert('preferenza espressa');
+	});
 	
 });
