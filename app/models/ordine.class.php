@@ -153,6 +153,17 @@ class Ordine extends DB {
 	}
 	
 	
+	public function updateCassetta ($cassetta) {
+		$update = $this->update(
+							$cassetta,
+							'cassetta',
+							array( 	'id_ordine_utente = ' => $cassetta['id_ordine_utente'],
+									'id_cassetta = ' => $cassetta['id_cassetta'] )
+		);
+		return $update;
+	}
+	
+	
 	public function deleteCellaListaSpesa ($idProdotto, $idOrdine) {
 		$delete = $this->delete('lista_spesa',
 				array ( 'id_ordine = ' => $idOrdine,

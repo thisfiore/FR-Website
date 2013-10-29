@@ -73,5 +73,4 @@ class Index extends DB {
 		return $update;
 	}
 	
-	
 }
