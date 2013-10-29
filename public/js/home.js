@@ -374,12 +374,12 @@ $(document).ready(function(e) {
 		var id_prodotto = $(this).parent('li.prodotto').data("id_prodotto");
 		
 		$('li.prodotto').each(function( index ) {
-			console.log($(this).data('id_prodotto'));
 			if (id_prodotto != $(this).data('id_prodotto')) {
 				$(this).children('button.preference-article').removeClass('hide');
 			}
 		});
 		
+		var id_ordine_utente = $(this).parent('li.prodotto').data("id_prodotto");
 		
 		
 		alert('elemento eliminato');
