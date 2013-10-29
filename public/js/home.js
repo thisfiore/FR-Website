@@ -362,14 +362,14 @@ $(document).ready(function(e) {
 
 	//Articolo nella cassetta viene rimosso
 	$('#modal-cassetta').on('click', 'button.remove-article', function(event) {
-		$(this).parent('li').toggleClass('disabled');
+		$(this).parents('li').toggleClass('disabled');
 		$(this).toggleClass('active');
 		
-		var id_prodotto = $(this).parent('li.prodotto').data("id_prodotto");
+		var id_prodotto = $(this).parents('li').data("id_prodotto");
 		
 		$('li.prodotto').each(function( index ) {
 			if (id_prodotto != $(this).data('id_prodotto')) {
-				$(this).children('button.preference-article').removeClass('hide');
+				$(this).children().children('button.preference-article').removeClass('hide');
 			}
 		});
 		
