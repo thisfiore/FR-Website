@@ -364,19 +364,24 @@ div.center {
 	list-style: none;
 	margin: 0;
 	text-align: center;
-	width: 100%;
 	margin-bottom: 40px;
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+	overflow: hidden;
 }
-.cassetta li { display: inline-block; min-width: 10%; }
+.cassetta li { 
+	display: table-cell;
+	text-align: center;
+	padding: 5px;
+}
 .cassetta li.disabled { opacity: .5; }
 .cassetta .image {
 	border-radius: 1000px;
-	width: 100px;
-	height: 100px;
 	text-align: center;
 	background-size: cover !important;
 	line-height: 100px;
 	background-position: 50% 50% !important;
-	margin: 20px 0;
+	margin: 20px auto;
 }
 .cassetta button { padding: 2px 5px; }
