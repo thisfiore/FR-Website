@@ -91,7 +91,7 @@
 									<div class="unita span2" data-unita="<?php echo $cella_lista['unita']?>"><?php echo $cella_lista['unita']?></div>
 									
 									<?php 
-									if ($cella_lista['id_prodotto'] != 28 && $cella_lista['id_prodotto'] != 19) { ?>
+									if ($cella_lista['tipologia'] != 'cassetta' ) { ?>
 									<div class="quantity span3" data-quantita="<?php echo $cella_lista['quantita']?>">
 										<span class="meno">-</span>
 										<span class="quantita"><?php echo $cella_lista['quantita']?></span>
@@ -197,5 +197,4 @@
 	
 <!-- 	MODAL CASSETTA -->
 	<div id="modal-cassetta" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-body"></div>
 	</div>

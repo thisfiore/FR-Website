@@ -352,7 +352,7 @@ $(document).ready(function(e) {
 			},
 			dataType : 'html',
 			success : function(responseHtml) {
-				$('#modal-cassetta .modal-body').append(responseHtml);
+				$('#modal-cassetta').append(responseHtml);
 				$('#modal-cassetta').modal('show');
 			}
 		});
