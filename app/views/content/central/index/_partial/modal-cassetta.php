@@ -17,16 +17,6 @@
 			<button class="btn btn-danger remove-article"><i class="icon-white icon-ban-circle"></i></button>
 			<button class="btn btn-success hide preference-article"><i class="icon-white icon-plus-sign"></i></button>
 		</div>
-		
-		</li>
-	<?php } ?>
-	<?php foreach ($cassetta['prodotti'] as $prodotto) { ?>
-		<li class="prodotto" data-id_prodotto="<?php echo $prodotto['id_prodotto']?>">
-		<div class="image" style="background:url('/img/products/<?php echo $prodotto['image']?>');">
-			<button class="btn btn-danger remove-article"><i class="icon-white icon-ban-circle"></i></button>
-			<button class="btn btn-success hide preference-article"><i class="icon-white icon-plus-sign"></i></button>
-		</div>
-		
 		</li>
 	<?php } ?>
 </ul>
