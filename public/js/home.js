@@ -357,9 +357,9 @@ $(document).ready(function(e) {
 				setTimeout(function(){
 					var cw = $('.cassetta ul li').width();
 					console.log(cw);
-					$('.image').css({'height':cw+'px'});
-					$('.image').css({'width':cw+'px'});
-				},200);
+					$('.cassetta ul li .image').css({'height':cw+'px'});
+					$('.cassetta ul li .image').css({'width':cw+'px'});
+				},400);
 			}
 
 		});
