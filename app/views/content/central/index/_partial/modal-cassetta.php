@@ -13,10 +13,20 @@
 <ul data-id_cassetta="<?php echo $cassetta['id_cassetta']?>" data-id_ordine_utente="<?php echo $cassetta['id_ordine_utente']?>">
 	<?php foreach ($cassetta['prodotti'] as $prodotto) { ?>
 		<li class="prodotto" data-id_prodotto="<?php echo $prodotto['id_prodotto']?>">
-		<button class="btn btn-danger remove-article"><i class="icon-white icon-ban-circle"></i></button>
 		<div class="image" style="background:url('/img/products/<?php echo $prodotto['image']?>');">
+			<button class="btn btn-danger remove-article"><i class="icon-white icon-ban-circle"></i></button>
+			<button class="btn btn-success hide preference-article"><i class="icon-white icon-plus-sign"></i></button>
 		</div>
-		<button class="btn btn-success hide preference-article"><i class="icon-white icon-plus-sign"></i></button>
+		
+		</li>
+	<?php } ?>
+	<?php foreach ($cassetta['prodotti'] as $prodotto) { ?>
+		<li class="prodotto" data-id_prodotto="<?php echo $prodotto['id_prodotto']?>">
+		<div class="image" style="background:url('/img/products/<?php echo $prodotto['image']?>');">
+			<button class="btn btn-danger remove-article"><i class="icon-white icon-ban-circle"></i></button>
+			<button class="btn btn-success hide preference-article"><i class="icon-white icon-plus-sign"></i></button>
+		</div>
+		
 		</li>
 	<?php } ?>
 </ul>

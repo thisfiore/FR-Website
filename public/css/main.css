@@ -371,12 +371,15 @@ div.center {
 	overflow: hidden;
 }
 .cassetta li { 
-	display: table-cell;
+	display: inline-block;
 	text-align: center;
 	padding: 5px;
+	width: 20%;
 }
 .cassetta li.disabled { opacity: .5; }
 .cassetta .image {
+	height: 100%;
+	width: 100%;
 	border-radius: 1000px;
 	text-align: center;
 	background-size: cover !important;

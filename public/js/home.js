@@ -354,12 +354,6 @@ $(document).ready(function(e) {
 			success : function(responseHtml) {
 				$('#modal-cassetta').empty().append(responseHtml);
 				$('#modal-cassetta').modal('show');
-				setTimeout(function(){
-					var cw = $('.cassetta ul li').width();
-					console.log(cw);
-					$('.cassetta ul li .image').css({'height':cw+'px'});
-					$('.cassetta ul li .image').css({'width':cw+'px'});
-				},400);
 			}
 
 		});
