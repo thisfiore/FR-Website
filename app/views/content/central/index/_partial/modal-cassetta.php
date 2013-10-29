@@ -1,12 +1,18 @@
+<?php 
+// echo "<pre>";
+// print_r($cassetta);
+// echo "</pre>";
+// die;
+?>
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 	<h4 id="prodLabel">Modifica Cassetta</h4>
 </div>
 
 <div class="modal-body cassetta">
-<ul>
+<ul data-id_cassetta="<?php echo $cassetta['id_cassetta']?>" data-id_ordine_utente="<?php echo $cassetta['id_ordine_utente']?>">
 	<?php foreach ($cassetta['prodotti'] as $prodotto) { ?>
-		<li>
+		<li class="prodotto" data-id_prodotto="<?php echo $prodotto['id_prodotto']?>">
 		<button class="btn btn-danger remove-article"><i class="icon-white icon-ban-circle"></i></button>
 		<div class="image" style="background:url('/img/products/<?php echo $prodotto['image']?>');">
 		</div>
@@ -20,12 +26,7 @@
 
 <div class="modal-footer">
 	<button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Chiudi</button>
-	<button class="btn btn-large btn-success" type="submit" data-term="<?php echo $utente['term']?>">Procedi</button>
+	<button class="btn btn-large btn-success" type="submit">Procedi</button>
 </div>
 
 
-<?php 
-echo "<pre>";
-print_r($cassetta);
-echo "</pre>";
-?>

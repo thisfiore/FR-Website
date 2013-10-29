@@ -352,7 +352,7 @@ $(document).ready(function(e) {
 			},
 			dataType : 'html',
 			success : function(responseHtml) {
-				$('#modal-cassetta').append(responseHtml);
+				$('#modal-cassetta').empty().append(responseHtml);
 				$('#modal-cassetta').modal('show');
 			}
 		});
@@ -362,6 +362,18 @@ $(document).ready(function(e) {
 	$('#modal-cassetta').on('click', 'button.remove-article', function(event) {
 		$(this).parent('li').toggleClass('disabled');
 		$(this).toggleClass('active');
+		
+		var id_prodotto = $(this).parent('li.prodotto').data("id_prodotto");
+		
+		$('li.prodotto').each(function( index ) {
+			console.log($(this).data('id_prodotto'));
+			if (id_prodotto != $(this).data('id_prodotto')) {
+				$(this).children('button.preference-article').removeClass('hide');
+			}
+		});
+		
+		
+		
 		alert('elemento eliminato');
 	});
 
