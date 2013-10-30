@@ -362,7 +362,8 @@ $(document).ready(function(e) {
 
 	//Articolo nella cassetta viene rimosso
 	$('#modal-cassetta').on('click', 'button.remove-article', function(event) {
-		$(this).parents('li').toggleClass('disabled');
+		$(this).parent().prev().toggleClass('disabled');
+		console.log($(this));
 		$(this).toggleClass('active');
 		
 		var id_prodotto = $(this).parents('li').data("id_prodotto");

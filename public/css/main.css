@@ -375,8 +375,9 @@ div.center {
 	text-align: center;
 	padding: 5px;
 	width: 20%;
+	position: relative;
 }
-.cassetta li.disabled { opacity: .5; }
+.disabled { opacity: .5; }
 .cassetta .image {
 	height: 100%;
 	width: 100%;
@@ -387,4 +388,13 @@ div.center {
 	background-position: 50% 50% !important;
 	margin: 20px auto;
 }
-.cassetta button { padding: 2px 5px; }
+.cassetta .interaction {
+	position: absolute;
+	top: 50%;
+	margin-top: -13px;
+	width: 100%;
+	margin-left: -5px;
+}
+.cassetta button { 
+	padding: 2px 5px;
+}
