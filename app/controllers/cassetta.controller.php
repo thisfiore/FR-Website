@@ -16,9 +16,11 @@ class CassettaController extends Controller {
 		
 		if (isset($_POST['pref']) && !empty($_POST['pref'])) {
 			$cassetta['pref'] = $_POST['pref'];
+			$element = 'pref';
 		}
 		if (isset($_POST['stato']) && !empty($_POST['stato'])) {
 			$cassetta['stato'] = $_POST['stato'];
+			$element = 'stato';
 		}
 		
 		$update = $ordineModels->updateCassetta($cassetta);
@@ -29,7 +31,8 @@ class CassettaController extends Controller {
 			$this->view->renderJson($response);
 		}
 		else {
-			$response = array( 	'status' => 'OK' );
+			$response = array( 	'status' => 'OK',
+								'element' => $element );
 			$this->view->renderJson($response);
 		}
 		
