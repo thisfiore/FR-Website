@@ -640,15 +640,25 @@ class IndexController extends Controller {
 			$cas['id_cassetta'] = $cassetta[0]['id_cassetta'];
 			$cas['id_ordine_utente'] = $cassetta[0]['id_ordine_utente'];
 			
+			$nProdotti = count($cassetta);
+			$stato = 0;
+			$pref = 0;
+			
 			foreach ($cassetta as $key => $prodotto) {
 				$cas['prodotti'][$key] = $prodottiModel->selectProdotto($prodotto['id_prodotto']);
 				$cas['prodotti'][$key]['pref'] = $prodotto['pref'];
 				$cas['prodotti'][$key]['stato_in'] = $prodotto['stato'];
+				
+				$stato += $prodotto['stato'];
+				$pref += $prodotto['pref'];
 			}
+			
+			$resto = $nProdotti - ($stato + $pref);
 			
 			$this->view->setHead(null);
 			$this->view->load(null, '_partial/modal-cassetta', null, null);
-			$this->view->render(  array ( 'cassetta' => $cas ) );
+			$this->view->render(  array ( 	'cassetta' => $cas,
+											'resto' => $resto ) );
 		}
 		
 

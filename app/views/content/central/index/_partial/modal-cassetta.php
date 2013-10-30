@@ -1,6 +1,6 @@
 <?php 
 // echo "<pre>";
-// print_r($cassetta);
+// print_r($resto);
 // echo "</pre>";
 // die;
 ?>
@@ -10,13 +10,35 @@
 </div>
 
 <div class="modal-body cassetta">
-<ul data-id_cassetta="<?php echo $cassetta['id_cassetta']?>" data-id_ordine_utente="<?php echo $cassetta['id_ordine_utente']?>">
+<ul data-id_cassetta="<?php echo $cassetta['id_cassetta']?>" 
+	data-id_ordine_utente="<?php echo $cassetta['id_ordine_utente']?>"
+	data-resto="<?php echo $resto?>">
 	<?php foreach ($cassetta['prodotti'] as $prodotto) { ?>
 		<li class="prodotto" data-id_prodotto="<?php echo $prodotto['id_prodotto']?>">
-			<div class="image" style="background:url('/img/products/<?php echo $prodotto['image']?>');">&nbsp;</div>
+			<div class="image <?php if ($prodotto['stato_in'] == 0) { echo "disabled"; } ?>" style="background:url('/img/products/<?php echo $prodotto['image']?>');">&nbsp;</div>
 			<div class="interaction">
-				<button class="btn btn-danger remove-article"><i class="icon-white icon-ban-circle"></i></button>
-				<button class="btn btn-success hide preference-article"><i class="icon-white icon-plus-sign"></i></button>
+				<button class="btn btn-danger 
+				<?php 
+				if ($prodotto['stato_in'] == 0) { 
+					echo "active"; 
+				}
+				else if ($prodotto['pref'] == 1) {
+					echo "hide";
+				} 
+				?> 
+				remove-article"><i class="icon-white icon-ban-circle"></i></button>
+				<button class="btn btn-success 
+				<?php 
+				if ($prodotto['stato_in'] == 0) { 
+					echo "hide"; 
+				} 
+				else if ($prodotto['pref'] == 1) {
+					echo "active";
+				} 
+				else if ($resto == 0) {
+					echo "hide";
+				} ?> 
+				preference-article"><i class="icon-white icon-plus-sign"></i></button>
 			</div>
 		</li>
 	<?php } ?>

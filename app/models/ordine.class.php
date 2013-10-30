@@ -158,7 +158,8 @@ class Ordine extends DB {
 							$cassetta,
 							'cassetta',
 							array( 	'id_ordine_utente = ' => $cassetta['id_ordine_utente'],
-									'id_cassetta = ' => $cassetta['id_cassetta'] )
+									'id_cassetta = ' => $cassetta['id_cassetta'],
+									'id_prodotto = ' => $cassetta['id_prodotto'] )
 		);
 		return $update;
 	}

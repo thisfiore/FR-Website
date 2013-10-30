@@ -11,14 +11,15 @@ class CassettaController extends Controller {
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
 		
+		$cassetta['id_prodotto'] = $_POST['id_prodotto'];
 		$cassetta['id_ordine_utente'] = $_POST['id_ordine_utente'];
 		$cassetta['id_cassetta'] = $_POST['id_cassetta'];
 		
-		if (isset($_POST['pref']) && !empty($_POST['pref'])) {
+		if (isset($_POST['pref']) && $_POST['pref'] >= 0) {
 			$cassetta['pref'] = $_POST['pref'];
 			$element = 'pref';
 		}
-		if (isset($_POST['stato']) && !empty($_POST['stato'])) {
+		if (isset($_POST['stato']) && $_POST['stato'] >= 0) {
 			$cassetta['stato'] = $_POST['stato'];
 			$element = 'stato';
 		}
@@ -26,13 +27,13 @@ class CassettaController extends Controller {
 		$update = $ordineModels->updateCassetta($cassetta);
 		
 		if (isset($update) && !empty($update)) {
-			$response = array( 	'status' => 'ERR',
-								'message' => 'errore update cassetta');
+			$response = array( 	'status' => 'OK',
+								'element' => $element );
 			$this->view->renderJson($response);
 		}
 		else {
-			$response = array( 	'status' => 'OK',
-								'element' => $element );
+			$response = array( 	'status' => 'ERR',
+								'message' => 'errore update cassetta');
 			$this->view->renderJson($response);
 		}
 		
