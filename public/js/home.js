@@ -313,7 +313,6 @@ $(document).ready(function(e) {
 			},
 			dataType : 'json',
 			success : function(response) {
-				
 				if (response.status == "OK") {
 					window.location.href = '/index/pay/'+id_ordine_admin;
 				}
@@ -340,6 +339,11 @@ $(document).ready(function(e) {
 	
 	//Apertura modal cassetta
 	$('div.lista').on('click', 'li.cassetta', function(event) {
+		
+		if ($(event.target).is('div button.close')) {
+			return false;   
+		}
+		
 		var id_ordine_utente = $(this).data('id_ordine');
 		var id_prodotto = $(this).data('id_prodotto');
 		
@@ -355,9 +359,7 @@ $(document).ready(function(e) {
 				$('#modal-cassetta').empty().append(responseHtml);
 				$('#modal-cassetta').modal('show');
 			}
-
 		});
-
 	});
 
 	//Articolo nella cassetta viene rimosso
@@ -365,13 +367,6 @@ $(document).ready(function(e) {
 		var elementi = $("li.prodotto").length;
 		var pref = $("button.remove-article.active").length;
 		var disabled = $("button.preference-article.active").length;
-		
-//		if ($(this).hasClass('active')) {
-//			if (pref <= disabled) {
-////				alert "disabilita una preferenza prima di ri attivare un prodotto"
-//				return false;
-//			}
-//		}
 		
 //		Grafica opacizzazione e attiva/disattiva
 		$(this).parent().prev().toggleClass('disabled');

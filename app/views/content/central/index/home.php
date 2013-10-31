@@ -88,14 +88,19 @@
 							<div class="alert alert-success span16">
 									<button type="button" class="close" data-dismiss="alert">&times;</button>
 									<span class="span5"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
-									<div class="unita span2" data-unita="<?php echo $cella_lista['unita']?>"><?php echo $cella_lista['unita']?></div>
 									
 									<?php 
 									if ($cella_lista['tipologia'] != 'cassetta' ) { ?>
+									<div class="unita span2" data-unita="<?php echo $cella_lista['unita']?>"><?php echo $cella_lista['unita']?></div>
 									<div class="quantity span3" data-quantita="<?php echo $cella_lista['quantita']?>">
 										<span class="meno">-</span>
 										<span class="quantita"><?php echo $cella_lista['quantita']?></span>
 										<span class="piu">+</span>
+									</div>
+									<?php }
+									else { ?>
+									<div class="quantity span5">
+									Modifica la cassetta
 									</div>
 									<?php } ?>
 									
