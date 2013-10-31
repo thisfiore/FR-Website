@@ -8,12 +8,17 @@ class CassettaController extends Controller {
 	}
 
 	public function postUpdateCassetta() {
-		$this->loadModules('ordine');
-		$ordineModels = new Ordine();
 		
 		$cassetta['id_prodotto'] = $_POST['id_prodotto'];
 		$cassetta['id_ordine_utente'] = $_POST['id_ordine_utente'];
 		$cassetta['id_cassetta'] = $_POST['id_cassetta'];
+		
+		if (isset($_POST['check']) && $_POST['check'] == 1) {
+			$this->formattaTabellaCassetta($cassetta);
+		}
+		
+		$this->loadModules('ordine');
+		$ordineModels = new Ordine();
 		
 		if (isset($_POST['pref']) && $_POST['pref'] >= 0) {
 			$cassetta['pref'] = $_POST['pref'];
@@ -40,6 +45,29 @@ class CassettaController extends Controller {
 	}
 	
 	
+	public function formattaTabellaCassetta($cassetta) {
+		$this->loadModules('ordine');
+		$ordineModels = new Ordine();
+		
+		$cassetta['stato'] = 1;
+		$cassetta['pref'] = 0;
+		unset ($cassetta['id_prodotto']);
+		
+// 		$this->boxPrint($cassetta);
+// 		die;
+		
+		$update = $ordineModels->updateFormatCassetta($cassetta);
+		
+		if (isset($update) && !empty($update)) {
+			$response = array( 	'status' => 'OK');
+			$this->view->renderJson($response);
+		}
+		else {
+			$response = array( 	'status' => 'ERR',
+					'message' => 'errore update cassetta');
+			$this->view->renderJson($response);
+		}
+	}
 	
 	
 	

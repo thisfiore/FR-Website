@@ -650,10 +650,9 @@ class IndexController extends Controller {
 				$cas['prodotti'][$key]['stato_in'] = $prodotto['stato'];
 				
 				$stato += $prodotto['stato'];
-				$pref += $prodotto['pref'];
 			}
 			
-			$resto = $nProdotti - ($stato + $pref);
+			$resto = $nProdotti - $stato;
 			
 			$this->view->setHead(null);
 			$this->view->load(null, '_partial/modal-cassetta', null, null);
