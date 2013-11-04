@@ -1,9 +1,9 @@
-<div>
+<div class="container-fluid" style="margin-top: 80px; padding: 0 100px; min-width: 366px;">
 <?php 
 if (isset($adminGruppi) && !empty($adminGruppi)) {
 	foreach ($adminGruppi as $gruppo) {
 ?>
-	<div style="background-color:#333; color: #FFF; padding:10px 0; width:600px;">
+	<div style="background-color:#333; color: #FFF; padding:10px; ">
 <?php 	echo $gruppo['nome_gruppo']."<br>";
 		echo $gruppo['indirizzo']."<br>";
 		echo $gruppo['ora_consegna']."<br>"; ?>
@@ -20,10 +20,10 @@ if (isset($adminGruppi) && !empty($adminGruppi)) {
 // echo"</pre>";
 // die; gianluca@70division.com
 ?> 
-	<div style="position: absolute; background-color:#666; color:#FFF; padding:10px 0; width:600px;"><?php echo $utente['nome'].' '.$utente['cognome'];?> 
+	<div style="background-color:#666; color:#FFF; padding:10px;"><?php echo $utente['nome'].' '.$utente['cognome'];?> 
 		<span style="float:right; padding:0px 10px;">Pagamento: <?php echo $utente['pagamento']?></span>
 	</div>
-	<div class="table-responsive" style="width:600px;">		
+	<div class="table-responsive" style="">		
 		<table class="table table-bordered row-fluid"> <!--  table-bordered-->
 			<tr bgcolor="#FF7373" style="color:#FFF;">
 				<td>Nome</td>

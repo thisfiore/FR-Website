@@ -398,6 +398,10 @@ div.center {
 .cassetta button { 
 	padding: 2px 5px;
 }
+.cassetta .alert {
+	cursor: pointer;
+}
+.cassetta .alert:hover { background: #CAE2C0; border-color: #B4C9A3; }
 
 
 

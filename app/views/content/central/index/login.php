@@ -83,29 +83,30 @@
 				<div class="spacerz"></div><div class="spacerz"></div>
 				<p class="title">Benvenuto su <strong>Food Republic</strong>!</p>
 				<div class="spacerz"></div>
-				<p>Food Republic è il modo migliore<br/>
-				   per comprare cose <em>buone</em><br/>
-				   ad un prezzo <em>equo</em>.</p>
+				<p>Vogliamo costruire assieme a te una nuova <em>comunità</em> del <br/>
+				   cibo, un mercato virtuale in cui domanda e offerta si <br/>
+				   incontrano <em>senza intermediari</em>.</p>
 				<div class="spacerz"></div>
 			</div>
 			<div class="slide2">
 				<img src="/img/intro2.png">
 				<div class="spacerz"></div><div class="spacerz"></div>
-				<p class="title">I prodotti di <strong>Food Republic</strong></p>
+				<p class="title">I prodotti sono <strong>freschissimi</strong></p>
 				<div class="spacerz"></div>
-				<p>sono <em>buoni</em>, <em>sani</em> e ad un prezzo <em>equo</em>.<br>
-  				   Tutti i prodotti sono bio, certificati o auto-certificati.</p>
-  				<p>I nostri prodotti sono così sani<br>
-				   principalmente perchè sono di stagione.</p>
+				<p>Potrai conoscere i produttori <em>vicini a te</em> ed acquistare <br>
+  				   direttamente da loro prodotti stagionali e genuini ad un <br>
+  				   prezzo <em>equo</em>.</p>
 				<div class="spacerz"></div>
 			</div>
 			<div class="slide3">
 				<img src="/img/intro3.png">
 				<div class="spacerz"></div><div class="spacerz"></div>
-				<p class="title">E non <strong>inquinano</strong>..</p>
+				<p class="title">..E non <strong>inquinano</strong></p>
 				<div class="spacerz"></div>
-				<p>ottimizza il sistema <em>trasporti</em> riducendo<br>
-				   al minimo i chilometri percorsi dal tuo cibo!</p>
+				<p>I camioncini di Food Republic <em>ottimizzano</em> i chilometri <br>
+				   percorsi dal cibo effettuando nello stesso giorno <br>
+				   i ritiri dai produttori e le consegne ai gruppi d’acquisto, <br>
+				   senza passare per il magazzino.</p>
 				<div class="spacerz"></div>
 			</div>
 			<!-- <div class="slide4">
