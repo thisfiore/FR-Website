@@ -180,7 +180,6 @@ $(document).ready(function(e) {
 					totale = totale.toFixed(2);
 				}
 				
-				
 				$('div.lista ul').prepend(responseHtml);
 				
 				$('div.subtotal').data('totale', totale);
@@ -198,7 +197,8 @@ $(document).ready(function(e) {
 	
 	//Chiude l'ordine con il pagamento alla consegna
 	$('.lista').on('click', 'button.paga', function(event) {
-		if ($(this).hasClass('unclick')) {
+		
+		if ($(this).hasClass('unclick') || !check) {
 			return false;
 		}
 		
@@ -304,6 +304,11 @@ $(document).ready(function(e) {
 	//Chiude la lista della spesa e passa alla schermata di pagamento
 	$('div.lista').on('click', 'button.btn-success', function(event) {
 		var id_ordine_admin = $(this).data('id_ordine_admin');
+	
+		var check = $('.lista ul li').data('id_ordine');
+		if (!check) {
+			return false;
+		}
 		
 		$.ajax({
 			url : '/index/checkOrdine/',
@@ -364,9 +369,14 @@ $(document).ready(function(e) {
 
 	//Articolo nella cassetta viene rimosso
 	$('#modal-cassetta').on('click', 'button.remove-article', function(event) {
-//		var elementi = $("li.prodotto").length;
-//		var pref = $("button.remove-article.active").length;
-//		var disabled = $("button.preference-article.active").length;
+		var elementi = $("li.prodotto").length;
+		var disabled = $("button.remove-article.active").length;
+		 
+//		Controllo che rimanga almeno un elemento
+		var control = elementi - disabled;
+		if (control == 1 && !$(this).hasClass('active')) {
+			return false;
+		}
 		
 //		Grafica opacizzazione e attiva/disattiva
 		$(this).parent().prev().toggleClass('disabled');

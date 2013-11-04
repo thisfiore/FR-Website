@@ -504,8 +504,10 @@ class IndexController extends Controller {
 		
 		$utente = $indexModel->selectUtente($_COOKIE['id_utente']);
 		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
-		$plain_text = '';
+// 		$plain_text = '';
+		$plain_text = '<table>';
 		$prezzo_finale = 0;
+		
 		
 		if (isset($listaSpesa) && !empty($listaSpesa)) {
 			$this->loadModules('prodotti');
@@ -519,11 +521,21 @@ class IndexController extends Controller {
 				
 				$idOrdine = $listaSpesa[$key]['id_ordine'];
 				
-				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.$prodotto['quantita'].' | '.($prodotto['quantita']*$item['prezzo_iva'])." euro \n";
+// 				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.$prodotto['quantita'].' | '.($prodotto['quantita']*$item['prezzo_iva'])." euro \n";
+				$plain_text .= 	'<tr>'.
+									'<td>'.$item['nome_prodotto'].'</td>'.
+									'<td>'.$item['unita'].'</td>'.
+									'<td>'.$item['prezzo_iva'].'</td>'.
+									'<td>'.$prodotto['quantita'].'</td>'.
+									'<td>'.($prodotto['quantita']*$item['prezzo_iva']).' euro </td>'.
+								'</tr>';
 				
 				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
 			}
 		}
+		
+// 		CHIUDE TABELLA ELEMENTI RICEVUTA
+		$plain_text .= '</table>';
 		
 		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.\nSegue la tua ricevuta e riepilogo della tua spesa.\n\nIl team Food Republic\n\nFood Republic S.r.l.\nVia Fratta, 2\n31020 San Zenone degli Ezzelini, TV\nPart. IVA 04496450265\n\nRicevuta 2013/".$idRicevuta."<br/>".$utente['nome']." ".$utente['cognome']."\n".$utente['cf']."\n".$utente['citta']."\n".$utente['via'].' '.$utente['civico'];
 		
@@ -531,7 +543,7 @@ class IndexController extends Controller {
 		$mime_boundary = "==MULTIPART_BOUNDARY_$semi_rand";
 		$mime_boundary_header = chr(34) . $mime_boundary . chr(34);
 		
-// DESTINATARIO MAIL
+// 		DESTINATARIO MAIL
 		$to = "".$utente['username'].", artuso.lucia@hotmail.it, ricca.prog@gmail.com"; //<".$utente['username']."> || $utente['nome']." ".$utente['cognome'].
 		$from = "FoodRepublic <info@food-republic.it>";
 		$subject = "La tua Ricevuta #".$idRicevuta;
@@ -549,10 +561,10 @@ class IndexController extends Controller {
 		    "Content-Type: multipart/alternative;\n" .
 		    "     boundary=" . $mime_boundary_header)) {
 		    
-		   $checkMail = $idOrdine;
+			$checkMail = $idOrdine;
 		}
 		else {
-		    $checkMail = $idOrdine;
+			$checkMail = $idOrdine;
 		}
 		
 		   return $checkMail;
