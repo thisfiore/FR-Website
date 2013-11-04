@@ -7,12 +7,12 @@
 
 ?>
 
-<div>
+<div class="container-fluid" style="margin-top: 80px; padding: 0 100px; min-width: 366px;">
 <?php 
 if (isset($adminProduttori) && !empty($adminProduttori)) {
 	foreach ($adminProduttori as $produttore) {
 ?>
-	<div style="background-color:#333; color: #FFF; padding:10px 0; width:600px;">
+	<div style="background-color:#333; color: #FFF; padding:10px; ">
 <?php 	echo $produttore['nome_produttore']."<br>";
 		echo $produttore['citta']."<br>";
 		echo $produttore['via'].' '.$produttore['civico'].' - '.$produttore['cap'].' '.$produttore['provincia']."<br>";
@@ -25,8 +25,8 @@ if (isset($adminProduttori) && !empty($adminProduttori)) {
 		if (isset($produttore['gruppi']) && !empty($produttore['gruppi'])) {
 			foreach ($produttore['gruppi'] as $gruppo) {
 ?> 
-	<div style="background-color:#666; color:#FFF; padding:10px 0; width:600px;"><?php echo $gruppo['nome_gruppo']; ?></div>
-	<div class="table-responsive" style="width:600px;">		
+	<div style="background-color:#666; color:#FFF; padding:10px; "><?php echo $gruppo['nome_gruppo']; ?></div>
+	<div class="table-responsive" style="">		
 		<table class="table table-bordered row-fluid"> <!--  table-bordered-->
 			<tr bgcolor="#FF7373" style="color:#FFF;">
 				<td>Nome</td>
