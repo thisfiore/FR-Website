@@ -26,43 +26,43 @@
 		<h3 class="text-center form-title"><button class="btn-mod back"><i class="icon-chevron-left"></i></button>Registrati</h3>
 		<form method="POST" class="signup-form" accept-charset="UTF-8">
 			<div class="control-group">
-				<input type="email" class="input-block-level tck" id="email" name="username" placeholder="Inserisci la tua mail">
+				<input type="email" class="input-block-level tck2" id="email" name="username" placeholder="Inserisci la tua mail">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="password" class="input-block-level tck" id="pswd1" name="password" placeholder="Scegli una password">
+				<input type="password" class="input-block-level tck2" id="pswd1" name="password" placeholder="Scegli una password">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="password" class="input-block-level tck" id="pswd2" placeholder="Ridigita la tua password">
+				<input type="password" class="input-block-level tck2" id="pswd2" placeholder="Ridigita la tua password">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level tck" name="nome" placeholder="Inserisci il tuo nome">
+				<input type="text" class="input-block-level tck2" name="nome" placeholder="Inserisci il tuo nome">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level tck" name="cognome" placeholder="Inserisci il tuo cognome">
+				<input type="text" class="input-block-level tck2" name="cognome" placeholder="Inserisci il tuo cognome">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level tck" name="cf" placeholder="Inserisci il tuo codice fiscale">
+				<input type="text" class="input-block-level" name="cf" placeholder="Inserisci il tuo codice fiscale">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level tck" name="citta" placeholder="Inserisci la tua citt&agrave;">
+				<input type="text" class="input-block-level" name="citta" placeholder="Inserisci la tua citt&agrave;">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level tck" name="via" placeholder="Inserisci la tua via">
+				<input type="text" class="input-block-level" name="via" placeholder="Inserisci la tua via">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level tck" name="civico" placeholder="Inserisci il tuo n° civico">
+				<input type="text" class="input-block-level" name="civico" placeholder="Inserisci il tuo n° civico">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="email" class="input-block-level tck" id="mail_inviter" name="mail_inviter" placeholder="Immetti la mail dell'utente che ti ha invitato">
+				<input type="email" class="input-block-level tck2" id="mail_inviter" name="mail_inviter" placeholder="Immetti la mail dell'utente che ti ha invitato">
 				<span class="help-inline hide"></span>
 			</div>
 		</form>

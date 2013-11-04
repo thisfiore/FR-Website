@@ -185,8 +185,9 @@ $(document).ready(function(e) {
 				beforeSubmit : function() {
 					var check = true;
 					
+					console.log(check);
 	//				Controllo se i campi obbligatori sono inseriti
-					$('.tck').each(function(index) {
+					$('.tck2').each(function(index) {
 						if($(this).val() == '') { 
 							$(this).parent('.control-group').addClass('error');
 							$(this).next('span').text('Ti sei dimenticato qualcosa qui sopra').show(200);
@@ -223,7 +224,6 @@ $(document).ready(function(e) {
 						check = false;
 					}
 					
-
 					var mail_inviter = $("#mail_inviter").val();
 					$.ajax({
 						url : '/index/emailInvito/',
@@ -254,7 +254,6 @@ $(document).ready(function(e) {
 					
 	//				Se ci sono stati errori blocco tutto
 					if (check == false) {
-						console.log('here');
 						return false;
 					}
 					

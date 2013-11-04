@@ -364,9 +364,9 @@ $(document).ready(function(e) {
 
 	//Articolo nella cassetta viene rimosso
 	$('#modal-cassetta').on('click', 'button.remove-article', function(event) {
-		var elementi = $("li.prodotto").length;
-		var pref = $("button.remove-article.active").length;
-		var disabled = $("button.preference-article.active").length;
+//		var elementi = $("li.prodotto").length;
+//		var pref = $("button.remove-article.active").length;
+//		var disabled = $("button.preference-article.active").length;
 		
 //		Grafica opacizzazione e attiva/disattiva
 		$(this).parent().prev().toggleClass('disabled');
@@ -407,6 +407,7 @@ $(document).ready(function(e) {
 					if (!$(this).hasClass('hide')) {
 						$(this).addClass('hide');
 					}
+					
 					$(this).removeClass('active');
 					
 					$(this).siblings('.remove-article').removeClass('active');
@@ -414,8 +415,9 @@ $(document).ready(function(e) {
 				});
 				check = 1;
 			} else {
+
 				$('.preference-article').each(function( index ) {
-					if (!$(this).siblings('.remove-article').hasClass('active') && !$(this).removeClass('active')) {
+					if (!$(this).siblings('.remove-article').hasClass('active') && !$(this).hasClass('active')) {
 						$(this).removeClass('hide');	
 					}
 				});
@@ -466,7 +468,6 @@ $(document).ready(function(e) {
 			
 			pref = 0;
 		}
-		
 		
 		$.ajax({
 			url : '/cassetta/updateCassetta/',
