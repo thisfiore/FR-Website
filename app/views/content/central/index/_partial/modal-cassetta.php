@@ -48,8 +48,8 @@
 </div>
 
 <div class="modal-footer">
-	<button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Chiudi</button>
-	<button class="btn btn-large btn-success" type="submit">Procedi</button>
+<!-- 	<button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Chiudi</button> -->
+	<button class="btn btn-large btn-success" data-dismiss="modal" aria-hidden="true">Procedi</button>
 </div>
 
 

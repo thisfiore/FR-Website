@@ -185,7 +185,6 @@ $(document).ready(function(e) {
 				beforeSubmit : function() {
 					var check = true;
 					
-					console.log(check);
 	//				Controllo se i campi obbligatori sono inseriti
 					$('.tck2').each(function(index) {
 						if($(this).val() == '') { 
@@ -235,7 +234,7 @@ $(document).ready(function(e) {
 							email : email,
 						},
 						success : function(response) {
-							
+			
 							if (response.status == 'USER') {
 								$("#email").parent('.control-group').addClass('error');
 								$("#email").next('span').text(response.message).show(200);
