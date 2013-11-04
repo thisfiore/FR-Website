@@ -32,7 +32,12 @@ Il tuo ordine:
  				</div>
  			</li>
 			<?php 
-			foreach ($listaSpesa as $prodotto) { ?>
+			foreach ($listaSpesa as $prodotto) { 
+// 			NEL CASO SIA UNA CASSETTA QUANLSIASI
+				if ($prodotto['unita'] == "cassetta") { ?>
+<?php 			}
+				else {
+?>
 				<li class="item row-fluid">
 					<div class="alert alert-success span16">
 						<span  style ="margin-left:5px" class="span8"><?php echo $prodotto['nome_prodotto']?></span>
@@ -41,6 +46,7 @@ Il tuo ordine:
 					</div>
 				</li>		
 			<?php 
+				}
 			}
 			?>
 		</ul>

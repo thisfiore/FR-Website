@@ -49,6 +49,8 @@ class AdminController extends Controller {
 			$this->loadModules('prodotti');
 			$prodottiModels = new Prodotti();
 			
+
+			
 			foreach ($elencoOrdini as $ordine) {
 				$prodotto = $prodottiModels->selectProdottoAdminProduttori($ordine['id_prodotto']);
 				
@@ -63,6 +65,14 @@ class AdminController extends Controller {
 					$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']] = $prodotto;
 					$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['quantita'] = $ordine['quantita'];
 					$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['totale'] = $prodotto['prezzo_iva']*$ordine['quantita'];
+					
+					if ($prodotto['unita'] == "Cassetta") {
+						$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'] = $prodottiModels->selectCassettaPay($prodotto['id_prodotto'], $ordine['id_ordine']);
+						
+						foreach ($adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'] as $index => $prodottoCassetta) {
+							$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'][$index] = array_merge($adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'][$index], $prodottiModels->selectProdottoCassetta($prodottoCassetta['id_prodotto']));
+						}
+					}
 				}
 				else {
 					$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['quantita'] += $ordine['quantita'];
@@ -78,7 +88,7 @@ class AdminController extends Controller {
 				
 			}
 			
-// 			$this->boxPrint($admin);
+// 			$this->boxPrint($adminProduttori);
 // 			die;
 			
 			if ($this->isAjax()) {

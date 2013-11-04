@@ -41,7 +41,7 @@ class IndexController extends Controller {
 				}
 			}
 			else {
-				$response = array( 'status' => 'ERR', 
+				$response = array( 	'status' => 'ERR', 
 									'message' => 'errore update ordine utente');
 				$this->view->renderJson($response);
 			}
@@ -448,6 +448,15 @@ class IndexController extends Controller {
 				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
 				$listaSpesa[$key]['prezzo_iva'] = $item['prezzo_iva'];
 				$listaSpesa[$key]['unita'] = $item['unita'];
+				$listaSpesa[$key]['tipologia'] = $item['tipologia'];
+				
+				if ($item['tipologia'] == "cassetta") {
+					$listaSpesa[$key]['cassetta'] = $prodottiModels->selectCassettaPay($prodotto['id_prodotto'], $listaSpesa[$key]['id_ordine']);
+					
+					foreach ($listaSpesa[$key]['cassetta'] as $index => $prodottoCassetta) {
+						$listaSpesa[$key]['cassetta'][$index] = array_merge($listaSpesa[$key]['cassetta'][$index], $prodottiModels->selectProdottoCassetta($prodottoCassetta['id_prodotto']));
+					}
+				}
 				$listaSpesa[$key]['totale_prodotto'] = number_format(($prodotto['quantita'] * $item['prezzo_iva']), 2, '.', '');
 	
 				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
@@ -456,14 +465,14 @@ class IndexController extends Controller {
 	
 		$server = $_SERVER['HTTP_HOST'];
 		
-// 		$this->boxPrint($server);
-// 		die;
-		
 		$prezzo_finale = number_format($prezzo_finale, 2, '.', '');
 		
 		$ordineAdmin = $ordineModels->selectLastOrdineAdmin();
 		$array = explode("-", $ordineAdmin['data_consegna']);
 		$ordineAdmin['data_consegna'] = $array[2].'/'.$array[1].'/'.$array[0];
+		
+// 		$this->boxPrint($listaSpesa);
+// 		die;
 		
 		$this->view->load('header', 'pay', null, null);
 		$this->view->render( array(	'utente' => $utente,

@@ -56,6 +56,18 @@ class Prodotti extends DB {
 		return $prodotti;
 	}
 	
+	
+	public function selectProdottoCassetta ($idProdotto) {
+		$select = $this->select()
+						->from ('prodotti', ' nome_prodotto, unita ')
+						->where ('id_prodotto = ', $idProdotto);
+	
+		$prodotti = $this->fetchRow($select);
+	
+		return $prodotti;
+	}
+	
+	
 	public function selectProdottoMinimal ($idProdotto) {
 		$select = $this->select()
 						->from ('prodotti', ' nome_prodotto, prezzo, unita, iva, stato, user_update, tipologia')
@@ -89,6 +101,17 @@ class Prodotti extends DB {
 						->where ('id_cassetta = ', $idCassetta)
 						->where ('id_ordine_utente = ', $idOrdineUtente);
 		
+		$prodotti = $this->fetchAll($select);
+		return $prodotti;
+	}
+	
+	
+	public function selectCassettaPay ($idCassetta, $idOrdineUtente) {
+		$select = $this->select()
+						->from ('cassetta', ' id_prodotto, pref, stato')
+						->where ('id_cassetta = ', $idCassetta)
+						->where ('id_ordine_utente = ', $idOrdineUtente);
+	
 		$prodotti = $this->fetchAll($select);
 		return $prodotti;
 	}
