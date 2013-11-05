@@ -1,5 +1,11 @@
 $(document).ready(function(e) {
 	
+
+	$('.cassa').on('click', function() {
+		$(this).find('ul').toggle(100);
+		$(this).find('.interaction').toggleClass('active');
+	})
+
 	var time = 100;
 
 	$('.prodotti ul li').popover();
