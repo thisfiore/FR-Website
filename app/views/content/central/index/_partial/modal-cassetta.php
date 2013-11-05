@@ -44,7 +44,8 @@
 	<?php } ?>
 </ul>
 <p>Puoi decidere di rimuovere uno o più articoli per personalizzare la tua cassetta. Ti basterà cliccare su <button class="btn btn-danger"><i class="icon-white icon-ban-circle"></i></button></p>
-<p>Nel caso tu decida di rimuovere uno o più articoli potrai dirci cosa ti piacerebbe ricevere in più per non far cambiare il prezzo totale della cassetta. Clicca su <button class="btn btn-success"><i class="icon-white icon-plus-sign"></i></button></p>
+<p>Una volta eliminati alcuni prodotti potrai indicare una preferenza cliccando su <button class="btn btn-success"><i class="icon-white icon-plus-sign"></i></button></p>
+<p>Il costo della cassetta rimarrà invariato. Sarà il produttore a decidire come verranno fatte eventuali ridistribuzioni.</p>
 </div>
 
 <div class="modal-footer">

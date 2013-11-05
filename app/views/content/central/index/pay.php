@@ -34,7 +34,39 @@ Il tuo ordine:
 			<?php 
 			foreach ($listaSpesa as $prodotto) { 
 // 			NEL CASO SIA UNA CASSETTA QUANLSIASI
-				if ($prodotto['unita'] == "cassetta") { ?>
+				// echo '<pre>';
+				// print_r($listaSpesa);
+				// echo '</pre>';
+				if ($prodotto['unita'] == "Cassetta") { ?>
+				<li class="item row-fluid cassa">
+					<div class="alert alert-success span16">
+						<span  style="margin-left:5px" class="span8"><?php echo $prodotto['nome_prodotto']?></span>
+						<span class="quantita span3"><?php echo $prodotto['quantita'].' '.$prodotto['unita']?></span>
+						<span class="partial span4 text-right"><?php echo $prodotto['totale_prodotto']?>€</span>
+						<br>
+						<ul class="checkout hide">
+						<?php 
+						foreach ( $prodotto['cassetta'] as $elemento) { ?>
+							<li>
+								<?php 
+									if ( $elemento['stato'] == '1' ) {
+										print_r($elemento['nome_prodotto']); 
+									} else {
+										echo '<em>';
+										print_r($elemento['nome_prodotto']); 
+										echo '</em>';
+									}
+									if ( $elemento['pref'] == '1' ) {
+										echo '<span class="pull-right">+</span>';
+									} 
+								?>
+							</li>
+						<?php } ?>
+						</ul>
+						<span class="interaction">+</span>
+					</div>
+				</li>
+				
 <?php 			}
 				else {
 ?>
@@ -43,6 +75,7 @@ Il tuo ordine:
 						<span  style ="margin-left:5px" class="span8"><?php echo $prodotto['nome_prodotto']?></span>
 						<span class="quantita span3"><?php echo $prodotto['quantita'].' '.$prodotto['unita']?></span>
 						<span class="partial span4 text-right"><?php echo $prodotto['totale_prodotto']?>€</span>
+						
 					</div>
 				</li>		
 			<?php 

@@ -7,7 +7,7 @@
     <meta name="author" content="author of the site">
     
 	    <title>Food Republic</title>
-	    <link rel="shortcut icon" href="img/favicon.ico" />
+	    <link rel="icon" href="/img/favicon.ico" />
 	
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <?php
