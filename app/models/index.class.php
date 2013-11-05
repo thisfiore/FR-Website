@@ -41,6 +41,16 @@ class Index extends DB {
 		return $utente;
 	}
 	
+	public function selectUtentePerCassetta ($idUtente) {
+		$select = $this->select()
+						->from ('utenti', array('id_utente', 'id_gruppo', 'nome', 'cognome', 'citta', 'via', 'civico') )
+						->join ('gruppi', 'gruppi.id_gruppo = utenti.id_gruppo', array('nome_gruppo', 'indirizzo') )
+						->where('id_utente = ', $idUtente);
+	
+		$utente = $this->fetchRow($select);
+		return $utente;
+	}
+	
 	public function selectUtenteSingolo ($idUtente) {
 		$select = $this->select()
 						->from ('utenti', array('id_utente', 'id_gruppo', 'nome', 'cognome', 'citta', 'via', 'civico') )

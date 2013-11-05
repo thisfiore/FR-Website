@@ -37,7 +37,6 @@ class AdminController extends Controller {
 		
 		$elencoOrdini = $ordineModels->selectOrdiniUtentiProduttori($idOrdineAdmin);
 		
-		
 		if (isset($elencoOrdini) && !empty($elencoOrdini)) {
 			$produttori = $ordineModels->selectProduttori();
 			$adminProduttori = array();
@@ -49,10 +48,22 @@ class AdminController extends Controller {
 			$this->loadModules('prodotti');
 			$prodottiModels = new Prodotti();
 			
-
-			
 			foreach ($elencoOrdini as $ordine) {
 				$prodotto = $prodottiModels->selectProdottoAdminProduttori($ordine['id_prodotto']);
+				
+// 				Compilo la cassetta se esiste
+				if ($prodotto['unita'] == "Cassetta") {
+					if (!isset($cassetta) || empty($cassetta)){
+						$cassetta = array();
+					}
+					
+					if (strpos($prodotto['nome_prodotto'],'verdura') !== false) {
+						$cassetta['verdura'][] = $this->getCassetta($prodotto, $ordine);
+					}
+					else {
+						$cassetta['frutta'][] = $this->getCassetta($prodotto, $ordine);
+					}
+				}
 				
 				if (!isset($adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]) || empty($adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']])) {
 					$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']] = $ordineModels->selectGruppoPerProduttori($ordine['id_gruppo']);
@@ -66,13 +77,13 @@ class AdminController extends Controller {
 					$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['quantita'] = $ordine['quantita'];
 					$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['totale'] = $prodotto['prezzo_iva']*$ordine['quantita'];
 					
-					if ($prodotto['unita'] == "Cassetta") {
-						$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'] = $prodottiModels->selectCassettaPay($prodotto['id_prodotto'], $ordine['id_ordine']);
+// 					if ($prodotto['unita'] == "Cassetta") {
+// 						$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'] = $prodottiModels->selectCassettaPay($prodotto['id_prodotto'], $ordine['id_ordine']);
 						
-						foreach ($adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'] as $index => $prodottoCassetta) {
-							$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'][$index] = array_merge($adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'][$index], $prodottiModels->selectProdottoCassetta($prodottoCassetta['id_prodotto']));
-						}
-					}
+// 						foreach ($adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'] as $index => $prodottoCassetta) {
+// 							$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'][$index] = array_merge($adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['cassetta'][$index], $prodottiModels->selectProdottoCassetta($prodottoCassetta['id_prodotto']));
+// 						}
+// 					}
 				}
 				else {
 					$adminProduttori[$prodotto['id_produttore']]['gruppi'][$ordine['id_gruppo']]['prodotto'][$prodotto['id_prodotto']]['quantita'] += $ordine['quantita'];
@@ -88,16 +99,17 @@ class AdminController extends Controller {
 				
 			}
 			
-// 			$this->boxPrint($adminProduttori);
+// 			$this->boxPrint($cassetta);
 // 			die;
 			
 			if ($this->isAjax()) {
 				$this->view->setHead(null);
 				$this->view->load(null, 'adminProduttori', null, null);
 				$this->view->render( array( 'adminProduttori' => $adminProduttori,
-											'utente' => $utente,
+											'allIdOrdineAdmin' => $allIdOrdineAdmin,
+											'cassetta' => $cassetta,
 											'idOrdineAdmin' => $idOrdineAdmin,
-											'allIdOrdineAdmin' => $allIdOrdineAdmin) );
+											'utente' => $utente ) );
 			}
 			else {
 				$adminScript = array(
@@ -108,11 +120,12 @@ class AdminController extends Controller {
 					
 				$this->view->addScripts($adminScript);
 				$this->view->load('header_admin', 'adminProduttori', null, null);
-				$this->view->render( array( 'adminProduttori' => $adminProduttori,
-											'utente' => $utente,
-											'idOrdineAdmin' => $idOrdineAdmin,
+				$this->view->render( array(	'admin' => $admin,	
+											'adminProduttori' => $adminProduttori,
 											'allIdOrdineAdmin' => $allIdOrdineAdmin,
-											'admin' => $admin ) );
+											'cassetta' => $cassetta,
+											'idOrdineAdmin' => $idOrdineAdmin,
+											'utente' => $utente ) );
 			}
 
 		}
@@ -248,9 +261,25 @@ class AdminController extends Controller {
 				$this->view->renderJson($response);
 			}
 		}
+	}
+	
+	
+	public function getCassetta($cassetta, $ordine){
+		$this->loadModules('prodotti');
+		$prodottiModels = new Prodotti();
+		$this->loadModules('index');
+		$indexModels = new Index();
 		
+// 		$this->boxPrint($ordine);
+// 		die;
+		$elementiCassetta = $indexModels->selectUtentePerCassetta($ordine['id_utente']);
+		$elementiCassetta['cassetta'] = $prodottiModels->selectCassettaPay($cassetta['id_prodotto'], $ordine['id_ordine']);
 		
+		foreach ($elementiCassetta['cassetta'] as $index => $prodottoCassetta) {
+			$elementiCassetta['cassetta'][$index] = array_merge($elementiCassetta['cassetta'][$index], $prodottiModels->selectProdottoCassetta($prodottoCassetta['id_prodotto']));
+		}
 		
+		return $elementiCassetta;
 	}
 	
 	

@@ -1,7 +1,7 @@
 <?php 
 
 // echo "<pre>";
-// print_r($adminProduttori);
+// print_r($cassetta);
 // echo "</pre>";
 // die;
 
@@ -63,5 +63,72 @@ if (isset($adminProduttori) && !empty($adminProduttori)) {
 else { 
 ?>
 
-<?php } ?>
+<?php }
+
+
+if (isset($cassetta) && !empty($cassetta)) {
+
+// 	CASSETTA VERDURA
+	if (isset($cassetta['verdura']) && !empty($cassetta['verdura'])) {
+		echo "<div style='background-color:#666; color:#FFF; padding:10px;'>CASSETTA VERDURA</div>";
+		echo "<table class='table table-bordered row-fluid'>";
+		$i = 0; 
+		
+		foreach ($cassetta['verdura'] as $cassVerdura) {
+			
+			if ($i == 0) { 
+				echo '<tr bgcolor="#FF7373" style="color:#FFF;">';
+				echo '<td></td>';
+				$i = 1;
+				
+				foreach ($cassVerdura['cassetta'] as $verdura) { 
+					echo "<td>".$verdura['nome_prodotto']."</td>";
+				} 
+				echo "</tr>";
+			}
+			
+			echo "<tr style='background:rgba(255,255,255,0.6);'>";
+			echo "<td>".$cassVerdura['nome'].' '.$cassVerdura['cognome']."</td>";
+			
+ 			foreach ($cassVerdura['cassetta'] as $verdura) {
+				echo "<td>".$verdura['stato'].'/'.$verdura['pref']."</td>";
+			}
+			
+			echo "</tr>";
+		}
+		echo "</table>";
+	}
+
+// 	CASSETTA FRUTTA
+	if (isset($cassetta['frutta']) && !empty($cassetta['frutta'])) {
+		echo "<div style='background-color:#666; color:#FFF; padding:10px;'>CASSETTA FRUTTA</div>";
+		echo "<table class='table table-bordered row-fluid'>";
+		$i = 0;
+	
+		foreach ($cassetta['frutta'] as $cassVerdura) {
+				
+			if ($i == 0) {
+				echo '<tr bgcolor="#FF7373" style="color:#FFF;">';
+				echo '<td></td>';
+				$i = 1;
+	
+				foreach ($cassVerdura['cassetta'] as $verdura) {
+					echo "<td>".$verdura['nome_prodotto']."</td>";
+				}
+				echo "</tr>";
+			}
+				
+			echo "<tr style='background:rgba(255,255,255,0.6);'>";
+			echo "<td>".$cassVerdura['nome'].' '.$cassVerdura['cognome']."</td>";
+				
+			foreach ($cassVerdura['cassetta'] as $verdura) {
+				echo "<td>".$verdura['stato'].'/'.$verdura['pref']."</td>";
+			}
+				
+			echo "</tr>";
+		}
+		echo "</table>";
+	}
+} ?>
+
 </div>
