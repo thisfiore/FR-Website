@@ -198,9 +198,9 @@ $(document).ready(function(e) {
 	//Chiude l'ordine con il pagamento alla consegna
 	$('.lista').on('click', 'button.paga', function(event) {
 		
-		if ($(this).hasClass('unclick') || !check) {
-			return false;
-		}
+//		if ($(this).hasClass('unclick') || !check) {
+//			return false;
+//		}
 		
 		var that = $(this);
 		var id_ordine_admin = $(this).data('id_ordine_admin');
