@@ -53,7 +53,7 @@ $(document).ready(function(e) {
 	// quando schiaccio bottone entra
 	// 1. animazione
 	// 2. invio form
-	$('.login').on('click', function() {
+	$('.login').on('click', function(event) {
 		var check = $(this).data('check');
 		if ( check == 0 ) {
 			var sliding = $('#login').css('margin-top');

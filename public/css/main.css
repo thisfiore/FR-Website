@@ -561,7 +561,10 @@ div.center {
 form { 
 	width: 90%;
 	margin: auto; 
-	} form input { padding: 20px 10px !important; }
+	} 
+	form input.big { 
+		height: 42px;
+	}
 	.form-title {
 		position: relative;
 		color: #4f4f4f;

@@ -62,6 +62,11 @@ class IndexController extends Controller {
 			die;
 		}
 		else {
+			$browser = $_SERVER['HTTP_USER_AGENT'];
+			
+// 			$this->boxPrint(strpos($browser, 'Mozilla'));
+// 			die;
+			
 			$loginScript = array(
 					"login" => array(
 							"type" => "text/javascript",
@@ -70,7 +75,7 @@ class IndexController extends Controller {
 			$this->view->addScripts($loginScript);
 			
 			$this->view->load(null, 'login', null, null);
-			$this->view->render();
+			$this->view->render( array('browser' => $browser) );
 		}
 	}
 	
