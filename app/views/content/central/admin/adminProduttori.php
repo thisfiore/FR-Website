@@ -61,9 +61,8 @@ if (isset($adminProduttori) && !empty($adminProduttori)) {
 	} 
 }
 else { 
-?>
-
-<?php }
+// 	non  lo sooo!
+}
 
 
 if (isset($cassetta) && !empty($cassetta)) {

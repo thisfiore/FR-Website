@@ -46,6 +46,8 @@ Il tuo ordine:
 						<br>
 						<ul class="checkout hide">
 						<?php 
+						if (isset($prodotto['cassetta']) && !empty($elemento) ) {
+						
 						foreach ( $prodotto['cassetta'] as $elemento) { ?>
 							<li>
 								<?php 
@@ -61,7 +63,8 @@ Il tuo ordine:
 									} 
 								?>
 							</li>
-						<?php } ?>
+						<?php }
+						} ?>
 						</ul>
 						<span class="interaction">+</span>
 					</div>
