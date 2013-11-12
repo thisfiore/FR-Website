@@ -154,7 +154,7 @@ $(document).ready(function(e) {
 	// click su bottone registrati
 	// 1. animazione
 	// 2.invio form
-	$('.signup').on('click', function() {
+	$('.signup').on('click', function(event) {
 		var check = $(this).data('check');
 		if ( check == 0 ) {
 			var sliding = $('#signup').css('margin-top');
