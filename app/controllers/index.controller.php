@@ -58,7 +58,7 @@ class IndexController extends Controller {
 		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
 			$this->idLoggedUser = $_COOKIE['id_utente'];
 			
-			$this->getHome($this->idLoggedUser);
+			$this->getHome();
 			die;
 		}
 		else {
@@ -186,14 +186,25 @@ class IndexController extends Controller {
 	}
 
 	
-	public function getHome() {
+	public function getHome($news = null) {
+		
+// 		print_r($news);
+// 		die;
+		$this->loadModules('index');
+		$indexModels = new Index();
+		$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
+		
+		if (!$news) {
+			$this->view->load('header', 'news', null, null);
+			$this->view->render(array ( 'utente' => $utente) );
+			die;
+		}
 		
 		$this->loadModules('prodotti');
 		$prodottiModels = new Prodotti();
-		$this->loadModules('index');
-		$indexModels = new Index();
 		
-		$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
+		
+		
 		$prodotti = $prodottiModels->selectAllProducts();
 		$produttori = $prodottiModels->selectAllProduttori();
 		
