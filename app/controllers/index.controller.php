@@ -187,12 +187,13 @@ class IndexController extends Controller {
 
 	
 	public function getHome($news = null) {
-		
-// 		print_r($news);
-// 		die;
+
 		$this->loadModules('index');
 		$indexModels = new Index();
 		$utente = $indexModels->selectUtente($_COOKIE['id_utente']);
+		
+// 		Go Home!
+// 		$news = 1;
 		
 		if (!$news) {
 			$this->view->load('header', 'news', null, null);
@@ -414,6 +415,7 @@ class IndexController extends Controller {
 		$ordine['id_ordine_admin'] = $idOrdineAdmin;
 		$ordine['pagamento'] = 'consegna';
 		
+// 		$update = 1; 
 		$update = $ordineModel->updateOrdineUtente($ordine);
 		
 		if (isset($update) && !empty($update)) {
@@ -423,8 +425,8 @@ class IndexController extends Controller {
 			
 			$insert = $ordineModel->insertRicevuta($ordineUtenteMaster);
 			
-			$idOrdine['id_ordine'] = $this->sendMail($idOrdineAdmin, $insert);
-
+			$idOrdine['id_ordine'] = $this->sendMandrillMail($idOrdineAdmin, $insert);
+			
 			$response = array('status' => 'OK' );
 			$this->view->renderJson($response);
 		}
@@ -508,83 +510,81 @@ class IndexController extends Controller {
 	}
 	
 	
-	public function sendMail ($idOrdineAdmin, $idRicevuta) {
-		$this->loadModules('ordine');
-		$ordineModel = new Ordine();
-		$this->loadModules('index');
-		$indexModel = new Index();
+// 	public function sendMail ($idOrdineAdmin, $idRicevuta) {
+// 		$this->loadModules('ordine');
+// 		$ordineModel = new Ordine();
+// 		$this->loadModules('index');
+// 		$indexModel = new Index();
 		
-		$ordineAdmin = $ordineModel->selectLastOrdineAdmin();
-		$array = explode("-", $ordineAdmin['data_consegna']);
-		$ordineAdmin['data_consegna'] = $array[2].'/'.$array[1].'/'.$array[0];
+// 		$ordineAdmin = $ordineModel->selectLastOrdineAdmin();
+// 		$array = explode("-", $ordineAdmin['data_consegna']);
+// 		$ordineAdmin['data_consegna'] = $array[2].'/'.$array[1].'/'.$array[0];
 		
-		$utente = $indexModel->selectUtente($_COOKIE['id_utente']);
-		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
-		$plain_text = '';
-// 		$plain_text = '<table>';
-		$prezzo_finale = 0;
+// 		$utente = $indexModel->selectUtente($_COOKIE['id_utente']);
+// 		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
+// 		$plain_text = '';
+// 		$prezzo_finale = 0;
 		
+// 		if (isset($listaSpesa) && !empty($listaSpesa)) {
+// 			$this->loadModules('prodotti');
+// 			$prodottiModels = new Prodotti();
 		
-		if (isset($listaSpesa) && !empty($listaSpesa)) {
-			$this->loadModules('prodotti');
-			$prodottiModels = new Prodotti();
-		
-			foreach ($listaSpesa as $key => $prodotto) {
-				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
-				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
-				$listaSpesa[$key]['prezzo_iva'] = $item['prezzo_iva'];
-				$listaSpesa[$key]['unita'] = $item['unita'];
+// 			foreach ($listaSpesa as $key => $prodotto) {
+// 				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
+// 				$listaSpesa[$key]['nome_prodotto'] = $item['nome_prodotto'];
+// 				$listaSpesa[$key]['prezzo_iva'] = $item['prezzo_iva'];
+// 				$listaSpesa[$key]['unita'] = $item['unita'];
 				
-				$idOrdine = $listaSpesa[$key]['id_ordine'];
+// 				$idOrdine = $listaSpesa[$key]['id_ordine'];
 				
-				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.$prodotto['quantita'].' | '.($prodotto['quantita']*$item['prezzo_iva'])." euro \n";
-// 				$plain_text .= 	'<tr>'.
-// 									'<td>'.$item['nome_prodotto'].'</td>'.
-// 									'<td>'.$item['unita'].'</td>'.
-// 									'<td>'.$item['prezzo_iva'].'</td>'.
-// 									'<td>'.$prodotto['quantita'].'</td>'.
-// 									'<td>'.($prodotto['quantita']*$item['prezzo_iva']).' euro </td>'.
-// 								'</tr>';
+// 				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.$prodotto['quantita'].' | '.($prodotto['quantita']*$item['prezzo_iva'])." euro \n";
+// // 				$plain_text .= 	'<tr>'.
+// // 									'<td>'.$item['nome_prodotto'].'</td>'.
+// // 									'<td>'.$item['unita'].'</td>'.
+// // 									'<td>'.$item['prezzo_iva'].'</td>'.
+// // 									'<td>'.$prodotto['quantita'].'</td>'.
+// // 									'<td>'.($prodotto['quantita']*$item['prezzo_iva']).' euro </td>'.
+// // 								'</tr>';
 				
-				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
-			}
-		}
+// 				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
+// 			}
+// 		}
 		
-// 		CHIUDE TABELLA ELEMENTI RICEVUTA
-// 		$plain_text .= '</table>';
+// // 		CHIUDE TABELLA ELEMENTI RICEVUTA
+// // 		$plain_text .= '</table>';
 		
-		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.\nSegue la tua ricevuta e riepilogo della tua spesa.\n\nIl team Food Republic\n\nFood Republic S.r.l.\nVia Fratta, 2\n31020 San Zenone degli Ezzelini, TV\nPart. IVA 04496450265\n\nRicevuta 2013/".$idRicevuta."<br/>".$utente['nome']." ".$utente['cognome']."\n".$utente['cf']."\n".$utente['citta']."\n".$utente['via'].' '.$utente['civico'];
+// 		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.\nSegue la tua ricevuta e riepilogo della tua spesa.\n\nIl team Food Republic\n\nFood Republic S.r.l.\nVia Fratta, 2\n31020 San Zenone degli Ezzelini, TV\nPart. IVA 04496450265\n\nRicevuta 2013/".$idRicevuta."<br/>".$utente['nome']." ".$utente['cognome']."\n".$utente['cf']."\n".$utente['citta']."\n".$utente['via'].' '.$utente['civico'];
 		
-		$semi_rand = md5(time());
-		$mime_boundary = "==MULTIPART_BOUNDARY_$semi_rand";
-		$mime_boundary_header = chr(34) . $mime_boundary . chr(34);
+// 		$semi_rand = md5(time());
+// 		$mime_boundary = "==MULTIPART_BOUNDARY_$semi_rand";
+// 		$mime_boundary_header = chr(34) . $mime_boundary . chr(34);
 		
-// 		DESTINATARIO MAIL
-		$to = "".$utente['username'].", artuso.lucia@hotmail.it, ricca.prog@gmail.com"; //<".$utente['username']."> || $utente['nome']." ".$utente['cognome'].
-		$from = "FoodRepublic <info@food-republic.it>";
-		$subject = "La tua Ricevuta #".$idRicevuta;
+// // 		DESTINATARIO MAIL
+// 		$to = "".$utente['username'].", artuso.lucia@hotmail.it, ricca.prog@gmail.com"; //<".$utente['username']."> || $utente['nome']." ".$utente['cognome'].
+// 		$from = "FoodRepublic <info@food-republic.it>";
+// 		$subject = "La tua Ricevuta #".$idRicevuta;
 		
-// 		$this->boxPrint($to);
-// 		$this->boxPrint($utente); gianluca@70division.com
-// 		die;
+// // 		$this->boxPrint($to);
+// // 		$this->boxPrint($utente); gianluca@70division.com
+// // 		die;
 		
-		$body = "$notice_text\n\n$plain_text\n## TOTALE $prezzo_finale euro\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l'80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
-".$utente['indirizzo'].", il giorno ".$ordineAdmin['data_consegna']." alle ore ".$utente['ora_consegna'];
+// 		$body = "$notice_text\n\n$plain_text\n## TOTALE $prezzo_finale euro\n\nGrazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l'80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.\n\nStampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:\n
+// ".$utente['indirizzo'].", il giorno ".$ordineAdmin['data_consegna']." alle ore ".$utente['ora_consegna'];
 				
-		if (@mail($to, $subject, $body,
-		    "From: " . $from . "\n" .
-		    "MIME-Version: 1.0\n" .
-		    "Content-Type: multipart/alternative;\n" .
-		    "     boundary=" . $mime_boundary_header)) {
+// 		if (@mail($to, $subject, $body,
+// 		    "From: " . $from . "\n" .
+// 		    "MIME-Version: 1.0\n" .
+// 		    "Content-Type: multipart/alternative;\n" .
+// 		    "     boundary=" . $mime_boundary_header)) {
 		    
-			$checkMail = $idOrdine;
-		}
-		else {
-			$checkMail = $idOrdine;
-		}
+// 			$checkMail = $idOrdine;
+// 		}
+// 		else {
+// 			$checkMail = $idOrdine;
+// 		}
 		
-		   return $checkMail;
-	}
+// 		   return $checkMail;
+// 	}
 	
 	
 	public function postAcceptTerm ($idOrdineAdmin = null) {
@@ -696,8 +696,127 @@ class IndexController extends Controller {
 			$this->view->render(  array ( 	'cassetta' => $cas,
 											'resto' => $resto ) );
 		}
+	}
+	
+	
+	/**
+	 *  $mail deve contenere i seguenti campi:
+	 *
+	 *  html, text, subject, id_sender, id_receiver
+	 */
+	
+	public function sendMandrillMail ($idOrdineAdmin, $idRicevuta) {
+	
+		$mail = $this->_getMail($idOrdineAdmin, $idRicevuta);
+	
+		if (isset($mail) && !empty($mail)) {
+			require_once realpath(dirname(__FILE__)).'/../../mandrill/src/Mandrill.php'; //Not required with Composer
+			$mandrill = new Mandrill('ZFJ-ec9eZFcqYRvGD297Aw');
+			
+			try {
+				$message = array(
+						'html' => '<p>'.$mail['text'].'</p>',
+						'text' => 'example',
+						'subject' => 'Conferma Ordine FoodRepublic',
+						'from_email' => 'info@foodrepublic.com',
+						'from_name' =>  'FoodRepublic',
+						'to' => array( 
+									array(	'email' => $mail['receiver']['username'],
+											'name' => $mail['receiver']['nome'].' '.$mail['receiver']['cognome']
+									),
+									array(	'email' => "artuso.lucia@hotmail.it",
+											'name' => "Lucia Artuso"
+									),
+									array(	'email' => "gianluca@70division.com",
+											'name' => "70 Division"
+									)
+						),
+				);
+				$async = false;
+				$ip_pool = null;
+				$result = $mandrill->messages->send($message, $async, $ip_pool);
+	
+			} catch(Mandrill_Error $e) {
+				// Mandrill errors are thrown as exceptions
+				echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
+				// A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+				throw $e;
+			}
+	
+		}
 		
+// 		$this->boxPrint($result);
+// 		die;
+		
+		if (isset($result) && !empty($result)) {
+			return $result;
+		}
+		else {	
+			return null;
+		}
+	}
+	
+	
+	public function _getMail ($idOrdineAdmin, $idRicevuta) {
+	
+		$this->loadModules('index');
+		$indexModel = new Index();
+		$this->loadModules('ordine');
+		$ordineModel = new Ordine();
+	
+		$ordineAdmin = $ordineModel->selectLastOrdineAdmin();
+		$array = explode("-", $ordineAdmin['data_consegna']);
+		$ordineAdmin['data_consegna'] = $array[2].'/'.$array[1].'/'.$array[0];
+	
+		$mail['receiver'] = $indexModel->selectUtente($_COOKIE['id_utente']);
+		$utente = $mail['receiver'];
+	
+		$listaSpesa = $this->_getListaSpesa($idOrdineAdmin);
+// 		$plain_text = '';
+		$plain_text = 	'<table>';
+		$prezzo_finale = 0;
+	
+		if (isset($listaSpesa) && !empty($listaSpesa)) {
+			$this->loadModules('prodotti');
+			$prodottiModels = new Prodotti();
+	
+			foreach ($listaSpesa as $key => $prodotto) {
+				$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
+	
+// 				$plain_text .= $item['nome_prodotto'].' | '.$item['unita'].' | '.$item['prezzo_iva'].' | '.$prodotto['quantita'].' | '.($prodotto['quantita']*$item['prezzo_iva'])." euro \n";
+								$plain_text .= 	'<tr>'.
+													'<td>'.$item['nome_prodotto'].'</td>'.
+													'<td>'.$item['unita'].'</td>'.
+													'<td>'.$item['prezzo_iva'].'</td>'.
+													'<td>'.$prodotto['quantita'].'</td>'.
+													'<td>'.($prodotto['quantita']*$item['prezzo_iva']).' euro </td>'.
+												'</tr>';
+	
+				$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
+			}
+		}
+	
+// 		CHIUDE TABELLA ELEMENTI RICEVUTA
+		$plain_text .= '</table>';
+	
+		$notice_text = "Grazie per avere effettuato un ordine su Food Republic.<br/>
+						Segue la tua ricevuta e riepilogo della tua spesa.<br/><br/>
+						Il team Food Republic<br/><br/>Food Republic S.r.l.<br/>
+						Via Fratta, 2<br/> 31020 San Zenone degli Ezzelini, TV<br/>
+						Part. IVA 04496450265<br><br>Ricevuta 2013/".$idRicevuta."<br/>".
+						$utente['nome']." ".$utente['cognome']."<br/>".
+						$utente['cf']."<br/>".
+						$utente['citta']."<br/>".
+						"via".$utente['via'].' '.$utente['civico'];
 
+		$mail['text'] = 	"$notice_text<br/><br/>
+							$plain_text<br>
+							## TOTALE $prezzo_finale euro<br><br>
+							Grazie per aver sostenuto l'agricolura della tua Food Community, acquistando prodotti attraverso Food Republic circa l'80% del denaro da te speso va ai produttori, il resto copre le spese di trasporto e di gestione del sito.<br/><br/>
+							Stampa e conserva questa ricevuta che ti da diritto a ritirare I prodotti da te acquistati presso:<br/>
+							".$utente['indirizzo'].", il giorno ".$ordineAdmin['data_consegna']." alle ore ".$utente['ora_consegna'];
+	
+		return $mail;
 	}
 	
 }

@@ -37,7 +37,7 @@ class Bootstrap {
 		define("PUBLIC_PATH", DOCUMENT_ROOT);
 		define("ERROR_404_PATH",  DOCUMENT_ROOT.'/404.php');
 		define("LANDING_PATH",  APPLICATION_PATH.'/app/landing');
-		define("PM_PATH",  APPLICATION_PATH.'/app/pm');
+		define("APP_PATH",  APPLICATION_PATH.'/app/');
 		
 		define("CONFIG_PATH", APPLICATION_PATH.DS.'lib');
 		
@@ -135,7 +135,7 @@ class Bootstrap {
 	
 	
 	public function findController($self) {
-		$controller = array ( "index", "ordine", "admin", "info", "shop", "cassetta" );
+		$controller = array ( "index", "ordine", "admin", "info", "shop", "cassetta", "mail" );
 		
 		if (in_array ($self, $controller)) {
 			return $self;
