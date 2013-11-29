@@ -656,3 +656,159 @@ input[type=checkbox] {
 	filter: alpha(opacity=100);
 	opacity: 1;
 }
+
+/********************** NEWS SECTION ****************************/
+.news {
+	font-size: 18px;
+	overflow: hidden;
+	width: 500px;
+	margin: auto;
+	background: rgba(239, 239, 239, 0.6);
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-webkit-box-shadow: 0px 0px 200px 0px rgba(0, 0, 0, 0.35);
+	box-shadow: 0px 0px 200px 0px rgba(0, 0, 0, 0.35) -webkit-transition: background-color 500ms linear;
+	-moz-transition: background-color 500ms linear;
+	-o-transition: background-color 500ms linear;
+	-ms-transition: background-color 500ms linear;
+	padding: 100px 30px 0 30px;
+	text-align: center;
+}
+
+.news h2 { font-size: 26px; }
+.news h3 { font-size: 18px; font-weight: 400; color: #B3B3B3; }
+
+.news .article {
+	margin-top: 120px;
+	margin-bottom: 50px;
+	width: 500px;
+	background-size: cover !important;
+	border-radius: 6px;
+	position: relative;
+	font-size: 16px;
+}
+
+.news .social {
+	position: absolute;
+	right: 8px;
+	top: 9px;
+	-webkit-user-select: none;
+}
+
+.news .social div {
+	background-image: url("../img/socialsprite.png"); 
+	width: 45px;
+	height: 45px;
+	display: inline-block;
+	border-radius: 6px;
+	background-color: rgba(17, 17, 17, 0.3);
+	cursor: pointer;
+	margin: 0;
+	background-repeat: no-repeat;
+	transition: all .4s;
+	-webkit-transition: all .4s;
+}
+.news .social .like { background-position: 0 0; overflow: hidden; }
+.news .social .liked { background-position: 0px 45px; background-color: rgba(239, 105, 87, 0.6); }
+.news .social .like:hover { background-position: 0px 45px; }
+.news .social .share { background-position: -45px 0; }
+.news .social .like:hover, .news .social .share:hover { background-color: rgba(239, 105, 87, 0.6); }
+.news .social span {
+	color: #FFF;
+	font-size: 28px;
+	line-height: 45px;
+	position: relative;
+	top: -80px;
+	transition: all .4s;
+	-webkit-transition: all .4s;
+}
+.news .social .like:hover span, .news .social .liked span { top: 0; }
+
+
+.news .author {
+	position: absolute;
+	left: 50%;
+	margin-left: -45px;
+	margin-top: -50px;
+}
+.news .author .person{
+	background-size: contain !important;
+	border: 5px solid #FFF;
+	width: 90px;
+	height: 90px;
+	border-radius: 1000px;
+}
+.news .author .grade{
+	width: 35px;
+	height: 35px;
+	margin: auto;
+	margin-top: -15px;
+}
+
+.news .headline {
+	color: #FFF;
+	padding: 12px 0;
+	background: rgba(17, 17, 17, 0.3);
+	margin-top: 65px;
+	display: inline-block;
+	width: 100%;
+	font-size: 14px;
+}
+
+.news h4 { font-size: 21px; margin-bottom: 15px; }
+.news .text { 
+	color: #FFF;
+	padding: 0 38px;
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+.news p {
+	text-align: left;
+	color: #b3b3b3;
+}
+.news .showmore { color: #EF6957; text-decoration: underline; cursor: pointer; }
+.news .showmore:hover { opacity: .9; }
+
+.news .backdrop {
+	position: relative;
+	margin-top: 110px;
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(30%,rgba(0,0,0,0.9)), color-stop(100%,rgba(0,0,0,1)));
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.9) 30%,rgba(0,0,0,1) 100%);
+	background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.9) 30%,rgba(0,0,0,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.9) 30%,rgba(0,0,0,1) 100%);
+	background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.9) 30%,rgba(0,0,0,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 );
+	border-radius: 6px;
+
+}
+
+button.action {
+	color: #E5502E;
+	border: 2px solid #E5502E;
+	border-radius: 100px;
+	height: 40px;
+	cursor: pointer;
+	margin-bottom: 25px;
+	background: none;
+	text-transform: uppercase;
+	padding: 0 20px;
+	font-size: 13px;
+	font-weight: 600;
+	text-rendering: optimizeLegibility;
+	letter-spacing: .8px;
+}
+button.action:hover {
+	background: rgba(229, 80, 46, 0.2);
+}
+
+.forward { 
+	position: fixed;
+	right: 30px;
+	bottom: 50px;
+	color: #FFF;
+	font-size: 25px;
+	font-weight: 500;
+	cursor: pointer;
+} .forward:hover { opacity: .8; }
+.forward span {  }

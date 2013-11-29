@@ -1,10 +1,34 @@
 $(document).ready(function(e) {
 	
 
+	$('.showmore').on('click', function() {
+		$(this).parent().next('.hide').toggle(100);
+		$(this).text(function(i, text){
+			return text === "Scopri" ? "Chiudi" : "Scopri";
+		});
+	});
+
+	$('.like').on('click', function() {
+		if ( $(this).hasClass('liked') ) {} else {
+			var nLike = $(this).find('span').text();
+			nLike ++;
+			$(this).find('span')
+				.animate({
+					fontSize: '500px'
+				}, 100)
+				.animate({
+					fontSize: '28px'
+				}, 100);
+			$(this).find('span').text(nLike);
+			$(this).addClass('liked');
+		}
+	});
+
+
 	$('.cassa').on('click', function() {
 		$(this).find('ul').toggle(100);
 		$(this).find('.interaction').toggleClass('active');
-	})
+	});
 
 	var time = 100;
 
