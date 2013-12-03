@@ -76,7 +76,6 @@
 </div>
 <br><br><br><br><br><br>
 
-
-<div class="forward">
+<div class="forward tohome">
 	prosegui <span>></span>
 </div>

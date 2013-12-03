@@ -94,7 +94,9 @@ Il tuo ordine:
 		<?php 
 		if ($ordineUtente['stato'] == 0) {
 		?>
-		<a href="/"> <button class="btn btn-error  center">Indietro</button> </a>
+<!-- 		<a href="/">  -->
+		<button class="btn btn-error center tohome">Indietro</button> 
+<!-- 		</a> -->
 		
 		<?php 
 		if ($server == "foodrepublic.dev") { ?>
@@ -151,9 +153,9 @@ Il tuo ordine:
 		}
 	} 
 	else { ?>
-		<a href="/">
-			<button class="btn btn-error center">Indietro</button>
-		</a>
+<!-- 		<a href="/"> -->
+			<button class="btn btn-error center tohome">Indietro</button>
+<!-- 		</a> -->
 	<?php } ?>
 
 </div>

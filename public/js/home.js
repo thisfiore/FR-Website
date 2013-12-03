@@ -524,4 +524,9 @@ $(document).ready(function(e) {
 		});
 	});
 	
+	$('body').on('click', '.tohome', function(event) {
+		$(window.location).attr('href', '/index/index/1');
+	});
+	
+	
 });

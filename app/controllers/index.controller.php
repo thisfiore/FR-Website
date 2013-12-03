@@ -53,12 +53,12 @@ class IndexController extends Controller {
 		
 	}
 	
-	public function getIndex() {
+	public function getIndex($news = null) {
 		
 		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
 			$this->idLoggedUser = $_COOKIE['id_utente'];
 			
-			$this->getHome();
+			$this->getHome($news);
 			die;
 		}
 		else {
