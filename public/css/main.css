@@ -44,6 +44,44 @@ div.center {
 	margin-bottom: 6px;
 }
 
+/*video html5*/
+#video-viewport {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    z-index: 0; /* for accessing the video by click */
+    opacity: 0;
+}
+.video-control{
+	background: url("../img/closev.png");
+	position: absolute;
+	z-index: 1;
+	top: 20px;
+	right: 30px;
+	width: 50px;
+	height: 50px;
+	background-size: cover;
+	cursor: pointer;
+} .video-control:hover {
+	opacity: .8;
+}
+.startvideo {
+	font-weight: 500;
+	font-size: 18px;
+	margin-top: 30px;
+	letter-spacing: 1px;
+	cursor: pointer;
+} .startvideo:hover { opacity: .8; }
+.startvideo i { margin-top: 4px; }
+/*#debug {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    color: #fff;
+    font-size: 12pt;
+}*/
+
+
 .alert { 
 	padding: 0;
 	padding: 10px 0;
@@ -465,6 +503,12 @@ div.center {
     -ms-transition: background-color 500ms linear;
     transition: background-color 500ms linear;
 }
+@-moz-document url-prefix() {
+    .wrapper {
+        font-weight: 300;
+    }
+}
+
 .wrapper p.title {
 	font-size: 26px;
 	letter-spacing: 1px;
@@ -708,7 +752,7 @@ input[type=checkbox] {
 	transition: all .4s;
 	-webkit-transition: all .4s;
 }
-.news .social .like { background-position: 0 0; overflow: hidden; }
+.news .social .like { background-position: 0 0; overflow: hidden; margin-right: 5px; }
 .news .social .liked { background-position: 0px 45px; background-color: rgba(239, 105, 87, 0.6); }
 .news .social .like:hover { background-position: 0px 45px; }
 .news .social .share { background-position: -45px 0; }

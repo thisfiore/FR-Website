@@ -1,3 +1,15 @@
+	<!-- VIDEO -->
+	<div id="video-viewport">
+    	<video controls preload width="1280" height="720">
+	        <source src="img/video.mp4"type="video/mp4" />
+	        <source src="img/video.webm"type="video/webm" />
+	        <source src="img/video.ogv"type="video/webm" />
+	    </video>
+	</div>
+	<div class="video-control hide"></div>
+	<!-- <div id="debug"></div> -->
+
+
 	<!-- LOGIN FORM -->
 	<div id="login" class="wrapperform">
 		<h3 class="text-center form-title"><button class="btn-mod back"><i class="icon-chevron-left"></i></button>Log In</h3>
@@ -87,7 +99,7 @@
 				<p>Vogliamo costruire assieme a te una nuova <em>comunità</em> del <br/>
 				   cibo, un mercato virtuale in cui domanda e offerta si <br/>
 				   incontrano <em>senza intermediari</em>.</p>
-				<div class="spacerz"></div>
+				<p class="startvideo"><i class="icon-film icon-white"></i> Guarda il Video</p>
 			</div>
 			<div class="slide2">
 				<img src="/img/intro2.png">

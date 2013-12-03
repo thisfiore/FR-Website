@@ -1,6 +1,5 @@
 $(document).ready(function(e) {
 	
-
 	$('.showmore').on('click', function() {
 		$(this).parent().next('.hide').toggle(100);
 		$(this).text(function(i, text){
