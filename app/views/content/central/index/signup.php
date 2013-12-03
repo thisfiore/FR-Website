@@ -52,8 +52,8 @@
 			</div>
             
             <div style="color:red width:50px height:50px">
-<!--             	<input type="email" class="input-form tck" id="mail_inviter" name="mail_inviter" placeholder="Immetti la mail dell'utente che ti ha invitato"> -->
-<!--             	<span class="help-inline hide"></span> -->
+            	<input type="email" class="input-form tck" id="mail_inviter" name="mail_inviter" placeholder="Immetti la mail dell'utente che ti ha invitato">
+            	<span class="help-inline hide"></span>
 			</div>
 
 			<button type="submit" id="submit" name="submit" class="btn btn-danger btn-large btn-block">Iscriviti</button>
