@@ -199,6 +199,29 @@
 		    <button class="btn btn-large btn-success disabled" type="submit" data-term="<?php echo $utente['term']?>">Procedi</button>
 		  </div>
 	</div>
+
+
+	<!-- MODAL POLLI -->
+	<div id="polli" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h4 id="prodLabel">Offerta Speciale! - Polli</h4>
+		  </div>
+		  <div class="modal-body">
+			<p class="pagination-centered">
+				<img src="/img/polli.jpg"/>
+			</p>
+			<br>
+			<p>
+				Offerta irripetibile ecc ecc<br>
+				Attenzione stai per effettuare una prenotazione a norma ecc.
+			</p>
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Chiudi</button>
+		    <button class="btn btn-large btn-success" type="submit" data-term="">Prenotane Uno</button>
+		  </div>
+	</div>
 	
 <!-- 	MODAL CASSETTA -->
 	<div id="modal-cassetta" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
