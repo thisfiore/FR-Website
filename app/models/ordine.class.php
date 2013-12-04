@@ -120,6 +120,11 @@ class Ordine extends DB {
 		return $insert;
 	}
 	
+	public function insertPrenotazione ($prenotazione) {
+		$insert = $this->insert($prenotazione, 'prenotazione');
+		return $insert;
+	}
+	
 	
 	public function updateOrdineAdmin ($ordineAdmin) {
 		$update = $this->update(
@@ -190,6 +195,15 @@ class Ordine extends DB {
 		$delete = $this->delete('cassetta',
 								array ( 'id_ordine_utente = ' => $idOrdine,
 										'id_cassetta = ' =>  $idProdotto)
+		);
+		return $delete;
+	}
+	
+	public function deletePrenotazione ($idProdotto, $idOrdine, $idUtente) {
+		$delete = $this->delete('prenotazione',
+				array ( 'id_ordine = ' => $idOrdine,
+						'id_prodotto = ' => $idProdotto,
+						'id_utente = ' =>  $idUtente)
 		);
 		return $delete;
 	}

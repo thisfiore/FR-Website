@@ -309,8 +309,6 @@ class IndexController extends Controller {
 			$news = $_POST['news'];
 		}
 		
-		$button = '<button class="btn btn-large btn-warning prenota" type="submit" data-term="">Prodotto Prenotato</button>';
-		
 		$this->loadModules('ordine');
 		$ordineModel = new Ordine();
 		
@@ -338,6 +336,15 @@ class IndexController extends Controller {
 		}
 		else {
 			$idOrdine = $ordine['id_ordine'];
+		}
+
+		
+		if (isset($_POST['prenotazione']) && !empty($_POST['prenotazione'])) {
+			$prenotazione['id_prodotto'] = $idProdotto;
+			$prenotazione['id_ordine'] = $idOrdine;
+			$prenotazione['id_utente'] = $_COOKIE['id_utente'];
+			
+			$insert = $ordineModel->insertPrenotazione($prenotazione);	
 		}
 		
 		$this->loadModules('prodotti');
