@@ -24,7 +24,8 @@
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="squaredFour">
-				<input type="checkbox" value="None" id="squaredFour" name="check" />
+				<input type="checkbox" id="squaredFour" name="check" /> 
+<!-- 				value="None" -->
 				<label for="squaredFour"></label>
 			</div>
 			<span>Ricordami</span>

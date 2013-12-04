@@ -3,7 +3,11 @@
 	data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>"
 	data-check=1>
 
-	<div class="alert alert-success span16">
+	<div class="alert alert-success span16"
+	<?php if ($cella_lista['prenotazione'] == 1) { 
+							echo "style='	background-color:rgba(54,20,133,0.3);
+											border-color:rgba(54,20,133,0.3);
+											color: #FFF773;'"; } ?>>
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		<span class="span5"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
 		<?php 

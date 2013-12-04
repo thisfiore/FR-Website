@@ -60,7 +60,62 @@ $(document).ready(function(e) {
 		});
 	});
 	
-
+	$('.prenota').on('click', function() {
+		
+		if ($(this).hasClass('block')) {
+			return false;
+		}
+		else {
+			$(this).addClass('block');
+		}
+		
+		var id_prodotto = $(this).parent().data('id_prodotto');
+		var check = $("div.lista").find(".item"+id_prodotto).data('check');
+		
+		var totale = $('div.subtotal').data('totale');
+		var prezzo = $(this).parent().data('prezzo');
+		var unita = $(this).parent().data('unita');
+		
+		console.log(check);
+		
+		if (check == 1) {
+			$('.modal-prenota button.prenota').remove();
+			$('.modal-prenota').append('<button class="btn btn-large btn-warning prenota block" type="submit" data-term="">Prodotto prenotato</button>');
+			return false;
+		}
+		
+		$.ajax({
+			url : '/index/addProdottoLista/',
+			type : 'POST',
+			dataType : 'html',
+			data : {
+				id_prodotto : id_prodotto,
+			},
+			success : function(response) {
+				
+				if (unita == 'kg') {
+					totale = parseFloat(totale) + parseFloat(prezzo*0.5);
+					totale = totale.toFixed(2);
+				}
+				else {
+					totale = parseFloat(totale) + parseFloat(prezzo);
+					totale = totale.toFixed(2);
+				}
+				
+//				console.log();
+				
+				$('div.lista ul').prepend(response);
+				
+				$('div.subtotal').data('totale', totale);
+				$('div.subtotal span.pull-right').html(totale+' €');
+				
+				$('#polli').modal('hide');
+			}
+		});
+		
+	});
+	
+		
 	$('.cassa').on('click', function() {
 		$(this).find('ul').toggle(100);
 		$(this).find('.interaction').toggleClass('active');
@@ -225,7 +280,6 @@ $(document).ready(function(e) {
 		
 		var totale = $('div.subtotal').data('totale');
 		var prezzo = $(this).children('div.prodotto').data('prezzo');
-		var iva = $(this).children('div.prodotto').data('iva');
 		var unita = $(this).children('div.prodotto').data('unita');
 		
 		$.ajax({

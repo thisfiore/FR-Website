@@ -81,6 +81,8 @@ class IndexController extends Controller {
 	
 
 	public function postLogin () {
+		$checkbox = $_POST['checkbox'];
+		
 		$username = isset($_POST['username']) ? $_POST['username'] : null;
 		$password = isset($_POST['password']) ? $_POST['password'] : null;
 		// 		$password = md5($password);
@@ -97,7 +99,13 @@ class IndexController extends Controller {
 		// 		CREAZIONE COOKIE O QUALSIASI ALTRA COSA
 		if (isset($log) && !empty($log)) {
 	
-			setcookie( 'id_utente', $log['id_utente'], time() + 5184000, "/" );
+			if ($checkbox) {
+				setcookie( 'id_utente', $log['id_utente'], time() + 2592000, "/" );
+			}
+			else {
+				setcookie( 'id_utente', $log['id_utente'], time() + 1209600, "/" );
+			}
+			
 			$this->idLoggedUser = $log['id_utente'];
 				
 			$response = array('status' => 'OK' );
@@ -248,10 +256,15 @@ class IndexController extends Controller {
 				if (isset($lista_spesa) && !empty($lista_spesa)) {
 					foreach ($lista_spesa as $key => $prodotto) {
 						$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
+						
+// 						$this->boxPrint($item);
+// 						die;
+						
 						$lista_spesa[$key]['prodotto'] = $item;
 						$lista_spesa[$key]['prodotto']['totale_prodotto'] = number_format(($item['prezzo_iva'] * $prodotto['quantita']), 2, '.', '');
 						$lista_spesa[$key]['unita'] = $item['unita'];
 						$lista_spesa[$key]['tipologia'] = $item['tipologia'];
+						$lista_spesa[$key]['prenotazione'] = $item['prenotazione'];
 						
 						$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
 					}
@@ -295,6 +308,8 @@ class IndexController extends Controller {
 		if (isset($_POST['news']) && !empty($_POST['news'])) {
 			$news = $_POST['news'];
 		}
+		
+		$button = '<button class="btn btn-large btn-warning prenota" type="submit" data-term="">Prodotto Prenotato</button>';
 		
 		$this->loadModules('ordine');
 		$ordineModel = new Ordine();
@@ -381,6 +396,7 @@ class IndexController extends Controller {
 			$cella_lista['prodotto']['prezzo_iva'] = $array['prezzo_iva'];
 			$cella_lista['prodotto']['nome_prodotto'] = $array['nome_prodotto'];
 			$cella_lista['tipologia'] = $array['tipologia'];
+			$cella_lista['prenotazione'] = $array['prenotazione'];
 			
 			if ( $array['unita'] == "kg") {
 				$cella_lista['quantita'] = 0.5;
@@ -476,6 +492,7 @@ class IndexController extends Controller {
 				$listaSpesa[$key]['prezzo_iva'] = $item['prezzo_iva'];
 				$listaSpesa[$key]['unita'] = $item['unita'];
 				$listaSpesa[$key]['tipologia'] = $item['tipologia'];
+				$listaSpesa[$key]['prenotazione'] = $item['prenotazione'];
 				
 				if ($item['tipologia'] == "cassetta") {
 					$listaSpesa[$key]['cassetta'] = $prodottiModels->selectCassettaPay($prodotto['id_prodotto'], $listaSpesa[$key]['id_ordine']);
@@ -490,6 +507,9 @@ class IndexController extends Controller {
 			}
 		}
 	
+// 		$this->boxPrint($listaSpesa);
+// 		die;
+		
 		$server = $_SERVER['HTTP_HOST'];
 		
 		$prezzo_finale = number_format($prezzo_finale, 2, '.', '');

@@ -167,10 +167,15 @@ $(document).ready(function(e) {
 		} else {
 			event.preventDefault();
 		
+			var checkbox = $('#squaredFour').is(":checked");
+				
 			$('form.login-form').ajaxForm({
 				url : '/index/login/',
 				type : 'POST',
 				dataType : 'json',
+				data : {
+					checkbox : checkbox,
+				},
 				beforeSubmit : function() {
 					if ($('#username').val() == '') {
 						$("#username").parent('.control-group').addClass('error');
@@ -185,7 +190,6 @@ $(document).ready(function(e) {
 					}
 				},
 				success : function(response) {
-					console.log(response);
 					if (response.status == 'OK') {
 						window.location.href = '/index/';
 					}

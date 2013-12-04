@@ -8,6 +8,8 @@
 			if (isset($prodotti) && !empty($prodotti)) {
 				foreach ($prodotti as $prodotto) { ?>
 					<li 
+					<?php if ($prodotto['prenotazione'] == 1) { echo "style='background:rgba(54,20,133,0.9);'"; } ?>
+					
 						data-placement="bottom"
 						data-trigger="hover"
 						data-content="<?php echo $prodotto['desc']?>">
@@ -85,7 +87,11 @@
 							data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>"
 							data-check=1>
 							
-							<div class="alert alert-success span16">
+							<div class="alert alert-success span16" 
+							<?php if ($cella_lista['prenotazione'] == 1) { 
+							echo "style='	background-color:rgba(54,20,133,0.3);
+											border-color:rgba(54,20,133,0.3);
+											color: #FFF773;'"; } ?>>
 									<button type="button" class="close" data-dismiss="alert">&times;</button>
 									<span class="span5"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
 									
@@ -209,12 +215,16 @@
 		    <h5>Consegna prevista per la 2a o 3a settimana di gennaio</h5>
 		  </div>
 		  <div class="modal-body">
-		  	<div class="ribbon-wrapper-green alt"><div class="ribbon-green alt">scadenza<br>Giovedì 12</div></div>
+		  	<div class="ribbon-wrapper-green alt">
+		  		<div class="ribbon-green alt">scadenza<br>Giovedì 12</div>
+		  	</div>
+		  	
 			<p class="pagination-centered">
-
 				<img src="/img/polli.jpg" />
 			</p>
+			
 			<br>
+			
 			<p>
 				Cari amici, i nostri polli stanno crescendo: ora hanno poco meno di 3 mesi e a <strong>metà gennaio</strong> saranno pronti per la macellazione.<br> 
 				In questo momento si trovano sulla strada per Campo Croce a 700 m di altezza e la loro razione alimentare è molto varia: mais, avena, orzo, soia, pisello proteico e favino.<br>
@@ -225,7 +235,9 @@
 				Lavoriamo solo su prenotazione e consegneremo ai coproduttori di Food Republic che faranno la propria prenotazione entro questo giovedì polli di <strong>circa 2 kg</strong>.<br>
 				La consegna avverrà la seconda o terza settimana di gennaio, a seconda di quando i nostri polli saranno pronti per il macello.
 			</p>
+			
 			<br>
+			
 			<ul>
 				<li class="item row-fluid">
 					<div class="span16" style="margin-bottom:10px;">
@@ -243,18 +255,20 @@
 							<span class="piu">+</span>
 						</div>
 						<span class="partial span4 text-right">1€</span>
-						
 					</div>
 				</li>		
 			</ul>
-
-
-
+			
 		  </div>
-		  <div class="modal-footer">
+		  
+		  <div class="modal-footer modal-prenota" 
+		  	data-id_prodotto="59"
+		  	data-prezzo="25.3"
+		  	data-unita="Confezione da 2kg">
 		    <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Chiudi</button>
-		    <button class="btn btn-large btn-success" type="submit" data-term="">Prenota Ora</button>
+		    <button class="btn btn-large btn-success prenota" type="submit" data-term="">Prenota Ora</button>
 		  </div>
+		  
 	</div>
 	
 <!-- 	MODAL CASSETTA -->
