@@ -22,9 +22,44 @@ $(document).ready(function(e) {
 				}, 100);
 			$(this).find('span').text(nLike);
 			$(this).addClass('liked');
+			
+			var id_prodotto = $(this).data('id_prodotto');
+			
+			$.ajax({
+				url : '/index/likeProdotto/',
+				type : 'POST',
+				dataType : 'json',
+				data : {
+					id_prodotto : id_prodotto,
+				},
+				success : function(response) {
+					if (response.status == 'ERR') {
+						console.log ('LIKE prodotto non aggiornato');
+					}
+				}
+			});
+			
 		}
 	});
-
+	
+	
+	$('.actionLista').on('click', function() {
+		var id_prodotto = $(this).parent().siblings('.social').children('.like').data('id_prodotto');
+		var news = 1;
+		
+		$.ajax({
+			url : '/index/addProdottoLista/',
+			type : 'POST',
+			dataType : 'json',
+			data : {
+				id_prodotto : id_prodotto,
+				news : news,
+			},
+			success : function(response) {
+			}
+		});
+	});
+	
 
 	$('.cassa').on('click', function() {
 		$(this).find('ul').toggle(100);

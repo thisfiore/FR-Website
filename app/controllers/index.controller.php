@@ -204,8 +204,6 @@ class IndexController extends Controller {
 		$this->loadModules('prodotti');
 		$prodottiModels = new Prodotti();
 		
-		
-		
 		$prodotti = $prodottiModels->selectAllProducts();
 		$produttori = $prodottiModels->selectAllProduttori();
 		
@@ -293,6 +291,10 @@ class IndexController extends Controller {
 	
 	public function postAddProdottoLista () {
 		$idProdotto = $_POST['id_prodotto'];
+		
+		if (isset($_POST['news']) && !empty($_POST['news'])) {
+			$news = $_POST['news'];
+		}
 		
 		$this->loadModules('ordine');
 		$ordineModel = new Ordine();
@@ -393,9 +395,16 @@ class IndexController extends Controller {
 				$update = $ordineModel->updateElementoListaSpesa($prodotto);
 			}
 			
-			$this->view->setHead(null);
-			$this->view->load(null, '_partial/cella_lista', null, null);
-			$this->view->render(  array ( 'cella_lista' => $cella_lista ) );
+			if (isset($news) && !empty($news)) {
+				$response = array('status' => 'OK');
+				$this->view->renderJson($response);
+			}
+			else {
+				$this->view->setHead(null);
+				$this->view->load(null, '_partial/cella_lista', null, null);
+				$this->view->render(  array ( 'cella_lista' => $cella_lista ) );
+			}
+			
 		}
 	}
 	
@@ -695,6 +704,30 @@ class IndexController extends Controller {
 			$this->view->load(null, '_partial/modal-cassetta', null, null);
 			$this->view->render(  array ( 	'cassetta' => $cas,
 											'resto' => $resto ) );
+		}
+	}
+	
+	
+	public function postLikeProdotto () {
+
+		$idProdotto = $_POST['id_prodotto'];
+		
+		$this->loadModules('prodotti');
+		$prodottiModel = new Prodotti();
+		
+		$prodotto  = $prodottiModel->selectProdotto($idProdotto);
+		$prodotto['like'] = 1 + $prodotto['like'];
+		unset($prodotto['prezzo_iva']);
+		
+		$update = $prodottiModel->updateProdotto($prodotto);
+		
+		if (isset($update) && !empty($update)) {
+			$response = array('status' => 'OK' );
+			$this->view->renderJson($response);
+		}
+		else {
+			$response = array('status' => 'ERR' );
+			$this->view->renderJson($response);
 		}
 	}
 	

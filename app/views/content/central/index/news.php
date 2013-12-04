@@ -4,7 +4,7 @@
 
 	<div class="article" style="background:url('/img/apples.jpg')">
 		<div class="social">
-			<div class="like">
+			<div class="like" data-id_prodotto="33">
 				<span>0</span>
 			</div>
 			<div class="share">
@@ -32,7 +32,7 @@
 				</div>
 
 			</div>
-			<button class="action">Metti nella lista</button>
+			<button class="action actionLista">Metti nella lista</button>
 		</div>
 	</div>
 	
