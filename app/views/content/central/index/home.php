@@ -205,21 +205,55 @@
 	<div id="polli" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    <h4 id="prodLabel">Offerta Speciale! - Polli</h4>
+		    <h4 id="prodLabel">Prenota i tuoi polli entro giovedì 12 dicembre</h4>
+		    <h5>Consegna prevista per la 2a o 3a settimana di gennaio</h5>
 		  </div>
 		  <div class="modal-body">
+		  	<div class="ribbon-wrapper-green alt"><div class="ribbon-green alt">scadenza<br>Giovedì 12</div></div>
 			<p class="pagination-centered">
-				<img src="/img/polli.jpg"/>
+
+				<img src="/img/polli.jpg" />
 			</p>
 			<br>
 			<p>
-				Offerta irripetibile ecc ecc<br>
-				Attenzione stai per effettuare una prenotazione a norma ecc.
+				Cari amici, i nostri polli stanno crescendo: ora hanno poco meno di 3 mesi e a <strong>metà gennaio</strong> saranno pronti per la macellazione.<br> 
+				In questo momento si trovano sulla strada per Campo Croce a 700 m di altezza e la loro razione alimentare è molto varia: mais, avena, orzo, soia, pisello proteico e favino.<br>
+				Per la prevenzione di malattie, usiamo in abbondanza echinacea, rosa canica, corteccia di gelso, aglio, semi di zucca, melelauca oltre ad un'oculata rotazione del pascolo a disposizione dei nostri animali. In questo modo alleviamo meno capi, ma evitiamo loro malattie e problemi sanitari, puntando sul loro reale benessere 
 			</p>
+			<p>
+				Il pollo viene confezionato "a busto", cioè totalmente pulito, sviscerato e senza testa, né zampe. Il fatto che sia intero, per noi, è anche garanzia di una migliore qualità delle carni.<br>
+				Lavoriamo solo su prenotazione e consegneremo ai coproduttori di Food Republic che faranno la propria prenotazione entro questo giovedì polli di <strong>circa 2 kg</strong>.<br>
+				La consegna avverrà la seconda o terza settimana di gennaio, a seconda di quando i nostri polli saranno pronti per il macello.
+			</p>
+			<br>
+			<ul>
+				<li class="item row-fluid">
+					<div class="span16" style="margin-bottom:10px;">
+						<span style="margin-left:5px" class="span8">&nbsp;</span>
+	 					<span class="quantita span3">unità</span>
+						<span class="partial span4 text-right"> €</span>
+	 				</div>
+	 			</li>
+				<li class="item row-fluid">
+					<div class="alert alert-success span16">
+						<span style="margin-left:5px" class="span8">Pollo</span>
+						<div class="quantity span3" data-quantita="0.5">
+							<span class="meno">-</span>
+							<span class="quantita">1</span>
+							<span class="piu">+</span>
+						</div>
+						<span class="partial span4 text-right">1€</span>
+						
+					</div>
+				</li>		
+			</ul>
+
+
+
 		  </div>
 		  <div class="modal-footer">
 		    <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Chiudi</button>
-		    <button class="btn btn-large btn-success" type="submit" data-term="">Prenotane Uno</button>
+		    <button class="btn btn-large btn-success" type="submit" data-term="">Prenota Ora</button>
 		  </div>
 	</div>
 	
