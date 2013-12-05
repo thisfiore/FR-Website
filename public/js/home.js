@@ -66,25 +66,20 @@ $(document).ready(function(e) {
 		});
 	});
 	
-	$('.prenota').on('click', function() {
-		
+	
+	$('#modal-polli').on('click', '.prenota', function() {
 		if ($(this).hasClass('block')) {
 			return false;
 		}
 		else {
 			$(this).addClass('block');
 		}
-		
-		var id_prodotto = $(this).parent().data('id_prodotto');
+				
+		var id_prodotto = $('#modal-polli div.quantity').data('id_prodotto');
+		var quantita = $('#modal-polli div.quantity').data('quantita');
+		var data_consegna = $('#modal-polli div.quantity').data('data_consegna');
+
 		var check = $("div.lista").find(".item"+id_prodotto).data('check');
-		var prenotazione = 1;
-		
-		var totale = $('div.subtotal').data('totale');
-		var prezzo = $(this).parent().data('prezzo');
-		var unita = $(this).parent().data('unita');
-		
-		console.log(check);
-		
 		if (check == 1) {
 			$('.modal-prenota button.prenota').remove();
 			$('.modal-prenota').append('<button class="btn btn-large btn-warning prenota block" type="submit" data-term="">Prodotto prenotato</button>');
@@ -92,36 +87,21 @@ $(document).ready(function(e) {
 		}
 		
 		$.ajax({
-			url : '/index/addProdottoLista/',
+			url : '/index/addPrenotazione/',
 			type : 'POST',
 			dataType : 'html',
 			data : {
 				id_prodotto : id_prodotto,
-				prenotazione : prenotazione,
+				data_consegna : data_consegna,
+				quantita : quantita,
 			},
-			success : function(response) {
-				
-				if (unita == 'kg') {
-					totale = parseFloat(totale) + parseFloat(prezzo*0.5);
-					totale = totale.toFixed(2);
-				}
-				else {
-					totale = parseFloat(totale) + parseFloat(prezzo);
-					totale = totale.toFixed(2);
-				}
-				
-//				console.log();
-				
-				$('div.lista ul').prepend(response);
-				
-				$('div.subtotal').data('totale', totale);
-				$('div.subtotal span.pull-right').html(totale+' €');
-				
-				$('#polli').modal('hide');
+			success : function(responseHtml) {
+				$('div.reservations ul').prepend(responseHtml);
+				$('#modal-polli').modal('hide');
 			}
 		});
-		
 	});
+		
 	
 		
 	$('.cassa').on('click', function() {
@@ -270,8 +250,75 @@ $(document).ready(function(e) {
 		});
 	});
 	
+	
+//	----------------------------------------------------------------------
+	
+//	Cambia quantit� dell'elemento selezionato nella lista
+	$('#modal-polli').on('click', 'div.quantity span', function(event) {
+		
+		var label = $(this).attr("class");
+		var quantita = $(this).parent('div').data('quantita');
+		var unita = $(this).parent('div').data('unita');
+		var prezzo = $(this).parent('div').data('prezzo');
+		var totalePartial = $(this).parent().siblings('.partial').data('partial');
+		
+//		var arr = [33, 34, 35, 36, 36, 37, 38, 39, 40, 41, 42, 43, 44];
+//		if (jQuery.inArray( id_prodotto, arr) > -1){
+//			return false;
+//		}
+		
+		if (unita == 'kg') {
+			if (label == 'piu')  { 
+				quantita = parseFloat(quantita) + parseFloat(0.5);
+			}
+			else if (label == 'meno') {
+				if (quantita == 0.5) {
+					return false;
+				}
+				quantita = parseFloat(quantita) - parseFloat(0.5);
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			if (label == 'piu')  { 
+				quantita = quantita + 1;
+			}
+			else if (label == 'meno') {
+				if (quantita == 1) {
+					return false;
+				}
+				quantita = quantita - 1;
+			}
+			else {
+				return false;
+			}
+		}
+		
+		
+		$(this).parent('div').data('quantita', quantita);
+		var totale = quantita * prezzo;
+		totale = totale.toFixed(2);
+		$(this).parent().siblings('.partial').data('partial', totale);
+		
+		$(this).siblings('.quantita').html(quantita);
+		$(this).parent().siblings('.partial').html(totale);
+		
+	});
+	
+//	----------------------------------------------------------------------
+	
+	
+	
 //	Add Prodotto Lista
 	$('div.prodotti').on('click', 'ul li', function(event) {
+		if ($(this).hasClass('no_list')) {
+			return false;
+		}
+		
+		console.log(this);
+		
 		var id_prodotto = $(this).children('div.prodotto').data('id_prodotto');
 		var check = $("div.lista").find(".item"+id_prodotto).data('check');
 		
@@ -289,6 +336,7 @@ $(document).ready(function(e) {
 		var totale = $('div.subtotal').data('totale');
 		var prezzo = $(this).children('div.prodotto').data('prezzo');
 		var unita = $(this).children('div.prodotto').data('unita');
+		
 		
 		$.ajax({
 			url : '/index/addProdottoLista/',
@@ -312,6 +360,7 @@ $(document).ready(function(e) {
 				
 				$('div.subtotal').data('totale', totale);
 				$('div.subtotal span.pull-right').html(totale+' €');
+			
 			}
 		});
 	});
@@ -491,6 +540,35 @@ $(document).ready(function(e) {
 			success : function(responseHtml) {
 				$('#modal-cassetta').empty().append(responseHtml);
 				$('#modal-cassetta').modal('show');
+			}
+		});
+	});
+	
+	//Apertura modal cassetta
+	$('div.prodotti').on('click', 'li.openpolli', function(event) {
+		
+		if ($(event.target).is('div button.close')) {
+			return false;   
+		}
+		
+		var id_prodotto = $(this).children().data('id_prodotto');
+		
+		$.ajax({
+			url : '/index/modalPolli/',
+			type : 'GET',
+			data : {
+				id_prodotto : id_prodotto
+			},
+			dataType : 'html',
+			success : function(responseHtml) {
+				$('#modal-polli').empty().append(responseHtml);
+				
+				if ($('li.item'+id_prodotto).text()) {
+					$('#modal-polli .modal-footer button.prenota').remove();
+					$('#modal-polli .modal-footer').append('<button class="btn btn-large btn-warning prenota block" type="submit" data-term="">Prodotto prenotato</button>');
+				}
+				
+				$('#modal-polli').modal('show');
 			}
 		});
 	});

@@ -215,9 +215,13 @@ class IndexController extends Controller {
 		$prodotti = $prodottiModels->selectAllProducts();
 		$produttori = $prodottiModels->selectAllProduttori();
 		
-// 		$this->boxPrint($utente);
-// 		die;
-		
+		foreach ($prodotti as $index => $cerca_riservato) { 
+			if ($cerca_riservato['prenotazione'] == 1) {
+				$riservati[] = $cerca_riservato;
+				unset($prodotti[$index]);
+			}
+		}	
+	
 		$prezzo_finale = 0;
 		$ordine_admin = $this->_getOrdineAdmin();
 		
@@ -257,23 +261,38 @@ class IndexController extends Controller {
 					foreach ($lista_spesa as $key => $prodotto) {
 						$item = $prodottiModels->selectProdottoMinimal($prodotto['id_prodotto']);
 						
-// 						$this->boxPrint($item);
-// 						die;
-						
-						$lista_spesa[$key]['prodotto'] = $item;
-						$lista_spesa[$key]['prodotto']['totale_prodotto'] = number_format(($item['prezzo_iva'] * $prodotto['quantita']), 2, '.', '');
-						$lista_spesa[$key]['unita'] = $item['unita'];
-						$lista_spesa[$key]['tipologia'] = $item['tipologia'];
-						$lista_spesa[$key]['prenotazione'] = $item['prenotazione'];
+							$lista_spesa[$key]['prodotto'] = $item;
+							$lista_spesa[$key]['prodotto']['totale_prodotto'] = number_format(($item['prezzo_iva'] * $prodotto['quantita']), 2, '.', '');
+							$lista_spesa[$key]['unita'] = $item['unita'];
+							$lista_spesa[$key]['tipologia'] = $item['tipologia'];
+							$lista_spesa[$key]['prenotazione'] = $item['prenotazione'];
 						
 						$prezzo_finale = $prezzo_finale + ($prodotto['quantita'] * $item['prezzo_iva']);
 					}
 				}
 			}
 			
+			$prenotazioni = $ordineModels->selectPrenotazioni();
+					
+			if (isset($prenotazioni) && !empty($prenotazioni)) {
+// 				$key = 0;
+				foreach ($prenotazioni as $key => $prenotazione) {
+					$prodotto = $prodottiModels->selectProdotto($prenotazioni[$key]['id_prodotto']);
+					$prenotazioni[$key] = array_merge($prodotto, $prenotazioni[$key]);
+					$prenotazioni[$key]['totale'] = round($prenotazioni[$key]['quantita'] * $prenotazioni[$key]['prezzo_iva'], 2);
+					$prenotazioni[$key]['data_consegna'] = $this->formatDate($prenotazioni[$key]['data_consegna']);
+				}
+			}
+			
+			
+// 			$this->boxPrint($prenotazioni);
+// 			die;
+			
 			$this->view->load('header', 'home', null, null);
 			$this->view->render(array ( 	'prodotti' => $prodotti,
+											'riservati' => $riservati,
 											'produttori' => $produttori,
+											'prenotazioni' => $prenotazioni,
 											'lista_spesa' => $lista_spesa,
 											'prezzo_finale' => $prezzo_finale,
 											'ordine_admin' => $ordine_admin,
@@ -338,15 +357,6 @@ class IndexController extends Controller {
 			$idOrdine = $ordine['id_ordine'];
 		}
 
-		
-		if (isset($_POST['prenotazione']) && !empty($_POST['prenotazione'])) {
-			$prenotazione['id_prodotto'] = $idProdotto;
-			$prenotazione['id_ordine'] = $idOrdine;
-			$prenotazione['id_utente'] = $_COOKIE['id_utente'];
-			
-			$insert = $ordineModel->insertPrenotazione($prenotazione);	
-		}
-		
 		$this->loadModules('prodotti');
 		$prodottiModel = new Prodotti();
 		
@@ -429,6 +439,50 @@ class IndexController extends Controller {
 			}
 			
 		}
+	}
+	
+	
+	public function postAddPrenotazione () {
+
+		$prenotazione['id_prodotto'] = $_POST['id_prodotto'];
+		$prenotazione['quantita'] = $_POST['quantita'];
+		
+		$data = $_POST['data_consegna'];
+		$array = explode("/", $data);
+		$data = $array[2].'-'.$array[1].'-'.$array[0];
+		
+		$this->loadModules('ordine');
+		$ordineModel = new Ordine();
+		$ordineAdmin = $this->_getOrdineAdmin();
+		$ordine = $ordineModel->selectOrdineUtente($ordineAdmin['id_ordine_admin'], $_COOKIE['id_utente']);
+		
+		$prenotazione['id_utente'] = $_COOKIE['id_utente'];
+		$prenotazione['stato'] = 0;
+		$prenotazione['id_ordine'] = $ordine['id_ordine'];
+		$prenotazione['id_ordine_admin'] = $ordineAdmin['id_ordine_admin'];
+		$prenotazione['data_prenotazione'] = date('Y-m-d H:i:s');
+		$prenotazione['data_consegna'] = $data;
+		
+		$insert = $ordineModel->insertPrenotazione($prenotazione);
+		
+		$prenotazione['data_consegna'] = $_POST['data_consegna'];
+		
+		$this->loadModules('prodotti');
+		$prodottiModel = new Prodotti();
+		$prodotto = $prodottiModel->selectProdotto($prenotazione['id_prodotto']);
+		
+		$prenotazione = array_merge($prodotto, $prenotazione);
+		$prenotazione['totale'] = round($prenotazione['quantita']*$prodotto['prezzo_iva'] , 2);
+		
+// 		$this->boxPrint($prenotazione);
+// 		die;
+		
+		if (isset($insert) && !empty($insert)) {
+			$this->view->setHead(null);
+			$this->view->load(null, '_partial/cella_prenotazione', null, null);
+			$this->view->render(  array ( 'prenotazione' => $prenotazione ) );
+		}
+		
 	}
 	
 	
@@ -699,7 +753,6 @@ class IndexController extends Controller {
 		}
 	}
 	
-	
 	public function getModalCassetta () {
 		$idProdotto = $_GET['id_prodotto'];
 		$idOrdineUtente = $_GET['id_ordine_utente'];
@@ -734,6 +787,32 @@ class IndexController extends Controller {
 		}
 	}
 	
+	public function getModalPolli(){
+		$idProdotto = $_GET['id_prodotto'];
+		
+		$this->loadModules('prodotti');
+		$prodottiModel = new Prodotti();
+		
+		$ordineAdmin = $this->_getOrdineAdmin();
+		
+		$prodotto = $prodottiModel->selectProdotto($idProdotto);
+		$prodotto['data_fine_ordine'] = $this->formatDate($ordineAdmin['data']);
+		$prodotto['data_consegna'] = $this->formatDate($prodotto['data_consegna']);
+		
+// 		$this->boxPrint($prodotto);
+// 		die;
+		
+		$this->view->setHead(null);
+		$this->view->load(null, '_partial/modal-prenotazione', null, null);
+		$this->view->render(  array ( 	'prodotto' => $prodotto ) );
+	}
+	
+	
+	public function formatDate ($data) {
+		$array = explode("-", $data);
+		$data = $array[2].'/'.$array[1].'/'.$array[0];
+		return $data;
+	}
 	
 	public function postLikeProdotto () {
 

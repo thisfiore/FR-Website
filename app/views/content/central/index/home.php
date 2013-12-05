@@ -4,26 +4,35 @@
 
 		<h1>Prodotti speciali della settimana:</h1>
 		<ul>
-		<li class="openpolli" data-placement="bottom" data-trigger="hover" data-content="" data-original-title="" title="">
+		<?php 
+			if (isset($riservati) && !empty($riservati)) {
+				foreach ($riservati as $riservato) { ?>
+			<li class="openpolli no_list" data-placement="bottom" data-trigger="hover" data-content="" data-original-title="" title="">
 						 
-						
-						<div data-id_prodotto="59" data-prezzo="19.78" data-iva="10" data-unita="Polli da circa 2kg" class="prodotto prodotto59">
+						<div 
+							data-id_prodotto="<?php echo $riservato['id_prodotto']?>" 
+							data-prezzo="<?php echo $riservato['prezzo_iva']?>" 
+							data-iva="<?php echo $riservato['iva']?>" 
+							data-unita="<?php echo $riservato['unita']?>" 
+							data-data_consegna="<?php echo $riservato['data_consegna']?>"
+							class="prodotto prodotto<?php echo $riservato['id_prodotto']?>">
 							
-							<div class="image" style="background:url('/img/products/pollo.jpg');">
+							<div class="image" style="background:url('/img/products/<?php echo $riservato['image']?>');">
 								<span style="display: none;">+</span>
 							</div>
 						
-							<h2>Polli</h2>
+							<h2><?php echo $riservato['nome_prodotto']?></h2>
 							<h3><img src="/img/producer-icon.png" width="18"> <a data-id_produttore="#produttore1">Cooperativa Sociale Agricola Campoverde</a></h3>
 							
 							<div class="info">
-		                        <span>19.78</span>
-		                        <p>Prezzo €/Polli da circa 2kg</p>
+		                        <span><?php echo $riservato['prezzo_iva']?></span>
+		                        <p>Prezzo €/<?php echo $riservato['unita']?></p>
 		                    </div>
 		                    <p class="desc"></p>
 						</div>
 					</li>
-		
+					
+					<?php }}?>
 		</ul>
 
 		<h1>Dai produttori vicini a te:</h1>
@@ -32,8 +41,7 @@
 			<?php 
 			if (isset($prodotti) && !empty($prodotti)) {
 				foreach ($prodotti as $prodotto) { ?>
-					<li 
-					<?php if ($prodotto['prenotazione'] == 1) { echo "class='openpolli'"; } ?>
+					<li
 					
 						data-placement="bottom"
 						data-trigger="hover"
@@ -165,26 +173,31 @@
 	 			</div>
 			</div>
 			<ul>
-				<li class="item59 row-fluid z">
+				<?php 
+				if (isset($prenotazioni) && !empty($prenotazioni)) { 
+					foreach ($prenotazioni as $prenotazione) { ?>
+					
+				<li class="item<?php echo $prenotazione['id_prodotto'] ?> openpolli row-fluid">
+					<div class="alert alert-warning  span16">
+						<button type="button" class="close" data-dismiss="alert"></button>
+						<span class="span4"><?php echo $prenotazione['nome_prodotto'] ?></span>
 							
-							<div class="alert alert-warning  span16">
-									<button type="button" class="close" data-dismiss="alert"></button>
-									<span class="span4">Polli</span>
-									
-									<div class="unita span4" data-unita="Polli da circa 2kg">Polli da circa 2kg</div>
-									<div class="quantity span3 text-center" data-quantita="1">
-										<!-- <span class="meno">-</span> -->
-										<span class="quantita">1</span>
-										<!-- <span class="piu">+</span> -->
-									</div>
-																		
-									<span class="partial span4 text-right" data-partial="19.78">
-										19.78 €
-									</span>
-									<br><br>
-									<span class="span16" style="margin-top:10px;">Consegna entro la 2a settimana di gennaio</span>
-							</div>
-						</li>
+						<div class="unita span4" data-unita="<?php echo $prenotazione['unita'] ?>"><?php echo $prenotazione['unita'] ?></div>
+						<div class="quantity span3 text-center" data-quantita="<?php echo $prenotazione['quantita'] ?>">
+						<!-- <span class="meno">-</span> -->
+						<span class="quantita"><?php echo $prenotazione['quantita'] ?></span>
+						<!-- <span class="piu">+</span> -->
+						</div>
+						
+						<span class="partial span4 text-right" data-partial="<?php echo $prenotazione['totale'] ?>"><?php echo $prenotazione['totale'] ?></span>
+								<br><br>
+						<span class="span16" style="margin-top:10px;">Consegna in data <?php echo $prenotazione['data_consegna'] ?></span>
+					</div>
+				</li>
+				
+				<?php 
+					}	
+				}?>
 			</ul>
 		</div>
 
@@ -261,72 +274,7 @@
 
 
 	<!-- MODAL POLLI -->
-	<div id="polli" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true">
-		  <div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    <h4 id="prodLabel">Prenota i tuoi polli entro giovedì!</h4>
-		    <h5>Consegna prevista per la 2a o 3a settimana di gennaio</h5>
-		  </div>
-		  <div class="modal-body">
-		  	
-		  	
-			<p class="pagination-centered">
-				
-				<img src="/img/polli.jpg" style="position:relative;"/>
-				<div class="ribbon-wrapper-green alt">
-		  			<div class="ribbon-green alt">scadenza<br>Giovedì 12</div>
-		  		</div>
-			</p>
-			
-			<br>
-			
-			<p>
-				Cari amici, i nostri polli stanno crescendo: ora hanno poco meno di 3 mesi e a <strong>metà gennaio</strong> saranno pronti per la macellazione.<br> 
-				In questo momento si trovano sulla strada per Campo Croce a 700 m di altezza e la loro razione alimentare è molto varia e salutare sia per i polli che per chi li mangerà. Per la prevenzione di malattie, usiamo prodotti naturali della nostra terra. In questo modo alleviamo meno capi, ma evitiamo loro malattie e problemi sanitari, puntando sul loro reale benessere. 
-			</p>
-			<p>
-				Il pollo viene confezionato "a busto", cioè totalmente pulito, sviscerato e senza testa, né zampe. Il fatto che sia intero, per noi, è anche garanzia di una migliore qualità delle carni.<br>
-				I polli avranno un peso di <strong>2 kg circa</strong> e dovranno essere prenotati entro la chiusura di questo ordine, cioè <strong>entro giovedì 12 alle ore 13.30</strong>.
-				<strong>La consegna avverrà la seconda o terza settimana di gennaio</strong>, a seconda di quando i nostri polli saranno pronti per il macello.
-			</p>
-			<p>
-				La prenotazione non comporta un pagamento immediato ma è una procedura vincolante, quindi non sarete più in grado di cancellarla una volta effettuata. 
-			</p>
-
-
-			<br>
-			
-			<ul>
-				<li class="item row-fluid">
-					<div class="span16" style="margin-bottom:10px;">
-						<span style="margin-left:5px" class="span8">&nbsp;</span>
-	 					<span class="quantita span3">unità</span>
-						<span class="partial span4 text-right"> €</span>
-	 				</div>
-	 			</li>
-				<li class="item row-fluid">
-					<div class="alert alert-warning span16">
-						<span style="margin-left:5px" class="span8">Pollo</span>
-						<div class="quantity text-center span3">
-							<span class="meno">-</span>
-							<span class="quantita" style="border:none;">1</span>
-							<span class="piu">+</span>
-						</div>
-						<span class="partial span4 text-right">19.78€</span>
-					</div>
-				</li>		
-			</ul>
-			
-		  </div>
-		  
-		  <div class="modal-footer modal-prenota" 
-		  	data-id_prodotto="59"
-		  	data-prezzo="25.3"
-		  	data-unita="Confezione da 2kg">
-		    <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Chiudi</button>
-		    <button class="btn btn-large btn-success prenota" type="submit" data-term="">Prenota Ora</button>
-		  </div>
-		  
+	<div id="modal-polli" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true">  
 	</div>
 	
 <!-- 	MODAL CASSETTA -->
