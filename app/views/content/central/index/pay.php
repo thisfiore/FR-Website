@@ -74,11 +74,7 @@ Il tuo ordine:
 				else {
 ?>
 				<li class="item row-fluid">
-					<div class="alert alert-success span16"
-					<?php if ($prodotto['prenotazione'] == 1) { 
-							echo "style='	background-color:rgba(54,20,133,0.3);
-											border-color:rgba(54,20,133,0.3);
-											color: #FFF773;'"; } ?>>
+					<div class="alert <?php if ($prodotto['prenotazione'] == 1) {echo "alert-warning";} else {echo "alert-success";} ?>  span16">
 						<span  style ="margin-left:5px" class="span8"><?php echo $prodotto['nome_prodotto']?></span>
 						<span class="quantita span3"><?php echo $prodotto['quantita'].' '.$prodotto['unita']?></span>
 						<span class="partial span4 text-right"><?php echo $prodotto['totale_prodotto']?>€</span>

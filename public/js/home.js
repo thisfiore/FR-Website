@@ -1,6 +1,12 @@
 $(document).ready(function(e) {
 	
-	$('#polli').modal('show');
+	setTimeout(function(){
+		//$('#polli').modal('show');
+	},3000);
+	$('.openpolli').on('click', function() { 
+		$('#polli').modal('show');
+	});
+	
 
 	$('.showmore').on('click', function() {
 		$(this).parent().next('.hide').toggle(100);

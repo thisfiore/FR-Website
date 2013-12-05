@@ -1,6 +1,31 @@
 
 <!-- LISTA DI PRODOTTI AQUISTABILI -->
 	<div class="prodotti">
+
+		<h1>Prodotti speciali della settimana:</h1>
+		<ul>
+		<li class="openpolli" data-placement="bottom" data-trigger="hover" data-content="" data-original-title="" title="">
+						 
+						
+						<div data-id_prodotto="59" data-prezzo="19.78" data-iva="10" data-unita="Polli da circa 2kg" class="prodotto prodotto59">
+							
+							<div class="image" style="background:url('/img/products/pollo.jpg');">
+								<span style="display: none;">+</span>
+							</div>
+						
+							<h2>Polli</h2>
+							<h3><img src="/img/producer-icon.png" width="18"> <a data-id_produttore="#produttore1">Cooperativa Sociale Agricola Campoverde</a></h3>
+							
+							<div class="info">
+		                        <span>19.78</span>
+		                        <p>Prezzo €/Polli da circa 2kg</p>
+		                    </div>
+		                    <p class="desc"></p>
+						</div>
+					</li>
+		
+		</ul>
+
 		<h1>Dai produttori vicini a te:</h1>
 		<ul>
 			
@@ -8,7 +33,7 @@
 			if (isset($prodotti) && !empty($prodotti)) {
 				foreach ($prodotti as $prodotto) { ?>
 					<li 
-					<?php if ($prodotto['prenotazione'] == 1) { echo "style='background:rgba(54,20,133,0.9);'"; } ?>
+					<?php if ($prodotto['prenotazione'] == 1) { echo "class='openpolli'"; } ?>
 					
 						data-placement="bottom"
 						data-trigger="hover"
@@ -87,11 +112,7 @@
 							data-id_prodotto="<?php echo $cella_lista['id_prodotto']?>"
 							data-check=1>
 							
-							<div class="alert alert-success span16" 
-							<?php if ($cella_lista['prenotazione'] == 1) { 
-							echo "style='	background-color:rgba(54,20,133,0.3);
-											border-color:rgba(54,20,133,0.3);
-											color: #FFF773;'"; } ?>>
+							<div class="alert <?php if ($cella_lista['prenotazione'] == 1) {echo "alert-warning";} else {echo "alert-success";} ?>  span16">
 									<button type="button" class="close" data-dismiss="alert">&times;</button>
 									<span class="span5"><?php echo $cella_lista['prodotto']['nome_prodotto']?></span>
 									
@@ -133,6 +154,38 @@
 			  <span></span>
 			</div>
 
+		</div>
+
+		<div class="reservations">
+			<h4 class="text-center">Prodotti Prenotati</h4>
+			<div class="row-fluid">
+				<div class="span16" style="margin-bottom:10px; padding:0 13px 0 5px;">
+					<span class="span12">Prodotto</span>
+					<span class="partial span4 text-right"> €</span>
+	 			</div>
+			</div>
+			<ul>
+				<li class="item59 row-fluid z">
+							
+							<div class="alert alert-warning  span16">
+									<button type="button" class="close" data-dismiss="alert"></button>
+									<span class="span4">Polli</span>
+									
+									<div class="unita span4" data-unita="Polli da circa 2kg">Polli da circa 2kg</div>
+									<div class="quantity span3 text-center" data-quantita="1">
+										<!-- <span class="meno">-</span> -->
+										<span class="quantita">1</span>
+										<!-- <span class="piu">+</span> -->
+									</div>
+																		
+									<span class="partial span4 text-right" data-partial="19.78">
+										19.78 €
+									</span>
+									<br><br>
+									<span class="span16" style="margin-top:10px;">Consegna entro la 2a settimana di gennaio</span>
+							</div>
+						</li>
+			</ul>
 		</div>
 
 		<div class="terms">
@@ -211,31 +264,36 @@
 	<div id="polli" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="prodLabel" aria-hidden="true">
 		  <div class="modal-header">
 		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    <h4 id="prodLabel">Prenota i tuoi polli entro giovedì 12 dicembre</h4>
+		    <h4 id="prodLabel">Prenota i tuoi polli entro giovedì!</h4>
 		    <h5>Consegna prevista per la 2a o 3a settimana di gennaio</h5>
 		  </div>
 		  <div class="modal-body">
-		  	<div class="ribbon-wrapper-green alt">
-		  		<div class="ribbon-green alt">scadenza<br>Giovedì 12</div>
-		  	</div>
+		  	
 		  	
 			<p class="pagination-centered">
-				<img src="/img/polli.jpg" />
+				
+				<img src="/img/polli.jpg" style="position:relative;"/>
+				<div class="ribbon-wrapper-green alt">
+		  			<div class="ribbon-green alt">scadenza<br>Giovedì 12</div>
+		  		</div>
 			</p>
 			
 			<br>
 			
 			<p>
 				Cari amici, i nostri polli stanno crescendo: ora hanno poco meno di 3 mesi e a <strong>metà gennaio</strong> saranno pronti per la macellazione.<br> 
-				In questo momento si trovano sulla strada per Campo Croce a 700 m di altezza e la loro razione alimentare è molto varia: mais, avena, orzo, soia, pisello proteico e favino.<br>
-				Per la prevenzione di malattie, usiamo in abbondanza echinacea, rosa canica, corteccia di gelso, aglio, semi di zucca, melelauca oltre ad un'oculata rotazione del pascolo a disposizione dei nostri animali. In questo modo alleviamo meno capi, ma evitiamo loro malattie e problemi sanitari, puntando sul loro reale benessere 
+				In questo momento si trovano sulla strada per Campo Croce a 700 m di altezza e la loro razione alimentare è molto varia e salutare sia per i polli che per chi li mangerà. Per la prevenzione di malattie, usiamo prodotti naturali della nostra terra. In questo modo alleviamo meno capi, ma evitiamo loro malattie e problemi sanitari, puntando sul loro reale benessere. 
 			</p>
 			<p>
 				Il pollo viene confezionato "a busto", cioè totalmente pulito, sviscerato e senza testa, né zampe. Il fatto che sia intero, per noi, è anche garanzia di una migliore qualità delle carni.<br>
-				Lavoriamo solo su prenotazione e consegneremo ai coproduttori di Food Republic che faranno la propria prenotazione entro questo giovedì polli di <strong>circa 2 kg</strong>.<br>
-				La consegna avverrà la seconda o terza settimana di gennaio, a seconda di quando i nostri polli saranno pronti per il macello.
+				I polli avranno un peso di <strong>2 kg circa</strong> e dovranno essere prenotati entro la chiusura di questo ordine, cioè <strong>entro giovedì 12 alle ore 13.30</strong>.
+				<strong>La consegna avverrà la seconda o terza settimana di gennaio</strong>, a seconda di quando i nostri polli saranno pronti per il macello.
 			</p>
-			
+			<p>
+				La prenotazione non comporta un pagamento immediato ma è una procedura vincolante, quindi non sarete più in grado di cancellarla una volta effettuata. 
+			</p>
+
+
 			<br>
 			
 			<ul>
@@ -247,14 +305,14 @@
 	 				</div>
 	 			</li>
 				<li class="item row-fluid">
-					<div class="alert alert-success span16">
+					<div class="alert alert-warning span16">
 						<span style="margin-left:5px" class="span8">Pollo</span>
-						<div class="quantity span3" data-quantita="0.5">
+						<div class="quantity text-center span3">
 							<span class="meno">-</span>
-							<span class="quantita">1</span>
+							<span class="quantita" style="border:none;">1</span>
 							<span class="piu">+</span>
 						</div>
-						<span class="partial span4 text-right">1€</span>
+						<span class="partial span4 text-right">19.78€</span>
 					</div>
 				</li>		
 			</ul>

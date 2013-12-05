@@ -109,8 +109,9 @@ div.center {
 	margin-top: 80px;
 }
 .prodotti ul { 
-	list-style-type: none; 
+	list-style-type: none;
 	margin: 20px;
+	overflow: auto;
 }
 .prodotti ul li {
 	background: rgba(54,206,133,0.9);
@@ -906,4 +907,23 @@ button.action:hover {
 	min-width: 28px;
 	display: inline-block;
 	text-align: center;
+}
+
+.prodotti ul li.openpolli {
+	background: #FCF8E3;
+}
+.prodotti ul li.openpolli h2, .prodotti ul li.openpolli a, .prodotti ul li.openpolli .info { color: #C09853; }
+.prodotti ul li.openpolli .info span { background: #C09853; }
+
+
+
+/************ PRODOTTI PRENOTATI *******************/
+.reservations{
+	padding: 15px;
+	padding-top: 0;
+	margin-bottom: 10px;
+}
+.reservations ul {
+	list-style-type: none;
+	margin: 0;
 }
