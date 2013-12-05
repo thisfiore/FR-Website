@@ -18,6 +18,9 @@ class OrdineController extends Controller {
 			$delete = $ordineModels->deleteCassetta($idProdotto, $idOrdine);
 		}
 		
+// 		Delete la prenotazione se c'
+		$ordineModels->deletePrenotazione($idProdotto, $idOrdine, $_COOKIE['id_utente']);
+		
 		$delete = $ordineModels->deleteCellaListaSpesa($idProdotto, $idOrdine);
 
 		if (isset($delete) && !empty($delete)) {

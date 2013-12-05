@@ -77,6 +77,7 @@ $(document).ready(function(e) {
 		
 		var id_prodotto = $(this).parent().data('id_prodotto');
 		var check = $("div.lista").find(".item"+id_prodotto).data('check');
+		var prenotazione = 1;
 		
 		var totale = $('div.subtotal').data('totale');
 		var prezzo = $(this).parent().data('prezzo');
@@ -96,6 +97,7 @@ $(document).ready(function(e) {
 			dataType : 'html',
 			data : {
 				id_prodotto : id_prodotto,
+				prenotazione : prenotazione,
 			},
 			success : function(response) {
 				
