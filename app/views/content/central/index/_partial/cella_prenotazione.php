@@ -12,6 +12,6 @@
 		
 		<span class="partial span4 text-right" data-partial="<?php echo $prenotazione['totale'] ?>"><?php echo $prenotazione['totale'] ?></span>
 				<br><br>
-		<span class="span16" style="margin-top:10px;">Consegna in data <?php echo $prenotazione['data_consegna'] ?></span>
+		<span class="span16" style="margin-top:10px;">Consegna in data <?php echo $prenotazione['data_consegna_pren'] ?></span>
 	</div>
 </li>

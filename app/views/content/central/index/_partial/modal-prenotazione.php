@@ -46,7 +46,7 @@
 			<span style="margin-left:5px" class="span8"><?php echo $prodotto['nome_prodotto']?></span>
 			
 			<div class="quantity text-center span3" 
-				data-data_consegna='<?php echo $prodotto['data_fine_ordine']?>'
+				data-data_consegna_pren='<?php echo $prodotto['data_consegna_pren']?>'
 				data-id_prodotto='<?php echo $prodotto['id_prodotto']?>'
 				data-quantita='1' 
 				data-unita="<?php echo $prodotto['unita']?>"

@@ -77,7 +77,7 @@ $(document).ready(function(e) {
 				
 		var id_prodotto = $('#modal-polli div.quantity').data('id_prodotto');
 		var quantita = $('#modal-polli div.quantity').data('quantita');
-		var data_consegna = $('#modal-polli div.quantity').data('data_consegna');
+		var data_consegna_pren = $('#modal-polli div.quantity').data('data_consegna_pren');
 
 		var check = $("div.lista").find(".item"+id_prodotto).data('check');
 		if (check == 1) {
@@ -92,7 +92,7 @@ $(document).ready(function(e) {
 			dataType : 'html',
 			data : {
 				id_prodotto : id_prodotto,
-				data_consegna : data_consegna,
+				data_consegna_pren : data_consegna_pren,
 				quantita : quantita,
 			},
 			success : function(responseHtml) {

@@ -447,7 +447,7 @@ class IndexController extends Controller {
 		$prenotazione['id_prodotto'] = $_POST['id_prodotto'];
 		$prenotazione['quantita'] = $_POST['quantita'];
 		
-		$data = $_POST['data_consegna'];
+		$data = $_POST['data_consegna_pren'];
 		$array = explode("/", $data);
 		$data = $array[2].'-'.$array[1].'-'.$array[0];
 		
@@ -465,7 +465,7 @@ class IndexController extends Controller {
 		
 		$insert = $ordineModel->insertPrenotazione($prenotazione);
 		
-		$prenotazione['data_consegna'] = $_POST['data_consegna'];
+		$prenotazione['data_consegna_pren'] = $_POST['data_consegna_pren'];
 		
 		$this->loadModules('prodotti');
 		$prodottiModel = new Prodotti();
@@ -797,7 +797,7 @@ class IndexController extends Controller {
 		
 		$prodotto = $prodottiModel->selectProdotto($idProdotto);
 		$prodotto['data_fine_ordine'] = $this->formatDate($ordineAdmin['data']);
-		$prodotto['data_consegna'] = $this->formatDate($prodotto['data_consegna']);
+		$prodotto['data_consegna_pren'] = $this->formatDate($prodotto['data_consegna_pren']);
 		
 // 		$this->boxPrint($prodotto);
 // 		die;

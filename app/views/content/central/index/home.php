@@ -14,7 +14,7 @@
 							data-prezzo="<?php echo $riservato['prezzo_iva']?>" 
 							data-iva="<?php echo $riservato['iva']?>" 
 							data-unita="<?php echo $riservato['unita']?>" 
-							data-data_consegna="<?php echo $riservato['data_consegna']?>"
+							data-data_consegna="<?php echo $riservato['data_consegna_pren']?>"
 							class="prodotto prodotto<?php echo $riservato['id_prodotto']?>">
 							
 							<div class="image" style="background:url('/img/products/<?php echo $riservato['image']?>');">
@@ -32,7 +32,9 @@
 						</div>
 					</li>
 					
-					<?php }}?>
+		<?php }
+			}
+		?>
 		</ul>
 
 		<h1>Dai produttori vicini a te:</h1>
