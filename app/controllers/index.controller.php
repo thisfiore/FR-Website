@@ -203,11 +203,11 @@ class IndexController extends Controller {
 // 		Go Home!
 // 		$news = 1;
 		
-		if (!$news) {
-			$this->view->load('header', 'news', null, null);
-			$this->view->render(array ( 'utente' => $utente) );
-			die;
-		}
+// 		if (!$news) {
+// 			$this->view->load('header', 'news', null, null);
+// 			$this->view->render(array ( 'utente' => $utente) );
+// 			die;
+// 		}
 		
 		$this->loadModules('prodotti');
 		$prodottiModels = new Prodotti();

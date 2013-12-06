@@ -80,20 +80,69 @@ $(document).ready(function(e) {
 		}
 	});
 	
-//	Bottone apri e chiudi l'ordine
-	$('.header').on('click', 'button.order-admin', function(event){
+//	Bottone apri modal e chiudi l'ordine
+	$('.header').on('click', 'button.order-admin', function(event) {
 		var stato = $(this).data('value');
+		
+		if (stato == 1) {
+			$('#modal-admin').modal('show');
+		}
+		else {
+			$.ajax({
+				url : '/admin/openOrderAdmin/',
+				type : 'POST',
+				dataType : 'json',
+				data : {
+					stato : stato
+				},
+				success : function(response) {
+					if (response.status == 'OK') {
+						window.location.reload();
+					}
+				}
+			});
+		}
+	});
+	
+	$('.tck').on('focus', function() {
+		$(this).parent('.control-group').removeClass('error');
+		$(this).next('span').hide(200);
+	});
+	
+	$('#modal-admin').on('click', 'button.submit', function(event){
+		
+		if ($('#markup').val() == '') {
+			$("#markup").parent('.control-group').addClass('error');
+			$("#markup").next('span').text('Inserisci un numero').show(200);
+			return false;
+		}
+		
+		if ($('#data').val() == '') {
+			$("#data").parent('.control-group').addClass('error');
+			$("#data").next('span').text('Inserisci una data').show(200);
+			return false;
+		}
+		
+		var stato = 1;
+		var markup = $('#markup').val();
+		var data_consegna = $('#data').val();
 		
 		$.ajax({
 			url : '/admin/openOrderAdmin/',
-			type : 'GET',
+			type : 'POST',
 			dataType : 'json',
 			data : {
-				stato : stato
+				stato : stato,
+				data_consegna : data_consegna,
+				markup : markup,
 			},
 			success : function(response) {
 				if (response.status == 'OK') {
+					$('#modal-admin').modal('hide');
 					window.location.reload();
+				}
+				else {
+					alert(response.message);
 				}
 			}
 		});

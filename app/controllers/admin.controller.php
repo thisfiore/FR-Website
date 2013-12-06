@@ -20,8 +20,19 @@ class AdminController extends Controller {
 		$ordineModels = new Ordine();
 		$admin = $ordineModels->selectLastOrdineAdmin();
 		$allIdOrdineAdmin = $ordineModels->selectAllOrdineAdmin();
-		foreach ($allIdOrdineAdmin as $key => $tuttiOrdiniAdmin) {
-			$allIdOrdineAdmin[$key]['data'] = $this->formatData($tuttiOrdiniAdmin['data']);
+		
+		if ( isset($allIdOrdineAdmin) && !empty($allIdOrdineAdmin) ) {
+			foreach ($allIdOrdineAdmin as $key => $tuttiOrdiniAdmin) {
+				$allIdOrdineAdmin[$key]['data'] = $this->formatData($tuttiOrdiniAdmin['data']);
+			}
+		}
+		else {
+			$ordineAdmin['markup'] = 0;
+			$ordineAdmin['stato'] = 0;
+			$ordineAdmin['data'] = date('Y-m-d');
+			$ordineAdmin['data_consegna'] = date('Y-m-d');
+			
+			$insert = $ordineModels->insertOrdineAdmin($ordineAdmin);
 		}
 		
 		$this->loadModules('index');
@@ -215,20 +226,17 @@ class AdminController extends Controller {
 	}
 	
 	
-	public function getOpenOrderAdmin() {
+	public function postOpenOrderAdmin() {
 		$this->loadModules('ordine');
 		$ordineModels = new Ordine();
 		
-		$stato = $_GET['stato'];
+		$stato = $_POST['stato'];
 	
 		if ($stato == 1) {
-			$ordineAdmin = array();
-			$ordineAdmin['markup'] = 15;
+			$ordineAdmin['markup'] = $_POST['markup'];
 			$ordineAdmin['stato'] = $stato;
 			$ordineAdmin['data'] = date('Y-m-d');
-			
-			$array = explode("-", $ordineAdmin['data']);
-			$ordineAdmin['data_consegna'] = $array[0].'-'.$array[1].'-'.($array[2]+2);
+			$ordineAdmin['data_consegna'] = $_POST['data_consegna'];
 			
 // 			$this->boxPrint($ordineAdmin);
 // 			die;
