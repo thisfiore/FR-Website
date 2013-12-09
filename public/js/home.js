@@ -1,12 +1,5 @@
 $(document).ready(function(e) {
 	
-	setTimeout(function(){
-		//$('#polli').modal('show');
-	},3000);
-	$('.openpolli').on('click', function() { 
-		$('#polli').modal('show');
-	});
-	
 
 	$('.showmore').on('click', function() {
 		$(this).parent().next('.hide').toggle(100);
@@ -82,7 +75,7 @@ $(document).ready(function(e) {
 		var check = $("div.lista").find(".item"+id_prodotto).data('check');
 		if (check == 1) {
 			$('.modal-prenota button.prenota').remove();
-			$('.modal-prenota').append('<button class="btn btn-large btn-warning prenota block" type="submit" data-term="">Prodotto prenotato</button>');
+			$('.modal-prenota').append('<button class="disabled btn btn-large btn-warning prenota block" type="submit" data-term="">Prodotto prenotato</button>');
 			return false;
 		}
 		
@@ -565,7 +558,7 @@ $(document).ready(function(e) {
 				
 				if ($('li.item'+id_prodotto).text()) {
 					$('#modal-polli .modal-footer button.prenota').remove();
-					$('#modal-polli .modal-footer').append('<button class="btn btn-large btn-warning prenota block" type="submit" data-term="">Prodotto prenotato</button>');
+					$('#modal-polli .modal-footer').append('<button class="btn btn-large btn-warning prenota block disabled" type="submit" data-term="">Prodotto prenotato</button>');
 				}
 				
 				$('#modal-polli').modal('show');
