@@ -470,6 +470,7 @@ class IndexController extends Controller {
 		$insert = $ordineModel->insertPrenotazione($prenotazione);
 		
 		$prenotazione['data_consegna_pren'] = $_POST['data_consegna_pren'];
+		$prenotazione['data_consegna'] = $_POST['data_consegna_pren'];
 		
 		$this->loadModules('prodotti');
 		$prodottiModel = new Prodotti();
