@@ -22,7 +22,7 @@
 							</div>
 						
 							<h2><?php echo $riservato['nome_prodotto']?></h2>
-							<h3><img src="/img/producer-icon.png" width="18"> <a data-id_produttore="#produttore1">Cooperativa Sociale Agricola Campoverde</a></h3>
+							<h3><img src="/img/producer-icon-alt.png" width="18"> <a data-id_produttore="#produttore1">Cooperativa Sociale Agricola Campoverde</a></h3>
 							
 							<div class="info">
 		                        <span><?php echo $riservato['prezzo_iva']?></span>
