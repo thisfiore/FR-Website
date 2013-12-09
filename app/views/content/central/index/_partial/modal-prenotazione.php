@@ -7,7 +7,7 @@
  
  
 <p class="pagination-centered">
-	<img src="/img/products/<?php echo $prodotto['image']?>" style="position:relative;"/>
+	<img src="/img/polli.jpg" style="position:relative;"/>
 	<div class="ribbon-wrapper-green alt">
 		<div class="ribbon-green alt">scadenza <br><?php echo $prodotto['data_fine_ordine']?></div>
 	</div>
