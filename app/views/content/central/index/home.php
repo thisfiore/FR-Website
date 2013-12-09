@@ -167,6 +167,7 @@
 		</div>
 
 		<div class="reservations">
+		<?php  if ( (isset($riservati) && !empty($riservati)) || (isset($prenotazioni) && !empty($prenotazioni)) ) { ?>
 			<h4 class="text-center">Prodotti Prenotati</h4>
 			<div class="row-fluid">
 				<div class="span16" style="margin-bottom:10px; padding:0 13px 0 5px;">
@@ -175,9 +176,9 @@
 	 			</div>
 			</div>
 			<ul>
-				<?php 
-				if (isset($prenotazioni) && !empty($prenotazioni)) { 
-					foreach ($prenotazioni as $prenotazione) { ?>
+		<?php	}	 
+		if (isset($prenotazioni) && !empty($prenotazioni)) {
+			foreach ($prenotazioni as $prenotazione) { ?>
 					
 				<li class="item<?php echo $prenotazione['id_prodotto'] ?> openpolli row-fluid">
 					<div class="alert alert-warning  span16">
@@ -193,14 +194,13 @@
 						
 						<span class="partial span4 text-right" data-partial="<?php echo $prenotazione['totale'] ?>"><?php echo $prenotazione['totale'] ?></span>
 								<br><br>
-						<span class="span16" style="margin-top:10px;">Consegna in data <?php echo $prenotazione['data_consegna'] ?></span>
+						<span class="span16" style="margin-top:10px;">Prodotto in consegna il <?php echo $prenotazione['data_consegna'] ?> circa</span>
 					</div>
 				</li>
 				
-				<?php 
-					}	
-				}?>
+		<?php	}	?>	
 			</ul>
+		<?php	}	?>
 		</div>
 
 		<div class="terms">

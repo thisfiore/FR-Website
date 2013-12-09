@@ -70,7 +70,10 @@ class IndexController extends Controller {
 			$loginScript = array(
 					"login" => array(
 							"type" => "text/javascript",
-							"src" => "login.js")
+							"src" => "login.js"),
+					"signup" => array(
+							"type" => "text/javascript",
+							"src" => "signup.js")
 					);
 			$this->view->addScripts($loginScript);
 			
