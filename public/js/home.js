@@ -540,7 +540,7 @@ $(document).ready(function(e) {
 	//Apertura modal cassetta
 	$('div.prodotti').on('click', 'li.openpolli', function(event) {
 		
-		if ($(event.target).is('div button.close')) {
+		if ($(event.target).is('div button.close') || $(event.target).is('h3 a')) {
 			return false;   
 		}
 		
