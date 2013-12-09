@@ -2,11 +2,11 @@
 <!-- LISTA DI PRODOTTI AQUISTABILI -->
 	<div class="prodotti">
 
+<?php  if (isset($riservati) && !empty($riservati)) { ?>
 		<h1>Prodotti speciali della settimana:</h1>
 		<ul>
-		<?php 
-			if (isset($riservati) && !empty($riservati)) {
-				foreach ($riservati as $riservato) { ?>
+		
+			<?php	foreach ($riservati as $riservato) { ?>
 			<li class="openpolli no_list" data-placement="bottom" data-trigger="hover" data-content="" data-original-title="" title="">
 						 
 						<div 

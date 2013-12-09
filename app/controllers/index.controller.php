@@ -214,6 +214,7 @@ class IndexController extends Controller {
 		
 		$prodotti = $prodottiModels->selectAllProducts();
 		$produttori = $prodottiModels->selectAllProduttori();
+		$riservati = array();
 		
 		foreach ($prodotti as $index => $cerca_riservato) { 
 			if ($cerca_riservato['prenotazione'] == 1) {
