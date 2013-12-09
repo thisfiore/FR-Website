@@ -15,6 +15,20 @@ $(document).ready(function(e) {
 		}
 	});
 	
+	//	Elimino il bordo rosso dai campi che sto modificando che mi avevano dato un errore
+	$('.tck2').keyup(function() {
+
+		$(this).parent('.control-group').removeClass('error');
+		$(this).next('span').hide(50);
+		
+		if ($(this).attr('type') == 'password' ) {
+			$("#pswd1").css("border", "");
+			$("#pswd2").css("border", "");
+		}
+		else {
+			$(this).css("border", "");
+		}
+	});
 	
 	
 	$('#submit').click(function(event) {
