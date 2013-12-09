@@ -276,7 +276,7 @@ class IndexController extends Controller {
 				}
 			}
 			
-			$prenotazioni = $ordineModels->selectPrenotazioni();
+			$prenotazioni = $ordineModels->selectPrenotazioni($_COOKIE['id_utente']);
 					
 			if (isset($prenotazioni) && !empty($prenotazioni)) {
 // 				$key = 0;

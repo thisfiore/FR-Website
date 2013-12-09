@@ -105,9 +105,10 @@ class Ordine extends DB {
 		return $ordine_admin;
 	}
 	
-	public function selectPrenotazioni () {
+	public function selectPrenotazioni ($idUtente) {
 		$select = $this->select()
-						->from ('prenotazione', '*');
+						->from ('prenotazione', '*')
+						->where('id_utente = ', $idUtente);
 		
 		$prenotazioni = $this->fetchAll($select);
 		return $prenotazioni;
