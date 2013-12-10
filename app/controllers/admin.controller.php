@@ -48,6 +48,10 @@ class AdminController extends Controller {
 		
 		$elencoOrdini = $ordineModels->selectOrdiniUtentiProduttori($idOrdineAdmin);
 		
+		if (!isset($cassetta) || empty($cassetta)){
+			$cassetta = array();
+		}
+		
 		if (isset($elencoOrdini) && !empty($elencoOrdini)) {
 			$produttori = $ordineModels->selectProduttori();
 			$adminProduttori = array();
@@ -64,9 +68,6 @@ class AdminController extends Controller {
 				
 // 				Compilo la cassetta se esiste
 				if ($prodotto['unita'] == "Cassetta") {
-					if (!isset($cassetta) || empty($cassetta)){
-						$cassetta = array();
-					}
 					
 					if (strpos($prodotto['nome_prodotto'],'verdura') !== false) {
 						$cassetta['verdura'][] = $this->getCassetta($prodotto, $ordine);
