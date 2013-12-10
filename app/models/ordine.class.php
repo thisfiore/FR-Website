@@ -43,9 +43,13 @@ class Ordine extends DB {
 		
 		$prodotti = $this->fetchAll($select);
 		
+		require_once 'ordine.class.php';
+		$ordineModel = new Ordine();
+		$ordineAdmin = $ordineModel->selectLastOrdineAdmin();
+		
 		if (isset($prodotti) && !empty($prodotti)) {
 			foreach ($prodotti as $key => $prodotto) {
-				$prodotti[$key]['prezzo_iva'] = round($prodotto['prezzo'] * (1+$prodotto['iva']/100) * (1.15) , 2) ;
+				$prodotti[$key]['prezzo_iva'] = round($prodotto['prezzo'] * (1+$prodotto['iva']/100) * ($ordineAdmin['markup']) , 2) ;
 			}
 		}
 		

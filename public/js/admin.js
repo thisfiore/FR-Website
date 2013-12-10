@@ -164,8 +164,13 @@ $(document).ready(function(e) {
 		
 	});
 	
-	
+//	Mostra la tabella selezionata
 	$('div.content').on('click', 'ul.nav li', function(event) {
+		if ($(this).hasClass('active')) {
+			console.log('here active');
+			return false;
+		}
+		
 		$('ul.nav li').removeClass('active');
 		$(this).addClass('active');
 		
@@ -184,6 +189,7 @@ $(document).ready(function(e) {
 	});
 
 	
+//	Fa l'update di tutti i campi e tabelle in base a capo della tabella e tabella stessa
 	$('.content').on('change', '.target', function(event) {
 		
 		var select = $(this).parents('table').data('select').charAt(0).toUpperCase() + $(this).parents('table').data('select').slice(1);
@@ -191,11 +197,6 @@ $(document).ready(function(e) {
 		var field = $(this).parents('th').data('field');
 		var id = $(this).parents('tr').data('id');
 		var value = $(this).val();
-		var that = $(this);
-		
-//		console.log(url);
-//		console.log(field);
-//		console.log(value);
 		
 		$.ajax({
 			url : url,
@@ -208,15 +209,49 @@ $(document).ready(function(e) {
 			},
 			success : function(response) {
 				if (response.status == 'OK') {
-					 console.log('here');
-					 console.log($('.content').find('.status'));
-					 
 					 $('.content').find('.status').html('Saved').fadeIn().delay(800).fadeOut();
 				}
 				else {
 					alert(response.message);
 					window.location.reload();
 				}
+			}
+		});
+	});
+	
+//	Add row in table
+	$('div.content').on('click', 'ul.nav li span', function(event) {
+		if (!$(this).parents('li').hasClass('active')) {
+			
+//			$('ul.nav li').removeClass('active');
+//			$(this).parents('li').addClass('active');
+//			var url = '/admin/tab'+$(this).parents('li').data('select')+'/';
+//			$.ajax({
+//				url : url,
+//				type : 'GET',
+//				dataType : 'html',
+//				data : {
+//				},
+//				success : function(responseHtml) {
+//					$('div.tabsDb').empty().append(responseHtml);
+//				}
+//			});
+			
+			console.log('here no active');
+			return false;
+		}
+		
+		var label = $(this).parents('li').data('select');
+		
+		$.ajax({
+			url : '/admin/insertRowDb/',
+			type : 'POST',
+			dataType : 'html',
+			data : {
+				label : label,
+			},
+			success : function(responseHtml) {
+				$('table.table > tbody > tr').eq(0).after(responseHtml);
 			}
 		});
 	});

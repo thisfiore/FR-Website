@@ -31,7 +31,7 @@
 			}
 				echo "</select>
 					</th>
-					<th data-field='nome_prodotto'><input class='target' type='text' value=".htmlentities($prodotto['nome_prodotto'])."></th>
+					<th data-field='nome_prodotto'><input class='target' type='text' value=".$prodotto['nome_prodotto']."></th>
 					<th data-field='desc'><textarea class='target' rows='4' cols='50'>".$prodotto['desc']."</textarea></th>
 					<th data-field='unita'><input class='target' type='text' value=".htmlentities($prodotto['unita'])."></th>
 					<th data-field='quantita'><input class='target' type='number' value=".htmlentities($prodotto['quantita'])."></th>

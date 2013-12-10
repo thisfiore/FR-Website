@@ -31,11 +31,14 @@ class Prodotti extends DB {
 						
 		$prodotti = $this->fetchAll($select);
 		
+		require_once 'ordine.class.php';
+		$ordineModel = new Ordine();
+		$ordineAdmin = $ordineModel->selectLastOrdineAdmin();
+		
 		if (isset($prodotti) && !empty($prodotti)) {
 			foreach ($prodotti as $key => $prodotto) {
-				$ivaMarkup = (1+$prodotto['iva']/100) * (1.15);
+				$ivaMarkup = (1+$prodotto['iva']/100) * ($ordineAdmin['markup']);
 				$prodotti[$key]['prezzo_iva'] = round($prodotto['prezzo'] * $ivaMarkup , 2);
-// 				round($prodotto['prezzo'] * (1+$prodotto['iva']/100) * (1.15) , 2)
 			}
 		}
 		
@@ -60,7 +63,11 @@ class Prodotti extends DB {
 	
 		$prodotti = $this->fetchRow($select);
 	
-		$prodotti['prezzo_iva'] = round($prodotti['prezzo'] * (1+$prodotti['iva']/100) * (1.15), 2);
+		require_once 'ordine.class.php';
+		$ordineModel = new Ordine();
+		$ordineAdmin = $ordineModel->selectLastOrdineAdmin();
+		
+		$prodotti['prezzo_iva'] = round($prodotti['prezzo'] * (1+$prodotti['iva']/100) * ($ordineAdmin['markup']), 2);
 	
 		return $prodotti;
 	}
@@ -84,7 +91,11 @@ class Prodotti extends DB {
 	
 		$prodotti = $this->fetchRow($select);
 		
-		$prodotti['prezzo_iva'] = round($prodotti['prezzo'] * (1+$prodotti['iva']/100) * (1.15), 2);
+		require_once 'ordine.class.php';
+		$ordineModel = new Ordine();
+		$ordineAdmin = $ordineModel->selectLastOrdineAdmin();
+		
+		$prodotti['prezzo_iva'] = round($prodotti['prezzo'] * (1+$prodotti['iva']/100) * ($ordineAdmin['markup']), 2);
 		
 		return $prodotti;
 	}
@@ -140,6 +151,17 @@ class Prodotti extends DB {
 	
 		$prodotti = $this->fetchAll($select);
 		return $prodotti;
+	}
+	
+	
+	public function insertProdotto ($prodotto) {
+		$insert = $this->insert($prodotto, 'prodotti');
+		return $insert;
+	}
+	
+	public function insertProduttore ($produttore) {
+		$insert = $this->insert($produttore, 'produttori');
+		return $insert;
 	}
 	
 	

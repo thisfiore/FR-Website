@@ -1,6 +1,5 @@
 <?php
 
-// require_once ROOT.DS."../mandrill".DS."src".DS."Mandrill.php";
 class IndexController extends Controller {
 	
 	public function __construct() {

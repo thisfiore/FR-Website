@@ -239,10 +239,12 @@ class AdminController extends Controller {
 		$stato = $_POST['stato'];
 	
 		if ($stato == 1) {
-			$ordineAdmin['markup'] = $_POST['markup'];
+			$ordineAdmin['markup'] = 1+($_POST['markup']/100);
 			$ordineAdmin['stato'] = $stato;
 			$ordineAdmin['data'] = date('Y-m-d');
-			$ordineAdmin['data_consegna'] = $_POST['data_consegna'];
+			$ordineAdmin['data_chiusura'] = $_POST['data_consegna'];
+			
+			$ordineAdmin['data_consegna'] = date('Y-m-d', strtotime($ordineAdmin['data_chiusura']. ' + 1 days'));
 			
 // 			$this->boxPrint($ordineAdmin);
 // 			die;
@@ -429,4 +431,86 @@ class AdminController extends Controller {
 				$this->view->renderJson($response);
 		}
 	}
+	
+	
+	public function postInsertRowDb () {
+		$label = $_POST['label'];
+		
+// 		$this->boxPrint($label);
+// 		die;
+		
+		switch ($label) {
+			
+			case 'Produttori':
+				$this->loadModules('prodotti');
+				$prodottiModels = new Prodotti();
+				$produttore['nome_produttore'] = 'Nuovo Produttore';
+				$produttore['id_produttore'] = $prodottiModels->insertProduttore($produttore);
+				
+				if (isset($produttore['id_produttore']) && !empty($produttore['id_produttore'])) {
+					$this->view->setHead(null);
+					$this->view->load(null, '_partial/row_produttori', null, null);
+					$this->view->render( array(	'produttore' => $produttore ) );
+				}
+				else {
+					$response = array( 	'status' => 'ERR',
+										'message' => 'errore insert produttore');
+					$this->view->renderJson($response);
+				}
+				
+				
+				break;
+				
+			case 'Prodotti':
+				$this->loadModules('prodotti');
+				$prodottiModels = new Prodotti();
+				$prodotto['nome_prodotto'] = 'Nuovo Prodotto';
+				$prodotto['id_prodotto'] = $prodottiModels->insertProdotto($prodotto);
+				$prodotto['id_produttore'] = 1;
+				$produttori = $prodottiModels->selectAllProduttori();
+				
+				if (isset($prodotto['id_prodotto']) && !empty($prodotto['id_prodotto'])) {
+					$this->view->setHead(null);
+					$this->view->load(null, '_partial/row_prodotti', null, null);
+					$this->view->render( array(	'prodotto' => $prodotto,
+												'produttori' => $produttori ) );
+				}
+				else {
+					$response = array( 	'status' => 'ERR',
+										'message' => 'errore insert prodotto');
+					$this->view->renderJson($response);
+				}
+				break;
+				
+			case 'Utenti':
+				$this->loadModules('index');
+				$indexModels = new Index();
+				$utente['username'] = "username@foodrepublic.it";
+				$utente['id_utente'] = $indexModels->insertUtente($utente);
+				$utente['id_gruppo'] = 1;
+				$gruppi = $indexModels->selectGruppi();
+				
+				if (isset($utente['id_utente']) && !empty($utente['id_utente'])) {
+					$this->view->setHead(null);
+					$this->view->load(null, '_partial/row_utenti', null, null);
+					$this->view->render( array(	'utente' => $utente,
+												'gruppi' => $gruppi ) );
+				}
+				else {
+					$response = array( 	'status' => 'ERR',
+										'message' => 'errore insert utente');
+					$this->view->renderJson($response);
+				}
+				break;
+			
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
+	
 }

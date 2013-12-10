@@ -1,7 +1,7 @@
 
 	<ul class="nav nav-tabs" style="padding-top:90px">
-	  <li class="span4 active" data-select="Prodotti"> <a href="#">Prodotti</a> </li>
-	  <li class="span4" data-select="Produttori"><a href="#">Produttori</a></li>
+	  <li class="span4 active" data-select="Prodotti"><a href="#">Prodotti <span class="pull-right">+</span></a></li>
+	  <li class="span4" data-select="Produttori"><a href="#">Produttori <span class="pull-right">+</span></a></li>
 	  <li class="span4" data-select="Utenti"><a href="#">Utenti</a></li>
 	</ul>
 	
