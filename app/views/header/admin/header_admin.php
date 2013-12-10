@@ -18,7 +18,7 @@
 		<a class="logout" href="#" target="_self">Logout</a>
 	</div>
 	<div class="span16" style="margin: 10px 0px 10px 19px; padding-right: 37px;">
-		<div class="pull-left" style="padding-left: 0px;">
+		<div class="pull-left span7" style="padding-left: 0px;">
 			<button class="btn selector btn-primary" data-switch='adminProduttori' data-id_ordine_admin = "<?php echo $idOrdineAdmin?>">Admin Produttori</button>
 			<button class="btn selector" data-switch='adminGruppi' data-id_ordine_admin = "<?php echo $idOrdineAdmin?>">Admin Gruppi</button>
 			<select class="selectpicker" data-style="btn-success" style="margin: 0;">
@@ -27,7 +27,10 @@
 			<?php } ?>
 			</select>
 		</div>
-		<div class="pull-right ordineadmin">
+		<div class="span4">
+		<button class="btn btn-info buttondb">DB</button>
+		</div>
+		<div class="pull-right ordineadmin ">
 		<?php 
 		if ($admin['stato'] == 1) { ?>
 			<button class="btn order-admin btn-danger" data-value='0'">Chiudi ordine</button>

@@ -11,6 +11,16 @@ body {
 
 form { display: inline; }
 
+.status {
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	background: #65E080;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 10px 50px 0px 50px;
+}
+
 .spacer { margin: 40px 0; }
 .no-margin { margin: 0; }
 .no-padding { padding: 0; }

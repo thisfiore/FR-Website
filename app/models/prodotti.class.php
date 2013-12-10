@@ -13,6 +13,15 @@ class Prodotti extends DB {
 	}
 	
 	
+	
+	public function selectTabProdotti () {
+		$select = $this->select()
+						->from ('prodotti', '*');
+	
+		$prodotti = $this->fetchAll($select);
+		return $prodotti;
+	}
+	
 	public function selectAllProducts () {
 		$select = $this->select()
 						->from ('prodotti', '*')
@@ -150,6 +159,16 @@ class Prodotti extends DB {
 				$prodotto,
 				'prodotti',
 				array( 	'id_prodotto = ' => $prodotto['id_prodotto'] )
+		);
+		return $update;
+	}
+	
+	
+	public function updateProduttore ($produttore) {
+		$update = $this->update(
+				$produttore,
+				'produttori',
+				array( 	'id_produttore = ' => $produttore['id_produttore'] )
 		);
 		return $update;
 	}

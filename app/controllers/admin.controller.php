@@ -125,8 +125,11 @@ class AdminController extends Controller {
 			else {
 				$adminScript = array(
 								"projectScript" => array(
-								"type" => "text/javascript",
-								"src" => "admin.js"),
+													"type" => "text/javascript",
+													"src" => "admin.js"),
+								"tabsScript" => array(
+										"type" => "text/javascript",
+										"src" => "jquery.tabs.js"),
 				);
 					
 				$this->view->addScripts($adminScript);
@@ -151,9 +154,12 @@ class AdminController extends Controller {
 			}
 			else {
 				$adminScript = array(
-						"projectScript" => array(
-								"type" => "text/javascript",
-								"src" => "admin.js"),
+								"projectScript" => array(
+													"type" => "text/javascript",
+													"src" => "admin.js"),
+								"tabsScript" => array(
+										"type" => "text/javascript",
+										"src" => "jquery.tabs.js"),
 				);
 					
 				$this->view->addScripts($adminScript);
@@ -278,8 +284,6 @@ class AdminController extends Controller {
 		$this->loadModules('index');
 		$indexModels = new Index();
 		
-// 		$this->boxPrint($ordine);
-// 		die;
 		$elementiCassetta = $indexModels->selectUtentePerCassetta($ordine['id_utente']);
 		$elementiCassetta['cassetta'] = $prodottiModels->selectCassettaPay($cassetta['id_prodotto'], $ordine['id_ordine']);
 		
@@ -291,5 +295,138 @@ class AdminController extends Controller {
 	}
 	
 	
+	public function getTabelleDb() {
+		
+		$this->loadModules('prodotti');
+		$prodottiModels = new Prodotti();
+		
+		$prodotti = $prodottiModels->selectAllProducts();
+		$produttori = $prodottiModels->selectAllProduttori();
+		$label = "prodotti";
+		
+// 		$this->boxPrint($prodotti);
+// 		die;
+		
+		$this->view->setHead(null);
+		$this->view->load(null, 'tabelleDb', null, null);
+		$this->view->render( array( 'label' => $label,
+									'prodotti' => $prodotti,
+									'produttori' => $produttori) );
+	}
 	
+	
+	public function getTabProdotti() {
+		$this->loadModules('prodotti');
+		$prodottiModels = new Prodotti();
+	
+		$prodotti = $prodottiModels->selectAllProducts();
+		$produttori = $prodottiModels->selectAllProduttori();
+		$label = "prodotti";
+	
+		// 		$this->boxPrint($prodotti);
+		// 		die;
+	
+		$this->view->setHead(null);
+		$this->view->load(null, '/_partial/tab_prodotti', null, null);
+		$this->view->render( array( 'label' => $label,
+									'prodotti' => $prodotti,
+									'produttori' => $produttori) );
+	}
+	
+	
+	public function getTabProduttori() {
+		$this->loadModules('prodotti');
+		$prodottiModels = new Prodotti();
+	
+		$produttori = $prodottiModels->selectAllProduttori();
+		$label = "produttori";
+	
+		// 		$this->boxPrint($prodotti);
+		// 		die;
+	
+		$this->view->setHead(null);
+		$this->view->load(null, '/_partial/tab_produttori', null, null);
+		$this->view->render( array( 'label' => $label,
+									'produttori' => $produttori) );
+	}
+	
+	
+	public function getTabUtenti() {
+		$this->loadModules('index');
+		$indexModels = new Index();
+	
+		$utenti = $indexModels->selectUtenti();
+		$gruppi = $indexModels->selectGruppi();
+		$label = "utenti";
+	
+// 		$this->boxPrint($prodotti);
+// 		die;
+	
+		$this->view->setHead(null);
+		$this->view->load(null, '/_partial/tab_utenti', null, null);
+		$this->view->render( array( 'label' => $label,
+									'gruppi' => $gruppi,
+									'utenti' => $utenti) );
+	}
+	
+	
+	public function postUpdateProduttori() {
+		$produttore[$_POST['field']] = $_POST['value'];
+		$produttore["id_produttore"] = $_POST['id'];
+		
+		$this->loadModules('prodotti');
+		$prodottiModels = new Prodotti();
+		
+		$update = $prodottiModels->updateProduttore($produttore);
+
+		if (isset($update) && !empty($update)) {
+				$response = array( 'status' => 'OK',);
+				$this->view->renderJson($response);
+		}
+		else {
+				$response = array( 	'status' => 'ERR',
+									'message' => 'errore update Produttori');
+				$this->view->renderJson($response);
+		}
+	}
+	
+	public function postUpdateProdotti() {
+		$prodotto[$_POST['field']] = $_POST['value'];
+		$prodotto["id_prodotto"] = $_POST['id'];
+		
+		$this->loadModules('prodotti');
+		$prodottiModels = new Prodotti();
+		
+		$update = $prodottiModels->updateProdotto($prodotto);
+		
+		if (isset($update) && !empty($update)) {
+				$response = array( 'status' => 'OK',);
+				$this->view->renderJson($response);
+		}
+		else {
+				$response = array( 	'status' => 'ERR',
+									'message' => 'errore update Prodotto');
+				$this->view->renderJson($response);
+		}
+	}
+	
+	public function postUpdateUtenti() {
+		$utente[$_POST['field']] = $_POST['value'];
+		$utente["id_utente"] = $_POST['id'];
+		
+		$this->loadModules('index');
+		$indexModels = new Index();
+		
+		$update = $indexModels->updateUtente($utente);
+		
+		if (isset($update) && !empty($update)) {
+				$response = array( 'status' => 'OK',);
+				$this->view->renderJson($response);
+		}
+		else {
+				$response = array( 	'status' => 'ERR',
+									'message' => 'errore update Utente');
+				$this->view->renderJson($response);
+		}
+	}
 }

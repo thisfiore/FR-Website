@@ -23,6 +23,16 @@ class Index extends DB {
 		return $login;
 	}
 	
+	
+	public function selectUtenti () {
+		$select = $this->select()
+						->from ('utenti', '*');
+	
+		$utenti = $this->fetchAll($select);
+		return $utenti;
+	}
+	
+	
 	public function selectUtenteMail ($mailUtente) {
 		$select = $this->select()
 						->from ('utenti', ' id_utente, id_gruppo')

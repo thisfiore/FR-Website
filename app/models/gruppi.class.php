@@ -20,4 +20,6 @@ class Gruppi extends DB {
 		$gruppi = $this->fetchAll($select);
 		return $gruppi;
 	}
+	
+	
 }
