@@ -194,7 +194,7 @@ $(document).ready(function(e) {
 		
 		var select = $(this).parents('table').data('select').charAt(0).toUpperCase() + $(this).parents('table').data('select').slice(1);
 		var url = '/admin/update'+select+'/';
-		var field = $(this).parents('th').data('field');
+		var field = $(this).parents('td').data('field');
 		var id = $(this).parents('tr').data('id');
 		var value = $(this).val();
 		

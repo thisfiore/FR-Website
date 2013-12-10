@@ -121,7 +121,7 @@ class AdminController extends Controller {
 											'allIdOrdineAdmin' => $allIdOrdineAdmin,
 											'cassetta' => $cassetta,
 											'idOrdineAdmin' => $idOrdineAdmin,
-											'utente' => $utente ) );
+											'utente' => $utente ) ); 
 			}
 			else {
 				$adminScript = array(

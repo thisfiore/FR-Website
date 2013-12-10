@@ -1,19 +1,19 @@
 <table class="table table-bordered" data-select="<?php echo $label ?>">
 	<tbody>
 		<tr>
-			<th>Gruppo</th>
-			<th>Username</th>
-			<th>Nome</th>
-			<th>Cognome</th>
-			<th>Citt&agrave;</th>
-			<th>Via</th>
-			<th>Civico</th>
-			<th>CF</th>
+			<td>Gruppo</td>
+			<td>Username</td>
+			<td>Nome</td>
+			<td>Cognome</td>
+			<td>Citt&agrave;</td>
+			<td>Via</td>
+			<td>Civico</td>
+			<td>CF</td>
 		</tr>
 <?php 
 		foreach ($utenti as $utente) {
 			echo "<tr data-id='".$utente['id_utente']."'>
-					<th data-field='id_gruppo'>
+					<td data-field='id_gruppo'>
 						<select class='target'>";
 			foreach ($gruppi as $gruppo) {
 				if ($utente['id_gruppo'] == $gruppo['id_gruppo']) {
@@ -24,14 +24,14 @@
 				}
 			}
 				echo "</select>
-					</th>
-					<th data-field='username'><input class='target' type='text' value=".htmlentities($utente['username'])."></th>
-					<th data-field='nome'><input class='target' type='text' value=".htmlentities($utente['nome'])."></th>
-					<th data-field='cognome'><input class='target' type='text' value=".htmlentities($utente['cognome'])."></th>
-					<th data-field='citta'><input class='target' type='text' value=".htmlentities($utente['citta'])."></th>
-					<th data-field='via'><input class='target' type='text' value=".htmlentities($utente['via'])."></th>
-					<th data-field='civico'><input class='target' type='number' value=".htmlentities($utente['civico'])."></th>
-					<th data-field='cf'><input class='target' type='text' value=".htmlentities($utente['cf'])."></th>
+					</td>
+					<td data-field='username'><input class='target' type='text' value=".htmlentities($utente['username'])."></td>
+					<td data-field='nome'><input class='target' type='text' value=".htmlentities($utente['nome'])."></td>
+					<td data-field='cognome'><input class='target' type='text' value=".htmlentities($utente['cognome'])."></td>
+					<td data-field='citta'><input class='target' type='text' value=".htmlentities($utente['citta'])."></td>
+					<td data-field='via'><input class='target' type='text' value=".htmlentities($utente['via'])."></td>
+					<td data-field='civico'><input class='target' type='number' value=".htmlentities($utente['civico'])."></td>
+					<td data-field='cf'><input class='target' type='text' value=".htmlentities($utente['cf'])."></td>
 				</tr>";
 		}	
 ?>
