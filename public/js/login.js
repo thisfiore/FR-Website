@@ -50,7 +50,7 @@ $(document).ready(function(e) {
 
 
 	//click sul link guarda video
-	$('.startvideo').on('click', function() {
+	$('.startvideo').on('click touchstart', function() {
 		$('.wrapper.interaction').fadeOut(200);
 		$('.video-control').fadeIn(200);
 		$('.wrapper').animate({
@@ -63,7 +63,7 @@ $(document).ready(function(e) {
 	});
 
 	//click sullo stop del video
-	$('.video-control').on('click', function() {
+	$('.video-control').on('click touchstart', function() {
 		$('.wrapper.interaction').fadeIn(200);
 		$('.video-control').fadeOut(200);
 		$('.wrapper').animate({
@@ -91,7 +91,7 @@ $(document).ready(function(e) {
 	});
 
 	// Azione slide, click su freccine bianche
-	$('.interaction').on('click', 'span', function() {
+	$('.interaction').on('click touchstart', 'span', function() {
 		var activeSlide = $('.pointers ul').find('li.active').data('slide');
 		var numberSlides = $('.pointers ul li').size();
 
@@ -143,7 +143,7 @@ $(document).ready(function(e) {
 	// quando schiaccio bottone entra
 	// 1. animazione
 	// 2. invio form
-	$('.login').on('click', function(event) {
+	$('.login').on('click touchstart', function(event) {
 		var check = $(this).data('check');
 		if ( check == 0 ) {
 			var sliding = $('#login').css('margin-top');
@@ -204,7 +204,7 @@ $(document).ready(function(e) {
 
 
 	// bottone indietro da login o registrati
-	$('.back').on('click', function() {
+	$('.back').on('click touchstart', function() {
 		if ( $('.login').data('check') == 1 ) {
 			$('.login').data('check', 0);
 			
@@ -248,7 +248,7 @@ $(document).ready(function(e) {
 	// click su bottone registrati
 	// 1. animazione
 	// 2.invio form
-	$('.signup').on('click', function(event) {
+	$('.signup').on('click touchstart', function(event) {
 		var check = $(this).data('check');
 		if ( check == 0 ) {
 			var sliding = $('#signup').css('margin-top');
