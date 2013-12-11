@@ -1,14 +1,14 @@
 <table class="table table-bordered" data-select="<?php echo $label ?>">
 	<tbody>
 		<tr>
-			<td>Produttore</td>
-			<td>Citt&agrave;</td>
-			<td>Via</td>
-			<td>Civico</td>
-			<td>CAP</td>
-			<td>Provincia</td>
-			<td>PIVA</td>
-			<td>Descrizione Produttore</td>
+			<th>Produttore</th>
+			<th>Citt&agrave;</th>
+			<th>Via</th>
+			<th>Civico</th>
+			<th>CAP</th>
+			<th>Provincia</th>
+			<th>PIVA</th>
+			<th>Descrizione Produttore</th>
 		</tr>
 <?php 
 		foreach ($produttori as $produttore) {

@@ -938,3 +938,9 @@ button.action:hover {
 	list-style-type: none;
 	margin: 0;
 }
+
+/*ADMIN*/
+.target {
+	width: 70%;
+	visibility: inherit !important;
+}

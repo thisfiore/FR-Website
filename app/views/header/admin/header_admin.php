@@ -74,4 +74,4 @@
 </div>
 
 <!-- CONTENT PAGE ADMIN -->
-<div class="content" style="padding-top:90px">
+<div class="content" style="padding: 20px; padding-top: 90px;">

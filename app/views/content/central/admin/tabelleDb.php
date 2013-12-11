@@ -47,12 +47,28 @@
 							<td data-field='quantita'><input class='target' type='number' value=".htmlentities($prodotto['quantita'])."></td>
 							<td data-field='prezzo'><input class='target' type='number' value=".htmlentities($prodotto['prezzo'])."></td>
 							<td data-field='iva'><input class='target' type='number' value=".htmlentities($prodotto['iva'])."></td>
-							<td data-field='stato'><input class='target' type='number' value=".htmlentities($prodotto['stato'])."></td>
+							<td data-field='stato'><input class='target' type='checkbox' value='' ";
+
+							if ($prodotto['stato'] == 1) { echo "checked"; }
+				
+						echo "></td>
 							<td data-field='image'><input class='target' type='text' value=".$prodotto['image']."></td>
 							<td data-field='tipologia'><input class='target' type='text' value=".$prodotto['tipologia']."></td>
-							<td data-field='bio'><input class='target' type='number' value=".htmlentities($prodotto['bio'])."></td>
-							<td data-field='proprio'><input class='target' type='number' value=".htmlentities($prodotto['proprio'])."></td>
-							<td data-field='prenotazione'><input class='target' type='number' value=".htmlentities($prodotto['prenotazione'])."></td>
+							<td data-field='bio'><input class='target' type='checkbox' value='' ";
+
+							if ($prodotto['bio'] == 1) { echo "checked"; }
+				
+						echo "></td>
+							<td data-field='proprio'><input class='target' type='checkbox' value='' ";
+
+							if ($prodotto['proprio'] == 1) { echo "checked"; }
+				
+						echo "></td>
+							<td data-field='prenotazione'><input class='target' type='checkbox' value='' ";
+
+							if ($prodotto['prenotazione'] == 1) { echo "checked"; }
+				
+						echo "></td>
 							<td data-field='data_consegna_pren'><input class='target' type='date' value=".$prodotto['data_consegna_pren']."></td>
 						</tr>";
 				}	
