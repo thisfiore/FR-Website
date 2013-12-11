@@ -1,12 +1,5 @@
-	<!-- VIDEO -->
-	<div id="video-viewport">
-    	<video controls preload width="1280" height="720">
-	        <source src="/media/video.mp4"type="video/mp4" />
-	        <source src="/media/video.webm"type="video/webm" />
-	        <source src="/media/video.ogv"type="video/webm" />
-	    </video>
-	</div>
-	<div class="video-control hide"></div>
+	
+	
 	<!-- <div id="debug"></div> -->
 
 
@@ -141,4 +134,14 @@
 			<button class="pull-right login" data-check="0">Entra</button>
 		</div>
 	</div>
+	
+	<!-- VIDEO -->
+	<div id="video-viewport">
+    	<video controls preload width="1280" height="720">
+	        <source src="/media/video.mp4"type="video/mp4" />
+	        <source src="/media/video.webm"type="video/webm" />
+	        <source src="/media/video.ogv"type="video/webm" />
+	    </video>
+	</div>
+	<div class="video-control hide"></div>
 			
