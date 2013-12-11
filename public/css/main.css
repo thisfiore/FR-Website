@@ -64,7 +64,7 @@ div.center {
 }
 .video-control{
 	background: url("../img/closev.png");
-	position: absolute;
+	position: relative;
 	z-index: 1;
 	top: 20px;
 	right: 30px;
@@ -72,6 +72,7 @@ div.center {
 	height: 50px;
 	background-size: cover;
 	cursor: pointer;
+	float: right;
 } .video-control:hover {
 	opacity: .8;
 }

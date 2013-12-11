@@ -86,7 +86,8 @@ $(document).ready(function(e) {
 				top: '0'
 			}, 400);
 		$('#video-viewport').animate({
-				opacity: '0'
+				opacity: '0',
+				top: '-100%'
 			}, 500);
 		$('#video-viewport').children().get(0).currentTime = 0;
 		$('#video-viewport').children().get(0).pause();
