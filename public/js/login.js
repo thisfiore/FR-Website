@@ -57,7 +57,8 @@ $(document).ready(function(e) {
 				top: '-900px'
 			}, 400);
 		$('#video-viewport').animate({
-				opacity: '1'
+				opacity: '1',
+				top: '0'
 			}, 500);
 		$('#video-viewport').children().get(0).play();
 	});
@@ -70,7 +71,8 @@ $(document).ready(function(e) {
 				top: '0'
 			}, 400);
 		$('#video-viewport').animate({
-				opacity: '0'
+				opacity: '0',
+				top: '-100%'
 			}, 500);
 		$('#video-viewport').children().get(0).currentTime = 0;
 		$('#video-viewport').children().get(0).pause();

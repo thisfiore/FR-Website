@@ -57,7 +57,7 @@ div.center {
 /*video html5*/
 #video-viewport {
     position: absolute;
-    top: 0;
+    top: -100%;
     overflow: hidden;
     z-index: 0; /* for accessing the video by click */
     opacity: 0;
