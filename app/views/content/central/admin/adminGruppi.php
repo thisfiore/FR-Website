@@ -35,12 +35,12 @@ if (isset($adminGruppi) && !empty($adminGruppi)) {
 	<?php 
 				foreach ($utente['prodotto'] as $prodotto) {
 					
-					echo "<tr style='background:rgba(255,255,255,0.6);'>";
-						echo "<td >".$prodotto['nome_prodotto']."</td>";
-						echo "<td>".$prodotto['quantita']."</td>";
-						echo "<td>".$prodotto['prezzo_iva']." &euro;/".$prodotto['unita']."</td>";
-						echo "<td>".$prodotto['totale']." euro</td>";
-					echo "</tr>";
+					echo "<tr style='background:rgba(255,255,255,0.6);'>
+							<td >".$prodotto['nome_prodotto']."</td>
+							<td>".$prodotto['quantita']."</td>
+							<td>".$prodotto['prezzo_iva']." &euro;/".$prodotto['unita']."</td>
+							<td>".$prodotto['totale']." euro</td>
+					</tr>";
 		
 				} ?>	
 			<tr >

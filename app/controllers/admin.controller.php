@@ -52,6 +52,28 @@ class AdminController extends Controller {
 			$cassetta = array();
 		}
 		
+		$this->loadModules('prodotti');
+		$prodottiModels = new Prodotti();
+		
+		$prenotazioni = $ordineModels->selectAllPrenotazioni();
+		if (isset($prenotazioni) && !empty($prenotazioni)) {
+			foreach ($prenotazioni as $index => $prenotazione) {
+				$prenUtente = $indexModels->selectUtente($_COOKIE['id_utente']);
+				$prenotazioni[$index]['nome_utente'] = $prenUtente['nome']." ".$prenUtente['cognome'];
+				$prenProdotto = $prodottiModels->selectProdotto($prenotazione['id_prodotto']);
+				$prenotazioni[$index]['nome_prodotto'] = $prenProdotto['nome_prodotto'];
+				$prenotazioni[$index]['totale'] = $prenProdotto['prezzo_iva'] * $prenotazione['quantita'];
+				
+				$prenotazioni[$index]['data_prenotazione'] = $this->formatData($prenotazione['data_prenotazione']);
+			}
+		}
+		else {
+			$prenotazioni = array();
+		}
+		
+// 		$this->boxPrint($prenotazioni);
+// 		die;
+		
 		if (isset($elencoOrdini) && !empty($elencoOrdini)) {
 			$produttori = $ordineModels->selectProduttori();
 			$adminProduttori = array();
@@ -59,9 +81,6 @@ class AdminController extends Controller {
 			foreach ($produttori as $produttore) {
 				$adminProduttori[$produttore['id_produttore']] = $produttore;
 			}
-			
-			$this->loadModules('prodotti');
-			$prodottiModels = new Prodotti();
 			
 			foreach ($elencoOrdini as $ordine) {
 				$prodotto = $prodottiModels->selectProdottoAdminProduttori($ordine['id_prodotto']);
@@ -121,7 +140,8 @@ class AdminController extends Controller {
 											'allIdOrdineAdmin' => $allIdOrdineAdmin,
 											'cassetta' => $cassetta,
 											'idOrdineAdmin' => $idOrdineAdmin,
-											'utente' => $utente ) ); 
+											'utente' => $utente,
+											'prenotazioni' => $prenotazioni ) ); 
 			}
 			else {
 				$adminScript = array(
@@ -140,10 +160,43 @@ class AdminController extends Controller {
 											'allIdOrdineAdmin' => $allIdOrdineAdmin,
 											'cassetta' => $cassetta,
 											'idOrdineAdmin' => $idOrdineAdmin,
-											'utente' => $utente ) );
+											'utente' => $utente,
+											'prenotazioni' => $prenotazioni ) );
 			}
 
 		}
+		else if (isset($prenotazioni) && !empty($prenotazioni)) {
+			if ($this->isAjax()) {
+				$this->view->setHead(null);
+				$this->view->load(null, 'adminProduttori', null, null);
+				$this->view->render( array( 'adminProduttori' => $adminProduttori,
+						'allIdOrdineAdmin' => $allIdOrdineAdmin,
+						'cassetta' => $cassetta,
+						'idOrdineAdmin' => $idOrdineAdmin,
+						'utente' => $utente,
+						'prenotazioni' => $prenotazioni ) );
+			}
+			else {
+				$adminScript = array(
+						"projectScript" => array(
+								"type" => "text/javascript",
+								"src" => "admin.js"),
+						"tabsScript" => array(
+								"type" => "text/javascript",
+								"src" => "jquery.tabs.js"),
+				);
+					
+				$this->view->addScripts($adminScript);
+				$this->view->load('header_admin', 'adminProduttori', null, null);
+				$this->view->render( array(	'admin' => $admin,
+											'adminProduttori' => $adminProduttori,
+											'allIdOrdineAdmin' => $allIdOrdineAdmin,
+											'cassetta' => $cassetta,
+											'idOrdineAdmin' => $idOrdineAdmin,
+											'utente' => $utente,
+											'prenotazioni' => $prenotazioni ) );
+			}
+		}	
 		else {
 			if ($this->isAjax()) {
 				$this->view->setHead(null);
@@ -175,8 +228,18 @@ class AdminController extends Controller {
 	
 	
 	public function formatData ($data){
-		$array = explode("-", $data);
-		$data = $array[2].'/'.$array[1].'/'.$array[0];
+		$pos = strpos($data, ':');
+		
+		if ($pos === false) {
+			$array = explode("-", $data);
+			$data = $array[2].'/'.$array[1].'/'.$array[0];
+		}
+		else {
+			$array = explode(" ", $data);
+			$arrayData = explode("-", $array[0]);
+			$data = $arrayData[2].'/'.$arrayData[1].'/'.$arrayData[0].' '.$array[1];
+		}
+		
 		return $data;
 	}
 	

@@ -118,6 +118,14 @@ class Ordine extends DB {
 		return $prenotazioni;
 	}
 	
+	public function selectAllPrenotazioni () {
+		$select = $this->select()
+						->from ('prenotazione', '*');
+	
+		$prenotazioni = $this->fetchAll($select);
+		return $prenotazioni;
+	}
+	
 	public function insertOrdineAdmin ($ordineAdmin) {
 		$insert = $this->insert($ordineAdmin, 'ordine_admin');
 		return $insert;

@@ -1,7 +1,7 @@
 <?php 
 
 // echo "<pre>";
-// print_r($cassetta);
+// print_r($prenotazioni);
 // echo "</pre>";
 // die;
 
@@ -36,15 +36,15 @@ if (isset($adminProduttori) && !empty($adminProduttori)) {
 			</tr>
 	
 <?php 	 	foreach ($gruppo['prodotto'] as $prodotto) {
-						
-						echo "<tr style='background:rgba(255,255,255,0.6);'>";
-							echo "<td >".$prodotto['nome_prodotto']."</td>";
-							echo "<td>".$prodotto['quantita']."</td>";
-							echo "<td>".$prodotto['prezzo_iva']." &euro;/".$prodotto['unita']."</td>";
-							echo "<td>".$prodotto['totale']." euro</td>";
-						echo "</tr>";
-			
-					} ?>	
+				
+				echo "<tr style='background:rgba(255,255,255,0.6);'>";
+					echo "<td >".$prodotto['nome_prodotto']."</td>";
+					echo "<td>".$prodotto['quantita']."</td>";
+					echo "<td>".$prodotto['prezzo_iva']." &euro;/".$prodotto['unita']."</td>";
+					echo "<td>".$prodotto['totale']." euro</td>";
+				echo "</tr>";
+	
+			} ?>	
 			<tr >
 				<td></td>
 				<td></td>
@@ -128,6 +128,32 @@ if (isset($cassetta) && !empty($cassetta)) {
 		}
 		echo "</table>";
 	}
-} ?>
+} 
+
+// 	PRENOTAZIONI
+	if (isset($prenotazioni) && !empty($prenotazioni)) {
+		echo "<div style='background-color:#666; color:#FFF; padding:10px; '>PRENOTAZIONI</div>
+			<table class='table table-bordered row-fluid'>
+				<tr bgcolor='#FF7373' style='color:#FFF;'>
+					<td>Nome Utente</td>
+					<td>Prodotto Prenotato</td>
+					<td>Data Prenotazione</td>
+					<td>Quantitˆ</td>
+					<td>Totale</td>
+				</tr>";
+		$i = 0;
+	
+		foreach ($prenotazioni as $prenotazione) {
+	
+			echo "<tr style='background:rgba(255,255,255,0.6);'>
+					<td >".$prenotazione['nome_utente']."</td>
+					<td>".$prenotazione['nome_prodotto']."</td>
+					<td>".$prenotazione['data_prenotazione']."</td>
+					<td>".$prenotazione['quantita']."</td>
+					<td>".$prenotazione['totale']." euro</td>
+				</tr>";
+		}
+		echo "</table>";
+	}?>
 
 </div>
