@@ -58,7 +58,7 @@ class AdminController extends Controller {
 		$prenotazioni = $ordineModels->selectAllPrenotazioni();
 		if (isset($prenotazioni) && !empty($prenotazioni)) {
 			foreach ($prenotazioni as $index => $prenotazione) {
-				$prenUtente = $indexModels->selectUtente($_COOKIE['id_utente']);
+				$prenUtente = $indexModels->selectUtente($prenotazione['id_utente']);
 				$prenotazioni[$index]['nome_utente'] = $prenUtente['nome']." ".$prenUtente['cognome'];
 				$prenProdotto = $prodottiModels->selectProdotto($prenotazione['id_prodotto']);
 				$prenotazioni[$index]['nome_prodotto'] = $prenProdotto['nome_prodotto'];

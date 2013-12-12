@@ -198,25 +198,42 @@ $(document).ready(function(e) {
 		var id = $(this).parents('tr').data('id');
 		var value = $(this).val();
 		
-		$.ajax({
-			url : url,
-			type : 'POST',
-			dataType : 'json',
-			data : {
-				field : field,
-				value : value,
-				id : id,
-			},
-			success : function(response) {
-				if (response.status == 'OK') {
-					 $('.content').find('.status').html('Saved').fadeIn().delay(800).fadeOut();
-				}
-				else {
-					alert(response.message);
-					window.location.reload();
-				}
+		console.log(value);
+		
+		if (!value) {
+			 var checked = $(this).attr('checked');
+			 console.log(checked);
+			if (checked == 'checked') {
+				value = 0;
+				$(this).attr('checked', 'other');
 			}
-		});
+			else {
+				value = 1;
+				$(this).attr('checked', 'checked');
+			}
+		}
+		
+		console.log(value);
+		
+//		$.ajax({
+//			url : url,
+//			type : 'POST',
+//			dataType : 'json',
+//			data : {
+//				field : field,
+//				value : value,
+//				id : id,
+//			},
+//			success : function(response) {
+//				if (response.status == 'OK') {
+//					 $('.content').find('.status').html('Saved').fadeIn().delay(800).fadeOut();
+//				}
+//				else {
+//					alert(response.message);
+//					window.location.reload();
+//				}
+//			}
+//		});
 	});
 	
 //	Add row in table
