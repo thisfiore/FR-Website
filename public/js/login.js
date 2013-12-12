@@ -56,13 +56,16 @@ $(document).ready(function(e) {
 	$('.video-control').click( function() { closeVideo(); } );
 	//il video temrmina
 	$("video").bind("ended", function() { closeVideo(); } );
+	
+	var formOpened = false,
+		videoPlaying = false;
+
 	//la persona schiaccia esc per farlo terminare
 	$(document).keyup(function(e) {
-	  if (e.keyCode == 27) { 
-	  	if ( videoStatus == 1 ) {
-	  		closeVideo();
-	  	}
-	  }
+		if (e.keyCode == 27) { 
+			if ( videoPlaying ) { closeVideo(); }
+			if ( formOpened ) { dismissForm(); }
+		}
 	});
 
 	function startVideo() {
@@ -76,7 +79,7 @@ $(document).ready(function(e) {
 				top: '0'
 			}, 500);
 		$('#video-viewport').children().get(0).play();
-		videoStatus = 1;
+		videoPlaying = true;
 	};
 
 	function closeVideo() {
@@ -91,7 +94,7 @@ $(document).ready(function(e) {
 			}, 500);
 		$('#video-viewport').children().get(0).currentTime = 0;
 		$('#video-viewport').children().get(0).pause();
-		videoStatus = 0;
+		videoPlaying = true;
 	};
 
 	// Azione slide, click su freccine bianche
@@ -168,6 +171,7 @@ $(document).ready(function(e) {
 			$('.wrapper.interaction').fadeOut(200);
 			$('#username').focus();
 			$(this).data('check', 1);
+			formOpened = true;
 		} else {
 			event.preventDefault();
 		
@@ -208,7 +212,10 @@ $(document).ready(function(e) {
 
 
 	// bottone indietro da login o registrati
-	$('.back').click( function() {
+	$('.back').click( function() { dismissForm(); });
+
+
+	function dismissForm() {
 		if ( $('.login').data('check') == 1 ) {
 			$('.login').data('check', 0);
 			
@@ -226,6 +233,7 @@ $(document).ready(function(e) {
 			}, { duration: 400, queue: false });
 
 			$('.wrapper.interaction').fadeIn(200);
+			formOpened = false;
 		}
 
 		if ( $('.signup').data('check') == 1 ) {
@@ -245,8 +253,9 @@ $(document).ready(function(e) {
 			}, { duration: 400, queue: false });
 
 			$('.wrapper.interaction').fadeIn(200);
+			formOpened = false;
 		}
-	});
+	};
 
 
 	// click su bottone registrati
@@ -273,6 +282,7 @@ $(document).ready(function(e) {
 			$('.wrapper.interaction').fadeOut(200);
 			$('#email').focus();
 			$(this).data('check', 1);
+			formOpened = true;
 		} else {
 			event.preventDefault();
 			
