@@ -50,7 +50,22 @@ $(document).ready(function(e) {
 
 
 	//click sul link guarda video
-	$('.startvideo').click( function() {
+	$('.startvideo').click( function() { startVideo(); });
+
+	//click sullo stop del video
+	$('.video-control').click( function() { closeVideo(); } );
+	//il video temrmina
+	$("video").bind("ended", function() { closeVideo(); } );
+	//la persona schiaccia esc per farlo terminare
+	$(document).keyup(function(e) {
+	  if (e.keyCode == 27) { 
+	  	if ( videoStatus == 1 ) {
+	  		closeVideo();
+	  	}
+	  }
+	});
+
+	function startVideo() {
 		$('.wrapper.interaction').fadeOut(200);
 		$('.video-control').fadeIn(200);
 		$('.wrapper').animate({
@@ -61,10 +76,10 @@ $(document).ready(function(e) {
 				top: '0'
 			}, 500);
 		$('#video-viewport').children().get(0).play();
-	});
+		videoStatus = 1;
+	};
 
-	//click sullo stop del video
-	$('.video-control').click( function() {
+	function closeVideo() {
 		$('.wrapper.interaction').fadeIn(200);
 		$('.video-control').fadeOut(200);
 		$('.wrapper').animate({
@@ -76,22 +91,8 @@ $(document).ready(function(e) {
 			}, 500);
 		$('#video-viewport').children().get(0).currentTime = 0;
 		$('#video-viewport').children().get(0).pause();
-	});
-
-	//il video temrmina
-	$("video").bind("ended", function() {
-	    $('.wrapper.interaction').fadeIn(200);
-		$('.video-control').fadeOut(200);
-		$('.wrapper').animate({
-				top: '0'
-			}, 400);
-		$('#video-viewport').animate({
-				opacity: '0',
-				top: '-100%'
-			}, 500);
-		$('#video-viewport').children().get(0).currentTime = 0;
-		$('#video-viewport').children().get(0).pause();
-	});
+		videoStatus = 0;
+	};
 
 	// Azione slide, click su freccine bianche
 	$('.interaction span').click( function() {
