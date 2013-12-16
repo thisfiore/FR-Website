@@ -941,6 +941,7 @@ button.action:hover {
 
 /*ADMIN*/
 .target {
-	width: 70%;
+	width: 100%;
 	visibility: inherit !important;
+	min-height: 30px;
 }
