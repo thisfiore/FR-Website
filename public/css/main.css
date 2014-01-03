@@ -76,13 +76,13 @@ div.center {
 	opacity: .8;
 }
 .startvideo {
-	font-weight: 500;
-	font-size: 18px;
-	margin-top: 30px;
+	font-weight: 600;
+	font-size: 22px;
+	margin-top: 25px;
 	letter-spacing: 1px;
 	cursor: pointer;
 } .startvideo:hover { opacity: .8; }
-.startvideo i { margin-top: 4px; }
+.startvideo i { margin-top: 6px; }
 /*#debug {
     position: absolute;
     top: 0;
@@ -492,9 +492,9 @@ div.center {
 	} .next { right: -15%; left: inherit; }
 .wrapper {
 	color: #fff;
-	font-size: 18px;
+	font-size: 16px;
 	letter-spacing: .8px;
-	font-weight: 100;
+	font-weight: 200;
 	line-height: 24px;
 	
 	z-index: 100;
@@ -941,6 +941,7 @@ button.action:hover {
 
 /*ADMIN*/
 .target {
-	width: 70%;
+	width: 100%;
 	visibility: inherit !important;
+	min-height: 30px;
 }
