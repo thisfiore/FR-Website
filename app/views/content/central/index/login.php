@@ -13,7 +13,7 @@
 			</div>
 			<div class="control-group">
 				<input type="password" class="input-block-level tck big" id="password" name="password" placeholder="Inserisci la tua password"
-				<?php if (strpos($browser, 'Mozilla') >= 0) { echo 'style="padding: -20px -10px !important;"'; } ?> value="here">
+				<?php if (strpos($browser, 'Mozilla') >= 0) { echo 'style="padding: -20px -10px !important;"'; } ?> value="">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="squaredFour">
