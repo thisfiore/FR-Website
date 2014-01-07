@@ -145,7 +145,7 @@ $(document).ready(function(e) {
 	
 	
 //	Cambia quantitˆ dell'elemento selezionato nella lista
-	$('.lista').on('click', 'div.quantity span', function(event) {
+	$('.lista div.quantity span').on('click', function(event) {
 		var label = $(this).attr("class");
 		var quantita = $(this).parent('div').data('quantita');
 		var that = $(this);
