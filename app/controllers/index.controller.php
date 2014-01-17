@@ -283,6 +283,23 @@ class IndexController extends Controller {
 					$prodotto = $prodottiModels->selectProdotto($prenotazioni[$key]['id_prodotto']);
 					$prenotazioni[$key] = array_merge($prodotto, $prenotazioni[$key]);
 					$prenotazioni[$key]['totale'] = round($prenotazioni[$key]['quantita'] * $prenotazioni[$key]['prezzo_iva'], 2);
+					
+					$a = date_create($prenotazioni[$key]['data_consegna']);
+					$b = date_create(date("Y-m-d"));
+					$diff = date_diff($a, $b);
+				
+					$nDiff = $diff->format('%R%a');
+					
+					if ($nDiff < 7) {
+						$prenotazioni[$key]['alert'] = 1;
+					}
+					else {
+						$prenotazioni[$key]['alert'] = 0;
+					}
+
+// 					$this->boxPrint($prenotazioni[$key]['alert']);
+// 					die;
+					
 					$prenotazioni[$key]['data_consegna'] = $this->formatDate($prenotazioni[$key]['data_consegna']);
 				}
 			}
