@@ -182,13 +182,7 @@
 					
 					<?php //print_r($prenotazione); die;?>
 					
-				<li class="item<?php echo $prenotazione['id_prodotto'] ?> openpolli row-fluid" 
-				<?php
-				if ($prenotazione['alert'] == 1) { ?>
-					style="background-color:red;"
-				<?php
-				} 
-				?>>
+				<li class="item<?php echo $prenotazione['id_prodotto'] ?> openpolli row-fluid">
 					<div class="alert alert-warning  span16">
 						<button type="button" class="close" data-dismiss="alert"></button>
 						<span class="span4"><?php echo $prenotazione['nome_prodotto'] ?></span>
