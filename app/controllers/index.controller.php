@@ -968,7 +968,7 @@ class IndexController extends Controller {
 						Segue la tua ricevuta e riepilogo della tua spesa.<br/><br/>
 						Il team Food Republic<br/><br/>Food Republic S.r.l.<br/>
 						Via Fratta, 2<br/> 31020 San Zenone degli Ezzelini, TV<br/>
-						Part. IVA 04496450265<br><br>Ricevuta 2013/".$idRicevuta."<br/>".
+						Part. IVA 04496450265<br><br>Ricevuta 2014/".$idRicevuta."<br/>".
 						$utente['nome']." ".$utente['cognome']."<br/>".
 						$utente['cf']."<br/>".
 						$utente['citta']."<br/>".
