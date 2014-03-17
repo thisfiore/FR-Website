@@ -1,13 +1,13 @@
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-<h4 id="prodLabel">Prenota i tuoi polli entro questo giovedì!</h4>
-<h5>Consegna prevista per la 2a o 3a settimana di gennaio</h5>
+<h4 id="prodLabel">Prenota ora il <?php echo $prodotto['nome_prodotto']?></h4>
+<h5>Consegna prevista per il <?php echo $prodotto['data_consegna_pren']?></h5>
 </div>
 <div class="modal-body">
  
  
 <p class="pagination-centered">
-	<img src="/img/polli.jpg" style="position:relative;"/>
+	<img src="/img/products/<?php echo $prodotto['image']?>" style="position:relative;"/>
 	<div class="ribbon-wrapper-green alt">
 		<div class="ribbon-green alt">scadenza <br><?php echo $prodotto['data_fine_ordine']?></div>
 	</div>
