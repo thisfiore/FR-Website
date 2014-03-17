@@ -822,7 +822,7 @@ class IndexController extends Controller {
 		$ordineAdmin = $this->_getOrdineAdmin();
 		
 		$prodotto = $prodottiModel->selectProdotto($idProdotto);
-		$prodotto['data_fine_ordine'] = $this->formatDate($ordineAdmin['data']);
+		$prodotto['data_fine_ordine'] = $this->formatDate($ordineAdmin['data_chiusura']);
 		$prodotto['data_consegna_pren'] = $this->formatDate($prodotto['data_consegna_pren']);
 		
 // 		$this->boxPrint($prodotto);
