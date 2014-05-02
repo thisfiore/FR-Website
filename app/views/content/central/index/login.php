@@ -134,6 +134,17 @@
 			<button class="pull-right login" data-check="0">Entra</button>
 		</div>
 	</div>
+
+	<div class="info-footer">
+		<ul>
+			<li><a href="/index/more#chisiamo">Chi siamo</a></li>
+			<li><a href="/index/more#cose">Cos'è?</a></li>
+			<li><a href="/index/more#lefoodcommunities">Le food communities</a></li>
+			<li><a href="/index/more#igruppi">I gruppi</a></li>
+			<li><a href="/index/more#iprodotti">I prodotti di Food Republic</a></li>
+			<li><a href="/index/more#abitudini">Perchè cambiare abitudini?</a></li>
+		</ul>
+	</div>
 	
 	<!-- VIDEO -->
 	<div id="video-viewport">

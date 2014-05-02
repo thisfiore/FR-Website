@@ -70,6 +70,7 @@ $(document).ready(function(e) {
 
 	function startVideo() {
 		$('.wrapper.interaction').fadeOut(200);
+		$('.info-footer').fadeOut(200);
 		$('.video-control').fadeIn(200);
 		$('.wrapper').animate({
 				top: '-900px'
@@ -84,6 +85,7 @@ $(document).ready(function(e) {
 
 	function closeVideo() {
 		$('.wrapper.interaction').fadeIn(200);
+		$('.info-footer').fadeIn(200);
 		$('.video-control').fadeOut(200);
 		$('.wrapper').animate({
 				top: '0'
