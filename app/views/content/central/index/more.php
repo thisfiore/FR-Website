@@ -102,12 +102,14 @@
 			Food Republic è un mercato virtuale in cui la domanda di prodotti alimentari genuini si incontra con l’offerta dei piccoli produttori locali, in una logica di filiera corta. 
 		</p>
 		<div class="divider"></div>
-		<h1 id="lefoodcommunities">Le food communities</h1>
+		<div id="lefoodcommunities" class="foodcoom"></div>
+		<h1>Le food communities</h1>
 		<p>
 			Con Food Republic, vogliamo promuovere lo sviluppo delle Food Communities, ovvero di comunità che mettono il cibo al centro della propria vita, dove non sei l’ultimo anello passivo di una catena alimentare, ma ti puoi alleare con i Produttori del tuo territorio, diventando così un Co-produttore. La Food Community già attiva è tra le provincie di Treviso e Vicenza.
 		</p>
 		<div class="divider"></div>
-		<h1 id="igruppi">I gruppi</h1>
+		<div id="igruppi" class="groups"></div>
+		<h1>I gruppi</h1>
 		<p>
 			Per acquistare su Food Republic ti devi organizzare in Gruppo in modo da semplificare la gestione logistica e ridurre al minimo la strada percorsa dal cibo.
 		</p>
@@ -118,7 +120,8 @@
 			I furgoni di Food Republic consegnano in giornata i prodotti appena ritirati, gli ordini avvengono on-line ed il pagamento viene effettuato con carta di credito o con altri sistemi elettronici.
 		</p>
 		<div class="divider"></div>
-		<h1 id="iprodotti">I prodotti di Food Republic</h1>
+		<div id="iprodotti" class="prods"></div>
+		<h1>I prodotti di Food Republic</h1>
 		<p>
 			Tutti i prodotti sono bio, certificati o auto-certificati dai produttori più piccoli che non possono sostenere i costi della certificazione. Nel caso in cui all'interno della Food Comunity non siano reperibili alcuni prodotti bio, vengono selezionati produttori non bio, che sono comunque tenuti a fornire dettagli sulle proprie tecniche di produzione, con la massima trasparenza ed onestà. Con la loro azione, i Co-produttori diventano di fatto alleati dei Produttori e membri attivi delle loro comunità.
 		</p>

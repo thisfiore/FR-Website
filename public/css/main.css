@@ -1024,3 +1024,27 @@ button.action:hover {
 	background-position: 50%;
 	background-repeat: no-repeat;
 }
+
+.more-content .foodcoom {
+	height: 210px;
+	margin-bottom: -40px;
+	background-image: url("../img/foodcomm.png");
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.more-content .groups {
+	height: 210px;
+	margin-bottom: -40px;
+	background-image: url("../img/groups.png");
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
+
+.more-content .prods {
+	height: 250px;
+	margin-bottom: -20px;
+	background-image: url("../img/prods.png");
+	background-position: 50%;
+	background-repeat: no-repeat;
+}
