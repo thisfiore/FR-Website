@@ -30,3 +30,5 @@
 	?>
 
   </head>
+
+<?php if ( isset($_COOKIE['id_utente']) && $_COOKIE != null ) { echo '<body class="blurred">'; } else { echo '<body class="neat">'; }

@@ -99,12 +99,18 @@ $(document).ready(function(e) {
 		videoPlaying = true;
 	};
 
+
+	$('.prev').hide();
+
 	// Azione slide, click su freccine bianche
 	$('.interaction span').click( function() {
 		var activeSlide = $('.pointers ul').find('li.active').data('slide');
 		var numberSlides = $('.pointers ul li').size();
 
+		$('.prev').show();
+
 		if ( $(this).hasClass('next') ) {
+			if ( activeSlide == numberSlides - 1 ) { $('.next').hide(); }
 			if ( activeSlide == numberSlides ) { return false; }
 			var color = $('.pointers ul li.active').removeClass('active').next().addClass('active').data('color');
 			var subColor = $('.pointers ul li.active').data('sub-color');
@@ -114,6 +120,8 @@ $(document).ready(function(e) {
 			$('.wrapper').css('background', color);
 		} 
 		if ( $(this).hasClass('prev') ) {
+			if ( activeSlide == numberSlides - 1 ) { $('.prev').hide(); }
+			if ( $('.next').is(":hidden") ) { $('.next').show(); }
 			if ( activeSlide == 1 ) { return false; }
 			activeSlide = activeSlide - 2;
 			var color = $('.pointers ul li.active').removeClass('active').prev().addClass('active').data('color');

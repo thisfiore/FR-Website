@@ -6,8 +6,10 @@ body {
 	background-attachment: fixed;
 	height: 100%;
 	color: #333;
-
 }
+
+body.blurred { background: url("../img/bg.jpg") no-repeat; background-size: cover; background-attachment: fixed; }
+body.neat { background: url("../img/neat-bg.jpg") no-repeat; background-size: cover; background-attachment: fixed; }
 
 form { display: inline; }
 
@@ -522,6 +524,8 @@ div.center {
     }
 }
 
+.wrapper.main { margin-bottom: 150px; }
+
 .wrapper p.title {
 	font-size: 26px;
 	letter-spacing: 1px;
@@ -971,6 +975,7 @@ button.action:hover {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
+	z-index: 1000;
 }
 
 .info-footer ul { list-style-type: none; min-width: 900px;}
@@ -1047,4 +1052,11 @@ button.action:hover {
 	background-image: url("../img/prods.png");
 	background-position: 50%;
 	background-repeat: no-repeat;
+}
+
+.modded-video{
+	margin: auto;
+	width: 480px;
+	margin-bottom: 150px;
+	margin-top: -50px;
 }

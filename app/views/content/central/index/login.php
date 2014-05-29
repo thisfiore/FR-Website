@@ -83,7 +83,7 @@
 	</div>
 
 	<!-- SLIDER -->
-	<div class="wrapper">
+	<div class="wrapper main">
 		<div class="content">
 			<div class="slide1">
 				<img src="/img/intro1.png">
@@ -93,7 +93,8 @@
 				<p>Vogliamo costruire assieme a te una nuova <em>comunità</em> del <br/>
 				   cibo, un mercato virtuale in cui domanda e offerta si <br/>
 				   incontrano <em>senza intermediari</em>.</p>
-				<p class="startvideo"><i class="icon-film icon-white"></i> Guarda il Video</p>
+				<!-- ACTIVE THIS TO ENABLE THE LINK FOR FULLFRAME VIDEO -->
+				<!-- <p class="startvideo"><i class="icon-film icon-white"></i> Guarda il Video</p> -->
 			</div>
 			<div class="slide2">
 				<img src="/img/intro2.png">
@@ -102,7 +103,7 @@
 				<div class="spacerz"></div>
 				<p>Potrai conoscere i produttori <em>vicini a te</em> ed acquistare <br>
   				   direttamente da loro prodotti stagionali e genuini ad un <br>
-  				   prezzo <em>equo</em>.</p>
+  				   prezzo <em>equo</em> per te e per loro.</p>
 				<div class="spacerz"></div>
 			</div>
 			<div class="slide3">
@@ -133,6 +134,10 @@
 			<button class="pull-left signup" data-check="0">Registrati</button>
 			<button class="pull-right login" data-check="0">Entra</button>
 		</div>
+	</div>
+
+	<div class="modded-video">
+		<iframe width="480" height="270" src="//www.youtube.com/embed/_dq3uw6G4lI?rel=0" frameborder="0" allowfullscreen></iframe>
 	</div>
 
 	<div class="info-footer">
