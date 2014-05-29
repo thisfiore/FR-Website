@@ -5,8 +5,24 @@ body {
 	color: #333;
 }
 
-.blurred { background: url("../img/bg.jpg") no-repeat; background-size: cover; background-attachment: fixed; }
-.neat { background: url("../img/neat-bg.jpg") no-repeat; background-size: cover; background-attachment: fixed; }
+.blurred { 
+	background: url("../img/bg.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/bg.jpg', sizingMethod='scale');
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/bg.jpg', sizingMethod='scale')";
+}
+.neat { 
+	background: url("../img/neat-bg.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/bg.jpg', sizingMethod='scale');
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/bg.jpg', sizingMethod='scale')";
+}
 
 form { display: inline; }
 
