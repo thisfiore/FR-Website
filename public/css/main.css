@@ -1,9 +1,6 @@
 /***** GENERAL ******/
 html{ height: 100%; }
 body { 
-	background: url("../img/bg.jpg") no-repeat; 
-	background-size: cover;
-	background-attachment: fixed;
 	height: 100%;
 	color: #333;
 }
@@ -523,8 +520,6 @@ div.center {
         font-weight: 300;
     }
 }
-
-.wrapper.main { margin-bottom: 150px; }
 
 .wrapper p.title {
 	font-size: 26px;
@@ -1058,5 +1053,5 @@ button.action:hover {
 	margin: auto;
 	width: 480px;
 	margin-bottom: 150px;
-	margin-top: -50px;
+	margin-top: 60px;
 }
