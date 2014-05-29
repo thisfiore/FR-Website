@@ -1,12 +1,12 @@
 /***** GENERAL ******/
-html{ height: 100%; }
+html{ }
 body { 
 	height: 100%;
 	color: #333;
 }
 
-body.blurred { background: url("../img/bg.jpg") no-repeat; background-size: cover; background-attachment: fixed; }
-body.neat { background: url("../img/neat-bg.jpg") no-repeat; background-size: cover; background-attachment: fixed; }
+.blurred { background: url("../img/bg.jpg") no-repeat; background-size: cover; background-attachment: fixed; }
+.neat { background: url("../img/neat-bg.jpg") no-repeat; background-size: cover; background-attachment: fixed; }
 
 form { display: inline; }
 
@@ -1049,9 +1049,10 @@ button.action:hover {
 	background-repeat: no-repeat;
 }
 
-.modded-video{
+.modded-video {
 	margin: auto;
 	width: 480px;
 	margin-bottom: 150px;
 	margin-top: 60px;
+	height: 270px;
 }
