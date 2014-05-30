@@ -27,43 +27,53 @@
 		<h3 class="text-center form-title"><button class="btn-mod back"><i class="icon-chevron-left"></i></button>Registrati</h3>
 		<form method="POST" class="signup-form" accept-charset="UTF-8">
 			<div class="control-group">
-				<input type="email" class="input-block-level tck2 big" id="email" name="username" placeholder="Inserisci la tua mail">
+				<label for="rg-from">Inserisci la tua email:</label>
+				<input type="email" class="input-block-level tck2 big" id="email" name="username" placeholder="">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="password" class="input-block-level tck2 big" id="pswd1" name="password" placeholder="Scegli una password">
+				<label for="rg-from">Inserisci la tua password:</label>
+				<input type="password" class="input-block-level tck2 big" id="pswd1" name="password" placeholder="">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="password" class="input-block-level tck2 big" id="pswd2" placeholder="Ridigita la tua password">
+				<label for="rg-from">Ridigita la tua password nuovamente:</label>
+				<input type="password" class="input-block-level tck2 big" id="pswd2" placeholder="">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level tck2 big" name="nome" placeholder="Inserisci il tuo nome">
+				<label for="rg-from">Inserisci il tuo nome:</label>
+				<input type="text" class="input-block-level tck2 big" name="nome" placeholder="">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level tck2 big" name="cognome" placeholder="Inserisci il tuo cognome">
+				<label for="rg-from">Inserisci il tuo cognome:</label>
+				<input type="text" class="input-block-level tck2 big" name="cognome" placeholder="">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level big" name="cf" placeholder="Inserisci il tuo codice fiscale">
+				<label for="rg-from">Inserisci il tuo codice fiscale:</label>
+				<input type="text" class="input-block-level big" name="cf" placeholder="Opzionale">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level big" name="citta" placeholder="Inserisci la tua citt&agrave;">
+				<label for="rg-from">Inserisci la tua città:</label>
+				<input type="text" class="input-block-level big" name="citta" placeholder="Opzionale">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level big" name="via" placeholder="Inserisci la tua via">
+				<label for="rg-from">Inserisci la tua via:</label>
+				<input type="text" class="input-block-level big" name="via" placeholder="Opzionale">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="text" class="input-block-level big" name="civico" placeholder="Inserisci il tuo n° civico">
+				<label for="rg-from">Inserisci il tuo n° civico:</label>
+				<input type="text" class="input-block-level big" name="civico" placeholder="Opzionale">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
-				<input type="email" class="input-block-level tck2 big" id="mail_inviter" name="mail_inviter" placeholder="Immetti la mail dell'utente che ti ha invitato">
+				<label for="rg-from">Inserisci la mail dell'utente che ti ha invitato:</label>
+				<input type="email" class="input-block-level tck2 big" id="mail_inviter" name="mail_inviter" placeholder="">
 				<span class="help-inline hide"></span>
 			</div>
 		</form>
