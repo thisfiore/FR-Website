@@ -35,6 +35,34 @@ class IndexController extends Controller {
 		}
 	}
 
+	public function getUmbria_More() {
+		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
+			$this->idLoggedUser = $_COOKIE['id_utente'];
+			
+			$this->getHome($news);
+			die;
+		}
+		else {
+			$browser = $_SERVER['HTTP_USER_AGENT'];
+
+			$loginScript = array(
+						"login" => array(
+								"type" => "text/javascript",
+								"src" => "login.js"),
+						"interested" => array(
+								"type" => "text/javascript",
+								"src" => "interested.js"),
+						"more" => array(
+								"type" => "text/javascript",
+								"src" => "more.js")
+						);
+				$this->view->addScripts($loginScript);
+
+			$this->view->load(null, 'more_umbria', null, null);
+			$this->view->render( array('browser' => $browser) );
+		}
+	}
+
 	public function postIndex() {
 		
 		if (isset($_POST['custom']) && !empty($_POST['custom'])) {
@@ -108,6 +136,65 @@ class IndexController extends Controller {
 			$this->view->render( array('browser' => $browser) );
 		}
 	}
+
+	public function getUmbria_Step1($news = null) {
+		
+		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
+			$this->idLoggedUser = $_COOKIE['id_utente'];
+			
+			$this->getHome($news);
+			die;
+		}
+		else {
+			$browser = $_SERVER['HTTP_USER_AGENT'];
+			
+// 			$this->boxPrint(strpos($browser, 'Mozilla'));
+// 			die;
+			
+			$loginScript = array(
+					"login" => array(
+							"type" => "text/javascript",
+							"src" => "login.js"),
+					"signup" => array(
+							"type" => "text/javascript",
+							"src" => "signup.js")
+					);
+			$this->view->addScripts($loginScript);
+			
+			$this->view->load(null, 'login_umbria_step1', null, null);
+			$this->view->render( array('browser' => $browser) );
+		}
+	}
+
+	public function getUmbria_Step2($news = null) {
+		
+		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
+			$this->idLoggedUser = $_COOKIE['id_utente'];
+			
+			$this->getHome($news);
+			die;
+		}
+		else {
+			$browser = $_SERVER['HTTP_USER_AGENT'];
+			
+// 			$this->boxPrint(strpos($browser, 'Mozilla'));
+// 			die;
+			
+			$loginScript = array(
+					"login" => array(
+							"type" => "text/javascript",
+							"src" => "login.js"),
+					"signup" => array(
+							"type" => "text/javascript",
+							"src" => "signup.js")
+					);
+			$this->view->addScripts($loginScript);
+			
+			$this->view->load(null, 'login_umbria_step2', null, null);
+			$this->view->render( array('browser' => $browser) );
+		}
+	}
+	
 	
 
 	public function postLogin () {

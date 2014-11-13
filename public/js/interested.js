@@ -31,11 +31,13 @@ $(document).ready(function(e) {
 	});
 	
 	
-	$('#submit').click(function(event) {
+	$('#interested').click(function(event) {
 		event.preventDefault();
 		
-		$('form.signup').ajaxForm({
-			url : '/index/signup/',
+		alert('url need to be set correctly');
+
+		$('form.interested').ajaxForm({
+			url : '',
 			type : 'POST',
 			dataType : 'json',
 			beforeSubmit : function() {
@@ -60,24 +62,6 @@ $(document).ready(function(e) {
 				}
 				
 //				Controllo se la password è stata inserita 2 volte correttamente e che sia lunga almeno 6 caratteri
-				var pswd1 = $("#pswd1").val();
-				var pswd2 = $("#pswd2").val();
-				if (pswd1 != pswd2) {
-					$("#pswd1").parent('.control-group').addClass('error');
-					$("#pswd2").parent('.control-group').addClass('error');
-					$("#pswd2").next('span').show(200).text('Le password devono essere uguali');
-					check = false;
-				}
-				if (pswd1.length < 6) {
-					$("#pswd1").parent('.control-group').addClass('error');
-					$("#pswd1").next('span').show(200).text('La password deve essere lunga almeno 6 caratteri');
-					check = false;
-				}
-				if (pswd2.length < 6) {
-					$("#pswd2").parent('.control-group').addClass('error');
-					$("#pswd2").next('span').show(200).text('La password deve essere lunga almeno 6 caratteri');
-					check = false;
-				}
 				
 
 				var mail_inviter = $("#mail_inviter").val();

@@ -604,7 +604,9 @@ div.center {
 	box-shadow: none !important;
 }
 
-#login { top: -264px; } #signup { 
+#login { top: -264px; }
+#interested { top: -815px; } 
+#signup { 
 	top: -1000px; 
 	-webkit-box-shadow: 0px -500px 200px 0px rgba(0, 0, 0, 0.35);
 	box-shadow: 0px -500px 200px 0px rgba(0, 0, 0, 0.35)
@@ -612,7 +614,7 @@ div.center {
 .wrapper.interaction { overflow: visible; z-index: 1001; }
 .spacerz { height: 30px; }
 
-.login, .signup, .btn-mod {
+.login, .login-link, .signup, .interested, .btn-mod {
 	width: 120px;
 	height: 40px;
 	border-radius: 2px;
@@ -624,7 +626,7 @@ div.center {
 	letter-spacing: .8px;
 	display: inline-block;
 	cursor: pointer;
-} .login:hover { background: #D56764; } .login:focus, .signup:focus, .back:focus { outline: -webkit-focus-ring-color auto 2px; }
+} .login:hover, .interested:hover, .login-link:hover { background: #D56764; } .login:focus, .signup:focus, .interested:focus .back:focus, .login-link:focus { outline: -webkit-focus-ring-color auto 2px; }
 .login.alt{
 	margin-top: 5px;
 }
@@ -662,7 +664,7 @@ form {
 		text-shadow: 0px 1px 0px #ffffff;
         filter: dropshadow(color=#ffffff, offx=0, offy=1);
 	}
-	.login-form, .signup-form{ display: block; }
+	.login-form, .signup-form, .interested-form { display: block; }
 
 .control-group {position: relative;}
 .help-inline {
