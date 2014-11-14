@@ -59,7 +59,7 @@ $(document).ready(function(e) {
 					check = false;
 				}
 				
-//				Controllo se la password è stata inserita 2 volte correttamente e che sia lunga almeno 6 caratteri
+//				Controllo se la password ÔøΩ stata inserita 2 volte correttamente e che sia lunga almeno 6 caratteri
 				var pswd1 = $("#pswd1").val();
 				var pswd2 = $("#pswd2").val();
 				if (pswd1 != pswd2) {
@@ -178,7 +178,8 @@ $(document).ready(function(e) {
 				},
 				success : function(response) {
 					if (response.status == 'OK') {
-						window.location.href = '/index/';
+                        console.log(response);
+						window.location.href = '/index/umbriaLink/' + response.userId;
 					}
 					else {
 						alert('Username o Password incorretti');

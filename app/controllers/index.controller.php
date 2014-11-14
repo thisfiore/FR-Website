@@ -1070,6 +1070,25 @@ class IndexController extends Controller {
 		}
 	}
 
+    public function getUmbriaLink($idUtente) {
+
+        if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
+            $this->idLoggedUser = $_COOKIE['id_utente'];
+
+            $this->getHome(null);
+            die;
+        }
+        else {
+            $this->loadModules('regioni');
+            $regioniModel = new Regioni();
+
+            $utente = $regioniModel->selectUtenteUmbriaById($idUtente);
+
+            $this->view->load(null, 'linkUmbria', null, null);
+            $this->view->render( array('utente' => $utente) );
+        }
+    }
+
 	public function getUmbria_Step2($news = null) {
 		
 		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
@@ -1114,18 +1133,27 @@ class IndexController extends Controller {
         $fetchUtente = $regioniModel->selectUtenteUmbriaByEmail($utente['email']);
 
         if ($fetchUtente['id'] > 0) {
-            $this->view->load(null, 'login_umbria_step2', null, null);
-            $this->view->render( array('utente' => $fetchUtente) );
+            $response = array(  'status' => 'OK',
+                                'user' => $fetchUtente );
+
+            $this->view->renderJson($response);
         }
         else {
-            $this->loadModules('index');
-            $indexModel = new Index();
-
             $insert = $regioniModel->insertUtenteUmbria($utente);
-            $utente = $indexModel->selectUtente($insert);
 
-            $this->view->load(null, 'login_umbria_step2', null, null);
-            $this->view->render( array('utente' => $utente) );
+//            $this->boxPrint("insert" + $insert);
+//            die;
+
+            if ($insert > 0) {
+                $response = array(  'status' => 'OK',
+                                    'userId' => $insert );
+                $this->view->renderJson($response);
+            }
+            else {
+                $response = array(  'status' => 'ERR',
+                                    'msg' => "no insert" );
+                $this->view->renderJson($response);
+            }
         };
 	}
 }
