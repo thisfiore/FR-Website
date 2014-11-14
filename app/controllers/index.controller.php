@@ -137,65 +137,6 @@ class IndexController extends Controller {
 		}
 	}
 
-	public function getUmbria_Step1($news = null) {
-		
-		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
-			$this->idLoggedUser = $_COOKIE['id_utente'];
-			
-			$this->getHome($news);
-			die;
-		}
-		else {
-			$browser = $_SERVER['HTTP_USER_AGENT'];
-			
-// 			$this->boxPrint(strpos($browser, 'Mozilla'));
-// 			die;
-			
-			$loginScript = array(
-					"login" => array(
-							"type" => "text/javascript",
-							"src" => "login.js"),
-					"signup" => array(
-							"type" => "text/javascript",
-							"src" => "signup.js")
-					);
-			$this->view->addScripts($loginScript);
-			
-			$this->view->load(null, 'login_umbria_step1', null, null);
-			$this->view->render( array('browser' => $browser) );
-		}
-	}
-
-	public function getUmbria_Step2($news = null) {
-		
-		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
-			$this->idLoggedUser = $_COOKIE['id_utente'];
-			
-			$this->getHome($news);
-			die;
-		}
-		else {
-			$browser = $_SERVER['HTTP_USER_AGENT'];
-			
-// 			$this->boxPrint(strpos($browser, 'Mozilla'));
-// 			die;
-			
-			$loginScript = array(
-					"login" => array(
-							"type" => "text/javascript",
-							"src" => "login.js"),
-					"signup" => array(
-							"type" => "text/javascript",
-							"src" => "signup.js")
-					);
-			$this->view->addScripts($loginScript);
-			
-			$this->view->load(null, 'login_umbria_step2', null, null);
-			$this->view->render( array('browser' => $browser) );
-		}
-	}
-	
-	
 
 	public function postLogin () {
 		$checkbox = $_POST['checkbox'];
@@ -275,7 +216,7 @@ class IndexController extends Controller {
 		$this->loadModules('index');
 		$indexModels = new Index();
 		
-// 		Cerco se la mail  giˆ stata inserita
+// 		Cerco se la mail ï¿½ giï¿½ stata inserita
 		$utente = $indexModels->selectUtenteMail($username);
 		if (isset($utente) && !empty($utente)) {
 			$response = array(	'status' => 'USER',
@@ -423,7 +364,6 @@ class IndexController extends Controller {
 					}
 				}
 			}
-			
 			
 // 			$this->boxPrint($prenotazioni);
 // 			die;
@@ -874,7 +814,7 @@ class IndexController extends Controller {
 		
 		if ($flag == 1) {
 			$response = array(	'status' => 'NOLISTA',
-								'message' => "Il prodotto ".$nome_prodotto."  giˆ stata acquistata da un altro utente della community pochi secondi fa! La prossima volta sarai pi fortunato. Eliminalo il tuo ordine prima di procedere.",
+								'message' => "Il prodotto ".$nome_prodotto." ï¿½ giï¿½ stata acquistata da un altro utente della community pochi secondi fa! La prossima volta sarai piï¿½ fortunato. Eliminalo il tuo ordine prima di procedere.",
 								'id' => $id_prodotto );
 			$this->view->renderJson($response);
 		}
@@ -1099,4 +1039,93 @@ class IndexController extends Controller {
 		return $mail;
 	}
 	
+
+	//UMBRIA
+	public function getUmbria($news = null) {
+		
+		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
+			$this->idLoggedUser = $_COOKIE['id_utente'];
+			
+			$this->getHome($news);
+			die;
+		}
+		else {
+			$browser = $_SERVER['HTTP_USER_AGENT'];
+			
+// 			$this->boxPrint(strpos($browser, 'Mozilla'));
+// 			die;
+			
+			$loginScript = array(
+					"login" => array(
+							"type" => "text/javascript",
+							"src" => "login.js"),
+					"signup" => array(
+							"type" => "text/javascript",
+							"src" => "signup.js")
+					);
+			$this->view->addScripts($loginScript);
+			
+			$this->view->load(null, 'login_umbria_step1', null, null);
+			$this->view->render( array('browser' => $browser) );
+		}
+	}
+
+	public function getUmbria_Step2($news = null) {
+		
+		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
+			$this->idLoggedUser = $_COOKIE['id_utente'];
+			
+			$this->getHome($news);
+			die;
+		}
+		else {
+			$browser = $_SERVER['HTTP_USER_AGENT'];
+			
+// 			$this->boxPrint(strpos($browser, 'Mozilla'));
+// 			die;
+			
+			$loginScript = array(
+					"login" => array(
+							"type" => "text/javascript",
+							"src" => "login.js"),
+					"signup" => array(
+							"type" => "text/javascript",
+							"src" => "signup.js")
+					);
+			$this->view->addScripts($loginScript);
+			
+			$this->view->load(null, 'login_umbria_step2', null, null);
+			$this->view->render( array('browser' => $browser) );
+		}
+	}
+
+	public function postUmbria () {
+
+        $this->loadModules('regioni');
+        $regioniModel = new Regioni();
+
+		$utente['email'] = $_POST['email'];
+		$utente['nome'] = $_POST['nome'];
+		$utente['cognome'] = $_POST['cognome'];
+		$utente['telefono'] = $_POST['phone'];
+		$utente['luogo_lavoro'] = $_POST['workplace'];
+		$utente['residenza'] = $_POST['home'];
+
+        $fetchUtente = $regioniModel->selectUtenteUmbriaByEmail($utente['email']);
+
+        if ($fetchUtente['id'] > 0) {
+            $this->view->load(null, 'login_umbria_step2', null, null);
+            $this->view->render( array('utente' => $fetchUtente) );
+        }
+        else {
+            $this->loadModules('index');
+            $indexModel = new Index();
+
+            $insert = $regioniModel->insertUtenteUmbria($utente);
+            $utente = $indexModel->selectUtente($insert);
+
+            $this->view->load(null, 'login_umbria_step2', null, null);
+            $this->view->render( array('utente' => $utente) );
+        };
+	}
 }

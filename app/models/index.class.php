@@ -50,6 +50,7 @@ class Index extends DB {
 		$utente = $this->fetchRow($select);
 		return $utente;
 	}
+
 	
 	public function selectUtentePerCassetta ($idUtente) {
 		$select = $this->select()

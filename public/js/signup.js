@@ -30,7 +30,7 @@ $(document).ready(function(e) {
 		}
 	});
 	
-	
+
 	$('#submit').click(function(event) {
 		event.preventDefault();
 		
@@ -126,5 +126,66 @@ $(document).ready(function(e) {
 		}).submit();
 	});
 
-	
+	//quando schiaccio il bottone mi interessa
+	// 1. animazione
+	// 2. invio form
+	$('.interested').click( function(event) {
+		var check = $(this).data('check');
+		if ( check == 0 ) {
+			var sliding = $('#interested').css('margin-top');
+		
+			$(this).animate({
+				display: 'block',
+				width: '100%'
+			}, 400, function() {
+				$(this).removeClass('pull-right');
+			}).prev().hide(200);
+			$('.wrapper').animate({
+				marginTop: '280px'
+			}, { duration: 300, queue: false });
+			$('#interested').animate({
+				top: 0
+			}, { duration: 400, queue: false });
+
+			$('.wrapper.interaction').fadeOut(200);
+			$('#email').focus();
+			$(this).data('check', 1);
+			formOpened = true;
+		} else {
+			event.preventDefault();
+				
+			$('form.interested-form').ajaxForm({
+				url : '/index/umbria/signup',
+				type : 'POST',
+				dataType : 'json',
+				beforeSubmit : function() {
+
+//				Controllo se i campi obbligatori sono inseriti
+					var check = true;
+					$('.tck2').each(function(index) {
+						if($(this).val() == '') { 
+							$(this).parent('.control-group').addClass('error');
+							$(this).next('span').show(200).text('Ti sei dimenticato qualcosa qui sopra');
+							check = false;	
+						}
+					});
+
+//				Se ci sono stati errori blocco tutto
+					if (check == false) {
+						alert('campi vuoi! signup.js');
+						return false;
+					}
+				},
+				success : function(response) {
+					if (response.status == 'OK') {
+						window.location.href = '/index/';
+					}
+					else {
+						alert('Username o Password incorretti');
+					}
+				}
+			}).submit();
+		}
+		
+	});
 });

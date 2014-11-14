@@ -219,43 +219,7 @@ $(document).ready(function(e) {
 		}
 		
 	});
-
-
-
-	// quando schiaccio bottone mi interessa
-	// 1. animazione
-	// 2. invio form
-	$('.interested').click( function(event) {
-		var check = $(this).data('check');
-		if ( check == 0 ) {
-			var sliding = $('#interested').css('margin-top');
-		
-			$(this).animate({
-				display: 'block',
-				width: '100%'
-			}, 400, function() {
-				$(this).removeClass('pull-right');
-			}).prev().hide(200);
-			$('.wrapper').animate({
-				marginTop: '280px'
-			}, { duration: 300, queue: false });
-			$('#interested').animate({
-				top: 0
-			}, { duration: 400, queue: false });
-
-			$('.wrapper.interaction').fadeOut(200);
-			$('#email').focus();
-			$(this).data('check', 1);
-			formOpened = true;
-		} else {
-			event.preventDefault();
-		
-			var checkbox = $('#squaredFour').is(":checked");
-				
-			alert('ajaxForm Submission here, in login.js');
-		}
-		
-	});
+	
 
 
 	// bottone indietro da login o registrati
