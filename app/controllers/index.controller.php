@@ -1134,7 +1134,7 @@ class IndexController extends Controller {
 
         if ($fetchUtente['id'] > 0) {
             $response = array(  'status' => 'OK',
-                                'user' => $fetchUtente );
+                                'userId' => $fetchUtente['id'] );
 
             $this->view->renderJson($response);
         }
