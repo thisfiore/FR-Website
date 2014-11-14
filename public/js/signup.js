@@ -172,7 +172,6 @@ $(document).ready(function(e) {
 
 //				Se ci sono stati errori blocco tutto
 					if (check == false) {
-						alert('campi vuoi! signup.js');
 						return false;
 					}
 				},

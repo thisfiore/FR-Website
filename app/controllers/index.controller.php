@@ -46,12 +46,9 @@ class IndexController extends Controller {
 			$browser = $_SERVER['HTTP_USER_AGENT'];
 
 			$loginScript = array(
-						"login" => array(
+						"signup" => array(
 								"type" => "text/javascript",
-								"src" => "login.js"),
-						"interested" => array(
-								"type" => "text/javascript",
-								"src" => "interested.js"),
+								"src" => "signup.js"),
 						"more" => array(
 								"type" => "text/javascript",
 								"src" => "more.js")
