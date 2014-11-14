@@ -29,6 +29,14 @@ $(document).ready(function(e) {
 			$(this).css("border", "");
 		}
 	});
+
+
+	//la persona schiaccia esc per farlo terminare
+	$(document).keyup(function(e) {
+		if (e.keyCode == 27) { 
+			if ( formOpened ) { dismissForm(); }
+		}
+	});
 	
 
 	$('#submit').click(function(event) {
@@ -188,4 +196,73 @@ $(document).ready(function(e) {
 		}
 		
 	});
+
+
+
+	// bottone indietro da login o registrati
+	$('.back').click( function() { dismissForm(); });
+
+
+	function dismissForm() {
+		if ( $('.login').data('check') == 1 ) {
+			$('.login').data('check', 0);
+			
+			$('.login').animate({
+				display: 'block',
+				width: '120px'
+			}, 400, function() {
+
+			}).addClass('pull-right').prev().show(200);
+			$('.wrapper').animate({
+				marginTop: '0px'
+			}, { duration: 300, queue: false });
+			$('#login').animate({
+				top: '-264px'
+			}, { duration: 400, queue: false });
+
+			$('.wrapper.interaction').fadeIn(200);
+			formOpened = false;
+		}
+
+		if ( $('.signup').data('check') == 1 ) {
+			$('.signup').data('check', 0);
+			
+			$('.signup').animate({
+				display: 'block',
+				width: '120px'
+			}, 400, function() {
+				$('.signup').addClass('pull-right');
+			}).next().show(200);
+			$('.wrapper').animate({
+				marginTop: '0px'
+			}, { duration: 300, queue: false });
+			$('#signup').animate({
+				top: '-1000px'
+			}, { duration: 400, queue: false });
+
+			$('.wrapper.interaction').fadeIn(200);
+			formOpened = false;
+		}
+
+		if ( $('.interested').data('check') == 1 ) {
+			$('.interested').data('check', 0);
+			
+			$('.interested').animate({
+				display: 'block',
+				width: '120px'
+			}, 400, function() {
+				console.log('avoid');
+			}).next().show(200);
+			$('.wrapper').animate({
+				marginTop: '0px'
+			}, { duration: 300, queue: false });
+			$('#interested').animate({
+				top: '-1000px'
+			}, { duration: 400, queue: false });
+
+			$('.wrapper.interaction').fadeIn(200);
+			formOpened = false;
+		}
+	};
+
 });
