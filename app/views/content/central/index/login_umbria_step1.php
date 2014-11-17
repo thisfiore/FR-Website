@@ -16,11 +16,9 @@
 				<div class="spacerz"></div><div class="spacerz"></div>
 				<p class="title">Mangia <strong>Umbro</strong>!</p>
 				<div class="spacerz"></div>
-				<ul>
-					<li>Perchè è più fresco e genuino</li>
-					<li>Perchè aiuti l'economia locale</li>
-					<li>Perchè proteggi l'ambiente</li>
-				</ul>
+				<p>Perchè è più fresco e genuino</p>
+				<p>Perchè aiuti l'economia locale</p>
+				<p>Perchè proteggi l'ambiente</p>
 				<!-- ACTIVE THIS TO ENABLE THE LINK FOR FULLFRAME VIDEO -->
 				<!-- <p class="startvideo"><i class="icon-film icon-white"></i> Guarda il Video</p> -->
 			</div>

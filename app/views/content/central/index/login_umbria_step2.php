@@ -74,8 +74,8 @@
 	
 	<!-- ARROWS -->
 	<div class="wrapper interaction">
-		<span class="prev"><img src="/img/left-arrow.png"></span>
-		<span class="next"><img src="/img/right-arrow.png"></span>
+		<span class="prev" style="background-color: #7F7D80; top: 505px; left: 5%; -webkit-box-shadow: 0 1px 6px 1px #7F7D80; box-shadow: 0 1px 6px 1px #7F7D80;"><img src="/img/left-arrow.png"></span>
+		<span class="next" style="background-color: #7F7D80; top: 505px; right: 5%; -webkit-box-shadow: 0 1px 6px 1px #7F7D80; box-shadow: 0 1px 6px 1px #7F7D80;"><img src="/img/right-arrow.png"></span>
 	</div>
 
 	<!-- SLIDER -->
