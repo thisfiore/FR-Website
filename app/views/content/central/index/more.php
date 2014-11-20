@@ -104,7 +104,7 @@
 			L’idea di Food Republic è nata da Barbara, Fabio e Maria, tre sognatori con la testa tra le nuvole ma con i piedi...e la pancia...ben ancorati a terra!
 		</p>
 		<p>
-			Abbiamo maturato dopo anni di lavoro all’estero nella cooperazione allo sviluppo, abbiamo maturato la convinzione che i cambiamenti più significativi partono dal basso, dai comportamenti del singolo, ogni giorno e che questi contribuiscono a plasmare il mondo in cui viviamo.	
+			Dopo anni di lavoro all’estero nella cooperazione allo sviluppo, abbiamo maturato la convinzione che i cambiamenti più significativi partono dal basso, dai comportamenti del singolo, ogni giorno e che questi contribuiscono a plasmare il mondo in cui viviamo.	
 		</p>
 		<p>
 			Food Republic è un'azienda low profit che antepone ai profitti la massimizzazione dell'impatto sociale e ambientale.

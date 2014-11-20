@@ -10,6 +10,9 @@
 		<form method="POST" class="interested-form" accept-charset="UTF-8">
 			<p><strong>Se ti interessa mangiare prodotti Umbri freschi e genuini, aiutando i produttori locali, lasciaci i tuoi dati e ti contatteremo non appena inizieremo le consegne, tra qualche settimana.</strong></p> 
 			<p>Se rispondi alle domande qui sotto, ci aiuti a creare un servizio che risponda meglio alle tue esigenze.</p>
+				
+			<a class="login-link typeform-share" href="https://foodrepublic1.typeform.com/to/DFNFHe" data-mode="1" target="_blank" style="text-decoration: none; color: white; line-height: 40px; text-align: center;">Questionario</a>
+			<br><br>
 
 			<div class="control-group">
 				<label for="rg-from">Inserisci la tua email:</label>
@@ -28,7 +31,7 @@
 			</div>
 			<div class="control-group">
 				<label for="rg-from">Inserisci il tuo numero di telefono:</label>
-				<input type="text" class="input-block-level tck2 big" id="phone" name="phone" placeholder="">
+				<input type="text" class="input-block-level big" id="phone" name="phone" placeholder="">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
@@ -108,7 +111,7 @@
 			L’idea di Food Republic è nata da Barbara, Fabio e Maria, tre sognatori con la testa tra le nuvole ma con i piedi...e la pancia...ben ancorati a terra!
 		</p>
 		<p>
-			Abbiamo maturato dopo anni di lavoro all’estero nella cooperazione allo sviluppo, abbiamo maturato la convinzione che i cambiamenti più significativi partono dal basso, dai comportamenti del singolo, ogni giorno e che questi contribuiscono a plasmare il mondo in cui viviamo.	
+			Dopo anni di lavoro all’estero nella cooperazione allo sviluppo, abbiamo maturato la convinzione che i cambiamenti più significativi partono dal basso, dai comportamenti del singolo, ogni giorno e che questi contribuiscono a plasmare il mondo in cui viviamo.	
 		</p>
 		<p>
 			Food Republic è un'azienda low profit che antepone ai profitti la massimizzazione dell'impatto sociale e ambientale.

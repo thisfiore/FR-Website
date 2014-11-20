@@ -138,7 +138,7 @@ $(document).ready(function(e) {
 	// 1. animazione
 	// 2. invio form
 	$('.interested').click( function(event) {
-		var check = $(this).data('check');
+		var check = $('.interested').data('check');
 		if ( check == 0 ) {
 			var sliding = $('#interested').css('margin-top');
 		
@@ -149,7 +149,7 @@ $(document).ready(function(e) {
 				$(this).removeClass('pull-right');
 			}).prev().hide(200);
 			$('.wrapper').animate({
-				marginTop: '280px'
+				marginTop: '330px'
 			}, { duration: 300, queue: false });
 			$('#interested').animate({
 				top: 0
