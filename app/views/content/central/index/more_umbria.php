@@ -95,9 +95,9 @@
 		<p>
             Tutti i prodotti sono biologici, da agricoltura integrata o comunque prodotti da piccole aziende selezionate per la loro attenzione all'ambiente, alla naturalità della produzione, al gusto e alla difesa della biodiversità.
         </p>
-		<p>
-			Facendo la spesa su Food Republic diventi di fatto un alleato/a dei Produttori ed un membro attivo della loro comunità!
-		</p>
+<!--		<p>-->
+<!--			Facendo la spesa su Food Republic diventi di fatto un alleato/a dei Produttori ed un membro attivo della loro comunità!-->
+<!--		</p>-->
 		<div class="divider"></div>
 		<h1 id="abitudini">Perchè cambiare abitudini?</h1>
 		<p>
