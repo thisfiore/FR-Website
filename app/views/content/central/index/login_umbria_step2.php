@@ -31,10 +31,15 @@
 	<!-- I M INTERESTED FORM -->
 	<div id="interested" class="wrapperform">
 		<h3 class="text-center form-title"><button class="btn-mod back"><i class="icon-chevron-left"></i></button>Mi Interessa</h3>
-		<form method="POST" class="interested-form" accept-charset="UTF-8">
-			
+		<div class="description" style="width:90%; margin:0 auto;">
 			<p><strong>Se ti interessa mangiare prodotti Umbri freschi e genuini, aiutando i produttori locali, lasciaci i tuoi dati e ti contatteremo non appena inizieremo le consegne, tra qualche settimana.</strong></p> 
-			<p>Se rispondi alle domande qui sotto, ci aiuti a creare un servizio che risponda meglio alle tue esigenze.</p>
+
+			<p>Inoltre se rispondi alle domande qui sotto, ci aiuti a creare un servizio che risponda meglio alle tue esigenze.</p>
+
+			<a class="login-link typeform-share" href="https://foodrepublic1.typeform.com/to/DFNFHe" data-mode="1" target="_blank" style="text-decoration: none; color: white; line-height: 40px; text-align: center;">Questionario</a>
+			<br><br>
+		</div>
+		<form method="POST" class="interested-form" accept-charset="UTF-8">
 
 			<div class="control-group">
 				<label for="rg-from">Inserisci la tua email:</label>
@@ -53,7 +58,7 @@
 			</div>
 			<div class="control-group">
 				<label for="rg-from">Inserisci il tuo numero di telefono:</label>
-				<input type="text" class="input-block-level tck2 big" id="phone" name="phone" placeholder="">
+				<input type="text" class="input-block-level big" id="phone" name="phone" placeholder="">
 				<span class="help-inline hide"></span>
 			</div>
 			<div class="control-group">
@@ -66,16 +71,15 @@
 				<input type="text" class="input-block-level tck2 big" id="home" name="home" placeholder="">
 				<span class="help-inline hide"></span>
 			</div>
-
-
+			
 		</form>
 		<div class="spacerz"></div>
 	</div>
 	
 	<!-- ARROWS -->
 	<div class="wrapper interaction">
-		<span class="prev"><img src="/img/left-arrow.png"></span>
-		<span class="next"><img src="/img/right-arrow.png"></span>
+		<span class="prev" style="background-color: #7F7D80; top: 505px; left: 5%; -webkit-box-shadow: 0 1px 6px 1px #7F7D80; box-shadow: 0 1px 6px 1px #7F7D80;"><img src="/img/left-arrow.png"></span>
+		<span class="next" style="background-color: #7F7D80; top: 505px; right: 5%; -webkit-box-shadow: 0 1px 6px 1px #7F7D80; box-shadow: 0 1px 6px 1px #7F7D80;"><img src="/img/right-arrow.png"></span>
 	</div>
 
 	<!-- SLIDER -->
@@ -162,4 +166,3 @@
 	    </video>
 	</div>
 	<div class="video-control hide"></div> -->
-			
