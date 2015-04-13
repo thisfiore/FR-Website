@@ -605,7 +605,7 @@ div.center {
 }
 
 #login { top: -264px; }
-#interested { top: -875px; } 
+#interested { top: -875px; }
 #signup { 
 	top: -1000px; 
 	-webkit-box-shadow: 0px -500px 200px 0px rgba(0, 0, 0, 0.35);
@@ -614,7 +614,7 @@ div.center {
 .wrapper.interaction { overflow: visible; z-index: 1001; }
 .spacerz { height: 30px; }
 
-.login, .login-link, .signup, .interested, .btn-mod {
+.login, .login-link, .signup, .interested, .new-site, .btn-mod {
 	width: 120px;
 	height: 40px;
 	border-radius: 2px;
@@ -626,7 +626,24 @@ div.center {
 	letter-spacing: .8px;
 	display: inline-block;
 	cursor: pointer;
-} .login:hover, .interested:hover, .login-link:hover { background: #D56764; } .login:focus, .signup:focus, .interested:focus .back:focus, .login-link:focus { outline: -webkit-focus-ring-color auto 2px; }
+}
+.new-site {
+    width: 120px;
+    height: 40px;
+    border-radius: 2px;
+    background: #008000;
+    border: 1px solid #008000;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: .8px;
+    display: inline-block;
+    cursor: pointer;
+}
+.login:hover, .interested:hover, .login-link:hover { background: #D56764; }
+.new-site:hover, .new-site:focus { background: #0f9d58; }
+
+.login:focus, .signup:focus, .new-site:focus, .interested:focus .back:focus, .login-link:focus { outline: -webkit-focus-ring-color auto 2px; }
 .login.alt{
 	margin-top: 5px;
 }

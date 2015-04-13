@@ -155,6 +155,15 @@ $(document).ready(function(e) {
 				top: 0
 			}, { duration: 400, queue: false });
 
+            $(".new-site").animate({
+                display: 'block',
+                width: '100%',
+                top: 0
+            }, 400, function() {
+                $(this).removeClass('pull-right');
+            }).prev().hide(200);
+
+
 			$('.wrapper.interaction').fadeOut(200);
 			$('#email').focus();
 			$(this).data('check', 1);
@@ -248,17 +257,24 @@ $(document).ready(function(e) {
 			$('.interested').data('check', 0);
 			
 			$('.interested').animate({
-				display: 'block',
-				width: '120px'
-			}, 400, function() {
-				console.log('avoid');
-			}).next().show(200);
+                display: 'block',
+                width: '120px'
+            }, 400, function() {
+                console.log('avoid');
+            }).next().show(200);
 			$('.wrapper').animate({
 				marginTop: '0px'
 			}, { duration: 300, queue: false });
 			$('#interested').animate({
 				top: '-1000px'
 			}, { duration: 400, queue: false });
+
+            $('button.new-site').animate({
+                display: 'block',
+                width: '120px'
+            }, 400, function() {
+                console.log('avoid');
+            }).next().show(200);
 
 			$('.wrapper.interaction').fadeIn(200);
 			formOpened = false;

@@ -62,6 +62,7 @@
 			</a>
 		</div>
 		<div class="user pull-right">
+            <a style="color:white; text-decoration:none; margin-right: 10px;", href="http://umbria.foodrepublic.it"><button class="new-site">Entra</button></a>
 			<button class="pull-right interested alt" data-check="0">Mi Interessa</button>
 			<!-- <button class="pull-right login alt" data-check="0">Entra</button> -->
 		</div>

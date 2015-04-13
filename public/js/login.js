@@ -269,7 +269,7 @@ $(document).ready(function(e) {
 
 		if ( $('.interested').data('check') == 1 ) {
 			$('.interested').data('check', 0);
-			
+
 			$('.interested').animate({
 				display: 'block',
 				width: '120px'
