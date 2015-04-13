@@ -39,7 +39,7 @@ class IndexController extends Controller {
 		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
 			$this->idLoggedUser = $_COOKIE['id_utente'];
 			
-			$this->getHome($news);
+			$this->getHome(null);
 			die;
 		}
 		else {

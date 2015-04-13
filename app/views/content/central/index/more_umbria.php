@@ -74,7 +74,8 @@
 		<div id="lefoodcommunities" class="foodcoom"></div>
 		<h1>Le food communities</h1>
 		<p>
-			Con Food Republic, vogliamo promuovere lo sviluppo delle Food Communities, ovvero di comunità che mettono il cibo al centro della propria vita, dove non sei l’ultimo anello passivo di una catena alimentare, ma ti puoi alleare con i Produttori del tuo territorio, diventando così un Co-produttore. Con il tuo aiuto, presto ci sara’ anche una Food Community in Umbria!
+			Con Food Republic, vogliamo promuovere lo sviluppo delle Food Communities, ovvero di comunità che mettono il cibo al centro della propria vita, dove non sei l’ultimo anello passivo di una catena alimentare, ma ti puoi alleare con i Produttori del tuo territorio, diventando così un Co-produttore.
+<!--            Con il tuo aiuto, presto ci sara’ anche una Food Community in Umbria!-->
 		</p>
 		<div class="divider"></div>
 		<div id="igruppi" class="groups"></div>
@@ -89,8 +90,8 @@
 		<div id="iprodotti" class="prods"></div>
 		<h1>I prodotti di Food Republic</h1>
 		<p>
-			Tutti i prodotti provengono da piccoli produttori Umbri, che mantengono le nostre tradizioni e preservano la biodiversita’. Sono selezionati da noi perche’ buoni e genuini e coprono l’intero fabbisogno della tua famiglia. Nei limiti della stagionalita’, trovi frutta e verdura fresche, legumi, cereali, panificati, pasta, carne fresca ed insaccati, formaggi e latticini, olio e vino...e tanto altro!
-		</p>
+            Tutti i prodotti sono biologici, da agricoltura integrata o comunque prodotti da piccole aziende selezionate per la loro attenzione all'ambiente, alla naturalità della produzione, al gusto e alla difesa della biodiversità.
+        </p>
 		<p>
 			Facendo la spesa su Food Republic diventi di fatto un alleato/a dei Produttori ed un membro attivo della loro comunità!
 		</p>
@@ -105,7 +106,7 @@
 		<div class="divider"></div>
 		<h1 id="chisiamo">Chi siamo</h1>
 		<p>
-			L’idea di Food Republic è nata da Barbara, Fabio e Maria, tre sognatori con la testa tra le nuvole ma con i piedi...e la pancia...ben ancorati a terra!
+			L’idea di Food Republic è nata da Barbara e Fabio, due sognatori con la testa tra le nuvole ma con i piedi...e la pancia...ben ancorati a terra!
 		</p>
 		<p>
 			Abbiamo maturato dopo anni di lavoro all’estero nella cooperazione allo sviluppo, abbiamo maturato la convinzione che i cambiamenti più significativi partono dal basso, dai comportamenti del singolo, ogni giorno e che questi contribuiscono a plasmare il mondo in cui viviamo.	
@@ -113,6 +114,15 @@
 		<p>
 			Food Republic è un'azienda low profit che antepone ai profitti la massimizzazione dell'impatto sociale e ambientale.
 		</p>
+        <div class="divider"></div>
+        <div class="contatti"></div>
+        <h1 id="contatti">Contatti</h1>
+        <p>
+            Per ordinare i prodotti di Food Republic a Perugia e dintorni, chiama questo numero 075 9920209 (Consorzio GEA).
+        </p>
+        <p>
+            Per informazioni su Food Republic, contattaci con un'email a info@food-republic.it o chiamaci a questi numeri: 342/8705024 (Fabio) e 388/8051805 (Barbara) oppure lasciaci i tuoi dati qui sotto e ti contatteremo noi
+        </p>
 		<br><br>
 	</div>
 	
@@ -125,6 +135,7 @@
 			<li><a class="scroll" href="#iprodotti">I prodotti di Food Republic</a></li>
 			<li><a class="scroll" href="#abitudini">Perchè cambiare abitudini?</a></li>
 			<li><a class="scroll" href="#chisiamo">Chi siamo</a></li>
+            <li><a class="scroll" href="#contatti">Contatti</a></li>
 		</ul>
 	</div>
 			
