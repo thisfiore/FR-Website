@@ -138,7 +138,7 @@
 				</ul>
 			</div>
 			<button class="interested" data-check="0">Mi Interessa</button>
-            <a style="color:white; text-decoration:none;", href="http://umbria.foodrepublic.it"><button class="new-site">Entra</button></a>
+            <a style="color:white; text-decoration:none;", href="http://umbria.food-republic.it"><button class="new-site">Entra</button></a>
 		</div>
 	</div>
 
