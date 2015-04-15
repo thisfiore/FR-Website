@@ -106,32 +106,58 @@ class IndexController extends Controller {
 	}
 	
 	public function getIndex($news = null) {
-		
-		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
-			$this->idLoggedUser = $_COOKIE['id_utente'];
-			
-			$this->getHome($news);
-			die;
-		}
-		else {
-			$browser = $_SERVER['HTTP_USER_AGENT'];
-			
+
+        if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
+            $this->idLoggedUser = $_COOKIE['id_utente'];
+
+            $this->getHome($news);
+            die;
+        }
+        else {
+            $browser = $_SERVER['HTTP_USER_AGENT'];
+
 // 			$this->boxPrint(strpos($browser, 'Mozilla'));
 // 			die;
-			
-			$loginScript = array(
-					"login" => array(
-							"type" => "text/javascript",
-							"src" => "login.js"),
-					"signup" => array(
-							"type" => "text/javascript",
-							"src" => "signup.js")
-					);
-			$this->view->addScripts($loginScript);
-			
-			$this->view->load(null, 'login', null, null);
-			$this->view->render( array('browser' => $browser) );
-		}
+
+            $loginScript = array(
+                "login" => array(
+                    "type" => "text/javascript",
+                    "src" => "login.js"),
+                "signup" => array(
+                    "type" => "text/javascript",
+                    "src" => "signup.js")
+            );
+            $this->view->addScripts($loginScript);
+
+            $this->view->load(null, 'login_umbria_step1', null, null);
+            $this->view->render( array('browser' => $browser) );
+        }
+
+//		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
+//			$this->idLoggedUser = $_COOKIE['id_utente'];
+//
+//			$this->getHome($news);
+//			die;
+//		}
+//		else {
+//			$browser = $_SERVER['HTTP_USER_AGENT'];
+//
+//// 			$this->boxPrint(strpos($browser, 'Mozilla'));
+//// 			die;
+//
+//			$loginScript = array(
+//					"login" => array(
+//							"type" => "text/javascript",
+//							"src" => "login.js"),
+//					"signup" => array(
+//							"type" => "text/javascript",
+//							"src" => "signup.js")
+//					);
+//			$this->view->addScripts($loginScript);
+//
+//			$this->view->load(null, 'login', null, null);
+//			$this->view->render( array('browser' => $browser) );
+//		}
 	}
 
 
@@ -1086,7 +1112,7 @@ class IndexController extends Controller {
         }
     }
 
-	public function getUmbria_Step2($news = null) {
+	public function getUmbria_intro($news = null) {
 		
 		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
 			$this->idLoggedUser = $_COOKIE['id_utente'];

@@ -27,7 +27,7 @@
 			</div> -->
 		</div>
 		<div class="bottom text-center">
-			<a class="login-link" href="/index/Umbria_step2" style="text-decoration: none; color: white; line-height: 40px;">Scopri come</a>
+			<a class="login-link" href="/index/umbria_intro" style="text-decoration: none; color: white; line-height: 40px;">Scopri come</a>
 			<!-- <button class="pull-right login" data-check="0">Entra</button> -->
 		</div>
 		
