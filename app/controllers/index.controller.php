@@ -1065,32 +1065,35 @@ class IndexController extends Controller {
 
 	//UMBRIA
 	public function getUmbria($news = null) {
+
+        header("Location: http://umbria.food-republic.it");
+        die();
 		
-		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
-			$this->idLoggedUser = $_COOKIE['id_utente'];
-			
-			$this->getHome($news);
-			die;
-		}
-		else {
-			$browser = $_SERVER['HTTP_USER_AGENT'];
-			
-// 			$this->boxPrint(strpos($browser, 'Mozilla'));
-// 			die;
-			
-			$loginScript = array(
-					"login" => array(
-							"type" => "text/javascript",
-							"src" => "login.js"),
-					"signup" => array(
-							"type" => "text/javascript",
-							"src" => "signup.js")
-					);
-			$this->view->addScripts($loginScript);
-			
-			$this->view->load(null, 'login_umbria_step1', null, null);
-			$this->view->render( array('browser' => $browser) );
-		}
+//		if ( isset($this->idLoggedUser) || isset($_COOKIE['id_utente']) ) {
+//			$this->idLoggedUser = $_COOKIE['id_utente'];
+//
+//			$this->getHome($news);
+//			die;
+//		}
+//		else {
+//			$browser = $_SERVER['HTTP_USER_AGENT'];
+//
+//// 			$this->boxPrint(strpos($browser, 'Mozilla'));
+//// 			die;
+//
+//			$loginScript = array(
+//					"login" => array(
+//							"type" => "text/javascript",
+//							"src" => "login.js"),
+//					"signup" => array(
+//							"type" => "text/javascript",
+//							"src" => "signup.js")
+//					);
+//			$this->view->addScripts($loginScript);
+//
+//			$this->view->load(null, 'login_umbria_step1', null, null);
+//			$this->view->render( array('browser' => $browser) );
+//		}
 	}
 
     public function getUmbriaLink($idUtente) {
@@ -1168,9 +1171,44 @@ class IndexController extends Controller {
 //            die;
 
             if ($insert > 0) {
+
+                require_once realpath(dirname(__FILE__)).'/../../mandrill/src/Mandrill.php'; //Not required with Composer
+                $mandrill = new Mandrill('ZFJ-ec9eZFcqYRvGD297Aw');
+
+                $msg = '<p>'.$utente['nome'].' '.$utente['cognome'].' residente a '.$utente['residenza'].' ha richiesto info su Food Republic Umbria'.'</p><br><p>La sua mail è: '.
+                        $utente['email'] .'</p><br><p>'.'Telefono: '.$utente['telefono'];
+
+                try {
+                    $message = array(
+                        'html' => $msg,
+                        'text' => 'example',
+                        'subject' => 'Richiesta Informazioni',
+                        'from_email' => 'info@foodrepublic.com',
+                        'from_name' =>  'FoodRepublic',
+                        'to' => array(
+                            array(	'email' => "ricca.prog@gmail.com",
+                                'name' => $utente['nome'].' '.$utente['cognome']
+                            ),
+                        ),
+                    );
+                    $async = false;
+                    $ip_pool = null;
+                    $result = $mandrill->messages->send($message, $async, $ip_pool);
+
+                } catch(Mandrill_Error $e) {
+                    // Mandrill errors are thrown as exceptions
+                    echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
+                    // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+                    throw $e;
+                }
+
+
+
                 $response = array(  'status' => 'OK',
                                     'userId' => $insert );
+
                 $this->view->renderJson($response);
+
             }
             else {
                 $response = array(  'status' => 'ERR',

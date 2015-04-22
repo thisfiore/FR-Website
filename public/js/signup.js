@@ -148,9 +148,17 @@ $(document).ready(function(e) {
 			}, 400, function() {
 				$(this).removeClass('pull-right');
 			}).prev().hide(200);
+
+            console.log("HERE");
+
 			$('.wrapper').animate({
-				marginTop: '330px'
+				marginTop: '240px'
 			}, { duration: 300, queue: false });
+
+            $('.bottom').animate({
+                height: '85px'
+            }, { duration: 300, queue: false });
+
 			$('#interested').animate({
 				top: 0
 			}, { duration: 400, queue: false });
@@ -213,6 +221,10 @@ $(document).ready(function(e) {
 
 
 	function dismissForm() {
+        $('.bottom').animate({
+            height: '40px'
+        }, { duration: 300, queue: false });
+
 		if ( $('.login').data('check') == 1 ) {
 			$('.login').data('check', 0);
 			
@@ -225,7 +237,8 @@ $(document).ready(function(e) {
 			$('.wrapper').animate({
 				marginTop: '0px'
 			}, { duration: 300, queue: false });
-			$('#login').animate({
+
+            $('#login').animate({
 				top: '-264px'
 			}, { duration: 400, queue: false });
 
@@ -245,7 +258,7 @@ $(document).ready(function(e) {
 			$('.wrapper').animate({
 				marginTop: '0px'
 			}, { duration: 300, queue: false });
-			$('#signup').animate({
+            $('#signup').animate({
 				top: '-1000px'
 			}, { duration: 400, queue: false });
 
@@ -265,7 +278,8 @@ $(document).ready(function(e) {
 			$('.wrapper').animate({
 				marginTop: '0px'
 			}, { duration: 300, queue: false });
-			$('#interested').animate({
+
+            $('#interested').animate({
 				top: '-1000px'
 			}, { duration: 400, queue: false });
 

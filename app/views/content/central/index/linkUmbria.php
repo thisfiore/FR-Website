@@ -3,11 +3,11 @@
     <h1>Grazie <?php echo $utente['nome']?>!</h1>
     
 	<p>Il tuo prezioso gesto ci sta aiutando a portare i prodotti umbri a casa tua!</p>
-	<p>Aiutaci ancora un poco rispondendo ad alcune domande di un questionario.<br>Ci serve per creare un servizio che risponda meglio alle <strong>tue</strong> esigenze.</p>
-	
-	<br>
-	<a class="login-link typeform-share" href="https://foodrepublic1.typeform.com/to/DFNFHe" data-mode="1" target="_blank" style="text-decoration: none; color: white; line-height: 40px;">Questionario</a>
-	<br>
+<!--	<p>Aiutaci ancora un poco rispondendo ad alcune domande di un questionario.<br>Ci serve per creare un servizio che risponda meglio alle <strong>tue</strong> esigenze.</p>-->
+<!--	-->
+<!--	<br>-->
+<!--	<a class="login-link typeform-share" href="https://foodrepublic1.typeform.com/to/DFNFHe" data-mode="1" target="_blank" style="text-decoration: none; color: white; line-height: 40px;">Questionario</a>-->
+<!--	<br>-->
 
 
 	<br><br>

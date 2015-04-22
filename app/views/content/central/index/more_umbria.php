@@ -9,10 +9,10 @@
 		<h3 class="text-center form-title"><button class="btn-mod back"><i class="icon-chevron-left"></i></button>Mi Interessa</h3>
 		<form method="POST" class="interested-form" accept-charset="UTF-8">
 			<p><strong>Se ti interessa mangiare prodotti Umbri freschi e genuini, aiutando i produttori locali, lasciaci i tuoi dati e ti contatteremo non appena inizieremo le consegne, tra qualche settimana.</strong></p> 
-			<p>Se rispondi alle domande qui sotto, ci aiuti a creare un servizio che risponda meglio alle tue esigenze.</p>
-				
-			<a class="login-link typeform-share" href="https://foodrepublic1.typeform.com/to/DFNFHe" data-mode="1" target="_blank" style="text-decoration: none; color: white; line-height: 40px; text-align: center;">Questionario</a>
-			<br><br>
+<!--			<p>Se rispondi alle domande qui sotto, ci aiuti a creare un servizio che risponda meglio alle tue esigenze.</p>-->
+<!--				-->
+<!--			<a class="login-link typeform-share" href="https://foodrepublic1.typeform.com/to/DFNFHe" data-mode="1" target="_blank" style="text-decoration: none; color: white; line-height: 40px; text-align: center;">Questionario</a>-->
+			<br>
 
 			<div class="control-group">
 				<label for="rg-from">Inserisci la tua email:</label>
@@ -56,14 +56,14 @@
 	<!-- HEADER -->
 	<div class="row-fluid header">
 		<div class="span7">
-			<a href="/index/Umbria_step2">
+			<a href="/index/umbria_intro">
 				<img width="50" src="/img/fr-small-logo.png" />
 				<span class="fr">Food Republic</span>
 			</a>
 		</div>
 		<div class="user pull-right">
             <a style="color:white; text-decoration:none; margin-right: 10px;", href="http://umbria.food-republic.it"><button class="new-site">Entra</button></a>
-			<button class="pull-right interested alt" data-check="0">Mi Interessa</button>
+			<button class="pull-right interested alt" data-check="0" style="height: 47px">Mi Interessa</button>
 			<!-- <button class="pull-right login alt" data-check="0">Entra</button> -->
 		</div>
 	</div>
@@ -82,15 +82,15 @@
 <!--            Con il tuo aiuto, presto ci sara’ anche una Food Community in Umbria!-->
 		</p>
 		<div class="divider"></div>
-		<div id="igruppi" class="groups"></div>
-		<h1>Punti di consegna</h1>
-		<p>
-			Per ridurre i costi e la strada percorsa dal cibo, stiamo individuando assieme a te alcuni punti di consegna dove potrai ritirare la tua spesa: all’uscita dal posto di lavoro, nel parcheggio dove lasci abitualmente l’auto o in ogni altro posto dove ti resta piu’ comodo...scuola, palestra, parrocchia, ecc.
-		</p>
-		<p>
-			Segnalaci la tua preferenza, visto che ora stiamo individuando i punti di consegna a Perugia e dintorni.
-		</p>
-		<div class="divider"></div>
+<!--		<div id="igruppi" class="groups"></div>-->
+<!--		<h1>Punti di consegna</h1>-->
+<!--		<p>-->
+<!--			Per ridurre i costi e la strada percorsa dal cibo, stiamo individuando assieme a te alcuni punti di consegna dove potrai ritirare la tua spesa: all’uscita dal posto di lavoro, nel parcheggio dove lasci abitualmente l’auto o in ogni altro posto dove ti resta piu’ comodo...scuola, palestra, parrocchia, ecc.-->
+<!--		</p>-->
+<!--		<p>-->
+<!--			Segnalaci la tua preferenza, visto che ora stiamo individuando i punti di consegna a Perugia e dintorni.-->
+<!--		</p>-->
+<!--		<div class="divider"></div>-->
 		<div id="iprodotti" class="prods"></div>
 		<h1>I prodotti di Food Republic</h1>
 		<p>
@@ -125,7 +125,10 @@
             Per ordinare i prodotti di Food Republic a Perugia e dintorni, chiama questo numero 075 9920209 (Consorzio GEA).
         </p>
         <p>
-            Per informazioni su Food Republic, contattaci con un'email a info@food-republic.it o chiamaci a questi numeri: 342/8705024 (Fabio) e 388/8051805 (Barbara) oppure lasciaci i tuoi dati qui sotto e ti contatteremo noi
+            Per informazioni su Food Republic, contattaci con un'email a info@food-republic.it o chiamaci a questi numeri <br><br>
+            Fabio: 342/8705024 <br>
+            Barbara: 388/8051805 <br><br>
+            Oppure lasciaci i tuoi dati qui sotto e ti contatteremo noi.
         </p>
 		<br><br>
 	</div>
@@ -135,7 +138,7 @@
 		<ul>
 			<li><a class="scroll" href="#cose">Cos'è?</a></li>
 			<li><a class="scroll" href="#lefoodcommunities">Le food communities</a></li>
-			<li><a class="scroll" href="#igruppi">Punti di consegna</a></li>
+<!--			<li><a class="scroll" href="#igruppi">Punti di consegna</a></li>-->
 			<li><a class="scroll" href="#iprodotti">I prodotti di Food Republic</a></li>
 			<li><a class="scroll" href="#abitudini">Perchè cambiare abitudini?</a></li>
 			<li><a class="scroll" href="#chisiamo">Chi siamo</a></li>

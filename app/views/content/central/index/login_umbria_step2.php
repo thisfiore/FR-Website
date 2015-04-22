@@ -34,10 +34,10 @@
 		<div class="description" style="width:90%; margin:0 auto;">
 			<p><strong>Se ti interessa mangiare prodotti Umbri freschi e genuini, aiutando i produttori locali, lasciaci i tuoi dati e ti contatteremo non appena inizieremo le consegne, tra qualche settimana.</strong></p> 
 
-			<p>Inoltre se rispondi alle domande qui sotto, ci aiuti a creare un servizio che risponda meglio alle tue esigenze.</p>
-
-			<a class="login-link typeform-share" href="https://foodrepublic1.typeform.com/to/DFNFHe" data-mode="1" target="_blank" style="text-decoration: none; color: white; line-height: 40px; text-align: center;">Questionario</a>
-			<br><br>
+<!--			<p>Inoltre se rispondi alle domande qui sotto, ci aiuti a creare un servizio che risponda meglio alle tue esigenze.</p>-->
+<!--			<a class="login-link typeform-share" href="https://foodrepublic1.typeform.com/to/DFNFHe" data-mode="1" target="_blank" style="text-decoration: none; color: white; line-height: 40px; text-align: center;">Questionario</a>-->
+<!--			<br>-->
+            <br>
 		</div>
 		<form method="POST" class="interested-form" accept-charset="UTF-8">
 
@@ -137,8 +137,8 @@
 					</li>
 				</ul>
 			</div>
-			<button class="interested" data-check="0">Mi Interessa</button>
-            <a style="color:white; text-decoration:none;", href="http://umbria.food-republic.it"><button class="new-site">Entra</button></a>
+			<button style="height: 47px" class="interested" data-check="0">Mi Interessa</button>
+            <a style="color:white; text-decoration:none;", href="http://umbria.food-republic.it"><button class="new-site">Menu cibo buono</button></a>
 		</div>
 	</div>
 
