@@ -149,8 +149,6 @@ $(document).ready(function(e) {
 				$(this).removeClass('pull-right');
 			}).prev().hide(200);
 
-            console.log("HERE");
-
 			$('.wrapper').animate({
 				marginTop: '240px'
 			}, { duration: 300, queue: false });
@@ -225,6 +223,12 @@ $(document).ready(function(e) {
             height: '40px'
         }, { duration: 300, queue: false });
 
+        $('.user a').animate({
+            display: 'initial'
+        }, { duration: 300, queue: false });
+
+        console.log("AAAAAAAAA");
+
 		if ( $('.login').data('check') == 1 ) {
 			$('.login').data('check', 0);
 			
@@ -274,7 +278,8 @@ $(document).ready(function(e) {
                 width: '120px'
             }, 400, function() {
                 console.log('avoid');
-            }).next().show(200);
+            }).prev().show(200);
+
 			$('.wrapper').animate({
 				marginTop: '0px'
 			}, { duration: 300, queue: false });

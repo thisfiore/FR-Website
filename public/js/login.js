@@ -223,7 +223,7 @@ $(document).ready(function(e) {
 
 
 	// bottone indietro da login o registrati
-	$('.back').click( function() { dismissForm(); });
+	//$('.back').click( function() { dismissForm(); });
 
 
 	function dismissForm() {
