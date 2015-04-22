@@ -1186,8 +1186,8 @@ class IndexController extends Controller {
                         'from_email' => 'info@foodrepublic.com',
                         'from_name' =>  'FoodRepublic',
                         'to' => array(
-                            array(	'email' => "ricca.prog@gmail.com",
-                                'name' => $utente['nome'].' '.$utente['cognome']
+                            array(	'email' => "info@foodrepublic.com",
+                                'name' => "Food Republic"
                             ),
                         ),
                     );
